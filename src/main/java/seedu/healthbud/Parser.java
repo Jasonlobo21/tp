@@ -30,7 +30,7 @@ public class Parser {
     }
 
     public static void handleMeal(LogList logs, String input){
-        if (!input.contains("/d") || !input.contains("/t") || !input.contains("/cal")) {
+        if (input == null || !input.contains("/d") || !input.contains("/t") || !input.contains("/cal")) {
             throw new HealthBudException("Invalid meal command (e.g., meal chicken rice /cal 550 /d 12-01-25 /t 9pm)");
         }
 
