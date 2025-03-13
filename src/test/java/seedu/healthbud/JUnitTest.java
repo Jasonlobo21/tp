@@ -2,14 +2,14 @@ package seedu.healthbud;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import seedu.healthbud.exception.HealthBudException;
+import seedu.healthbud.exception.InvalidMealException;
 
 import org.junit.jupiter.api.Test;
 import seedu.healthbud.log.Meal;
 
 class JUnitTest {
     @Test
-    void handleMeal_correctInput_expectSuccess() throws HealthBudException {
+    void handleMeal_correctInput_expectSuccess() throws InvalidMealException {
         LogList logs = new LogList();
         String input = "meal Chicken Rice /cal 550 /d 12-01-25 /t 9pm";
 
@@ -23,20 +23,20 @@ class JUnitTest {
     }
 
     @Test
-    void handleMeal_wrongInput_expectFailure() throws HealthBudException {
+    void handleMeal_wrongInput_expectFailure() throws InvalidMealException {
         LogList logs = new LogList();
         // Missing calories parameter "/cal"
         String input = "meal Chicken Rice /d 12-01-25 /t 9pm";
 
-        assertThrows(HealthBudException.class, () -> Parser.handleMeal(logs, input));
+        assertThrows(InvalidMealException.class, () -> Parser.handleMeal(logs, input));
     }
 
     @Test
-    void mealLog_nullInput_expectException() throws HealthBudException{
+    void mealLog_nullInput_expectException() throws InvalidMealException {
         LogList logs = new LogList();
         String input = null;
 
-        assertThrows(HealthBudException.class, () -> Parser.handleMeal(logs, input));
+        assertThrows(InvalidMealException.class, () -> Parser.handleMeal(logs, input));
     }
 }
 
