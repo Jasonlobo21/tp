@@ -1,14 +1,11 @@
 package seedu.healthbud;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import seedu.healthbud.exception.HealthBudException;
 
 import org.junit.jupiter.api.Test;
 import seedu.healthbud.log.Meal;
-
-import java.util.ArrayList;
 
 class JUnitTest {
     @Test
