@@ -1,4 +1,11 @@
-Got it. I've added this meal:
-    Chicken Rice (550 cal) on: 12-01-25 at: 9pm
-Now you have 1 meals in the list.
-Bye. Hope to see you again soon!
+  _   _            _ _   _     ____            _ 
+ | | | | ___  __ _| | |_| |__ | __ ) _   _  __| |
+ | |_| |/ _ \/ _` | | __| '_ \|  _ \| | | |/ _` |
+ |  _  |  __/ (_| | | |_| | | | |_) | |_| | (_| |
+ |_| |_|\___|\__,_|_|\__|_| |_|____/ \__,_|\__,_|
+    Hello! I'm HealthBud
+     What can I do for you?
+     Got it. I've added this meal:
+       Chicken Rice (550 cal) on: 12-01-25 at: 9pm
+     Now you have 1 meals in the list.
+    Bye. Hope to see you again soon!
