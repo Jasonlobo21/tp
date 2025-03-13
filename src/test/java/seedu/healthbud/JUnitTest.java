@@ -39,3 +39,4 @@ class JUnitTest {
         assertThrows(HealthBudException.class, () -> Parser.handleMeal(logs, input));
     }
 }
+
