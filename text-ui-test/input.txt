@@ -1,1 +1,2 @@
-James Gosling
+meal Chicken Rice /cal 550 /d 12-01-25 /t 9pm
+bye

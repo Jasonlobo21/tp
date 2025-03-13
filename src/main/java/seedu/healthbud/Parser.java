@@ -49,9 +49,9 @@ public class Parser {
         Meal newMeal = new Meal(meal[0].trim(), meal[1].trim(), meal[2].trim(), meal[3].trim());
         logs.addlog(newMeal);
 
-        Ui.printMessage(" Got it. I've added this task:");
+        Ui.printMessage(" Got it. I've added this meal:");
         Ui.printMessage("   " + logs.getLog(logs.getSize() - 1));
-        Ui.printMessage(" Now you have " + logs.getSize() + " tasks in the list.");
+        Ui.printMessage(" Now you have " + logs.getSize() + " meals in the list.");
     }
 
     public static void handleMealList(LogList logs){

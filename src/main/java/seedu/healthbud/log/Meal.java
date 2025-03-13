@@ -26,6 +26,6 @@ public class Meal extends Log {
     }
     @Override
     public String toString() {
-        return String.format("%s (%s cal) on: %s at: %s)", super.toString(), calories, date, time);
+        return String.format("%s (%s cal) on: %s at: %s", super.toString(), calories, date, time);
     }
 }
