@@ -6,11 +6,12 @@ cd ..
 call gradlew clean shadowJar
 
 cd build\libs
-for /f "tokens=*" %%a in (
-    'dir /b *.jar'
-) do (
-    set jarloc=%%a
-)
+set jarloc=healthbud.jar
+@REM for /f "tokens=*" %%a in (
+@REM     'dir /b *.jar'
+@REM ) do (
+@REM     set jarloc=%%a
+@REM )
 
 java -jar %jarloc% < ..\..\text-ui-test\input.txt > ..\..\text-ui-test\ACTUAL.TXT
 
