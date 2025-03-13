@@ -30,7 +30,7 @@ public class Parser {
     }
 
     public static void handleMeal(LogList logs, String input){
-        if (!input.contains("/d") || !input.contains("/t") || !input.contains("/cal")) {
+        if (input == null || !input.contains("/d") || !input.contains("/t") || !input.contains("/cal")) {
             throw new HealthBudException("Invalid meal command (e.g., meal chicken rice /cal 550 /d 12-01-25 /t 9pm)");
         }
 
@@ -49,9 +49,9 @@ public class Parser {
         Meal newMeal = new Meal(meal[0].trim(), meal[1].trim(), meal[2].trim(), meal[3].trim());
         logs.addlog(newMeal);
 
-        Ui.printMessage(" Got it. I've added this task:");
+        Ui.printMessage(" Got it. I've added this meal:");
         Ui.printMessage("   " + logs.getLog(logs.getSize() - 1));
-        Ui.printMessage(" Now you have " + logs.getSize() + " tasks in the list.");
+        Ui.printMessage(" Now you have " + logs.getSize() + " meals in the list.");
     }
 
     public static void handleMealList(LogList logs){

@@ -49,7 +49,7 @@ public class Ui {
     public static void printHelp() {
         printMessage("Here are the commands you can use:" + NEW_LINE
                 + "1. Meal <meal name> /cal <calories> /d <date> /t <time> - Add a meal log" + NEW_LINE
-                + "2. bye - Exit the program");
+                + "2. Bye - Exit the program");
     }
 
     /**
