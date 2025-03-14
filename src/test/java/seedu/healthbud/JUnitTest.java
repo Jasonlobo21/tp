@@ -130,5 +130,11 @@ class JUnitTest {
         String input = "recommend biceps";
         assertThrows(InvalidWorkoutReccException.class, () -> Parser.recommendWorkout(input));
     }
+
+    @Test
+    void recommendWorkout_additionalParameters_expectException() throws InvalidWorkoutReccException {
+        String input = "recommend /plan biceps";
+        assertThrows(InvalidWorkoutReccException.class, () -> Parser.recommendWorkout(input));
+    }
 }
 
