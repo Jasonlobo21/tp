@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
-import seedu.healthbud.BMI;
 import seedu.healthbud.exception.InvalidBmiException;
 import seedu.healthbud.exception.InvalidMealException;
 import seedu.healthbud.exception.InvalidWorkoutReccException;
