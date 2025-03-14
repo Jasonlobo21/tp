@@ -38,5 +38,29 @@ class JUnitTest {
 
         assertThrows(InvalidMealException.class, () -> Parser.handleMeal(logs, input));
     }
+
+    @Test
+    void handleMeal_emptyDate_expectFailure() throws InvalidMealException {
+        LogList logs = new LogList();
+        // The date parameter is present but empty.
+        String input = "meal Chicken Rice /cal 550 /d  /t 9pm";
+        assertThrows(InvalidMealException.class, () -> Parser.handleMeal(logs, input));
+    }
+
+    @Test
+    void handleMeal_missingTimeParameter_expectFailure() throws InvalidMealException {
+        LogList logs = new LogList();
+        // Missing time parameter "/t"
+        String input = "meal Chicken Rice /cal 550 /d 12-01-25";
+        assertThrows(InvalidMealException.class, () -> Parser.handleMeal(logs, input));
+    }
+
+    @Test
+    void handleMeal_tooManyParameters_expectFailure() throws InvalidMealException {
+        LogList logs = new LogList();
+        // An extra parameter "/extra" makes the split array longer than expected.
+        String input = "meal Chicken Rice /cal 550 /d 12/01/25 /t 9pm /extra";
+        assertThrows(InvalidMealException.class, () -> Parser.handleMeal(logs, input));
+    }
 }
 

@@ -46,14 +46,14 @@ public class Parser {
         if(meal.length != 4){
             throw new InvalidMealException();
         }
-        meal[1] = meal[1].substring(3);
-        meal[2] = meal[2].substring(1);
-        meal[3] = meal[3].substring(1);
+        meal[1] = meal[1].substring(3).trim();
+        meal[2] = meal[2].substring(1).trim();
+        meal[3] = meal[3].substring(1).trim();
         if (meal[1].isEmpty() || meal[2].isEmpty() || meal[3].isEmpty()) {
             throw new InvalidMealException();
         }
 
-        Meal newMeal = new Meal(meal[0].trim(), meal[1].trim(), meal[2].trim(), meal[3].trim());
+        Meal newMeal = new Meal(meal[0].trim(), meal[1], meal[2], meal[3]);
         logs.addlog(newMeal);
 
         Ui.printMessage(" Got it. I've added this meal:");
