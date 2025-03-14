@@ -26,6 +26,14 @@ public class Parser {
             case "recommend":
                 recommendWorkout(input);
                 return true;
+            case "bmi":
+                try {
+                    double result = BMI.calculateFromInput(input);
+                    Ui.printMessage("Your BMI is: " + String.format("%.2f", result));
+                } catch (Exception e) {
+                    Ui.printMessage("Invalid BMI command. Usage: bmi /w <weight_in_kg> /h <height_in_m>");
+                }
+                return true;
             default:
                 Ui.printUnknownCommand();
                 return true;
