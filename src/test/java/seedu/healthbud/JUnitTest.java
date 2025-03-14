@@ -123,6 +123,7 @@ class JUnitTest {
             System.out.flush(); // Ensure all output is captured
             assertEquals(testCase[1], outContent.toString().trim());
         }
+        
     }
 
 
