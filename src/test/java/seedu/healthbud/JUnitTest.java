@@ -123,10 +123,12 @@ class JUnitTest {
             System.out.flush(); // Ensure all output is captured
             assertEquals(testCase[1], outContent.toString().trim());
         }
-        
     }
-
-
-
+    @Test
+    void recommendWorkout_missingParameters_expectFailure() throws InvalidWorkoutReccException {
+        // An extra parameter "/extra" makes the array longer than expected.
+        String input = "recommend biceps";
+        assertThrows(InvalidWorkoutReccException.class, () -> Parser.recommendWorkout(input));
+    }
 }
 
