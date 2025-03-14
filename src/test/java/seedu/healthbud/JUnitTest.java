@@ -2,13 +2,15 @@ package seedu.healthbud;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import seedu.healthbud.exception.InvalidMealException;
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 
 import org.junit.jupiter.api.Test;
+import seedu.healthbud.exception.InvalidBmiException;
+import seedu.healthbud.exception.InvalidMealException;
 import seedu.healthbud.exception.InvalidWorkoutReccException;
 import seedu.healthbud.log.Meal;
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 
 class JUnitTest {
 
@@ -72,7 +74,6 @@ class JUnitTest {
         assertThrows(InvalidMealException.class, () -> Parser.handleMeal(logs, input));
     }
 
-
     void setUpStreams() {
         System.setOut(new PrintStream(outContent));
     }
@@ -124,6 +125,7 @@ class JUnitTest {
             assertEquals(testCase[1], outContent.toString().trim());
         }
     }
+
     @Test
     void recommendWorkout_missingParameters_expectFailure() throws InvalidWorkoutReccException {
         // An extra parameter "/extra" makes the array longer than expected.
@@ -136,5 +138,32 @@ class JUnitTest {
         String input = "recommend /plan biceps";
         assertThrows(InvalidWorkoutReccException.class, () -> Parser.recommendWorkout(input));
     }
-}
 
+    // ========================= BMI Tests =========================
+
+    @Test
+    void calculateBmi_validInput_expectSuccess() throws InvalidBmiException {
+        String input = "bmi /w 70 /h 1.78";
+        double result = BMI.calculateFromInput(input);
+        double expected = 70 / (1.78 * 1.78);
+        assertEquals(expected, result, 0.01);
+    }
+
+    @Test
+    void calculateBmi_missingWeight_expectFailure() {
+        String input = "bmi /h 1.78";
+        assertThrows(InvalidBmiException.class, () -> BMI.calculateFromInput(input));
+    }
+
+    @Test
+    void calculateBmi_missingHeight_expectFailure() {
+        String input = "bmi /w 70";
+        assertThrows(InvalidBmiException.class, () -> BMI.calculateFromInput(input));
+    }
+
+    @Test
+    void calculateBmi_invalidNumberFormat_expectFailure() {
+        String input = "bmi /w seventy /h 1.78";
+        assertThrows(InvalidBmiException.class, () -> BMI.calculateFromInput(input));
+    }
+}
