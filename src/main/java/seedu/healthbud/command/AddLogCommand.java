@@ -15,6 +15,7 @@ public class AddLogCommand extends Command {
         switch (parts[0]) {
         case "water":
             Ui.printMessage(" feature not implemented yet");
+            break;
 
         case "meal":
             if (!input.contains("/d") || !input.contains("/t") || !input.contains("/cal")) {
@@ -39,6 +40,8 @@ public class AddLogCommand extends Command {
             Ui.printMessage(" Got it. I've added this meal:");
             Ui.printMessage("   " + logs.getLog(logs.getSize() - 1));
             Ui.printMessage(" Now you have " + logs.getSize() + " meals in the list.");
+            break;
+            
         default:
             Ui.printMessage("Invalid type of log");
         }
