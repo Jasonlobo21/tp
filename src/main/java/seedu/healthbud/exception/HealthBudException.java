@@ -1,7 +1,7 @@
 package seedu.healthbud.exception;
 
-public class HealthBudException extends Exception {
+public class HealthBudException extends Exception{
     public HealthBudException(String message) {
-        super("    Error: " + message);
+        super(message);
     }
 }
