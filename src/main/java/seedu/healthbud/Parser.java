@@ -14,26 +14,26 @@ public class Parser {
         try {
             String command = input.split(" ")[0].toLowerCase();
             switch (command) {
-                case "bye":
-                    return Ui.printGoodbye();
-                case "meal":
-                    new AddLogCommand().execute(logs, input);
-                    return true;
-                case "help":
-                    Ui.printHelp();
-                    return true;
-                case "list":
-                    new ListMeal().execute(logs, input);
-                    return true;
-                case "rec":
-                    new Recommend().execute(logs, input);
-                    return true;
-                case "bmi":
-                    BMI.calculateFromInput(input);
-                    return true;
-                default:
-                    Ui.printUnknownCommand();
-                    return true;
+            case "bye":
+                return Ui.printGoodbye();
+            case "meal":
+                new AddLogCommand().execute(logs, input);
+                return true;
+            case "help":
+                Ui.printHelp();
+                return true;
+            case "list":
+                new ListMeal().execute(logs, input);
+                return true;
+            case "rec":
+                new Recommend().execute(logs, input);
+                return true;
+            case "bmi":
+                BMI.calculateFromInput(input);
+                return true;
+            default:
+                Ui.printUnknownCommand();
+                return true;
             }
         } catch (InvalidMealException | HealthBudException e) {
             System.out.println(e.getMessage());
