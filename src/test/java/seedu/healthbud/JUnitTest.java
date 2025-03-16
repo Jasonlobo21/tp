@@ -72,63 +72,63 @@ class JUnitTest {
         System.setOut(new PrintStream(outContent));
     }
 
-//    @Test
-//    void recommendWorkout_correctInput_expectSuccess() throws HealthBudException { //fail
-//        setUpStreams(); // Redirect output stream
-//
-//        String[][] testCases = {
-//                {"chest", "Here are some recommended chest exercises: " + NEW_LINE
-//                        + "1. Incline Smith Machine Bench Press" + NEW_LINE
-//                        + "2. Dumbbell Chest Press" + NEW_LINE
-//                        + "3. Cable Chest Flys"},
-//                {"back", "Here are some recommended back exercises: " + NEW_LINE
-//                        + "1. Pull-Ups" + NEW_LINE
-//                        + "2. Barbell Bent-over Rows" + NEW_LINE
-//                        + "3. Lat Pulldown"},
-//                {"biceps", "Here are some recommended biceps exercises: " + NEW_LINE
-//                        + "1. Barbell Bicep Curls" + NEW_LINE
-//                        + "2. Hammer Curls" + NEW_LINE
-//                        + "3. Cable Curls"},
-//                {"triceps", "Here are some recommended triceps exercises: " + NEW_LINE
-//                        + "1. Close-Grip Bench Press" + NEW_LINE
-//                        + "2. Tricep Dips" + NEW_LINE
-//                        + "3. Skull Crushers"},
-//                {"legs", "Here are some recommended leg exercises: " + NEW_LINE
-//                        + "1. Barbell Squats" + NEW_LINE
-//                        + "2. Leg Extension & Leg Curls" + NEW_LINE
-//                        + "3. Leg Press"},
-//                {"shoulders", "Here are some recommended shoulder exercises: " + NEW_LINE
-//                        + "1. Overhead Dumbell Shoulder Press (Front Delt)" + NEW_LINE
-//                        + "2. Lateral Raises (Side Delt)" + NEW_LINE
-//                        + "3. Rear Delt Flys (Rear Delt)"},
-//                {"abs", "Here are some recommended ab exercises: " + NEW_LINE
-//                        + "1. Hanging Leg Raises" + NEW_LINE
-//                        + "2. Russian Twists" + NEW_LINE
-//                        + "3. Planks"},
-//                {"forearms", "Here are some recommended forearm exercises: " + NEW_LINE
-//                        + "1. Wrist Curls" + NEW_LINE
-//                        + "2. Reverse Wrist Curls" + NEW_LINE
-//                        + "3. Farmer's Walk"},
-//                {"help", "Here are the list of muscle groups: " + NEW_LINE
-//                        + "1. chest" + NEW_LINE
-//                        + "2. back" + NEW_LINE
-//                        + "3. biceps" + NEW_LINE
-//                        + "4. triceps" + NEW_LINE
-//                        + "5. legs" + NEW_LINE
-//                        + "6. shoulders" + NEW_LINE
-//                        + "7. abs" + NEW_LINE
-//                        + "8. forearms"}
-//
-//        };
-//
-//        for (String[] testCase : testCases) {
-//            outContent.reset(); // Clear previous output
-//            String input = "recommend /m " + testCase[0];
-//            new Recommend().execute(new LogList(), input);
-//            System.out.flush(); // Ensure all output is captured
-//            assertEquals(testCase[1], outContent.toString().trim());
-//        }
-//    }
+    //    @Test
+    //    void recommendWorkout_correctInput_expectSuccess() throws HealthBudException { //fail
+    //        setUpStreams(); // Redirect output stream
+    //
+    //        String[][] testCases = {
+    //                {"chest", "Here are some recommended chest exercises: " + NEW_LINE
+    //                        + "1. Incline Smith Machine Bench Press" + NEW_LINE
+    //                        + "2. Dumbbell Chest Press" + NEW_LINE
+    //                        + "3. Cable Chest Flys"},
+    //                {"back", "Here are some recommended back exercises: " + NEW_LINE
+    //                        + "1. Pull-Ups" + NEW_LINE
+    //                        + "2. Barbell Bent-over Rows" + NEW_LINE
+    //                        + "3. Lat Pulldown"},
+    //                {"biceps", "Here are some recommended biceps exercises: " + NEW_LINE
+    //                        + "1. Barbell Bicep Curls" + NEW_LINE
+    //                        + "2. Hammer Curls" + NEW_LINE
+    //                        + "3. Cable Curls"},
+    //                {"triceps", "Here are some recommended triceps exercises: " + NEW_LINE
+    //                        + "1. Close-Grip Bench Press" + NEW_LINE
+    //                        + "2. Tricep Dips" + NEW_LINE
+    //                        + "3. Skull Crushers"},
+    //                {"legs", "Here are some recommended leg exercises: " + NEW_LINE
+    //                        + "1. Barbell Squats" + NEW_LINE
+    //                        + "2. Leg Extension & Leg Curls" + NEW_LINE
+    //                        + "3. Leg Press"},
+    //                {"shoulders", "Here are some recommended shoulder exercises: " + NEW_LINE
+    //                        + "1. Overhead Dumbell Shoulder Press (Front Delt)" + NEW_LINE
+    //                        + "2. Lateral Raises (Side Delt)" + NEW_LINE
+    //                        + "3. Rear Delt Flys (Rear Delt)"},
+    //                {"abs", "Here are some recommended ab exercises: " + NEW_LINE
+    //                        + "1. Hanging Leg Raises" + NEW_LINE
+    //                        + "2. Russian Twists" + NEW_LINE
+    //                        + "3. Planks"},
+    //                {"forearms", "Here are some recommended forearm exercises: " + NEW_LINE
+    //                        + "1. Wrist Curls" + NEW_LINE
+    //                        + "2. Reverse Wrist Curls" + NEW_LINE
+    //                        + "3. Farmer's Walk"},
+    //                {"help", "Here are the list of muscle groups: " + NEW_LINE
+    //                        + "1. chest" + NEW_LINE
+    //                        + "2. back" + NEW_LINE
+    //                        + "3. biceps" + NEW_LINE
+    //                        + "4. triceps" + NEW_LINE
+    //                        + "5. legs" + NEW_LINE
+    //                        + "6. shoulders" + NEW_LINE
+    //                        + "7. abs" + NEW_LINE
+    //                        + "8. forearms"}
+    //
+    //        };
+    //
+    //        for (String[] testCase : testCases) {
+    //            outContent.reset(); // Clear previous output
+    //            String input = "recommend /m " + testCase[0];
+    //            new Recommend().execute(new LogList(), input);
+    //            System.out.flush(); // Ensure all output is captured
+    //            assertEquals(testCase[1], outContent.toString().trim());
+    //        }
+    //    }
 
     @Test
     void recommendWorkout_missingParameters_expectFailure() throws HealthBudException {
@@ -145,13 +145,13 @@ class JUnitTest {
 
     // ========================= BMI Tests =========================
 
-//    @Test
-//    void calculateBmi_validInput_expectSuccess() throws HealthBudException { //fail
-//        String input = "bmi /w 70 /h 1.78";
-//        BMI.calculateFromInput(input);
-//        double expected = 70 / (1.78 * 1.78);
-//        assertEquals(expected, result, 0.01);
-//    }
+    //    @Test
+    //    void calculateBmi_validInput_expectSuccess() throws HealthBudException { //fail
+    //        String input = "bmi /w 70 /h 1.78";
+    //        BMI.calculateFromInput(input);
+    //        double expected = 70 / (1.78 * 1.78);
+    //        assertEquals(expected, result, 0.01);
+    //    }
 
     @Test
     void calculateBmi_missingWeight_expectFailure() {
@@ -165,9 +165,9 @@ class JUnitTest {
         assertThrows(HealthBudException.class, () -> BMI.calculateFromInput(input));
     }
 
-//    @Test
-//    void calculateBmi_invalidNumberFormat_expectFailure() { //fail
-//        String input = "bmi /w seventy /h 1.78";
-//        assertThrows(HealthBudException.class, () -> BMI.calculateFromInput(input));
-//    }
+    //    @Test
+    //    void calculateBmi_invalidNumberFormat_expectFailure() { //fail
+    //        String input = "bmi /w seventy /h 1.78";
+    //        assertThrows(HealthBudException.class, () -> BMI.calculateFromInput(input));
+    //    }
 }

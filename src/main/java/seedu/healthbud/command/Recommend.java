@@ -84,7 +84,8 @@ public class Recommend extends Command {
                     + "8. forearms");
             break;
         default:
-            throw new HealthBudException("I don't recognize that muscle group. Type 'rec help' to see the list of muscle groups.");
+            throw new HealthBudException("I don't recognize that muscle group."
+                    + " Type 'rec help' to see the list of muscle groups.");
         }
     }
 }
