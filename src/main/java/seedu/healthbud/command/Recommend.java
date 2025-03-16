@@ -1,19 +1,19 @@
 package seedu.healthbud.command;
 
 import seedu.healthbud.LogList;
+import seedu.healthbud.exception.InvalidRecommendException;
 import seedu.healthbud.exception.HealthBudException;
 
 public class Recommend extends Command {
 
     @Override
-    public void execute(LogList logList, String input) throws HealthBudException {
+    public void execute(LogList logList, String input) throws InvalidRecommendException, HealthBudException {
         if (!input.contains(" ")) {
-            throw new HealthBudException("Invalid workout recommend command (e.g., rec biceps)");
+            throw new InvalidRecommendException();
         }
 
         String newLine = "\n     ";
-        String muscle = input.substring(4);
-        ;
+        String muscle = input.substring(10);
 
         switch (muscle) {
         case "chest":
@@ -84,7 +84,7 @@ public class Recommend extends Command {
                     + "8. forearms");
             break;
         default:
-            throw new HealthBudException("I don't recognize that muscle group."
+            throw new HealthBudException("I don't recognize that muscle group." + newLine
                     + " Type 'rec help' to see the list of muscle groups.");
         }
     }
