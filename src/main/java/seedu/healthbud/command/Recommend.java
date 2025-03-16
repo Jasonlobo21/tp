@@ -11,75 +11,75 @@ public class Recommend extends Command {
             throw new HealthBudException("Invalid workout recommend command (e.g., rec biceps)");
         }
 
-        String NEW_LINE = "\n     ";
+        String newLine = "\n     ";
         String muscle = input.substring(4);;
 
         switch (muscle) {
             case "chest":
-                System.out.println("Here are some recommended chest exercises: " + NEW_LINE
-                        + "1. Incline Smith Machine Bench Press" + NEW_LINE
-                        + "2. Dumbbell Chest Press" + NEW_LINE
+                System.out.println("Here are some recommended chest exercises: " + newLine
+                        + "1. Incline Smith Machine Bench Press" + newLine
+                        + "2. Dumbbell Chest Press" + newLine
                         + "3. Cable Chest Flys");
                 break;
 
             case "back":
-                System.out.println("Here are some recommended back exercises: " + NEW_LINE
-                        + "1. Pull-Ups" + NEW_LINE
-                        + "2. Barbell Bent-over Rows" + NEW_LINE
+                System.out.println("Here are some recommended back exercises: " + newLine
+                        + "1. Pull-Ups" + newLine
+                        + "2. Barbell Bent-over Rows" + newLine
                         + "3. Lat Pulldown");
                 break;
 
             case "biceps":
-                System.out.println("Here are some recommended biceps exercises: " + NEW_LINE
-                        + "1. Barbell Bicep Curls" + NEW_LINE
-                        + "2. Hammer Curls" + NEW_LINE
+                System.out.println("Here are some recommended biceps exercises: " + newLine
+                        + "1. Barbell Bicep Curls" + newLine
+                        + "2. Hammer Curls" + newLine
                         + "3. Cable Curls");
                 break;
 
             case "triceps":
-                System.out.println("Here are some recommended triceps exercises: " + NEW_LINE
-                        + "1. Close-Grip Bench Press" + NEW_LINE
-                        + "2. Tricep Dips" + NEW_LINE
+                System.out.println("Here are some recommended triceps exercises: " + newLine
+                        + "1. Close-Grip Bench Press" + newLine
+                        + "2. Tricep Dips" + newLine
                         + "3. Skull Crushers");
                 break;
 
             case "legs":
-                System.out.println("Here are some recommended leg exercises: " + NEW_LINE
-                        + "1. Barbell Squats" + NEW_LINE
-                        + "2. Leg Extension & Leg Curls" + NEW_LINE
+                System.out.println("Here are some recommended leg exercises: " + newLine
+                        + "1. Barbell Squats" + newLine
+                        + "2. Leg Extension & Leg Curls" + newLine
                         + "3. Leg Press");
                 break;
 
             case "shoulders":
-                System.out.println("Here are some recommended shoulder exercises: " + NEW_LINE
-                        + "1. Overhead Dumbell Shoulder Press (Front Delt)" + NEW_LINE
-                        + "2. Lateral Raises (Side Delt)" + NEW_LINE
+                System.out.println("Here are some recommended shoulder exercises: " + newLine
+                        + "1. Overhead Dumbell Shoulder Press (Front Delt)" + newLine
+                        + "2. Lateral Raises (Side Delt)" + newLine
                         + "3. Rear Delt Flys (Rear Delt)");
                 break;
 
             case "abs":
-                System.out.println("Here are some recommended ab exercises: " + NEW_LINE
-                        + "1. Hanging Leg Raises" + NEW_LINE
-                        + "2. Russian Twists" + NEW_LINE
+                System.out.println("Here are some recommended ab exercises: " + newLine
+                        + "1. Hanging Leg Raises" + newLine
+                        + "2. Russian Twists" + newLine
                         + "3. Planks");
                 break;
 
             case "forearms":
-                System.out.println("Here are some recommended forearm exercises: " + NEW_LINE
-                        + "1. Wrist Curls" + NEW_LINE
-                        + "2. Reverse Wrist Curls" + NEW_LINE
+                System.out.println("Here are some recommended forearm exercises: " + newLine
+                        + "1. Wrist Curls" + newLine
+                        + "2. Reverse Wrist Curls" + newLine
                         + "3. Farmer's Walk");
                 break;
 
             case "help":
-                System.out.println("Here are the list of muscle groups: " + NEW_LINE
-                        + "1. chest" + NEW_LINE
-                        + "2. back" + NEW_LINE
-                        + "3. biceps" + NEW_LINE
-                        + "4. triceps" + NEW_LINE
-                        + "5. legs" + NEW_LINE
-                        + "6. shoulders" + NEW_LINE
-                        + "7. abs" + NEW_LINE
+                System.out.println("Here are the list of muscle groups: " + newLine
+                        + "1. chest" + newLine
+                        + "2. back" + newLine
+                        + "3. biceps" + newLine
+                        + "4. triceps" + newLine
+                        + "5. legs" + newLine
+                        + "6. shoulders" + newLine
+                        + "7. abs" + newLine
                         + "8. forearms");
                 break;
             default:

@@ -39,6 +39,8 @@ public class AddLogCommand extends Command {
                 Ui.printMessage(" Got it. I've added this meal:");
                 Ui.printMessage("   " + logs.getLog(logs.getSize() - 1));
                 Ui.printMessage(" Now you have " + logs.getSize() + " meals in the list.");
+            default:
+                Ui.printMessage("Invalid type of log");
         }
     }
 }
