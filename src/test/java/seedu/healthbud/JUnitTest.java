@@ -5,10 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 //import seedu.healthbud.command.AddLogCommand;
-import seedu.healthbud.command.BMICommand;
+//import seedu.healthbud.command.BMICommand;
 import seedu.healthbud.command.RecommendCommand;
-import seedu.healthbud.exception.HealthBudException;
-import seedu.healthbud.exception.InvalidBMIException;
+//import seedu.healthbud.exception.HealthBudException;
+//import seedu.healthbud.exception.InvalidBMIException;
 import seedu.healthbud.exception.InvalidRecommendException;
 //import seedu.healthbud.log.Meal;
 
@@ -165,19 +165,22 @@ class JUnitTest {
     //    @Test
     //    void calculateBmi_negativeNumbers_expectFailure(){
     //        String input = "bmi /w -68 /h 1.78";
-    //        assertThrows(HealthBudException.class, () -> new BMICommand(input).execute(new LogList(), new LogList(), input));
+    //        assertThrows(HealthBudException.class, ()
+    //        -> new BMICommand(input).execute(new LogList(), new LogList(), input));
     //    }
     //
     //    @Test
     //    void calculateBmi_missingWeight_expectFailure() {
     //        String input = "bmi /h 1.78";
-    //        assertThrows(InvalidBMIException.class, () -> new BMICommand(input).execute(new LogList(), new LogList(), input));
+    //        assertThrows(InvalidBMIException.class, ()
+    //        -> new BMICommand(input).execute(new LogList(), new LogList(), input));
     //    }
     //
     //    @Test
     //    void calculateBmi_missingHeight_expectFailure() {
     //        String input = "bmi /w 70";
-    //        assertThrows(InvalidBMIException.class, () -> new BMICommand(input).execute(new LogList(), new LogList(), input));
+    //        assertThrows(InvalidBMIException.class, ()
+    //        -> new BMICommand(input).execute(new LogList(), new LogList(), input));
     //    }
 
     //    @Test
