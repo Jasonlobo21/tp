@@ -15,5 +15,4 @@ public class Workout extends Log {
         return getDate() + " - " + getName() + " (" + reps + " reps, " + sets + " sets)";
 
     }
-
 }

@@ -5,10 +5,8 @@ import seedu.healthbud.Ui;
 import seedu.healthbud.exception.InvalidMealException;
 import seedu.healthbud.exception.InvalidWorkoutException;
 import seedu.healthbud.log.Meal;
+import seedu.healthbud.log.Workout;
 import seedu.healthbud.storage.Storage;
-
-
-//import seedu.healthbud.log.Workout;
 
 public class AddLogCommand extends Command {
 
@@ -31,32 +29,32 @@ public class AddLogCommand extends Command {
 
             Ui.printMessage(" feature not implemented yet");
 
-//            if (!input.contains("/e") || !input.contains("/r") || !input.contains("/s")) {
-//                throw new InvalidWorkoutException();
-//            }
-//
-//            String[] workout = input.substring(8).split("/");
-//
-//            if (workout.length != 4) {
-//                throw new InvalidMealException();
-//            }
-//
-//            workout[1] = workout[1].substring(3).trim();
-//            workout[2] = workout[2].substring(1).trim();
-//            workout[3] = workout[3].substring(1).trim();
-//
-//            if (workout[1].isEmpty() || workout[2].isEmpty() || workout[3].isEmpty()) {
-//                throw new InvalidMealException();
-//            }
-//
-//            Workout newWorkout = new Workout(workout[0].trim(), workout[1], workout[2], workout[3]);
-//
-//            workoutLogs.addLog(newWorkout);
-//
-//            Ui.printMessage(" Got it. I've added this workout:");
-//            Ui.printMessage("   " + mealLogs.getLog(mealLogs.getSize() - 1));
-//            // TO BE DONE Storage.appendMealToFile(newMeal);
-//            Ui.printMessage(" Now you have " + mealLogs.getSize() + " workout done.");
+            if (!input.contains("/e") || !input.contains("/r") || !input.contains("/s")) {
+                throw new InvalidWorkoutException();
+            }
+
+            String[] workout = input.substring(8).split("/");
+
+            if (workout.length != 4) {
+                throw new InvalidMealException();
+            }
+
+            workout[1] = workout[1].substring(3).trim();
+            workout[2] = workout[2].substring(1).trim();
+            workout[3] = workout[3].substring(1).trim();
+
+            if (workout[1].isEmpty() || workout[2].isEmpty() || workout[3].isEmpty()) {
+                throw new InvalidMealException();
+            }
+
+            Workout newWorkout = new Workout(workout[0].trim(), workout[1], workout[2], workout[3]);
+
+            workoutLogs.addLog(newWorkout);
+
+            Ui.printMessage(" Got it. I've added this workout:");
+            Ui.printMessage("   " + mealLogs.getLog(mealLogs.getSize() - 1));
+            // TO BE DONE Storage.appendMealToFile(newMeal);
+            Ui.printMessage(" Now you have " + mealLogs.getSize() + " workout done.");
             break;
 
         case "meal":
