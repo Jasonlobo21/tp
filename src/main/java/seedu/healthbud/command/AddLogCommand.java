@@ -81,7 +81,7 @@ public class AddLogCommand extends Command {
 
             Ui.printMessage(" Got it. I've added this meal:");
             Ui.printMessage("   " + mealLogs.getLog(mealLogs.getSize() - 1));
-            Storage.appendMealToFile(newMeal);
+            //Storage.appendMealToFile(newMeal);
             Ui.printMessage(" Now you have " + mealLogs.getSize() + " meals in the list.");
             break;
             
