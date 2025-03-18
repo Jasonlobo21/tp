@@ -5,12 +5,12 @@ import seedu.healthbud.Ui;
 import seedu.healthbud.exception.HealthBudException;
 import seedu.healthbud.exception.InvalidBMIException;
 
-public class BMI extends Command{
+public class BMICommand extends Command{
     private double weight; // in kilograms
     private double height; // in meters
 
     // Constructor
-    public BMI(String input) throws HealthBudException, InvalidBMIException {
+    public BMICommand(String input) throws HealthBudException, InvalidBMIException {
         if (!input.contains("/h") || !input.contains("/w")) {
             throw new InvalidBMIException();
         }
@@ -32,7 +32,7 @@ public class BMI extends Command{
     }
 
     @Override
-    public void execute(LogList logList, String input){
+    public void execute(LogList logList, LogList workoutLogs, String input){
         double bmi = weight / (height * height);
         Ui.printMessage("Your BMI is: " + String.format("%.2f", bmi));
     }
