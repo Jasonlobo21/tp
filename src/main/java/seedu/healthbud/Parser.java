@@ -5,7 +5,11 @@ import seedu.healthbud.command.AddWorkout;
 import seedu.healthbud.command.BMI;
 import seedu.healthbud.command.ListMeal;
 import seedu.healthbud.command.Recommend;
-import seedu.healthbud.exception.*;
+import seedu.healthbud.exception.HealthBudException;
+import seedu.healthbud.exception.InvalidRecommendException;
+import seedu.healthbud.exception.InvalidBMIException;
+import seedu.healthbud.exception.InvalidMealException;
+import seedu.healthbud.exception.InvalidWorkoutException;
 
 public class Parser {
 
@@ -39,7 +43,8 @@ public class Parser {
                 Ui.printUnknownCommand();
                 return true;
             }
-        } catch (InvalidMealException | InvalidRecommendException | InvalidWorkoutException | InvalidBMIException | HealthBudException e) {
+        } catch (InvalidMealException | InvalidRecommendException
+                 | InvalidWorkoutException | InvalidBMIException | HealthBudException e) {
             System.out.println(e.getMessage());
         }
         return true;

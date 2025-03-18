@@ -16,5 +16,7 @@ public class Workout {
     @Override
     public String toString() {
         return date + " - " + exercise + " (" + reps + " reps, " + sets + " sets)";
+
     }
+
 }

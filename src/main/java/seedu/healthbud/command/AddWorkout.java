@@ -3,7 +3,7 @@ package seedu.healthbud.command;
 import seedu.healthbud.LogList;
 import seedu.healthbud.exception.InvalidWorkoutException;
 import seedu.healthbud.log.Workout;
-import seedu.healthbud.exception.HealthBudException;
+
 
 public class AddWorkout extends Command {
 
@@ -26,5 +26,7 @@ public class AddWorkout extends Command {
         // Add the workout to LogList
         logs.addWorkout(workout);
         System.out.println("Workout added: " + workout);
+
     }
+
 }
