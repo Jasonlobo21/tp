@@ -48,6 +48,7 @@ public class AddLogCommand extends Command {
 
             Ui.printMessage("  " + waterLogs.getLog(waterLogs.getSize() - 1));
             Ui.printMessage(" Now you have " + waterLogs.getSize() + " water logs in the list.");
+            break;
 
 
         case "workout":

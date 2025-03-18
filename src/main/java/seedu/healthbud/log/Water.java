@@ -24,3 +24,4 @@ public class Water extends Log {
         return String.format("%s %s glasses, %s ml on %s at %s", getName(), glasses, amount, getDate(), time);
     }
 }
+
