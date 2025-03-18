@@ -13,7 +13,8 @@ import seedu.healthbud.storage.Storage;
 public class AddLogCommand extends Command {
 
     @Override
-    public void execute(LogList mealLogs, LogList workoutLogs, String input) throws InvalidMealException, InvalidWorkoutException {
+    public void execute(LogList mealLogs, LogList workoutLogs, String input)
+            throws InvalidMealException, InvalidWorkoutException {
 
         String[] parts = input.trim().split(" ");
         if (parts.length < 2) {

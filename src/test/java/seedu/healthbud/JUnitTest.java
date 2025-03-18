@@ -141,7 +141,8 @@ class JUnitTest {
     //    void recommendWorkout_missingParameters_expectFailure() throws InvalidRecommendException {
     //        // An extra parameter "/extra" makes the array longer than expected.
     //        String input = "recommend";
-    //        assertThrows(InvalidRecommendException.class, () -> new RecommendCommand().execute(new LogList(), new LogList(), input));
+    //        assertThrows(InvalidRecommendException.class, ()
+    //        -> new RecommendCommand().execute(new LogList(), new LogList(), input));
     //    }
 
     @Test
