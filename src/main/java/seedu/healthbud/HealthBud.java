@@ -11,6 +11,7 @@ public class HealthBud {
 
     public static LogList mealLogs = new LogList();
     public static LogList workoutLogs = new LogList();
+    public static LogList waterLogs = new LogList();
 
     public static void main(String[] args) {
 
@@ -20,7 +21,7 @@ public class HealthBud {
 
         boolean isLooping = true;
         while (isLooping) {
-            isLooping = Parser.handleInput(mealLogs, workoutLogs, in.nextLine().trim());
+            isLooping = Parser.handleInput(mealLogs, workoutLogs, waterLogs, in.nextLine().trim());
         }
     }
 }
