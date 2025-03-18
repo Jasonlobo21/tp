@@ -1,14 +1,16 @@
 package seedu.healthbud;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+//import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
-import seedu.healthbud.command.AddLogCommand;
+//import seedu.healthbud.command.AddLogCommand;
 import seedu.healthbud.command.BMICommand;
 import seedu.healthbud.command.RecommendCommand;
-import seedu.healthbud.exception.*;
-import seedu.healthbud.log.Meal;
+import seedu.healthbud.exception.HealthBudException;
+import seedu.healthbud.exception.InvalidBMIException;
+import seedu.healthbud.exception.InvalidRecommendException;
+//import seedu.healthbud.log.Meal;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;

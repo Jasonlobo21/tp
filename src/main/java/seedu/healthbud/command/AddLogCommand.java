@@ -5,8 +5,10 @@ import seedu.healthbud.Ui;
 import seedu.healthbud.exception.InvalidMealException;
 import seedu.healthbud.exception.InvalidWorkoutException;
 import seedu.healthbud.log.Meal;
-//import seedu.healthbud.log.Workout;
 import seedu.healthbud.storage.Storage;
+
+
+//import seedu.healthbud.log.Workout;
 
 public class AddLogCommand extends Command {
 
