@@ -43,5 +43,5 @@ public class LogList {
         logs.add(log);
     }
 
-
 }
+
