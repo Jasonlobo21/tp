@@ -15,7 +15,7 @@ public class HealthBud {
     public static void main(String[] args) {
 
         Ui.printGreeting();
-        Storage.loadMeals(mealLogs);
+        //Storage.loadMeals(mealLogs);
         Scanner in = new Scanner(System.in);
 
         boolean isLooping = true;
