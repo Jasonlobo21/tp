@@ -8,12 +8,19 @@ public class Recommend extends Command {
 
     @Override
     public void execute(LogList logList, String input) throws InvalidRecommendException, HealthBudException {
+
+        assert input != null : "Input should not be null";
+        assert !input.trim().isEmpty() : "Input should not be empty";
+
         if (!input.contains(" ")) {
             throw new InvalidRecommendException();
         }
 
         String newLine = "\n     ";
         String muscle = input.substring(10);
+
+        assert muscle.matches("chest|back|biceps|triceps|legs|shoulders|abs|forearms|help")
+                : "Unexpected muscle group: " + muscle;
 
         switch (muscle) {
         case "chest":
