@@ -143,7 +143,7 @@ class JUnitTest {
     @Test
     void recommendWorkout_additionalParameters_expectException() throws InvalidRecommendException {
         String input = "recommend /plan biceps";
-        assertThrows(Throwable.class, () -> new Recommend().execute(new LogList(), input)); // for assertion in recommend class
+        assertThrows(Throwable.class, () -> new Recommend().execute(new LogList(), input)); 
         // assertThrows(HealthBudException.class, () -> new Recommend().execute(new LogList(), input));
     }
 
