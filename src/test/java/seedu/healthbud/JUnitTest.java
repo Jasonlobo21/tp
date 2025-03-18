@@ -25,7 +25,7 @@ class JUnitTest {
     //    @Test
     //    void handleMeal_correctInput_expectSuccess() throws InvalidMealException, InvalidWorkoutException {
     //        LogList mealLogs = new LogList();
-        //        LogList workoutLogs = new LogList();
+    //        LogList workoutLogs = new LogList();
     //        String input = "meal Chicken Rice /cal 550 /d 12-01-25 /t 9pm";
     //
     //        new AddLogCommand().execute(mealLogs, workoutLogs, input);
