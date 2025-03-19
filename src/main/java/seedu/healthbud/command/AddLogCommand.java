@@ -25,9 +25,14 @@ public class AddLogCommand extends Command {
         switch (parts[1]) {
         case "water":
 
+            //`Ui.printMessage(" feature not implemented yet");
+            assert input != null : "Invalid water input!";
+            assert !input.trim().isEmpty() : "Input should not be empty!";
+
             if (!input.contains("/ml") || !input.contains("/d") || !input.contains("/t")) {
                 throw new InvalidWaterException();
             }
+
 
             String[] water = input.substring(10).split("/");
 
@@ -43,13 +48,16 @@ public class AddLogCommand extends Command {
                 throw new InvalidWaterException();
             }
 
+
             Water newWater = new Water(water[1], water[2], water[3]);
 
-            waterLogs.addLog(newWater);
 
+            waterLogs.addLog(newWater);
             Ui.printMessage(" Got it. I've added this water log:");
+
             Ui.printMessage("  " + waterLogs.getLog(waterLogs.getSize() - 1));
             Storage.appendLogToFile(newWater);
+
             Ui.printMessage(" Now you have " + waterLogs.getSize() + " water logs in the list.");
             break;
 
@@ -62,7 +70,7 @@ public class AddLogCommand extends Command {
 
             String[] workout = input.substring(12).split("/");
 
-            if (workout.length != 4) {
+            if (workout.length != 5) {
                 throw new InvalidMealException();
             }
 

@@ -5,8 +5,10 @@ public class Water extends Log {
     private String amount;
     private String time;
 
+
     public Water(String amount, String date, String time){
         super(date);
+
         this.amount = amount;
         this.time = time;
     }
@@ -20,6 +22,8 @@ public class Water extends Log {
     }
 
     public String toString() {
+
         return String.format(" %s ml on (%s) at %s", amount, getDate(), time);
     }
+
 }
