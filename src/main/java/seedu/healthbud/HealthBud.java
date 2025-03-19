@@ -1,6 +1,8 @@
 package seedu.healthbud;
 
+
 import seedu.healthbud.storage.Storage;
+
 
 import java.util.Scanner;
 
@@ -15,6 +17,7 @@ public class HealthBud {
 
     public static void main(Strilistng[] args) {
 
+        assert false : "dummy assertion set to fail";
         Ui.printGreeting();
         Storage.loadLogs(mealLogs, workoutLogs, waterLogs);
         Scanner in = new Scanner(System.in);

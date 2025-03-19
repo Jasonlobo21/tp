@@ -18,9 +18,15 @@ public class AddLogCommand extends Command {
             throws InvalidMealException, InvalidWorkoutException, InvalidWaterException, InvalidLogException {
 
         String[] parts = input.trim().split(" ");
+
+        assert parts.length > 2 : "Invalid add command input";
+
         if (parts.length < 2) {
+
             throw new InvalidLogException();
         }
+
+        assert parts[1].matches("meal|workout|water") : "Invalid log type";
 
         switch (parts[1]) {
         case "water":
