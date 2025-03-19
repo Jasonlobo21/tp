@@ -18,9 +18,9 @@ public class AddLogCommand extends Command {
 
         String[] parts = input.trim().split(" ");
 
-        assert parts.length == 2 : "Invalid add command input";
+        assert parts.length > 2 : "Invalid add command input";
 
-        if (parts.length != 2) {
+        if (parts.length < 2) {
             Ui.printMessage("Invalid add command input");
             return;
         }
