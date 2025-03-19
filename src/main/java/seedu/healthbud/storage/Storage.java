@@ -32,7 +32,7 @@ public class Storage {
 
             if (!Files.exists(DATA_PATH)) {
                 Files.createFile(DATA_PATH);
-                System.out.println("Created new text file in " + DATA_PATH);
+                System.out.println("Created new text file in " + DATA_PATH.toString().replace("\\", "/"));
                 return;
             }
 

@@ -8,6 +8,7 @@ cd ..
 
 cd text-ui-test
 
+
 # Ensure correct JAR file is used
 java -jar ../build/libs/healthbud.jar < input.txt > ACTUAL.TXT
 
@@ -19,9 +20,6 @@ if [ $? -eq 0 ]; then
     exit 0
 else
     echo "Test failed!"
-    echo "Expected Output:"
-    cat EXPECTED-UNIX.TXT
-    echo "Actual Output:"
-    cat ACTUAL.TXT
     exit 1
 fi
+
