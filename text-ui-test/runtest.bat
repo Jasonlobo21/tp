@@ -16,5 +16,13 @@ java -jar %jarloc% < ..\..\text-ui-test\input.txt > ..\..\text-ui-test\ACTUAL.TX
 
 cd ..\..\text-ui-test
 
-FC ACTUAL.TXT EXPECTED.TXT >NUL && ECHO Test passed! || Echo Test failed!
-
+FC ACTUAL.TXT EXPECTED.TXT >NUL
+if %ERRORLEVEL% == 0 (
+    echo Test passed!
+) else (
+    echo Test failed!
+    echo Expected Output:
+    type EXPECTED.TXT
+    echo Actual Output:
+    type ACTUAL.TXT
+)
