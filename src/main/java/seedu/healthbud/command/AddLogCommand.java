@@ -2,7 +2,11 @@ package seedu.healthbud.command;
 
 import seedu.healthbud.LogList;
 import seedu.healthbud.Ui;
-import seedu.healthbud.exception.*;
+import seedu.healthbud.exception.InvalidLogException;
+import seedu.healthbud.exception.InvalidMealException;
+import seedu.healthbud.exception.InvalidPBException;
+import seedu.healthbud.exception.InvalidWaterException;
+import seedu.healthbud.exception.InvalidWorkoutException;
 import seedu.healthbud.log.Meal;
 import seedu.healthbud.log.Water;
 import seedu.healthbud.log.Test;

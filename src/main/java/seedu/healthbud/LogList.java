@@ -1,7 +1,6 @@
 package seedu.healthbud;
 
 import seedu.healthbud.exception.HealthBudException;
-import seedu.healthbud.exception.InvalidDeleteException;
 import seedu.healthbud.log.Log;
 import java.util.ArrayList;
 import java.util.List;
