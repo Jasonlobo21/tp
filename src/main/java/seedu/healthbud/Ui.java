@@ -18,7 +18,7 @@ public class Ui {
      * Prints Terry in ASCII to the user.
      */
     public static void printHealthBuds() {
-        System.out.println("  _   _            _ _   _     ____            _");
+        System.out.println("  _   _            _ _   _     ____            _ ");
         System.out.println(" | | | | ___  __ _| | |_| |__ | __ ) _   _  __| |");
         System.out.println(" | |_| |/ _ \\/ _` | | __| '_ \\|  _ \\| | | |/ _` |");
         System.out.println(" |  _  |  __/ (_| | | |_| | | | |_) | |_| | (_| |");

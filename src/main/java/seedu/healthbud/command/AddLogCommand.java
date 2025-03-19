@@ -25,14 +25,12 @@ public class AddLogCommand extends Command {
         switch (parts[1]) {
         case "water":
 
-            //`Ui.printMessage(" feature not implemented yet");
             assert input != null : "Invalid water input!";
             assert !input.trim().isEmpty() : "Input should not be empty!";
 
             if (!input.contains("/ml") || !input.contains("/d") || !input.contains("/t")) {
                 throw new InvalidWaterException();
             }
-
 
             String[] water = input.substring(10).split("/");
 
@@ -48,9 +46,7 @@ public class AddLogCommand extends Command {
                 throw new InvalidWaterException();
             }
 
-
             Water newWater = new Water(water[1], water[2], water[3]);
-
 
             waterLogs.addLog(newWater);
             Ui.printMessage(" Got it. I've added this water log:");
@@ -68,25 +64,26 @@ public class AddLogCommand extends Command {
                 throw new InvalidWorkoutException();
             }
 
-            String[] workout = input.substring(12).split("/");
 
-            if (workout.length != 5) {
-                throw new InvalidMealException();
+            String workoutDetails = input.substring("add workout ".length()).trim();
+            String[] workoutTokens = workoutDetails.split(" /");
+
+            if (workoutTokens.length != 4) {
+                throw new InvalidWorkoutException();
             }
 
-            workout[1] = workout[1].substring(3).trim();
-            workout[2] = workout[2].substring(1).trim();
-            workout[3] = workout[3].substring(1).trim();
+            String exercise = workoutTokens[0].trim();
+            String reps = workoutTokens[1].substring(2).trim(); // remove "r "
+            String sets = workoutTokens[2].substring(2).trim(); // remove "s "
+            String date = workoutTokens[3].substring(2).trim(); // remove "d "
 
-            if (workout[1].isEmpty() || workout[2].isEmpty() || workout[3].isEmpty()) {
-                throw new InvalidMealException();
+            if (exercise.isEmpty() || reps.isEmpty() || sets.isEmpty() || date.isEmpty()) {
+                throw new InvalidWorkoutException();
             }
 
-            Workout newWorkout = new Workout(workout[0].trim(), workout[1], workout[2], workout[3]);
-
+            Workout newWorkout = new Workout(exercise, reps, sets, date);
             workoutLogs.addLog(newWorkout);
             Ui.printMessage(" Got it. I've added this workout:");
-
             Ui.printMessage("   " + workoutLogs.getLog(workoutLogs.getSize() - 1));
             Storage.appendLogToFile(newWorkout);
             Ui.printMessage(" Now you have " + workoutLogs.getSize() + " workout done.");

@@ -1,7 +1,6 @@
 package seedu.healthbud.command;
 
 import seedu.healthbud.LogList;
-import seedu.healthbud.Ui;
 import seedu.healthbud.exception.InvalidListException;
 
 public class ListCommand extends Command {
@@ -18,31 +17,15 @@ public class ListCommand extends Command {
 
         switch (parts[1]) {
         case "meal":
-            if (mealLogs.isEmpty()) {
-                Ui.printMessage(" No tasks available.");
-            } else {
-                for (int i = 0; i < mealLogs.getSize(); i++) {
-                    Ui.printListedFormat(mealLogs, i);
-                }
-            }
+            mealLogs.listLogs();
             break;
+
         case "workout":
-            if (workoutLogs.isEmpty()) {
-                Ui.printMessage(" No tasks available.");
-            } else {
-                for (int i = 0; i < workoutLogs.getSize(); i++) {
-                    Ui.printListedFormat(workoutLogs, i);
-                }
-            }
+            workoutLogs.listLogs();
             break;
+
         case "water":
-            if (waterLogs.isEmpty()) {
-                Ui.printMessage(" No tasks available.");
-            } else {
-                for (int i = 0; i < waterLogs.getSize(); i++) {
-                    Ui.printListedFormat(waterLogs, i);
-                }
-            }
+            waterLogs.listLogs();
             break;
         default:
             throw new InvalidListException();
