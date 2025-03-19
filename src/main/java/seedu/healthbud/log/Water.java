@@ -8,7 +8,6 @@ public class Water extends Log {
     public Water(String name, String amount, String date, String time){
         super(name, date);
         this.amount = amount;
-        //this.glasses = glasses;
         this.time = time;
     }
 
