@@ -1,23 +1,28 @@
 package seedu.healthbud;
 
-import seedu.healthbud.command.AddLogCommand;
-import seedu.healthbud.command.ListCommand;
+import seedu.healthbud.command.SumCommand;
+import seedu.healthbud.command.ClearCommand;
+import seedu.healthbud.command.DeleteCommand;
+import seedu.healthbud.command.FindCommand;
 import seedu.healthbud.command.RecommendCommand;
 import seedu.healthbud.command.BMICommand;
-import seedu.healthbud.command.FindCommand;
-import seedu.healthbud.command.DeleteCommand;
+import seedu.healthbud.command.AddLogCommand;
+import seedu.healthbud.command.ListCommand;
 
-import seedu.healthbud.exception.HealthBudException;
-import seedu.healthbud.exception.InvalidRecommendException;
 import seedu.healthbud.exception.InvalidBMIException;
+import seedu.healthbud.exception.InvalidClearException;
 import seedu.healthbud.exception.InvalidDeleteException;
 import seedu.healthbud.exception.InvalidFindException;
 import seedu.healthbud.exception.InvalidListException;
 import seedu.healthbud.exception.InvalidLogException;
 import seedu.healthbud.exception.InvalidMealException;
 import seedu.healthbud.exception.InvalidPBException;
+import seedu.healthbud.exception.InvalidRecommendException;
+import seedu.healthbud.exception.InvalidSumException;
 import seedu.healthbud.exception.InvalidWaterException;
 import seedu.healthbud.exception.InvalidWorkoutException;
+import seedu.healthbud.exception.HealthBudException;
+
 
 public class Parser {
 
@@ -51,13 +56,20 @@ public class Parser {
             case "delete":
                 new DeleteCommand().execute(pbLogs, mealLogs, workoutLogs, waterLogs, input);
                 return true;
+            case "clear":
+                new ClearCommand().execute(pbLogs, mealLogs, workoutLogs, waterLogs, input);
+                return true;
+            case "sum":
+                new SumCommand().execute(pbLogs, mealLogs, workoutLogs, waterLogs, input);
+                return true;
             default:
                 Ui.printUnknownCommand();
                 return true;
             }
         } catch (InvalidMealException | InvalidRecommendException | InvalidBMIException | HealthBudException |
-                 InvalidLogException | InvalidWaterException | InvalidWorkoutException |
-                 InvalidListException | InvalidFindException | InvalidDeleteException | InvalidPBException e) {
+                 InvalidLogException | InvalidWaterException | InvalidWorkoutException | InvalidListException |
+                 InvalidFindException | InvalidDeleteException | InvalidPBException | InvalidClearException |
+                 InvalidSumException e) {
             System.out.println(e.getMessage());
         }
         return true;
