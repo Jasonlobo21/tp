@@ -6,6 +6,7 @@ import seedu.healthbud.command.ListCommand;
 import seedu.healthbud.command.RecommendCommand;
 import seedu.healthbud.exception.*;
 
+
 public class Parser {
 
     public static final String NEW_LINE = "\n     ";
@@ -35,9 +36,9 @@ public class Parser {
                 Ui.printUnknownCommand();
                 return true;
             }
-        } catch (InvalidMealException | InvalidRecommendException | InvalidBMIException |
-                 HealthBudException | InvalidLogException | InvalidWaterException | InvalidListException |
-                 InvalidWorkoutException e) {
+        } catch (InvalidMealException | InvalidRecommendException | InvalidBMIException | HealthBudException |
+                 InvalidLogException | InvalidWaterException | InvalidWorkoutException |
+                 InvalidListException e) {
             System.out.println(e.getMessage());
         }
         return true;
