@@ -5,9 +5,8 @@
  |_| |_|\___|\__,_|_|\__|_| |_|____/ \__,_|\__,_|
     Hello! I'm HealthBud
      What can I do for you?
-Created new text file in data\HealthBud.txt
+Created new text file in data/HealthBud.txt
      Got it. I've added this meal:
        Chicken Rice (550 cal) on: 12-01-25 at: 9pm
      Now you have 1 meals in the list.
     Bye. Hope to see you again soon!
-    
