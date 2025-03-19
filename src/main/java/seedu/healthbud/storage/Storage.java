@@ -2,9 +2,11 @@ package seedu.healthbud.storage;
 
 import seedu.healthbud.LogList;
 import seedu.healthbud.log.Meal;
-import seedu.healthbud.log.Workout;
+import seedu.healthbud.log.Test;
 import seedu.healthbud.log.Water;
 import seedu.healthbud.log.Log;
+import seedu.healthbud.log.PB;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -26,13 +28,14 @@ public class Storage {
      * @param workoutLogs the LogList to load workout logs into
      * @param waterLogs the LogList to load water logs into
      */
-    public static void loadLogs(LogList mealLogs, LogList workoutLogs, LogList waterLogs) {
+    public static void loadLogs(LogList mealLogs, LogList workoutLogs, LogList waterLogs, LogList pbLogs) {
         try {
             Files.createDirectories(Paths.get(DATA_DIRECTORY));
 
             if (!Files.exists(DATA_PATH)) {
                 Files.createFile(DATA_PATH);
-                System.out.println("Created new text file in " + DATA_PATH.toString().replace("\\", "/"));
+                System.out.println("Created new text file in " +
+                        DATA_PATH.toString().replace("\\", "/"));
                 return;
             }
 
@@ -43,10 +46,12 @@ public class Storage {
                     // Distribute log based on its type
                     if (log instanceof Meal) {
                         mealLogs.addLog(log);
-                    } else if (log instanceof Workout) {
+                    } else if (log instanceof Test) {
                         workoutLogs.addLog(log);
                     } else if (log instanceof Water) {
                         waterLogs.addLog(log);
+                    } else if (log instanceof PB){
+                        pbLogs.addLog(log);
                     }
                 } catch (IllegalArgumentException e) {
                     System.out.println("Warning: Ignoring invalid log in file: " + line);
@@ -74,12 +79,17 @@ public class Storage {
             if (parts.length != 5) {
                 throw new IllegalArgumentException("Invalid workout format");
             }
-            return new Workout(parts[1], parts[2], parts[3], parts[4]);
+            return new Test(parts[1], parts[2], parts[3], parts[4]);
         case "WA":
             if (parts.length != 4) {
                 throw new IllegalArgumentException("Invalid water format");
             }
             return new Water(parts[1], parts[2], parts[3]);
+        case "P":
+            if (parts.length != 4) {
+                throw new IllegalArgumentException("Invalid pb format");
+            }
+            return new PB(parts[1], parts[2], parts[3]);
         default:
             throw new IllegalArgumentException("Unknown log type: " + type);
         }
@@ -108,14 +118,17 @@ public class Storage {
             Meal meal = (Meal) log;
             return "M | " + meal.getName() + " | " + meal.getCalories()
                     + " | " + meal.getDate() + " | " + meal.getTime();
-        } else if (log instanceof Workout) {
-            Workout workout = (Workout) log;
+        } else if (log instanceof Test) {
+            Test workout = (Test) log;
             return "WO | " + workout.getName() + " | " + workout.getDate()
                     + " | " + workout.getReps() + " | " + workout.getSets();
         } else if (log instanceof Water) {
             Water water = (Water) log;
             return "WA | " + water.getAmount() + " | " + water.getDate() + " | " + water.getTime();
-        } else {
+        } else if (log instanceof PB) {
+            PB pb = (PB) log;
+            return "P | " + pb.getExercise() + " | " + pb.getWeight() + " | " + pb.getDate();
+        }else {
             throw new IllegalArgumentException("Unknown log type");
         }
     }

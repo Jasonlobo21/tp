@@ -1,6 +1,6 @@
 package seedu.healthbud;
 
-import seedu.healthbud.exception.InvalidDeleteException;
+import seedu.healthbud.exception.HealthBudException;
 import seedu.healthbud.log.Log;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,10 +31,10 @@ public class LogList {
         logs.add(log);
     }
 
-    public void deleteLog(int index) throws InvalidDeleteException {
+    public void deleteLog(int index) throws HealthBudException {
 
         if (index < 1 || index > getSize()) {
-            throw new InvalidDeleteException("Task number not in range");
+            throw new HealthBudException("Task number not in range");
         }
 
         Ui.printMessage(" Noted. I've removed this log:");

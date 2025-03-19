@@ -6,7 +6,7 @@ import seedu.healthbud.exception.InvalidListException;
 public class ListCommand extends Command {
 
     @Override
-    public void execute(LogList mealLogs, LogList workoutLogs, LogList waterLogs, String input)
+    public void execute(LogList pbLogs, LogList mealLogs, LogList workoutLogs, LogList waterLogs, String input)
             throws InvalidListException {
 
         String[] parts = input.split(" ");
@@ -27,6 +27,11 @@ public class ListCommand extends Command {
         case "water":
             waterLogs.listLogs();
             break;
+
+        case "pb":
+            pbLogs.listLogs();
+            break;
+
         default:
             throw new InvalidListException();
         }

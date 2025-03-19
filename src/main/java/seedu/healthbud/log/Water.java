@@ -21,9 +21,8 @@ public class Water extends Log {
         return time;
     }
 
+    @Override
     public String toString() {
-
         return String.format(" %s ml on (%s) at %s", amount, getDate(), time);
     }
-
 }

@@ -4,18 +4,21 @@ import seedu.healthbud.LogList;
 import seedu.healthbud.Ui;
 import seedu.healthbud.exception.InvalidLogException;
 import seedu.healthbud.exception.InvalidMealException;
+import seedu.healthbud.exception.InvalidPBException;
 import seedu.healthbud.exception.InvalidWaterException;
 import seedu.healthbud.exception.InvalidWorkoutException;
 import seedu.healthbud.log.Meal;
 import seedu.healthbud.log.Water;
-import seedu.healthbud.log.Workout;
+import seedu.healthbud.log.Test;
+import seedu.healthbud.log.PB;
 import seedu.healthbud.storage.Storage;
 
 public class AddLogCommand extends Command {
 
     @Override
-    public void execute(LogList mealLogs, LogList workoutLogs, LogList waterLogs, String input)
-            throws InvalidMealException, InvalidWorkoutException, InvalidWaterException, InvalidLogException {
+    public void execute(LogList pbLogs, LogList mealLogs, LogList workoutLogs, LogList waterLogs, String input)
+            throws InvalidMealException, InvalidWorkoutException, InvalidWaterException, InvalidLogException,
+                    InvalidPBException {
 
         String[] parts = input.trim().split(" ");
         if (parts.length < 2) {
@@ -23,6 +26,36 @@ public class AddLogCommand extends Command {
         }
 
         switch (parts[1]) {
+
+        case "pb":
+            if (!input.contains("/e") || !input.contains("/w") || !input.contains("/d") ) {
+                throw new InvalidPBException();
+            }
+
+            String[] pb = input.substring(7).split("/");
+
+            if (pb.length != 4) {
+                throw new InvalidPBException();
+            }
+
+            pb[1] = pb[1].substring(2).trim();
+            pb[2] = pb[2].substring(2).trim();
+            pb[3] = pb[3].substring(2).trim();
+
+            if (pb[1].isEmpty() || pb[2].isEmpty() || pb[3].isEmpty()) {
+                throw new InvalidPBException();
+            }
+
+            PB newPB = new PB(pb[1], pb[2], pb[3]);
+            pbLogs.addLog(newPB);
+            Ui.printMessage(" Got it. I've added this pb log:");
+
+            Ui.printMessage("  " + pbLogs.getLog(pbLogs.getSize() - 1));
+            Storage.appendLogToFile(newPB);
+
+            Ui.printMessage(" Now you have " + pbLogs.getSize() + " pb logs in the list.");
+            break;
+
         case "water":
 
             assert input != null : "Invalid water input!";
@@ -81,7 +114,7 @@ public class AddLogCommand extends Command {
                 throw new InvalidWorkoutException();
             }
 
-            Workout newWorkout = new Workout(exercise, reps, sets, date);
+            Test newWorkout = new Test(exercise, reps, sets, date);
             workoutLogs.addLog(newWorkout);
             Ui.printMessage(" Got it. I've added this workout:");
             Ui.printMessage("   " + workoutLogs.getLog(workoutLogs.getSize() - 1));
@@ -116,7 +149,7 @@ public class AddLogCommand extends Command {
             Storage.appendLogToFile(newMeal);
             Ui.printMessage(" Now you have " + mealLogs.getSize() + " meals in the list.");
             break;
-            
+
         default:
             Ui.printMessage("Invalid type of log");
         }
