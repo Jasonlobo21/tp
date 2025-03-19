@@ -48,8 +48,8 @@ public class AddLogCommand extends Command {
             waterLogs.addLog(newWater);
 
             Ui.printMessage(" Got it. I've added this water log:");
-
             Ui.printMessage("  " + waterLogs.getLog(waterLogs.getSize() - 1));
+            Storage.appendLogToFile(newWater);
             Ui.printMessage(" Now you have " + waterLogs.getSize() + " water logs in the list.");
             break;
 
@@ -77,10 +77,10 @@ public class AddLogCommand extends Command {
             Workout newWorkout = new Workout(workout[0].trim(), workout[1], workout[2], workout[3]);
 
             workoutLogs.addLog(newWorkout);
-
             Ui.printMessage(" Got it. I've added this workout:");
+
             Ui.printMessage("   " + workoutLogs.getLog(workoutLogs.getSize() - 1));
-            // TO BE DONE Storage.appendMealToFile(newMeal);
+            Storage.appendLogToFile(newWorkout);
             Ui.printMessage(" Now you have " + workoutLogs.getSize() + " workout done.");
             break;
 
