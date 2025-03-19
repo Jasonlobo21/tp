@@ -106,10 +106,12 @@ public class Storage {
     public static String parseLogToString(Log log) {
         if (log instanceof Meal) {
             Meal meal = (Meal) log;
-            return "M | " + meal.getName() + " | " + meal.getCalories() + " | " + meal.getDate() + " | " + meal.getTime();
+            return "M | " + meal.getName() + " | " + meal.getCalories()
+                    + " | " + meal.getDate() + " | " + meal.getTime();
         } else if (log instanceof Workout) {
             Workout workout = (Workout) log;
-            return "WO | " + workout.getName() + " | " + workout.getDate() + " | " + workout.getReps() + " | " + workout.getSets();
+            return "WO | " + workout.getName() + " | " + workout.getDate()
+                    + " | " + workout.getReps() + " | " + workout.getSets();
         } else if (log instanceof Water) {
             Water water = (Water) log;
             return "WA | " + water.getAmount() + " | " + water.getDate() + " | " + water.getTime();

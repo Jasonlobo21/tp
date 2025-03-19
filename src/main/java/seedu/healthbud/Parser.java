@@ -35,8 +35,9 @@ public class Parser {
                 Ui.printUnknownCommand();
                 return true;
             }
-        } catch (InvalidMealException | InvalidRecommendException | InvalidWorkoutException | InvalidBMIException |
-                 HealthBudException | InvalidLogException | InvalidWaterException | InvalidListException e) {
+        } catch (InvalidMealException | InvalidRecommendException | InvalidBMIException |
+                 HealthBudException | InvalidLogException | InvalidWaterException | InvalidListException |
+                 InvalidWorkoutException e) {
             System.out.println(e.getMessage());
         }
         return true;
