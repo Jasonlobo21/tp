@@ -4,7 +4,15 @@ import seedu.healthbud.command.AddLogCommand;
 import seedu.healthbud.command.BMICommand;
 import seedu.healthbud.command.ListCommand;
 import seedu.healthbud.command.RecommendCommand;
-import seedu.healthbud.exception.*;
+import seedu.healthbud.exception.HealthBudException;
+import seedu.healthbud.exception.InvalidBMIException;
+import seedu.healthbud.exception.InvalidLogException;
+import seedu.healthbud.exception.InvalidMealException;
+import seedu.healthbud.exception.InvalidRecommendException;
+import seedu.healthbud.exception.InvalidWaterException;
+import seedu.healthbud.exception.InvalidWorkoutException;
+import seedu.healthbud.exception.InvalidListException;
+
 
 
 public class Parser {
