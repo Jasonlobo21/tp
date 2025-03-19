@@ -4,11 +4,7 @@ import seedu.healthbud.command.AddLogCommand;
 import seedu.healthbud.command.BMICommand;
 import seedu.healthbud.command.ListCommand;
 import seedu.healthbud.command.RecommendCommand;
-import seedu.healthbud.exception.HealthBudException;
-import seedu.healthbud.exception.InvalidRecommendException;
-import seedu.healthbud.exception.InvalidBMIException;
-import seedu.healthbud.exception.InvalidMealException;
-import seedu.healthbud.exception.InvalidWorkoutException;
+import seedu.healthbud.exception.*;
 
 public class Parser {
 
@@ -39,8 +35,8 @@ public class Parser {
                 Ui.printUnknownCommand();
                 return true;
             }
-        } catch (InvalidMealException | InvalidRecommendException
-                 | InvalidWorkoutException | InvalidBMIException | HealthBudException e) {
+        } catch (InvalidMealException | InvalidRecommendException | InvalidWorkoutException | InvalidBMIException |
+                 HealthBudException | InvalidLogException | InvalidWaterException | InvalidListException e) {
             System.out.println(e.getMessage());
         }
         return true;
