@@ -1,6 +1,6 @@
 package seedu.healthbud;
 
-//import seedu.healthbud.storage.Storage;
+import seedu.healthbud.storage.Storage;
 
 import java.util.Scanner;
 
@@ -16,7 +16,7 @@ public class HealthBud {
     public static void main(String[] args) {
 
         Ui.printGreeting();
-        //Storage.loadMeals(mealLogs);
+        Storage.loadLogs(mealLogs, workoutLogs, waterLogs);
         Scanner in = new Scanner(System.in);
 
         boolean isLooping = true;

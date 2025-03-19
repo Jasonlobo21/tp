@@ -2,35 +2,43 @@ package seedu.healthbud.command;
 
 import seedu.healthbud.LogList;
 import seedu.healthbud.Ui;
+import seedu.healthbud.exception.InvalidLogException;
 import seedu.healthbud.exception.InvalidMealException;
 import seedu.healthbud.exception.InvalidWaterException;
 import seedu.healthbud.exception.InvalidWorkoutException;
 import seedu.healthbud.log.Meal;
 import seedu.healthbud.log.Water;
-import seedu.healthbud.log.Test;
-//import seedu.healthbud.storage.Storage;
+import seedu.healthbud.log.Workout;
+import seedu.healthbud.storage.Storage;
 
 public class AddLogCommand extends Command {
 
     @Override
     public void execute(LogList mealLogs, LogList workoutLogs, LogList waterLogs, String input)
-            throws InvalidMealException, InvalidWorkoutException {
+            throws InvalidMealException, InvalidWorkoutException, InvalidWaterException, InvalidLogException {
 
         String[] parts = input.trim().split(" ");
         if (parts.length < 2) {
-            Ui.printMessage("Invalid input");
-            return;
+            throw new InvalidLogException();
         }
 
         switch (parts[1]) {
         case "water":
+
             //`Ui.printMessage(" feature not implemented yet");
+            assert input != null : "Invalid water input!";
+            assert !input.trim().isEmpty() : "Input should not be empty!";
 
             if (!input.contains("/ml") || !input.contains("/d") || !input.contains("/t")) {
                 throw new InvalidWaterException();
             }
 
-            String[] water = input.substring(4).split("/");
+
+            String[] water = input.substring(10).split("/");
+
+            if (water.length != 4) {
+                throw new InvalidMealException();
+            }
 
             water[1] = water[1].substring(3).trim();
             water[2] = water[2].substring(1).trim();
@@ -40,28 +48,29 @@ public class AddLogCommand extends Command {
                 throw new InvalidWaterException();
             }
 
-            Water newWater = new Water(water[0].trim(), water[1], water[2], water[3]);
+
+            Water newWater = new Water(water[1], water[2], water[3]);
+
 
             waterLogs.addLog(newWater);
-
             Ui.printMessage(" Got it. I've added this water log:");
 
             Ui.printMessage("  " + waterLogs.getLog(waterLogs.getSize() - 1));
+            Storage.appendLogToFile(newWater);
+
             Ui.printMessage(" Now you have " + waterLogs.getSize() + " water logs in the list.");
             break;
 
 
         case "workout":
 
-            //Ui.printMessage(" feature not implemented yet");
-
-            if (!input.contains("/e") || !input.contains("/r") || !input.contains("/s")) {
+            if (!input.contains("/r") || !input.contains("/s") || !input.contains("/d")) {
                 throw new InvalidWorkoutException();
             }
 
-            String[] workout = input.substring(8).split("/");
+            String[] workout = input.substring(12).split("/");
 
-            if (workout.length != 4) {
+            if (workout.length != 5) {
                 throw new InvalidMealException();
             }
 
@@ -73,14 +82,14 @@ public class AddLogCommand extends Command {
                 throw new InvalidMealException();
             }
 
-            Test newWorkout = new Test(workout[0].trim(), workout[1], workout[2], workout[3]);
+            Workout newWorkout = new Workout(workout[0].trim(), workout[1], workout[2], workout[3]);
 
             workoutLogs.addLog(newWorkout);
-
             Ui.printMessage(" Got it. I've added this workout:");
-            Ui.printMessage("   " + mealLogs.getLog(mealLogs.getSize() - 1));
-            // TO BE DONE Storage.appendMealToFile(newMeal);
-            Ui.printMessage(" Now you have " + mealLogs.getSize() + " workout done.");
+
+            Ui.printMessage("   " + workoutLogs.getLog(workoutLogs.getSize() - 1));
+            Storage.appendLogToFile(newWorkout);
+            Ui.printMessage(" Now you have " + workoutLogs.getSize() + " workout done.");
             break;
 
         case "meal":
@@ -107,7 +116,7 @@ public class AddLogCommand extends Command {
 
             Ui.printMessage(" Got it. I've added this meal:");
             Ui.printMessage("   " + mealLogs.getLog(mealLogs.getSize() - 1));
-            //Storage.appendMealToFile(newMeal);
+            Storage.appendLogToFile(newMeal);
             Ui.printMessage(" Now you have " + mealLogs.getSize() + " meals in the list.");
             break;
             
