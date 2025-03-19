@@ -21,7 +21,7 @@ public class HealthBud {
 
         boolean isLooping = true;
         while (isLooping) {
-            isLooping = Parser.handleInput(mealLogs, workoutLogs, waterLogs, in.nextLine().trim());
+            isLooping = Parser.handleInput(mealLogs, workoutLogs, waterLogs, in.nextLine().trim().toLowerCase());
         }
     }
 }

@@ -1,1 +1,2 @@
 M | Chicken Rice | 550 | 12-01-25 | 9pm
+M | tom yum | 500 | jan | 9pm
