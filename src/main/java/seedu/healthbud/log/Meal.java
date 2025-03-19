@@ -13,6 +13,10 @@ public class Meal extends Log {
         this.time = time;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public String getCalories() {
         return calories;
     }
@@ -24,9 +28,5 @@ public class Meal extends Log {
     @Override
     public String toString() {
         return String.format("%s (%s cal) on: %s at: %s", name, calories, getDate(), time);
-    }
-
-    public String getName() {
-        return name;
     }
 }

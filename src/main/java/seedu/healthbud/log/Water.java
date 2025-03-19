@@ -11,6 +11,14 @@ public class Water extends Log {
         this.time = time;
     }
 
+    public String getAmount() {
+        return amount;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
     public String toString() {
         return String.format(" %s ml on (%s) at %s", amount, getDate(), time);
     }

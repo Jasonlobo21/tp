@@ -9,7 +9,7 @@ import seedu.healthbud.exception.InvalidWorkoutException;
 import seedu.healthbud.log.Meal;
 import seedu.healthbud.log.Water;
 import seedu.healthbud.log.Workout;
-//import seedu.healthbud.storage.Storage;
+import seedu.healthbud.storage.Storage;
 
 public class AddLogCommand extends Command {
 
@@ -56,11 +56,11 @@ public class AddLogCommand extends Command {
 
         case "workout":
 
-            if (!input.contains("/e") || !input.contains("/r") || !input.contains("/s")) {
+            if (!input.contains("/r") || !input.contains("/s") || !input.contains("/d")) {
                 throw new InvalidWorkoutException();
             }
 
-            String[] workout = input.substring(8).split("/");
+            String[] workout = input.substring(12).split("/");
 
             if (workout.length != 4) {
                 throw new InvalidMealException();
@@ -108,7 +108,7 @@ public class AddLogCommand extends Command {
 
             Ui.printMessage(" Got it. I've added this meal:");
             Ui.printMessage("   " + mealLogs.getLog(mealLogs.getSize() - 1));
-            //Storage.appendMealToFile(newMeal);
+            Storage.appendLogToFile(newMeal);
             Ui.printMessage(" Now you have " + mealLogs.getSize() + " meals in the list.");
             break;
             
