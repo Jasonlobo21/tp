@@ -17,7 +17,7 @@ public class Meal extends Log {
         return name;
     }
 
-    public String getCalories() {
+    public String  getCalories() {
         return calories;
     }
 

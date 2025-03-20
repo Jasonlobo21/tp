@@ -97,7 +97,6 @@ public class AddLogCommand extends Command {
                 throw new InvalidWorkoutException();
             }
 
-
             String workoutDetails = input.substring("add workout ".length()).trim();
             String[] workoutTokens = workoutDetails.split(" /");
 

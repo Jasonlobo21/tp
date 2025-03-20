@@ -10,4 +10,5 @@ public class Log {
     public String getDate() {
         return date;
     }
+
 }

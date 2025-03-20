@@ -2,6 +2,8 @@ package seedu.healthbud;
 
 import seedu.healthbud.exception.HealthBudException;
 import seedu.healthbud.log.Log;
+import seedu.healthbud.log.Meal;
+
 import java.util.ArrayList;
 import java.util.List;
 import seedu.healthbud.storage.Storage;
@@ -66,6 +68,23 @@ public class LogList {
         if (notFound) {
             Ui.printMessage("No matching '" + keyword +  "' tasks found.");
         }
+    }
+
+    public void clearLogs() {
+        logs.clear();
+        Storage.rewriteLogsToFile(this);
+        Ui.printMessage(" Noted. I've removed all logs.");
+    }
+
+    public void getCaloriesSum(String date) {
+        int totalCalories = 0;
+        for (int i = 0; i < logs.size(); i++) {
+            Meal meal = (Meal) logs.get(i);
+            if (meal.getDate().equals(date)) {
+                totalCalories += Integer.parseInt(meal.getCalories());
+            }
+        }
+        Ui.printMessage("Total calories consumed: " + totalCalories);
     }
 }
 
