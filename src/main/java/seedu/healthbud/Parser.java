@@ -53,8 +53,8 @@ public class Parser {
                 new SumCommand().execute(pbLogs, mealLogs, workoutLogs, waterLogs, input);
                 return true;
             case "view":
-                 new ViewCommand().execute(pbLogs, mealLogs, workoutLogs, waterLogs, input);
-                 return true;
+                new ViewCommand().execute(pbLogs, mealLogs, workoutLogs, waterLogs, input);
+                return true;
             default:
                 Ui.printUnknownCommand();
                 return true;
