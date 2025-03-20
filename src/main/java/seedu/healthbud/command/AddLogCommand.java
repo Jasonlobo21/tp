@@ -102,7 +102,9 @@ public class AddLogCommand extends Command {
                 water[1] = Integer.toString(toInteger);
 
             } else {
+
                 water[1] = water[1].substring(3).trim();
+
             }
                 water[2] = water[2].substring(1).trim();
                 water[3] = water[3].substring(1).trim();
