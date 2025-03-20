@@ -15,12 +15,6 @@ public class Water extends Log {
         return bottle;
     }
 
-    public void updateVariables(String amount) {
-        int amountInt = Integer.parseInt(amount);
-        this.glass = amountInt/250;
-        this.bottle = amountInt/1000;
-    }
-
     public Water(String amount, String date, String time){
         super(date);
 
@@ -41,4 +35,11 @@ public class Water extends Log {
     public String toString() {
         return String.format(" %s ml on (%s) at %s", amount, getDate(), time);
     }
+
+    public void updateVariables(String amount) {
+        int amountInt = Integer.parseInt(amount);
+        this.glass = amountInt/250;
+        this.bottle = amountInt/1000;
+    }
+
 }
