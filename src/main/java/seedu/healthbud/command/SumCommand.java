@@ -13,7 +13,7 @@ public class SumCommand extends Command {
 
         String[] parts = input.trim().split(" ");
         if (parts.length < 3) {
-            throw new InvalidSumException("Invalid sum command eg. sum cal|vol /d <date>");
+            throw new InvalidSumException();
         }
 
         switch (parts[1]) {
@@ -26,7 +26,7 @@ public class SumCommand extends Command {
             break;
 
         default:
-            throw new InvalidSumException("Invalid sum command eg. sum cal|vol /d <date>");
+            throw new InvalidSumException();
         }
     }
 }

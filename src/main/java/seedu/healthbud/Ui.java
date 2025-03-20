@@ -52,10 +52,12 @@ public class Ui {
                 + "2. bye - Exit the program" + NEW_LINE
                 + "3. recommend <muscle_group> - Get workout recommendations" + NEW_LINE
                 + "4. bmi /w <weight_in_kg> /h <height_in_m> - Calculate your BMI" + NEW_LINE
-                + "5. add workout <date> /e <exercise> /r <reps> /s <sets> - Log a workout" + NEW_LINE
+                + "5. add workout <date> /e <exercise> /r <reps> /s <sets> - Add a workout log" + NEW_LINE
                 + "6. add meal <meal_name> /cal <calories> /d <date> /t <time> - Add a meal log" + NEW_LINE
-                + "7. add water /ml <volume> /d <date> /t <time> - Log water intake" + NEW_LINE
-                + "8. pb /e <exercise> /w <weight> /d <date> - Record a personal best" + NEW_LINE);
+                + "7. add water /ml <volume> /d <date> /t <time> - Add a water log" + NEW_LINE
+                + "8. pb /e <exercise> /w <weight_in_kg> /d <date> - Record a personal best" + NEW_LINE
+                + "9. sum <cal|vol> /d <date> - Sum up the total calories/water for the day" + NEW_LINE
+                + "10. clear <pb|meal|workout|water> - Clear the respective log" + NEW_LINE);
     }
 
     /**
