@@ -6,15 +6,6 @@ public class Water extends Log {
     private String amount;
     private String time;
 
-
-    public static int getGlass() {
-        return glass;
-    }
-
-    public static int getBottle() {
-        return bottle;
-    }
-
     public Water(String amount, String date, String time){
         super(date);
 
