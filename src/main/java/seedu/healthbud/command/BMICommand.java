@@ -11,6 +11,8 @@ public class BMICommand extends Command{
 
     // Constructor
     public BMICommand(String input) throws HealthBudException, InvalidBMIException {
+        assert input != null && !input.trim().isEmpty() : "Input must be provided for BMI command";
+
         if (!input.contains("/h") || !input.contains("/w")) {
             throw new InvalidBMIException();
         }

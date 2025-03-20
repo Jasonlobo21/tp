@@ -57,7 +57,8 @@ public class Ui {
                 + "7. add water /ml <volume> /d <date> /t <time> - Add a water log" + NEW_LINE
                 + "8. pb /e <exercise> /w <weight_in_kg> /d <date> - Record a personal best" + NEW_LINE
                 + "9. sum <cal|vol> /d <date> - Sum up the total calories/water for the day" + NEW_LINE
-                + "10. clear <pb|meal|workout|water> - Clear the respective log" + NEW_LINE);
+                + "10. clear <pb|meal|workout|water> - Clear the respective log" + NEW_LINE
+                + "11. view <date> - view logs for that date" + NEW_LINE);
     }
 
     /**
