@@ -2,6 +2,7 @@ package seedu.healthbud.command;
 
 import seedu.healthbud.LogList;
 import seedu.healthbud.Ui;
+import seedu.healthbud.exception.InvalidMLException;
 import seedu.healthbud.exception.InvalidMealException;
 import seedu.healthbud.exception.InvalidWaterException;
 import seedu.healthbud.exception.InvalidWorkoutException;
@@ -39,25 +40,51 @@ public class AddLogCommand extends Command {
 
             String[] water = input.substring(3).split("/");
 
-            water[1] = water[1].substring(3).trim();
-            water[2] = water[2].substring(1).trim();
-            water[3] = water[3].substring(1).trim();
+            if (water[1].toLowerCase().contains("bottle")|| water[1].toLowerCase().contains("bottles")) {
+
+                water[1] = water[1].substring(3).trim();
+                int keyIndex = water[1].indexOf("bottle");
+                try {
+                    int toInteger = Integer.parseInt(water[1].substring(0, keyIndex).trim());
+                } catch (InvalidMLException e){
+                    System.out.println(e.getMessage());
+                }
+                int toInteger = Integer.parseInt(water[1].substring(0, keyIndex).trim()) * 1000;
+                water[1] = Integer.toString(toInteger);
+
+            } else if (water[1].toLowerCase().contains("glass")){
+
+                water[1] = water[1].substring(3).trim();
+                int keyIndex = water[1].indexOf("glass");
+                try {
+                    int toInteger = Integer.parseInt(water[1].substring(0, keyIndex).trim());
+                } catch (InvalidMLException e){
+                    System.out.println(e.getMessage());
+                }
+                int toInteger = Integer.parseInt(water[1].substring(0, keyIndex).trim()) * 250;
+                water[1] = Integer.toString(toInteger);
+
+            } else {
+
+                water[1] = water[1].substring(3).trim();
+
+            }
+                water[2] = water[2].substring(1).trim();
+                water[3] = water[3].substring(1).trim();
 
             if (water[1].isEmpty() || water[2].isEmpty() || water[3].isEmpty()) {
                 throw new InvalidWaterException();
             }
+                water[0] = water[0].trim();
+                water[0] = water[0].substring(0,1).toUpperCase() + water[0].substring(1);
 
-            water[0] = water[0].trim();
-            water[0] = water[0].substring(0,1).toUpperCase() + water[0].substring(1);
+                Water newWater = new Water(water[0].trim(), water[1], water[2], water[3]);
 
-            Water newWater = new Water(water[0].trim(), water[1], water[2], water[3]);
-
-            waterLogs.addLog(newWater);
-            Ui.printMessage(" Nice job! That's approximately " + Water.getGlass() +  "cups of water."
-                    + " I've added it your water log:");
-            Ui.printMessage("   " + waterLogs.getLog(waterLogs.getSize() - 1));
-            Ui.printMessage(" Now you have " + waterLogs.getSize() + " water logs in the list.");
-            break;
+                waterLogs.addLog(newWater);
+                Ui.printMessage(" Nice job! I've added it your water log:");
+                Ui.printMessage("   " + waterLogs.getLog(waterLogs.getSize() - 1));
+                Ui.printMessage(" Now you have " + waterLogs.getSize() + " water logs in the list.");
+                break;
 
 
         case "workout":

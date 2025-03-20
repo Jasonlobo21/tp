@@ -4,7 +4,8 @@ public class Water extends Log {
 
     private String amount;
     private String time;
-    private static int glass;
+    private static int glass = 250;
+    private static int bottle = 1000;
 
     public Water(String name, String amount, String date, String time){
         super(name, date);
@@ -12,6 +13,7 @@ public class Water extends Log {
         this.time = time;
         int amountInt = Integer.parseInt(amount);
         this.glass = amountInt/250;
+        this.bottle = amountInt/1000;
     }
 
     public String getAmount() {
@@ -28,5 +30,9 @@ public class Water extends Log {
 
     public static int getGlass() {
         return glass;
+    }
+
+    public static int getBottle() {
+        return bottle;
     }
 }
