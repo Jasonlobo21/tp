@@ -58,7 +58,7 @@ public class AddLogCommand extends Command {
                 int keyIndex = water[1].indexOf("glass");
                 try {
                     int toInteger = Integer.parseInt(water[1].substring(0, keyIndex).trim());
-                } catch (InvalidMLException e){
+                } catch (InvalidMLException e) {
                     System.out.println(e.getMessage());
                 }
                 int toInteger = Integer.parseInt(water[1].substring(0, keyIndex).trim()) * 250;
