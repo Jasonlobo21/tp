@@ -2,10 +2,12 @@ package seedu.healthbud.log;
 
 public class Water extends Log {
 
-    private String amount;
-    private String time;
     private static int glass;
     private static int bottle;
+
+    private String amount;
+    private String time;
+
 
 
     public Water(String amount, String date, String time){

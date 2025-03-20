@@ -23,6 +23,7 @@ public class AddLogCommand extends Command {
 
         String[] parts = input.trim().split(" ");
         if (parts.length < 2) {
+
             throw new InvalidLogException();
         }
 
@@ -30,12 +31,14 @@ public class AddLogCommand extends Command {
 
         case "pb":
             if (!input.contains("/e") || !input.contains("/w") || !input.contains("/d") ) {
+
                 throw new InvalidPBException();
             }
 
             String[] pb = input.substring(7).split("/");
 
             if (pb.length != 4) {
+
                 throw new InvalidPBException();
             }
 
@@ -44,6 +47,7 @@ public class AddLogCommand extends Command {
             pb[3] = pb[3].substring(2).trim();
 
             if (pb[1].isEmpty() || pb[2].isEmpty() || pb[3].isEmpty()) {
+
                 throw new InvalidPBException();
             }
 
@@ -69,6 +73,7 @@ public class AddLogCommand extends Command {
             String[] water = input.substring(10).split("/");
 
             if (water.length != 4) {
+
                 throw new InvalidMealException();
             }
 
@@ -99,12 +104,12 @@ public class AddLogCommand extends Command {
             } else {
 
                 water[1] = water[1].substring(3).trim();
-
             }
                 water[2] = water[2].substring(1).trim();
                 water[3] = water[3].substring(1).trim();
 
             if (water[1].isEmpty() || water[2].isEmpty() || water[3].isEmpty()) {
+                
                 throw new InvalidWaterException();
             }
 
