@@ -3,34 +3,62 @@ package seedu.healthbud.command;
 import seedu.healthbud.LogList;
 import seedu.healthbud.Ui;
 import seedu.healthbud.exception.InvalidMLException;
+import seedu.healthbud.exception.InvalidLogException;
 import seedu.healthbud.exception.InvalidMealException;
+import seedu.healthbud.exception.InvalidPBException;
 import seedu.healthbud.exception.InvalidWaterException;
 import seedu.healthbud.exception.InvalidWorkoutException;
 import seedu.healthbud.log.Meal;
 import seedu.healthbud.log.Water;
 import seedu.healthbud.log.Test;
-//import seedu.healthbud.storage.Storage;
+import seedu.healthbud.log.PB;
+import seedu.healthbud.storage.Storage;
 
 public class AddLogCommand extends Command {
 
     @Override
-    public void execute(LogList mealLogs, LogList workoutLogs, LogList waterLogs, String input)
-            throws InvalidMealException, InvalidWorkoutException {
+    public void execute(LogList pbLogs, LogList mealLogs, LogList workoutLogs, LogList waterLogs, String input)
+            throws InvalidMealException, InvalidWorkoutException, InvalidWaterException, InvalidLogException,
+                    InvalidPBException {
 
         String[] parts = input.trim().split(" ");
-
-        assert parts.length > 2 : "Invalid add command input";
-
         if (parts.length < 2) {
-            Ui.printMessage("Invalid add command input");
-            return;
+            throw new InvalidLogException();
         }
 
-        assert parts[1].matches("meal|workout|water") : "Invalid log type";
-
         switch (parts[1]) {
+
+        case "pb":
+            if (!input.contains("/e") || !input.contains("/w") || !input.contains("/d") ) {
+                throw new InvalidPBException();
+            }
+
+            String[] pb = input.substring(7).split("/");
+
+            if (pb.length != 4) {
+                throw new InvalidPBException();
+            }
+
+            pb[1] = pb[1].substring(2).trim();
+            pb[2] = pb[2].substring(2).trim();
+            pb[3] = pb[3].substring(2).trim();
+
+            if (pb[1].isEmpty() || pb[2].isEmpty() || pb[3].isEmpty()) {
+                throw new InvalidPBException();
+            }
+
+            PB newPB = new PB(pb[1], pb[2], pb[3]);
+            pbLogs.addLog(newPB);
+            Ui.printMessage(" Got it. I've added this pb log:");
+
+            Ui.printMessage("  " + pbLogs.getLog(pbLogs.getSize() - 1));
+            Storage.appendLogToFile(newPB);
+
+            Ui.printMessage(" Now you have " + pbLogs.getSize() + " pb logs in the list.");
+            break;
+
         case "water":
-            //`Ui.printMessage(" feature not implemented yet");
+
             assert input != null : "Invalid water input!";
             assert !input.trim().isEmpty() : "Input should not be empty!";
 
@@ -38,7 +66,11 @@ public class AddLogCommand extends Command {
                 throw new InvalidWaterException();
             }
 
-            String[] water = input.substring(3).split("/");
+            String[] water = input.substring(10).split("/");
+
+            if (water.length != 4) {
+                throw new InvalidMealException();
+            }
 
             if (water[1].toLowerCase().contains("bottle")|| water[1].toLowerCase().contains("bottles")) {
 
@@ -85,38 +117,47 @@ public class AddLogCommand extends Command {
                 Ui.printMessage("   " + waterLogs.getLog(waterLogs.getSize() - 1));
                 Ui.printMessage(" Now you have " + waterLogs.getSize() + " water logs in the list.");
                 break;
+            
+            Water newWater = new Water(water[1], water[2], water[3]);
+
+            waterLogs.addLog(newWater);
+            Ui.printMessage(" Got it. I've added this water log:");
+
+            Ui.printMessage("  " + waterLogs.getLog(waterLogs.getSize() - 1));
+            Storage.appendLogToFile(newWater);
+
+            Ui.printMessage(" Now you have " + waterLogs.getSize() + " water logs in the list.");
+            break;
 
 
         case "workout":
 
-            //Ui.printMessage(" feature not implemented yet");
-
-            if (!input.contains("/e") || !input.contains("/r") || !input.contains("/s")) {
+            if (!input.contains("/r") || !input.contains("/s") || !input.contains("/d")) {
                 throw new InvalidWorkoutException();
             }
 
-            String[] workout = input.substring(8).split("/");
+            String workoutDetails = input.substring("add workout ".length()).trim();
+            String[] workoutTokens = workoutDetails.split(" /");
 
-            if (workout.length != 5) {
-                throw new InvalidMealException();
+            if (workoutTokens.length != 4) {
+                throw new InvalidWorkoutException();
             }
 
-            workout[1] = workout[1].substring(3).trim();
-            workout[2] = workout[2].substring(1).trim();
-            workout[3] = workout[3].substring(1).trim();
+            String exercise = workoutTokens[0].trim();
+            String reps = workoutTokens[1].substring(2).trim(); // remove "r "
+            String sets = workoutTokens[2].substring(2).trim(); // remove "s "
+            String date = workoutTokens[3].substring(2).trim(); // remove "d "
 
-            if (workout[1].isEmpty() || workout[2].isEmpty() || workout[3].isEmpty()) {
-                throw new InvalidMealException();
+            if (exercise.isEmpty() || reps.isEmpty() || sets.isEmpty() || date.isEmpty()) {
+                throw new InvalidWorkoutException();
             }
 
-            Test newWorkout = new Test(workout[0].trim(), workout[1], workout[2], workout[3]);
-
+            Test newWorkout = new Test(exercise, reps, sets, date);
             workoutLogs.addLog(newWorkout);
-
             Ui.printMessage(" Got it. I've added this workout:");
-            Ui.printMessage("   " + mealLogs.getLog(mealLogs.getSize() - 1));
-            // TO BE DONE Storage.appendMealToFile(newMeal);
-            Ui.printMessage(" Now you have " + mealLogs.getSize() + " workout done.");
+            Ui.printMessage("   " + workoutLogs.getLog(workoutLogs.getSize() - 1));
+            Storage.appendLogToFile(newWorkout);
+            Ui.printMessage(" Now you have " + workoutLogs.getSize() + " workout done.");
             break;
 
         case "meal":
@@ -143,10 +184,10 @@ public class AddLogCommand extends Command {
 
             Ui.printMessage(" Got it. I've added this meal:");
             Ui.printMessage("   " + mealLogs.getLog(mealLogs.getSize() - 1));
-            //Storage.appendMealToFile(newMeal);
+            Storage.appendLogToFile(newMeal);
             Ui.printMessage(" Now you have " + mealLogs.getSize() + " meals in the list.");
             break;
-            
+
         default:
             Ui.printMessage("Invalid type of log");
         }

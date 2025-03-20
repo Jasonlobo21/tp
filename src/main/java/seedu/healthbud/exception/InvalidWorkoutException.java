@@ -2,6 +2,6 @@ package seedu.healthbud.exception;
 
 public class InvalidWorkoutException extends Exception {
     public InvalidWorkoutException() {
-        super("Invalid add command (add <date> /e <exercise> /r <reps> /s <sets>)");
+        super("Invalid workout log command (e.g., add workout <exercise> /r <reps> /s <sets> /d <date>)");
     }
 }

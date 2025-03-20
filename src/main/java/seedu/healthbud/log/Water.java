@@ -7,8 +7,10 @@ public class Water extends Log {
     private static int glass = 250;
     private static int bottle = 1000;
 
-    public Water(String name, String amount, String date, String time){
-        super(name, date);
+
+    public Water(String amount, String date, String time){
+        super(date);
+
         this.amount = amount;
         this.time = time;
         int amountInt = Integer.parseInt(amount);
@@ -24,8 +26,9 @@ public class Water extends Log {
         return time;
     }
 
+    @Override
     public String toString() {
-        return String.format("%s, %s ml on %s at %s", getName(), amount, getDate(), getTime());
+        return String.format(" %s ml on (%s) at %s", amount, getDate(), time);
     }
 
     public static int getGlass() {
