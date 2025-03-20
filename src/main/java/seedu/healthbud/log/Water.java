@@ -3,7 +3,6 @@ package seedu.healthbud.log;
 public class Water extends Log {
     private static int glass;
     private static int bottle;
-
     private String amount;
     private String time;
 
@@ -15,7 +14,7 @@ public class Water extends Log {
     public static int getBottle() {
         return bottle;
     }
-    
+
     public Water(String amount, String date, String time){
         super(date);
 
