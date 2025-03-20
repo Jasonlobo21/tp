@@ -107,17 +107,10 @@ public class AddLogCommand extends Command {
             if (water[1].isEmpty() || water[2].isEmpty() || water[3].isEmpty()) {
                 throw new InvalidWaterException();
             }
-                water[0] = water[0].trim();
-                water[0] = water[0].substring(0,1).toUpperCase() + water[0].substring(1);
 
-                Water newWater = new Water(water[0].trim(), water[1], water[2], water[3]);
+            water[0] = water[0].trim();
+            water[0] = water[0].substring(0,1).toUpperCase() + water[0].substring(1);
 
-                waterLogs.addLog(newWater);
-                Ui.printMessage(" Nice job! I've added it your water log:");
-                Ui.printMessage("   " + waterLogs.getLog(waterLogs.getSize() - 1));
-                Ui.printMessage(" Now you have " + waterLogs.getSize() + " water logs in the list.");
-                break;
-            
             Water newWater = new Water(water[1], water[2], water[3]);
 
             waterLogs.addLog(newWater);
