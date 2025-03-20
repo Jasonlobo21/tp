@@ -28,17 +28,20 @@ public class AddLogCommand extends Command {
 
         String[] parts = input.trim().split(" ");
         if (parts.length < 2) {
+
             throw new InvalidLogException();
         }
 
         switch (parts[1]) {
         case "pb":
             if (!input.contains("/e") || !input.contains("/w") || !input.contains("/d")) {
+
                 throw new InvalidPBException();
             }
 
             String[] pb = input.substring(7).split("/");
             if (pb.length != 4) {
+
                 throw new InvalidPBException();
             }
 
@@ -46,6 +49,7 @@ public class AddLogCommand extends Command {
             pb[2] = pb[2].substring(2).trim();
             pb[3] = pb[3].substring(2).trim();
             if (pb[1].isEmpty() || pb[2].isEmpty() || pb[3].isEmpty()) {
+
                 throw new InvalidPBException();
             }
 
@@ -61,15 +65,18 @@ public class AddLogCommand extends Command {
             assert input != null : "Invalid water input!";
             assert !input.trim().isEmpty() : "Input should not be empty!";
             if (!input.contains("/ml") || !input.contains("/d") || !input.contains("/t")) {
+
                 throw new InvalidWaterException();
             }
 
             String[] water = input.substring(10).split("/");
             if (water.length != 4) {
+
                 throw new InvalidMealException();
             }
 
             if (water[1].toLowerCase().contains("bottle") || water[1].toLowerCase().contains("bottles")) {
+
                 water[1] = water[1].substring(3).trim();
                 int keyIndex = water[1].indexOf("bottle");
                 try {
@@ -80,6 +87,7 @@ public class AddLogCommand extends Command {
                 int toInteger = Integer.parseInt(water[1].substring(0, keyIndex).trim()) * 1000;
                 water[1] = Integer.toString(toInteger);
             } else if (water[1].toLowerCase().contains("glass")) {
+
                 water[1] = water[1].substring(3).trim();
                 int keyIndex = water[1].indexOf("glass");
                 try {
@@ -90,12 +98,14 @@ public class AddLogCommand extends Command {
                 int toInteger = Integer.parseInt(water[1].substring(0, keyIndex).trim()) * 250;
                 water[1] = Integer.toString(toInteger);
             } else {
+
                 water[1] = water[1].substring(3).trim();
             }
             water[2] = water[2].substring(1).trim();  // Corrected indentation
             water[3] = water[3].substring(1).trim();  // Corrected indentation
 
             if (water[1].isEmpty() || water[2].isEmpty() || water[3].isEmpty()) {
+
                 throw new InvalidWaterException();
             }
 
@@ -109,12 +119,14 @@ public class AddLogCommand extends Command {
 
         case "workout":
             if (!input.contains("/r") || !input.contains("/s") || !input.contains("/d")) {
+
                 throw new InvalidWorkoutException();
             }
 
             String workoutDetails = input.substring("add workout ".length()).trim();
             String[] workoutTokens = workoutDetails.split(" /");
             if (workoutTokens.length != 4) {
+
                 throw new InvalidWorkoutException();
             }
 
@@ -123,6 +135,7 @@ public class AddLogCommand extends Command {
             String sets = workoutTokens[2].substring(2).trim(); // remove "s "
             String date = workoutTokens[3].substring(2).trim(); // remove "d "
             if (exercise.isEmpty() || reps.isEmpty() || sets.isEmpty() || date.isEmpty()) {
+
                 throw new InvalidWorkoutException();
             }
 
@@ -136,11 +149,13 @@ public class AddLogCommand extends Command {
 
         case "meal":
             if (!input.contains("/d") || !input.contains("/t") || !input.contains("/cal")) {
+
                 throw new InvalidMealException();
             }
 
             String[] meal = input.substring(8).split("/");
             if (meal.length != 4) {
+
                 throw new InvalidMealException();
             }
 
@@ -148,6 +163,7 @@ public class AddLogCommand extends Command {
             meal[2] = meal[2].substring(1).trim();
             meal[3] = meal[3].substring(1).trim();
             if (meal[1].isEmpty() || meal[2].isEmpty() || meal[3].isEmpty()) {
+
                 throw new InvalidMealException();
             }
 

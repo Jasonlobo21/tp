@@ -15,18 +15,18 @@ public class Water extends Log {
         return bottle;
     }
 
+    public void updateVariables(String amount) {
+        int amountInt = Integer.parseInt(amount);
+        this.glass = amountInt/250;
+        this.bottle = amountInt/1000;
+    }
+
     public Water(String amount, String date, String time){
         super(date);
 
         this.amount = amount;
         this.time = time;
         updateVariables(amount);
-    }
-
-    public void updateVariables(String amount) {
-        int amountInt = Integer.parseInt(amount);
-        this.glass = amountInt/250;
-        this.bottle = amountInt/1000;
     }
 
     public String getAmount() {
