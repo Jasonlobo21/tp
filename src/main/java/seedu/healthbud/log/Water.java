@@ -4,7 +4,6 @@ public class Water extends Log {
 
     private static int glass;
     private static int bottle;
-
     private String amount;
     private String time;
 
