@@ -8,7 +8,14 @@ public class Water extends Log {
     private String time;
 
 
+    public static int getGlass() {
+        return glass;
+    }
 
+    public static int getBottle() {
+        return bottle;
+    }
+    
     public Water(String amount, String date, String time){
         super(date);
 
@@ -34,13 +41,5 @@ public class Water extends Log {
     @Override
     public String toString() {
         return String.format(" %s ml on (%s) at %s", amount, getDate(), time);
-    }
-
-    public static int getGlass() {
-        return glass;
-    }
-
-    public static int getBottle() {
-        return bottle;
     }
 }

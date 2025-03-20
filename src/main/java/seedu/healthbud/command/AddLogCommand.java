@@ -104,10 +104,10 @@ public class AddLogCommand extends Command {
             } else {
 
                 water[1] = water[1].substring(3).trim();
-
             }
-                water[2] = water[2].substring(1).trim();
-                water[3] = water[3].substring(1).trim();
+
+            water[2] = water[2].substring(1).trim();
+            water[3] = water[3].substring(1).trim();
 
             if (water[1].isEmpty() || water[2].isEmpty() || water[3].isEmpty()) {
 
