@@ -10,8 +10,20 @@ import seedu.healthbud.command.AddLogCommand;
 import seedu.healthbud.command.ListCommand;
 import seedu.healthbud.command.ViewCommand;
 
-import seedu.healthbud.exception.*;
 import seedu.healthbud.exception.HealthBudException;
+import seedu.healthbud.exception.InvalidBMIException;
+import seedu.healthbud.exception.InvalidClearException;
+import seedu.healthbud.exception.InvalidDeleteException;
+import seedu.healthbud.exception.InvalidFindException;
+import seedu.healthbud.exception.InvalidListException;
+import seedu.healthbud.exception.InvalidLogException;
+import seedu.healthbud.exception.InvalidMealException;
+import seedu.healthbud.exception.InvalidPBException;
+import seedu.healthbud.exception.InvalidRecommendException;
+import seedu.healthbud.exception.InvalidSumException;
+import seedu.healthbud.exception.InvalidWaterException;
+import seedu.healthbud.exception.InvalidWorkoutException;
+import seedu.healthbud.exception.InvalidViewException;
 
 
 public class Parser {
