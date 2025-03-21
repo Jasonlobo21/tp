@@ -156,7 +156,6 @@ public class AddLogCommand extends Command {
             }
 
             if (exercise.isEmpty() || reps.isEmpty() || sets.isEmpty() || date.isEmpty()) {
-
                 throw new InvalidWorkoutException();
             }
 
