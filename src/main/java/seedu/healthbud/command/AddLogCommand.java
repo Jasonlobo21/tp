@@ -86,7 +86,7 @@ public class AddLogCommand extends Command {
                 throw new InvalidMealException();
             }
 
-            // when u define the string use waterDate, waterML, waterTime if not will conflict
+            // when u define the string use waterDate, waterML, waterTime if not will conflict - kin
 
             if (water[1].toLowerCase().contains("bottle") || water[1].toLowerCase().contains("bottles")) {
 
@@ -189,7 +189,7 @@ public class AddLogCommand extends Command {
                 throw new InvalidMealException();
             }
 
-            // when u define the string use mealDate, mealCal, mealTime if not will conflict
+            // when u define the string use mealDate, mealCal, mealTime if not will conflict - kin
 
             meal[1] = meal[1].substring(3).trim();
             meal[2] = meal[2].substring(1).trim();
@@ -253,7 +253,7 @@ public class AddLogCommand extends Command {
             cardioLogs.addLog(newCardio);
             Ui.printMessage(" Got it. I've added this cardio:");
             Ui.printMessage("   " + cardioLogs.getLog(cardioLogs.getSize() - 1));
-            //Storage.appendLogToFile(newCardio); // Uncomment if needed
+            Storage.appendLogToFile(newCardio); // Uncomment if needed
             Ui.printMessage(" Now you have " + cardioLogs.getSize() + " cardio logs in the list.");
             break;
 
