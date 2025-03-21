@@ -1,6 +1,22 @@
 package seedu.healthbud.log;
 
 public class Cardio extends Log{
+    public String getName() {
+        return name;
+    }
+
+    public String getDuration() {
+        return duration;
+    }
+
+    public String getIncline() {
+        return incline;
+    }
+
+    public String getSpeed() {
+        return speed;
+    }
+
     private String name;
     private String duration;
     private String incline;

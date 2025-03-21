@@ -18,7 +18,7 @@ public class HealthBud {
     public static void main(String[] args) {
 
         Ui.printGreeting();
-        Storage.loadLogs(mealLogs, workoutLogs, waterLogs, pbLogs);
+        Storage.loadLogs(mealLogs, workoutLogs, waterLogs, pbLogs, cardioLogs);
         Scanner in = new Scanner(System.in);
 
         boolean isLooping = true;
