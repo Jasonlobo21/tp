@@ -27,7 +27,7 @@ public class AddLogCommand extends Command {
             LogList waterLogs,
             LogList cardioLogs,
             String input) throws InvalidMealException, InvalidWorkoutException,
-            InvalidWaterException, InvalidLogException, InvalidPBException, InvalidMLException, InvalidCardioException {
+            InvalidWaterException, InvalidLogException, InvalidPBException, InvalidMLException, InvalidCardioException{
 
         String[] parts = input.trim().split(" ");
         if (parts.length < 2) {
@@ -243,7 +243,8 @@ public class AddLogCommand extends Command {
             }
 
             // Validate that all fields are filled
-            if (cardioExercise.isEmpty() || cardioSpeed.isEmpty() || cardioIncline.isEmpty() || cardioDuration.isEmpty() || cardioDate.isEmpty()) {
+            if (cardioExercise.isEmpty() || cardioSpeed.isEmpty() || cardioIncline.isEmpty()
+                    || cardioDuration.isEmpty() || cardioDate.isEmpty()) {
                 throw new InvalidCardioException();
             }
 
