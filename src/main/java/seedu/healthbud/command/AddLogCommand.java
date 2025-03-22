@@ -40,7 +40,7 @@ public class AddLogCommand extends Command {
         switch (command) {
 
         case "goal":
-            Ui.printMessage("Welcome to Goal Setting!\n");
+            Ui.printMessage("Welcome to Goal Setting! \n");
             Ui.printMessage("Here are your current goals:\n" + "\n" + Goals.getInstance());
             Ui.printMessage("To change a goal please enter /name + value, " +
                     "/w for Water Goal, /c for Calorie Goal, /m for Weight Goal");
