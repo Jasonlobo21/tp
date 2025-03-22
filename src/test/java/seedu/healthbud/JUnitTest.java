@@ -26,6 +26,7 @@ import seedu.healthbud.log.PB;
 import seedu.healthbud.log.Water;
 import seedu.healthbud.log.WorkOUT;
 
+
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
@@ -66,8 +67,8 @@ class JUnitTest {
         String input = "add meal Chicken Rice /d 12-01-25 /t 9pm";
 
         // assert throws alrdy catches the exception so in the method dn add "throws"
-        assertThrows(InvalidMealException.class, () -> new AddLogCommand().execute(goalLogs, pbLogs, mealLogs, workoutLogs,
-                waterLogs, cardioLogs, input));
+        assertThrows(InvalidMealException.class, () -> new AddLogCommand().execute(goalLogs,
+                pbLogs, mealLogs, workoutLogs, waterLogs, cardioLogs, input));
     }
 
     //        ========================= Water Log Tests =========================
@@ -250,7 +251,8 @@ class JUnitTest {
 
         String input = "bmi /w 70 /h 1.78";
         BMICommand command = new BMICommand(input);
-        command.execute(new LogList(), new LogList(), new LogList(), new LogList(), new LogList(), input);
+        command.execute( new LogList(), new LogList(), new LogList(), new LogList(),
+                new LogList(), new LogList(), input);
 
         // BMI = 70 / (1.78^2) = 22.09
         String expected = "Your BMI is: 22.09";
