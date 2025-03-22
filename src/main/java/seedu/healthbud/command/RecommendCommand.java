@@ -9,7 +9,7 @@ public class RecommendCommand extends Command {
     private static final String NEW_LINE = "\n     ";
 
     @Override
-    public void execute(LogList pbLogs, LogList mealLogs, LogList workoutLogs,
+    public void execute(LogList goalLogs, LogList pbLogs, LogList mealLogs, LogList workoutLogs,
                         LogList waterLogs, LogList cardioLogs, String input) throws
             InvalidRecommendException, HealthBudException {
 

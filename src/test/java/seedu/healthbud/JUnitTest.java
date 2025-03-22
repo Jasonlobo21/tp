@@ -26,6 +26,7 @@ import seedu.healthbud.log.PB;
 import seedu.healthbud.log.Water;
 import seedu.healthbud.log.WorkOUT;
 
+
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
@@ -37,6 +38,7 @@ class JUnitTest {
     void mealLog_correctInput_expectSuccess() throws InvalidMealException, InvalidWorkoutException,
             InvalidWaterException, InvalidLogException, InvalidPBException, InvalidMLException,
             InvalidCardioException {
+        LogList goalLogs = new LogList();
         LogList mealLogs = new LogList();
         LogList workoutLogs = new LogList();
         LogList pbLogs = new LogList();
@@ -44,7 +46,7 @@ class JUnitTest {
         LogList cardioLogs = new LogList();
         String input = "add meal Chicken Rice /cal 550 /d 12-01-25 /t 9pm";
 
-        new AddLogCommand().execute(pbLogs, mealLogs, workoutLogs, waterLogs, cardioLogs, input);
+        new AddLogCommand().execute(goalLogs, pbLogs, mealLogs, workoutLogs, waterLogs, cardioLogs, input);
 
         assertEquals(1, mealLogs.getSize());
         assertEquals("Chicken Rice", ((Meal) mealLogs.getLog(0)).getName());
@@ -55,6 +57,7 @@ class JUnitTest {
 
     @Test
     void mealLog_wrongInput_expectFailure() {
+        LogList goalLogs = new LogList();
         LogList mealLogs = new LogList();
         LogList workoutLogs = new LogList();
         LogList pbLogs = new LogList();
@@ -64,8 +67,8 @@ class JUnitTest {
         String input = "add meal Chicken Rice /d 12-01-25 /t 9pm";
 
         // assert throws alrdy catches the exception so in the method dn add "throws"
-        assertThrows(InvalidMealException.class, () -> new AddLogCommand().execute(pbLogs, mealLogs, workoutLogs,
-                waterLogs, cardioLogs, input));
+        assertThrows(InvalidMealException.class, () -> new AddLogCommand().execute(goalLogs,
+                pbLogs, mealLogs, workoutLogs, waterLogs, cardioLogs, input));
     }
 
     //        ========================= Water Log Tests =========================
@@ -73,6 +76,7 @@ class JUnitTest {
     void waterLog_correctInput_expectSuccess() throws InvalidMealException, InvalidWorkoutException,
             InvalidWaterException, InvalidLogException, InvalidPBException, InvalidMLException,
             InvalidCardioException {
+        LogList goalLogs = new LogList();
         LogList mealLogs = new LogList();
         LogList workoutLogs = new LogList();
         LogList pbLogs = new LogList();
@@ -80,7 +84,7 @@ class JUnitTest {
         LogList cardioLogs = new LogList();
         String input = "add water /ml 1000 /d 12-01-25 /t 8am";
 
-        new AddLogCommand().execute(pbLogs, mealLogs, workoutLogs, waterLogs, cardioLogs, input);
+        new AddLogCommand().execute(goalLogs, pbLogs, mealLogs, workoutLogs, waterLogs, cardioLogs, input);
 
         assertEquals(1, waterLogs.getSize());
         assertEquals("1000", ((Water) waterLogs.getLog(0)).getAmount());
@@ -90,6 +94,7 @@ class JUnitTest {
 
     @Test
     void waterLog_wrongInput_expectFailure() {
+        LogList goalLogs = new LogList();
         LogList mealLogs = new LogList();
         LogList workoutLogs = new LogList();
         LogList pbLogs = new LogList();
@@ -98,7 +103,7 @@ class JUnitTest {
         String input = "add water /ml 500 /d 12-01-25"; // missing /t
 
         assertThrows(InvalidWaterException.class, () -> new AddLogCommand().execute(
-                pbLogs, mealLogs, workoutLogs, waterLogs, cardioLogs, input));
+                goalLogs, pbLogs, mealLogs, workoutLogs, waterLogs, cardioLogs, input));
     }
 
     //        ========================= Workout Log Tests =========================
@@ -106,6 +111,7 @@ class JUnitTest {
     void workoutLog_correctInput_expectSuccess() throws InvalidMealException, InvalidWorkoutException,
             InvalidWaterException, InvalidLogException, InvalidPBException, InvalidMLException,
             InvalidCardioException {
+        LogList goalLogs = new LogList();
         LogList mealLogs = new LogList();
         LogList workoutLogs = new LogList();
         LogList pbLogs = new LogList();
@@ -113,7 +119,7 @@ class JUnitTest {
         LogList cardioLogs = new LogList();
         String input = "add workout Pushups /r 20 /s 3 /d 12-01-25";
 
-        new AddLogCommand().execute(pbLogs, mealLogs, workoutLogs, waterLogs, cardioLogs, input);
+        new AddLogCommand().execute(goalLogs, pbLogs, mealLogs, workoutLogs, waterLogs, cardioLogs, input);
 
         assertEquals(1, workoutLogs.getSize());
         assertEquals("Pushups", ((WorkOUT) workoutLogs.getLog(0)).getName());
@@ -124,6 +130,7 @@ class JUnitTest {
 
     @Test
     void workoutLog_wrongInput_expectFailure() {
+        LogList goalLogs = new LogList();
         LogList mealLogs = new LogList();
         LogList workoutLogs = new LogList();
         LogList pbLogs = new LogList();
@@ -132,7 +139,7 @@ class JUnitTest {
         String input = "add workout Pushups /r 20 /d 12-01-25"; // missing /s sets
 
         assertThrows(InvalidWorkoutException.class, () -> new AddLogCommand().execute(
-                pbLogs, mealLogs, workoutLogs, waterLogs, cardioLogs, input));
+                goalLogs, pbLogs, mealLogs, workoutLogs, waterLogs, cardioLogs, input));
     }
 
     //        ========================= Cardio Log Tests =========================
@@ -140,6 +147,7 @@ class JUnitTest {
     void cardioLog_correctInput_expectSuccess() throws InvalidMealException, InvalidWorkoutException,
             InvalidWaterException, InvalidLogException, InvalidPBException, InvalidMLException,
             InvalidCardioException {
+        LogList goalLogs = new LogList();
         LogList mealLogs = new LogList();
         LogList workoutLogs = new LogList();
         LogList pbLogs = new LogList();
@@ -147,7 +155,7 @@ class JUnitTest {
         LogList cardioLogs = new LogList();
         String input = "add cardio treadmill /s 6 /i 2 /t 20 /d 12-01-25";
 
-        new AddLogCommand().execute(pbLogs, mealLogs, workoutLogs, waterLogs, cardioLogs, input);
+        new AddLogCommand().execute(goalLogs, pbLogs, mealLogs, workoutLogs, waterLogs, cardioLogs, input);
 
         assertEquals(1, cardioLogs.getSize());
         assertEquals("treadmill", ((Cardio) cardioLogs.getLog(0)).getName());
@@ -159,6 +167,7 @@ class JUnitTest {
 
     @Test
     void cardioLog_wrongInput_expectFailure() {
+        LogList goalLogs = new LogList();
         LogList mealLogs = new LogList();
         LogList workoutLogs = new LogList();
         LogList pbLogs = new LogList();
@@ -167,7 +176,7 @@ class JUnitTest {
         String input = "add cardio treadmill /s 6 /i 2 /d 12-01-25"; // missing /t
 
         assertThrows(InvalidCardioException.class, () -> new AddLogCommand().execute(
-                pbLogs, mealLogs, workoutLogs, waterLogs, cardioLogs, input));
+                goalLogs, pbLogs, mealLogs, workoutLogs, waterLogs, cardioLogs, input));
     }
 
     //        ========================= PB Log Tests =========================
@@ -175,6 +184,7 @@ class JUnitTest {
     void pbLog_correctInput_expectSuccess() throws InvalidMealException, InvalidWorkoutException,
             InvalidWaterException, InvalidLogException, InvalidPBException, InvalidMLException,
             InvalidCardioException {
+        LogList goalLogs = new LogList();
         LogList mealLogs = new LogList();
         LogList workoutLogs = new LogList();
         LogList pbLogs = new LogList();
@@ -182,7 +192,7 @@ class JUnitTest {
         LogList cardioLogs = new LogList();
         String input = "add pb /e bench /w 100 /d 12-01-25";
 
-        new AddLogCommand().execute(pbLogs, mealLogs, workoutLogs, waterLogs, cardioLogs, input);
+        new AddLogCommand().execute(goalLogs, pbLogs, mealLogs, workoutLogs, waterLogs, cardioLogs, input);
 
         assertEquals(1, pbLogs.getSize());
         assertEquals("bench", ((PB) pbLogs.getLog(0)).getExercise());
@@ -192,6 +202,7 @@ class JUnitTest {
 
     @Test
     void pbLog_wrongInput_expectFailure() {
+        LogList goalLogs = new LogList();
         LogList mealLogs = new LogList();
         LogList workoutLogs = new LogList();
         LogList pbLogs = new LogList();
@@ -200,7 +211,7 @@ class JUnitTest {
         String input = "add pb /e bench /d 12-01-25"; // missing /w
 
         assertThrows(InvalidPBException.class, () -> new AddLogCommand().execute(
-                pbLogs, mealLogs, workoutLogs, waterLogs, cardioLogs, input));
+                goalLogs, pbLogs, mealLogs, workoutLogs, waterLogs, cardioLogs, input));
     }
 
     //        ========================= Recommend Tests =========================
@@ -219,28 +230,29 @@ class JUnitTest {
 
     @Test
     void recommendWorkout_wrongInput_expectFailure(){
-
+        LogList goalLogs = new LogList();
         LogList mealLogs = new LogList();
         LogList workoutLogs = new LogList();
         LogList pbLogs = new LogList();
         LogList waterLogs = new LogList();
         LogList cardioLogs = new LogList();
         String input = "recommend";
-        assertThrows(InvalidRecommendException.class, () -> new RecommendCommand().execute(pbLogs,mealLogs,workoutLogs,
-                waterLogs, cardioLogs,  input));
+        assertThrows(InvalidRecommendException.class, () -> new RecommendCommand().execute(goalLogs, pbLogs, mealLogs,
+                workoutLogs, waterLogs, cardioLogs,  input));
     }
 
     // ========================= BMI Tests =========================
 
     @Test
     void calculateBmi_validInput_expectSuccess() throws Exception {
-        // Capture printed output
+        // Capture printed output.
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         System.setOut(new PrintStream(output));
 
         String input = "bmi /w 70 /h 1.78";
         BMICommand command = new BMICommand(input);
-        command.execute(new LogList(), new LogList(), new LogList(), new LogList(), new LogList(), input);
+        command.execute( new LogList(), new LogList(), new LogList(), new LogList(),
+                new LogList(), new LogList(), input);
 
         // BMI = 70 / (1.78^2) = 22.09
         String expected = "Your BMI is: 22.09";

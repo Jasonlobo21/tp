@@ -7,7 +7,7 @@ import seedu.healthbud.exception.InvalidDeleteException;
 public class DeleteCommand extends Command {
 
     @Override
-    public void execute(LogList pbLogs, LogList mealLogs, LogList workoutLogs,
+    public void execute(LogList goalLogs, LogList pbLogs, LogList mealLogs, LogList workoutLogs,
                         LogList waterLogs, LogList cardioLogs, String input)
             throws InvalidDeleteException, HealthBudException {
 

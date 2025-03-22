@@ -1,6 +1,7 @@
 package seedu.healthbud.command;
 
 // Imports
+
 import seedu.healthbud.LogList;
 import seedu.healthbud.Ui;
 import seedu.healthbud.exception.InvalidMLException;
@@ -9,20 +10,26 @@ import seedu.healthbud.exception.InvalidMealException;
 import seedu.healthbud.exception.InvalidPBException;
 import seedu.healthbud.exception.InvalidWaterException;
 import seedu.healthbud.exception.InvalidWorkoutException;
+import seedu.healthbud.exception.InvalidGoalException;
 import seedu.healthbud.exception.InvalidCardioException;
 import seedu.healthbud.log.Meal;
 import seedu.healthbud.log.Water;
 import seedu.healthbud.log.WorkOUT;
 import seedu.healthbud.log.PB;
+import seedu.healthbud.log.Goals;
 import seedu.healthbud.log.Cardio;
 import seedu.healthbud.storage.Storage;
+
+import java.util.Scanner;
 
 public class AddLogCommand extends Command {
 
     @Override
-    public void execute(LogList pbLogs, LogList mealLogs, LogList workoutLogs,
-            LogList waterLogs, LogList cardioLogs, String input) throws InvalidMealException, InvalidWorkoutException,
-            InvalidWaterException, InvalidLogException, InvalidPBException, InvalidMLException, InvalidCardioException{
+    public void execute(LogList goalLogs, LogList pbLogs, LogList mealLogs, LogList workoutLogs,
+                        LogList waterLogs, LogList cardioLogs, String input)
+            throws InvalidMealException, InvalidWorkoutException, InvalidWaterException, InvalidLogException,
+            InvalidPBException, InvalidMLException, InvalidCardioException, InvalidGoalException {
+
 
         String[] parts = input.trim().split(" ");
         if (parts.length < 2) {
@@ -31,13 +38,42 @@ public class AddLogCommand extends Command {
         }
         String command = parts[1];
         switch (command) {
+
+        case "goal":
+            Ui.printMessage("Welcome to Goal Setting! \n");
+            Ui.printMessage("Here are your current goals:\n" + "\n" + Goals.getInstance());
+            Ui.printMessage("To change a goal please enter /name + value, " +
+                    "/w for Water Goal, /c for Calorie Goal, /m for Weight Goal");
+            Scanner in = new Scanner(System.in);
+            String change = in.nextLine().trim();
+
+            Goals goal = Goals.getInstance();
+            if (change.contains("/w")) {
+
+                goal.setDailyWaterGoal(change.substring(3));
+                Ui.printMessage("Water Goal has been updated to " + goal.getDailyWaterGoal());
+            } else if (change.contains("/c")) {
+
+                goal.setDailyCalorieGoal(change.substring(3));
+                Ui.printMessage("Calorie Goal has been updated to " + goal.getDailyCalorieGoal());
+            } else if (change.contains("/m")) {
+
+                goal.setWeightGoal(change.substring(3));
+                Ui.printMessage("Weight Goal has been updated to " + goal.getWeightGoal());
+            } else {
+                throw new InvalidGoalException();
+            }
+            break;
+
         case "pb":
             if (!input.contains("/e") || !input.contains("/w") || !input.contains("/d")) {
+
                 throw new InvalidPBException();
             }
 
             String[] pb = input.substring(7).split("/");
             if (pb.length != 4) {
+
                 throw new InvalidPBException();
             }
 
@@ -45,7 +81,7 @@ public class AddLogCommand extends Command {
             String pbWeight = "";
             String pbDate = "";
 
-            for (String part : pb){
+            for (String part : pb) {
                 if (part.startsWith("e ")) {
                     pbExercise = part.substring(2).trim();
                 } else if (part.startsWith("w ")) {

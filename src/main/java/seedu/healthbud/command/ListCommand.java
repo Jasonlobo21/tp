@@ -6,7 +6,7 @@ import seedu.healthbud.exception.InvalidListException;
 public class ListCommand extends Command {
 
     @Override
-    public void execute(LogList pbLogs, LogList mealLogs, LogList workoutLogs,
+    public void execute(LogList goalLogs, LogList pbLogs, LogList mealLogs, LogList workoutLogs,
                         LogList waterLogs, LogList cardioLogs, String input)
             throws InvalidListException {
 
