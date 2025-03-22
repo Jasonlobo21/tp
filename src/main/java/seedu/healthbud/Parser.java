@@ -23,7 +23,6 @@ import seedu.healthbud.exception.InvalidRecommendException;
 import seedu.healthbud.exception.InvalidSumException;
 import seedu.healthbud.exception.InvalidWaterException;
 import seedu.healthbud.exception.InvalidWorkoutException;
-import seedu.healthbud.exception.HealthBudException;
 import seedu.healthbud.exception.InvalidGoalException;
 import seedu.healthbud.exception.InvalidViewException;
 import seedu.healthbud.exception.InvalidCardioException;
