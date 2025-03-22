@@ -25,7 +25,7 @@ import seedu.healthbud.exception.InvalidWaterException;
 import seedu.healthbud.exception.InvalidWorkoutException;
 import seedu.healthbud.exception.InvalidViewException;
 import seedu.healthbud.exception.InvalidCardioException;
-
+import seedu.healthbud.exception.InvalidMLException;
 
 public class Parser {
 
@@ -76,7 +76,7 @@ public class Parser {
         } catch (InvalidMealException | InvalidRecommendException | InvalidBMIException | HealthBudException |
                  InvalidLogException | InvalidWaterException | InvalidWorkoutException | InvalidListException |
                  InvalidFindException | InvalidDeleteException | InvalidPBException | InvalidClearException |
-                 InvalidSumException | InvalidViewException | InvalidCardioException e) {
+                 InvalidSumException | InvalidViewException | InvalidCardioException | InvalidMLException e) {
             System.out.println(e.getMessage());
         }
         return true;

@@ -8,7 +8,7 @@ public class FindCommand extends Command {
 
     @Override
     public void execute(LogList pbLogs, LogList mealLogs, LogList workoutLogs,
-                        LogList waterLogs,LogList cardioLogs, String input)
+                        LogList waterLogs, LogList cardioLogs, String input)
             throws InvalidFindException {
 
         String[] parts = input.trim().split(" ");

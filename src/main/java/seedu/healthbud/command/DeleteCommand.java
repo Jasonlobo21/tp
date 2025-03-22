@@ -8,7 +8,7 @@ public class DeleteCommand extends Command {
 
     @Override
     public void execute(LogList pbLogs, LogList mealLogs, LogList workoutLogs,
-                        LogList waterLogs,LogList cardioLogs, String input)
+                        LogList waterLogs, LogList cardioLogs, String input)
             throws InvalidDeleteException, HealthBudException {
 
         String[] parts = input.split(" ");

@@ -12,7 +12,7 @@ import seedu.healthbud.exception.InvalidWorkoutException;
 import seedu.healthbud.exception.InvalidCardioException;
 import seedu.healthbud.log.Meal;
 import seedu.healthbud.log.Water;
-import seedu.healthbud.log.Test;
+import seedu.healthbud.log.WorkOUT;
 import seedu.healthbud.log.PB;
 import seedu.healthbud.log.Cardio;
 import seedu.healthbud.storage.Storage;
@@ -20,13 +20,8 @@ import seedu.healthbud.storage.Storage;
 public class AddLogCommand extends Command {
 
     @Override
-    public void execute(
-            LogList pbLogs,
-            LogList mealLogs,
-            LogList workoutLogs,
-            LogList waterLogs,
-            LogList cardioLogs,
-            String input) throws InvalidMealException, InvalidWorkoutException,
+    public void execute(LogList pbLogs, LogList mealLogs, LogList workoutLogs,
+            LogList waterLogs, LogList cardioLogs, String input) throws InvalidMealException, InvalidWorkoutException,
             InvalidWaterException, InvalidLogException, InvalidPBException, InvalidMLException, InvalidCardioException{
 
         String[] parts = input.trim().split(" ");
@@ -169,7 +164,7 @@ public class AddLogCommand extends Command {
                 throw new InvalidWorkoutException();
             }
 
-            Test newWorkout = new Test(workoutExercise, workoutReps, workoutSets, workoutDate);
+            WorkOUT newWorkout = new WorkOUT(workoutExercise, workoutReps, workoutSets, workoutDate);
             workoutLogs.addLog(newWorkout);
             Ui.printMessage(" Got it. I've added this workout:");
             Ui.printMessage("   " + workoutLogs.getLog(workoutLogs.getSize() - 1));
