@@ -7,16 +7,19 @@ import seedu.healthbud.exception.InvalidMealException;
 import seedu.healthbud.exception.InvalidPBException;
 import seedu.healthbud.exception.InvalidWaterException;
 import seedu.healthbud.exception.InvalidWorkoutException;
+import seedu.healthbud.exception.InvalidGoalException;
 import seedu.healthbud.log.Meal;
 import seedu.healthbud.log.Water;
 import seedu.healthbud.log.Test;
 import seedu.healthbud.log.PB;
+import seedu.healthbud.log.Goals;
 import seedu.healthbud.storage.Storage;
+import java.util.Scanner;
 
 public class AddLogCommand extends Command {
 
     @Override
-    public void execute(LogList pbLogs, LogList mealLogs, LogList workoutLogs, LogList waterLogs, String input)
+    public void execute(LogList goalLogs, LogList pbLogs, LogList mealLogs, LogList workoutLogs, LogList waterLogs, String input)
             throws InvalidMealException, InvalidWorkoutException, InvalidWaterException, InvalidLogException,
                     InvalidPBException {
 
@@ -27,6 +30,29 @@ public class AddLogCommand extends Command {
 
         switch (parts[1]) {
 
+        case "goal":
+            Ui.printMessage("Welcome to Goal Setting!\n");
+            Ui.printMessage("Here are your current goals:\n" + "\n" + Goals.getInstance());
+            Ui.printMessage("To change a goal please enter /name + value, /w for Water Goal, /c for Calorie Goal, /m for Weight Goal");
+            Scanner in = new Scanner(System.in);
+            String change = in.nextLine().trim();
+
+
+            Goals goal = Goals.getInstance();
+
+            if (change.contains("/w")) {
+                goal.setDailyWaterGoal(change.substring(3));
+                Ui.printMessage("Water Goal has been updated to " + goal.getDailyWaterGoal());
+            } else if (change.contains("/c")) {
+                goal.setDailyCalorieGoal(change.substring(3));
+                Ui.printMessage("Calorie Goal has been updated to " + goal.getDailyCalorieGoal());
+            } else if (change.contains("/m")) {
+                 goal.setWeightGoal(change.substring(3));
+                 Ui.printMessage("Weight Goal has been updated to " + goal.getWeightGoal());
+            } else {
+                throw new InvalidGoalException();
+            }
+            break;
         case "pb":
             if (!input.contains("/e") || !input.contains("/w") || !input.contains("/d") ) {
                 throw new InvalidPBException();
