@@ -36,7 +36,7 @@ public class Parser {
 
 
     public static boolean handleInput(LogList goalLogs, LogList pbLogs, LogList mealLogs, LogList workoutLogs,
-                                      LogList waterLogs, LogList waterLogs, LogList cardioLogs, String input) {
+                                      LogList waterLogs, LogList cardioLogs, String input) {
         try {
             String command = input.split(" ")[0].toLowerCase();
             switch (command) {
