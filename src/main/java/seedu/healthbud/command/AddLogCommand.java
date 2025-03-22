@@ -1,6 +1,7 @@
 package seedu.healthbud.command;
 
 // Imports
+
 import seedu.healthbud.LogList;
 import seedu.healthbud.Ui;
 import seedu.healthbud.exception.InvalidMLException;
@@ -18,15 +19,16 @@ import seedu.healthbud.log.PB;
 import seedu.healthbud.log.Goals;
 import seedu.healthbud.log.Cardio;
 import seedu.healthbud.storage.Storage;
+
 import java.util.Scanner;
 
 public class AddLogCommand extends Command {
 
     @Override
     public void execute(LogList goalLogs, LogList pbLogs, LogList mealLogs, LogList workoutLogs,
-            LogList waterLogs, LogList cardioLogs, String input)
+                        LogList waterLogs, LogList cardioLogs, String input)
             throws InvalidMealException, InvalidWorkoutException, InvalidWaterException, InvalidLogException,
-            InvalidPBException, InvalidMLException, InvalidCardioException, InvalidGoalException{
+            InvalidPBException, InvalidMLException, InvalidCardioException, InvalidGoalException {
 
 
         String[] parts = input.trim().split(" ");
@@ -45,9 +47,7 @@ public class AddLogCommand extends Command {
             Scanner in = new Scanner(System.in);
             String change = in.nextLine().trim();
 
-
             Goals goal = Goals.getInstance();
-
             if (change.contains("/w")) {
 
                 goal.setDailyWaterGoal(change.substring(3));
@@ -56,8 +56,8 @@ public class AddLogCommand extends Command {
                 goal.setDailyCalorieGoal(change.substring(3));
                 Ui.printMessage("Calorie Goal has been updated to " + goal.getDailyCalorieGoal());
             } else if (change.contains("/m")) {
-                 goal.setWeightGoal(change.substring(3));
-                 Ui.printMessage("Weight Goal has been updated to " + goal.getWeightGoal());
+                goal.setWeightGoal(change.substring(3));
+                Ui.printMessage("Weight Goal has been updated to " + goal.getWeightGoal());
             } else {
                 throw new InvalidGoalException();
             }
@@ -79,7 +79,7 @@ public class AddLogCommand extends Command {
             String pbWeight = "";
             String pbDate = "";
 
-            for (String part : pb){
+            for (String part : pb) {
                 if (part.startsWith("e ")) {
                     pbExercise = part.substring(2).trim();
                 } else if (part.startsWith("w ")) {
