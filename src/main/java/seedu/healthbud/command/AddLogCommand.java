@@ -53,11 +53,9 @@ public class AddLogCommand extends Command {
                 goal.setDailyWaterGoal(change.substring(3));
                 Ui.printMessage("Water Goal has been updated to " + goal.getDailyWaterGoal());
             } else if (change.contains("/c")) {
-
                 goal.setDailyCalorieGoal(change.substring(3));
                 Ui.printMessage("Calorie Goal has been updated to " + goal.getDailyCalorieGoal());
             } else if (change.contains("/m")) {
-
                  goal.setWeightGoal(change.substring(3));
                  Ui.printMessage("Weight Goal has been updated to " + goal.getWeightGoal());
             } else {
