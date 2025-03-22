@@ -8,12 +8,13 @@ import seedu.healthbud.exception.InvalidSumException;
 public class SumCommand extends Command {
 
     @Override
-    public void execute(LogList goalLogs, LogList pbLogs, LogList mealLogs, LogList workoutLogs, LogList waterLogs, String input)
+    public void execute(LogList goalLogs, LogList pbLogs, LogList mealLogs, LogList workoutLogs,
+                        LogList waterLogs, LogList cardioLogs, String input)
             throws InvalidSumException {
 
         String[] parts = input.trim().split(" ");
         if (parts.length < 3) {
-            throw new InvalidSumException("Invalid sum command eg. sum cal|vol /d <date>");
+            throw new InvalidSumException();
         }
 
         switch (parts[1]) {
@@ -26,7 +27,7 @@ public class SumCommand extends Command {
             break;
 
         default:
-            throw new InvalidSumException("Invalid sum command eg. sum cal|vol /d <date>");
+            throw new InvalidSumException();
         }
     }
 }

@@ -14,16 +14,17 @@ public class HealthBud {
     public static LogList waterLogs = new LogList();
     public static LogList pbLogs = new LogList();
     public static LogList goalLogs = new LogList();
+    public static LogList cardioLogs = new LogList();
 
     public static void main(String[] args) {
 
         Ui.printGreeting();
-        Storage.loadLogs(mealLogs, workoutLogs, waterLogs, pbLogs);
+        Storage.loadLogs(mealLogs, workoutLogs, waterLogs, pbLogs, cardioLogs);
         Scanner in = new Scanner(System.in);
 
         boolean isLooping = true;
         while (isLooping) {
-            isLooping = Parser.handleInput(goalLogs, pbLogs, mealLogs, workoutLogs, waterLogs,
+            isLooping = Parser.handleInput(goalLogs, pbLogs, mealLogs, workoutLogs, waterLogs, cardioLogs,
                     in.nextLine().trim().toLowerCase());
         }
     }
