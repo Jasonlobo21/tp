@@ -44,25 +44,30 @@ public class AddLogCommand extends Command {
             Ui.printMessage("Here are your current goals:\n" + "\n" + Goals.getInstance());
             Ui.printMessage("To change a goal please enter /name + value, " +
                     "/w for Water Goal, /c for Calorie Goal, /m for Weight Goal");
+            Ui.printMessage("To exit goal setting, type 'exit'!");
             Scanner in = new Scanner(System.in);
-            String change = in.nextLine().trim();
-
             Goals goal = Goals.getInstance();
-            if (change.contains("/w")) {
+            String change = in.nextLine().trim();
+            while (!change.contains("exit")) {
 
-                goal.setDailyWaterGoal(change.substring(3));
-                Ui.printMessage("Water Goal has been updated to " + goal.getDailyWaterGoal());
-            } else if (change.contains("/c")) {
+                if (change.contains("/w")) {
 
-                goal.setDailyCalorieGoal(change.substring(3));
-                Ui.printMessage("Calorie Goal has been updated to " + goal.getDailyCalorieGoal());
-            } else if (change.contains("/m")) {
+                    goal.setDailyWaterGoal(change.substring(3));
+                    Ui.printMessage("Water Goal has been updated to " + goal.getDailyWaterGoal());
+                } else if (change.contains("/c")) {
 
-                goal.setWeightGoal(change.substring(3));
-                Ui.printMessage("Weight Goal has been updated to " + goal.getWeightGoal());
-            } else {
-                throw new InvalidGoalException();
+                    goal.setDailyCalorieGoal(change.substring(3));
+                    Ui.printMessage("Calorie Goal has been updated to " + goal.getDailyCalorieGoal());
+                } else if (change.contains("/m")) {
+
+                    goal.setWeightGoal(change.substring(3));
+                    Ui.printMessage("Weight Goal has been updated to " + goal.getWeightGoal());
+                } else {
+                    throw new InvalidGoalException();
+                }
+                change = in.nextLine().trim();
             }
+            Ui.printMessage("Exited Goal Setting");
             break;
 
         case "pb":
