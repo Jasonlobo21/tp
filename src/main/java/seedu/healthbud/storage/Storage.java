@@ -7,6 +7,7 @@ import seedu.healthbud.log.Water;
 import seedu.healthbud.log.Log;
 import seedu.healthbud.log.PB;
 import seedu.healthbud.log.Cardio;
+import seedu.healthbud.log.Goals;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -30,7 +31,7 @@ public class Storage {
      * @param waterLogs the LogList to load water logs into
      */
     public static void loadLogs(LogList mealLogs, LogList workoutLogs, LogList waterLogs,
-                                LogList pbLogs, LogList cardioLogs) {
+                                LogList pbLogs, LogList cardioLogs, LogList goalLogs) {
         try {
             Files.createDirectories(Paths.get(DATA_DIRECTORY));
 
@@ -56,6 +57,8 @@ public class Storage {
                         pbLogs.addLog(log);
                     } else if (log instanceof Cardio){
                         cardioLogs.addLog(log);
+                    } else if (log instanceof Goals){
+                        goalLogs.addLog(log);
                     }
                 } catch (IllegalArgumentException e) {
                     System.out.println("Warning: Ignoring invalid log in file: " + line);
@@ -99,6 +102,15 @@ public class Storage {
                 throw new IllegalArgumentException("Invalid cardio format");
             }
             return new Cardio(parts[1], parts[2], parts[3], parts[4], parts[5]);
+        case "G":
+            if (parts.length != 4) {
+                throw new IllegalArgumentException("Invalid goal format");
+            }
+            Goals goals = Goals.getInstance();
+            goals.setDailyCalorieGoal(parts[1]);
+            goals.setDailyWaterGoal(parts[2]);
+            goals.setWeightGoal(parts[3]);
+            return goals;
         default:
             throw new IllegalArgumentException("Unknown log type: " + type);
         }
@@ -137,11 +149,15 @@ public class Storage {
         } else if (log instanceof PB) {
             PB pb = (PB) log;
             return "P | " + pb.getExercise() + " | " + pb.getWeight() + " | " + pb.getDate();
-        }else if (log instanceof Cardio) {
+        } else if (log instanceof Cardio) {
             Cardio cardio = (Cardio) log;
             return "C | " + cardio.getName() + " | " + cardio.getDuration() + " | " + cardio.getIncline() +
                     " | " + cardio.getSpeed() + " | " + cardio.getDate();
-        } else {
+        } else if (log instanceof Goals) {
+            Goals goals = (Goals) log;
+            return "C | " + goals.getDailyWaterGoal() + " | " + goals.getDailyCalorieGoal()
+                    + " | " + goals.getWeightGoal();
+        }else {
             throw new IllegalArgumentException("Unknown log type");
         }
     }
