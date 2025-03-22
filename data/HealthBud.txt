@@ -21,3 +21,26 @@ WO | push | 12-12-12 | 3 | 5
 P | e bench | 200 | 170802
 WO | bench | 170802 | 2 | 3
 P | bench | 100 | 170802
+M | Chicken Rice | 550 | 12-01-25 | 9pm
+M | Chicken Rice | 550 | 12-01-25 | 9pm
+M | Chicken Rice | 550 | 12-01-25 | 9pm
+P | bench | 100 | 12-01-25
+WA | 1000 | 12-01-25 | 8am
+M | Chicken Rice | 550 | 12-01-25 | 9pm
+WO | Pushups | 12-01-25 | 20 | 3
+C | treadmill | 20 | 2 | 6 | 12-01-25
+P | bench | 100 | 12-01-25
+WA | 1000 | 12-01-25 | 8am
+M | Chicken Rice | 550 | 12-01-25 | 9pm
+WO | Pushups | 12-01-25 | 20 | 3
+C | treadmill | 20 | 2 | 6 | 12-01-25
+P | bench | 100 | 12-01-25
+WA | 1000 | 12-01-25 | 8am
+M | Chicken Rice | 550 | 12-01-25 | 9pm
+WO | Pushups | 12-01-25 | 20 | 3
+C | treadmill | 20 | 2 | 6 | 12-01-25
+P | bench | 100 | 12-01-25
+WA | 1000 | 12-01-25 | 8am
+M | Chicken Rice | 550 | 12-01-25 | 9pm
+WO | Pushups | 12-01-25 | 20 | 3
+C | treadmill | 20 | 2 | 6 | 12-01-25
