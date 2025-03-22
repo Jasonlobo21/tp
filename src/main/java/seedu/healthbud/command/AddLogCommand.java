@@ -12,7 +12,7 @@ import seedu.healthbud.exception.InvalidWorkoutException;
 import seedu.healthbud.exception.InvalidCardioException;
 import seedu.healthbud.log.Meal;
 import seedu.healthbud.log.Water;
-import seedu.healthbud.log.Workout;
+import seedu.healthbud.log.Test;
 import seedu.healthbud.log.PB;
 import seedu.healthbud.log.Cardio;
 import seedu.healthbud.storage.Storage;
@@ -27,7 +27,7 @@ public class AddLogCommand extends Command {
             LogList waterLogs,
             LogList cardioLogs,
             String input) throws InvalidMealException, InvalidWorkoutException,
-            InvalidWaterException, InvalidLogException, InvalidPBException, InvalidMLException, InvalidCardioException {
+            InvalidWaterException, InvalidLogException, InvalidPBException, InvalidMLException, InvalidCardioException{
 
         String[] parts = input.trim().split(" ");
         if (parts.length < 2) {
@@ -38,25 +38,33 @@ public class AddLogCommand extends Command {
         switch (command) {
         case "pb":
             if (!input.contains("/e") || !input.contains("/w") || !input.contains("/d")) {
-
                 throw new InvalidPBException();
             }
 
             String[] pb = input.substring(7).split("/");
             if (pb.length != 4) {
-
                 throw new InvalidPBException();
             }
 
-            pb[1] = pb[1].substring(2).trim();
-            pb[2] = pb[2].substring(2).trim();
-            pb[3] = pb[3].substring(2).trim();
-            if (pb[1].isEmpty() || pb[2].isEmpty() || pb[3].isEmpty()) {
+            String pbExercise = "";
+            String pbWeight = "";
+            String pbDate = "";
 
+            for (String part : pb){
+                if (part.startsWith("e ")) {
+                    pbExercise = part.substring(2).trim();
+                } else if (part.startsWith("w ")) {
+                    pbWeight = part.substring(2).trim();
+                } else if (part.startsWith("d ")) {
+                    pbDate = part.substring(2).trim();
+                }
+            }
+
+            if (pbExercise.isEmpty() || pbWeight.isEmpty() || pbDate.isEmpty()) {
                 throw new InvalidPBException();
             }
 
-            PB newPB = new PB(pb[1], pb[2], pb[3]);
+            PB newPB = new PB(pbExercise, pbWeight, pbDate);
             pbLogs.addLog(newPB);
             Ui.printMessage(" Got it. I've added this pb log:");
             Ui.printMessage("  " + pbLogs.getLog(pbLogs.getSize() - 1));
@@ -77,6 +85,8 @@ public class AddLogCommand extends Command {
 
                 throw new InvalidMealException();
             }
+
+            // when u define the string use waterDate, waterML, waterTime if not will conflict - kin
 
             if (water[1].toLowerCase().contains("bottle") || water[1].toLowerCase().contains("bottles")) {
 
@@ -137,29 +147,29 @@ public class AddLogCommand extends Command {
                 throw new InvalidWorkoutException();
             }
 
-            String exercise = "";
-            String reps = "";
-            String sets = "";
-            String date = "";
+            String workoutExercise = "";
+            String workoutReps = "";
+            String workoutSets = "";
+            String workoutDate = "";
             //String name, String reps, String sets, String date
             for (String token : workoutTokens) {
                 if (token.startsWith("r ")) {
-                    reps = token.substring(2).trim();
+                    workoutReps = token.substring(2).trim();
                 } else if (token.startsWith("s ")) {
-                    sets = token.substring(2).trim();
+                    workoutSets = token.substring(2).trim();
                 } else if (token.startsWith("d ")) {
-                    date = token.substring(2).trim();
+                    workoutDate = token.substring(2).trim();
                 } else {
-                    // If it doesn't start with a prefix, assume it's the exercise name
-                    exercise = token.trim();
+                    // If it doesn't start with a prefix, assume it's the workoutExercise name
+                    workoutExercise = token.trim();
                 }
             }
 
-            if (exercise.isEmpty() || reps.isEmpty() || sets.isEmpty() || date.isEmpty()) {
+            if (workoutExercise.isEmpty() || workoutReps.isEmpty() || workoutSets.isEmpty() || workoutDate.isEmpty()) {
                 throw new InvalidWorkoutException();
             }
 
-            Workout newWorkout = new Workout(exercise, reps, sets, date);
+            Test newWorkout = new Test(workoutExercise, workoutReps, workoutSets, workoutDate);
             workoutLogs.addLog(newWorkout);
             Ui.printMessage(" Got it. I've added this workout:");
             Ui.printMessage("   " + workoutLogs.getLog(workoutLogs.getSize() - 1));
@@ -178,6 +188,8 @@ public class AddLogCommand extends Command {
 
                 throw new InvalidMealException();
             }
+
+            // when u define the string use mealDate, mealCal, mealTime if not will conflict - kin
 
             meal[1] = meal[1].substring(3).trim();
             meal[2] = meal[2].substring(1).trim();
@@ -208,39 +220,40 @@ public class AddLogCommand extends Command {
             String cardioDetails = input.substring("add cardio".length()).trim();
             String[] cardioTokens = cardioDetails.split("/");
 
-            String exercises = "";
-            String speed = "";
-            String duration = "";
-            String incline = "";
-            String dates = "";
+            String cardioExercise = "";
+            String cardioSpeed = "";
+            String cardioDuration = "";
+            String cardioIncline = "";
+            String cardioDate = "";
 
             // Iterate through the tokens and assign values based on prefixes
             for (String token : cardioTokens) {
                 if (token.startsWith("s ")) {
-                    speed = token.substring(2).trim();
+                    cardioSpeed = token.substring(2).trim();
                 } else if (token.startsWith("i ")) {
-                    incline = token.substring(2).trim();
+                    cardioIncline = token.substring(2).trim();
                 } else if (token.startsWith("t ")) {
-                    duration = token.substring(2).trim();
+                    cardioDuration = token.substring(2).trim();
                 } else if (token.startsWith("d ")) {
-                    dates = token.substring(2).trim();
+                    cardioDate = token.substring(2).trim();
                 } else {
-                    // If it doesn't start with a prefix, assume it's the exercise name
-                    exercises = token.trim();
+                    // If it doesn't start with a prefix, assume it's the workoutExercise name
+                    cardioExercise = token.trim();
                 }
             }
 
             // Validate that all fields are filled
-            if (exercises.isEmpty() || speed.isEmpty() || incline.isEmpty() || duration.isEmpty() || dates.isEmpty()) {
+            if (cardioExercise.isEmpty() || cardioSpeed.isEmpty() || cardioIncline.isEmpty()
+                    || cardioDuration.isEmpty() || cardioDate.isEmpty()) {
                 throw new InvalidCardioException();
             }
 
             // Create and add the cardio log
-            Cardio newCardio = new Cardio(exercises, duration, incline, speed, dates);
+            Cardio newCardio = new Cardio(cardioExercise, cardioDuration, cardioIncline, cardioSpeed, cardioDate);
             cardioLogs.addLog(newCardio);
             Ui.printMessage(" Got it. I've added this cardio:");
             Ui.printMessage("   " + cardioLogs.getLog(cardioLogs.getSize() - 1));
-            //Storage.appendLogToFile(newCardio); // Uncomment if needed
+            Storage.appendLogToFile(newCardio); // Uncomment if needed
             Ui.printMessage(" Now you have " + cardioLogs.getSize() + " cardio logs in the list.");
             break;
 

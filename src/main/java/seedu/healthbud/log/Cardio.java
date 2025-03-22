@@ -1,6 +1,7 @@
 package seedu.healthbud.log;
 
 public class Cardio extends Log{
+
     private String name;
     private String duration;
     private String incline;
@@ -12,6 +13,22 @@ public class Cardio extends Log{
         this.duration = duration;
         this.incline = incline;
         this.speed = speed;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDuration() {
+        return duration;
+    }
+
+    public String getIncline() {
+        return incline;
+    }
+
+    public String getSpeed() {
+        return speed;
     }
 
     @Override
