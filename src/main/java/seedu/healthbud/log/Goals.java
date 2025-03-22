@@ -8,7 +8,8 @@ public class Goals extends Log {
     private String weightGoal;
     private String weeklyWeightProgress;
 
-    private Goals(String dailyWaterGoal, String dailyCalorieGoal, String weightGoal, String weeklyWeightProgress, String date) {
+    private Goals(String dailyWaterGoal, String dailyCalorieGoal,
+                  String weightGoal, String weeklyWeightProgress, String date) {
         super(date);
         this.dailyWaterGoal = dailyWaterGoal;
         this.dailyCalorieGoal = dailyCalorieGoal;

@@ -78,7 +78,8 @@ public class Parser {
         } catch (InvalidMealException | InvalidRecommendException | InvalidBMIException | HealthBudException |
                  InvalidLogException | InvalidWaterException | InvalidWorkoutException | InvalidListException |
                  InvalidFindException | InvalidDeleteException | InvalidPBException | InvalidClearException |
-                 InvalidSumException | InvalidViewException | InvalidCardioException | InvalidMLException | InvalidGoalException e) {
+                 InvalidSumException | InvalidViewException
+                 | InvalidCardioException | InvalidMLException | InvalidGoalException e) {
 
             System.out.println(e.getMessage());
         }

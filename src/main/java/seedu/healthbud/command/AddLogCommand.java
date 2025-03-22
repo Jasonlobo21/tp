@@ -24,8 +24,9 @@ public class AddLogCommand extends Command {
 
     @Override
     public void execute(LogList goalLogs, LogList pbLogs, LogList mealLogs, LogList workoutLogs,
-            LogList waterLogs, LogList cardioLogs, String input) throws InvalidMealException, InvalidWorkoutException,
-            InvalidWaterException, InvalidLogException, InvalidPBException, InvalidMLException, InvalidCardioException, InvalidGoalException{
+            LogList waterLogs, LogList cardioLogs, String input)
+            throws InvalidMealException, InvalidWorkoutException, InvalidWaterException, InvalidLogException,
+            InvalidPBException, InvalidMLException, InvalidCardioException, InvalidGoalException{
 
 
         String[] parts = input.trim().split(" ");
@@ -33,13 +34,14 @@ public class AddLogCommand extends Command {
 
             throw new InvalidLogException();
         }
-     String command = parts[1];
+        String command = parts[1];
         switch (command) {
 
         case "goal":
             Ui.printMessage("Welcome to Goal Setting!\n");
             Ui.printMessage("Here are your current goals:\n" + "\n" + Goals.getInstance());
-            Ui.printMessage("To change a goal please enter /name + value, /w for Water Goal, /c for Calorie Goal, /m for Weight Goal");
+            Ui.printMessage("To change a goal please enter /name + value, " +
+                    "/w for Water Goal, /c for Calorie Goal, /m for Weight Goal");
             Scanner in = new Scanner(System.in);
             String change = in.nextLine().trim();
 
@@ -47,12 +49,15 @@ public class AddLogCommand extends Command {
             Goals goal = Goals.getInstance();
 
             if (change.contains("/w")) {
+
                 goal.setDailyWaterGoal(change.substring(3));
                 Ui.printMessage("Water Goal has been updated to " + goal.getDailyWaterGoal());
             } else if (change.contains("/c")) {
+
                 goal.setDailyCalorieGoal(change.substring(3));
                 Ui.printMessage("Calorie Goal has been updated to " + goal.getDailyCalorieGoal());
             } else if (change.contains("/m")) {
+
                  goal.setWeightGoal(change.substring(3));
                  Ui.printMessage("Weight Goal has been updated to " + goal.getWeightGoal());
             } else {
@@ -62,11 +67,13 @@ public class AddLogCommand extends Command {
 
         case "pb":
             if (!input.contains("/e") || !input.contains("/w") || !input.contains("/d")) {
+
                 throw new InvalidPBException();
             }
 
             String[] pb = input.substring(7).split("/");
             if (pb.length != 4) {
+                
                 throw new InvalidPBException();
             }
 
