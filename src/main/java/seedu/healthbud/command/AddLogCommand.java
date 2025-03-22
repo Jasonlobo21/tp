@@ -73,7 +73,7 @@ public class AddLogCommand extends Command {
 
             String[] pb = input.substring(7).split("/");
             if (pb.length != 4) {
-                
+
                 throw new InvalidPBException();
             }
 
