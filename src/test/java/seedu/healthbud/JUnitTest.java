@@ -244,7 +244,7 @@ class JUnitTest {
 
     @Test
     void calculateBmi_validInput_expectSuccess() throws Exception {
-        // Capture printed output
+        // Capture printed output.
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         System.setOut(new PrintStream(output));
 
