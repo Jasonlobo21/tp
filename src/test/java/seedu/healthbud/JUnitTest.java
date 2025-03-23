@@ -5,10 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
-import seedu.healthbud.command.BMICommand;
-import seedu.healthbud.command.FindCommand;
-import seedu.healthbud.command.RecommendCommand;
-import seedu.healthbud.command.AddLogCommand;
+import seedu.healthbud.command.*;
 
 import seedu.healthbud.exception.*;
 
@@ -395,6 +392,182 @@ class JUnitTest {
         LogList cardioLogs = new LogList();
 
         String findInput = "find workout"; // missing keyword
+
+        assertThrows(Exception.class, () -> {
+            new FindCommand().execute(goalLogs, pbLogs, mealLogs, workoutLogs, waterLogs, cardioLogs, findInput);
+        });
+    }
+
+    // ========================= Delete meal Tests =========================
+    @Test
+    void deleteMeal_correctInput_expectSuccess() throws InvalidMealException, InvalidWorkoutException,
+            InvalidWaterException, InvalidLogException, InvalidPBException, InvalidMLException,
+            InvalidCardioException, InvalidDeleteException, HealthBudException {
+        LogList goalLogs = new LogList();
+        LogList mealLogs = new LogList();
+        LogList workoutLogs = new LogList();
+        LogList pbLogs = new LogList();
+        LogList waterLogs = new LogList();
+        LogList cardioLogs = new LogList();
+
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(output));
+
+        String input = "add meal chicken rice /cal 550 /d 12-01-25 /t 9pm";
+        new AddLogCommand().execute(goalLogs, pbLogs, mealLogs, workoutLogs, waterLogs, cardioLogs, input);
+
+        String deleteInput = "delete meal 1";
+        new DeleteCommand().execute(goalLogs, pbLogs, mealLogs, workoutLogs, waterLogs, cardioLogs, deleteInput);
+
+        String expected = "Noted. I've removed this log:";
+        assertTrue(output.toString().contains(expected));
+        assertEquals(0, workoutLogs.getSize());
+
+    }
+
+    @Test
+    void deleteMeal_wrongInput_expectFailure() {
+
+        LogList goalLogs = new LogList();
+        LogList mealLogs = new LogList();
+        LogList workoutLogs = new LogList();
+        LogList pbLogs = new LogList();
+        LogList waterLogs = new LogList();
+        LogList cardioLogs = new LogList();
+
+        String findInput = "delete meal"; // missing index
+
+
+        assertThrows(Exception.class, () -> {
+            new FindCommand().execute(goalLogs, pbLogs, mealLogs, workoutLogs, waterLogs, cardioLogs, findInput);
+        });
+    }
+
+    // ========================= Delete water Tests =========================
+    @Test
+    void deleteWater_correctInput_expectSuccess() throws InvalidMealException, InvalidWorkoutException,
+            InvalidWaterException, InvalidLogException, InvalidPBException, InvalidMLException,
+            InvalidCardioException, InvalidDeleteException, HealthBudException {
+        LogList goalLogs = new LogList();
+        LogList mealLogs = new LogList();
+        LogList workoutLogs = new LogList();
+        LogList pbLogs = new LogList();
+        LogList waterLogs = new LogList();
+        LogList cardioLogs = new LogList();
+
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(output));
+
+        String input = "add water /ml 500 /d 12-01-25 /t 8am";
+        new AddLogCommand().execute(goalLogs, pbLogs, mealLogs, workoutLogs, waterLogs, cardioLogs, input);
+
+        String deleteInput = "delete water 1";
+        new DeleteCommand().execute(goalLogs, pbLogs, mealLogs, workoutLogs, waterLogs, cardioLogs, deleteInput);
+
+        String expected = "Noted. I've removed this log:";
+        assertTrue(output.toString().contains(expected));
+        assertEquals(0, workoutLogs.getSize());
+    }
+
+    @Test
+    void deleteWater_wrongInput_expectFailure() {
+
+        LogList goalLogs = new LogList();
+        LogList mealLogs = new LogList();
+        LogList workoutLogs = new LogList();
+        LogList pbLogs = new LogList();
+        LogList waterLogs = new LogList();
+        LogList cardioLogs = new LogList();
+
+        String findInput = "delete water"; // missing index
+
+        assertThrows(Exception.class, () -> {
+            new FindCommand().execute(goalLogs, pbLogs, mealLogs, workoutLogs, waterLogs, cardioLogs, findInput);
+        });
+    }
+
+    // ========================= Delete workout Tests =========================
+    @Test
+    void deleteWorkout_correctInput_expectSuccess() throws InvalidMealException, InvalidWorkoutException,
+            InvalidWaterException, InvalidLogException, InvalidPBException, InvalidMLException,
+            InvalidCardioException, InvalidDeleteException, HealthBudException {
+        LogList goalLogs = new LogList();
+        LogList mealLogs = new LogList();
+        LogList workoutLogs = new LogList();
+        LogList pbLogs = new LogList();
+        LogList waterLogs = new LogList();
+        LogList cardioLogs = new LogList();
+
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(output));
+
+        String input = "add workout bicep curls /r 20 /s 3 /d 12-01-25";
+        new AddLogCommand().execute(goalLogs, pbLogs, mealLogs, workoutLogs, waterLogs, cardioLogs, input);
+
+        String deleteInput = "delete workout 1";
+        new DeleteCommand().execute(goalLogs, pbLogs, mealLogs, workoutLogs, waterLogs, cardioLogs, deleteInput);
+
+        String expected = "Noted. I've removed this log:";
+        assertTrue(output.toString().contains(expected));
+        assertEquals(0, workoutLogs.getSize());
+    }
+
+    @Test
+    void deleteWorkout_wrongInput_expectFailure() {
+
+        LogList goalLogs = new LogList();
+        LogList mealLogs = new LogList();
+        LogList workoutLogs = new LogList();
+        LogList pbLogs = new LogList();
+        LogList waterLogs = new LogList();
+        LogList cardioLogs = new LogList();
+
+        String findInput = "delete workout"; // missing index
+
+        assertThrows(Exception.class, () -> {
+            new FindCommand().execute(goalLogs, pbLogs, mealLogs, workoutLogs, waterLogs, cardioLogs, findInput);
+        });
+    }
+
+    // ========================= Clear function Tests =========================
+    @Test
+    void clear_correctInput_expectSuccess() throws InvalidMealException, InvalidWorkoutException,
+            InvalidWaterException, InvalidLogException, InvalidPBException, InvalidMLException,
+            InvalidCardioException, InvalidClearException {
+        LogList goalLogs = new LogList();
+        LogList mealLogs = new LogList();
+        LogList workoutLogs = new LogList();
+        LogList pbLogs = new LogList();
+        LogList waterLogs = new LogList();
+        LogList cardioLogs = new LogList();
+
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(output));
+
+        String firstInput = "add workout bicep curls /r 20 /s 3 /d 12-01-25";
+        new AddLogCommand().execute(goalLogs, pbLogs, mealLogs, workoutLogs, waterLogs, cardioLogs, firstInput);
+        String secondInput = "add workout bench press /r 10 /s 3 /d 12-01-25";
+        new AddLogCommand().execute(goalLogs, pbLogs, mealLogs, workoutLogs, waterLogs, cardioLogs, secondInput);
+
+        String deleteInput = "clear workout";
+        new ClearCommand().execute(goalLogs, pbLogs, mealLogs, workoutLogs, waterLogs, cardioLogs, deleteInput);
+
+        String expected = "Noted. I've removed all logs.";
+        assertTrue(output.toString().contains(expected));
+        assertEquals(0, workoutLogs.getSize());
+    }
+
+    @Test
+    void clear_wrongInput_expectFailure() {
+
+        LogList goalLogs = new LogList();
+        LogList mealLogs = new LogList();
+        LogList workoutLogs = new LogList();
+        LogList pbLogs = new LogList();
+        LogList waterLogs = new LogList();
+        LogList cardioLogs = new LogList();
+
+        String findInput = "clear"; // missing index
 
         assertThrows(Exception.class, () -> {
             new FindCommand().execute(goalLogs, pbLogs, mealLogs, workoutLogs, waterLogs, cardioLogs, findInput);

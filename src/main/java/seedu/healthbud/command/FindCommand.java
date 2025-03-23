@@ -12,7 +12,7 @@ public class FindCommand extends Command {
                         LogList waterLogs, LogList cardioLogs, String input)
             throws InvalidFindException {
 
-
+        assert input != null && !input.trim().isEmpty() : "Input must be provided for Find command";
 
         String[] parts = input.trim().split(" ");
         if (parts.length < 3) {
