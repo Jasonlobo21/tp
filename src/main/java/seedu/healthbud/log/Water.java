@@ -3,6 +3,7 @@ package seedu.healthbud.log;
 public class Water extends Log {
     private static int glass;
     private static int bottle;
+    private static int totalAmount;
     private String amount;
     private String time;
 
@@ -11,9 +12,13 @@ public class Water extends Log {
 
         this.amount = amount;
         this.time = time;
+        totalAmount += Integer.parseInt(amount);
         updateVariables(amount);
     }
 
+    public static int getTotalAmount() {
+        return totalAmount;
+    }
     public String getAmount() {
         return amount;
     }

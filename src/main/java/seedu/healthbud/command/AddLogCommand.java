@@ -47,6 +47,7 @@ public class AddLogCommand extends Command {
             Ui.printMessage("To exit goal setting, type 'exit'!");
             Scanner in = new Scanner(System.in);
             Goals goal = Goals.getInstance();
+
             String change = in.nextLine().trim();
             while (!change.contains("exit")) {
 
@@ -62,11 +63,17 @@ public class AddLogCommand extends Command {
 
                     goal.setWeightGoal(change.substring(3));
                     Ui.printMessage("Weight Goal has been updated to " + goal.getWeightGoal());
+                } else if (change.contains("progress")) {
+                    Ui.printMessage ("Here's your progress so far:\n"
+                            + "    Water: " + Water.getTotalAmount() + "ml\n"
+                            + "    Calories: " + Meal.getTotalCalories() + "kcal\n"
+                            + "    Weight: " + goal.getWeeklyWeightProgress() + "kg\n");
+
                 } else {
-                    throw new InvalidGoalException();
-                }
+                        throw new InvalidGoalException();
+                    }
                 change = in.nextLine().trim();
-            }
+                }
             Ui.printMessage("Exited Goal Setting");
             break;
 
