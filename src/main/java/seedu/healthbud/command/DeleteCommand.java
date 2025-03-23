@@ -11,6 +11,8 @@ public class DeleteCommand extends Command {
                         LogList waterLogs, LogList cardioLogs, String input)
             throws InvalidDeleteException, HealthBudException {
 
+        assert input != null && !input.trim().isEmpty() : "Input must be provided for Delete command";
+
         String[] parts = input.split(" ");
         if (parts.length < 3) {
             throw new InvalidDeleteException();
