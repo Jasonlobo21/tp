@@ -5,9 +5,26 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
-import seedu.healthbud.command.*;
+import seedu.healthbud.command.AddLogCommand;
+import seedu.healthbud.command.BMICommand;
+import seedu.healthbud.command.ClearCommand;
+import seedu.healthbud.command.DeleteCommand;
+import seedu.healthbud.command.FindCommand;
+import seedu.healthbud.command.RecommendCommand;
 
-import seedu.healthbud.exception.*;
+import seedu.healthbud.exception.HealthBudException;
+import seedu.healthbud.exception.InvalidBMIException;
+import seedu.healthbud.exception.InvalidCardioException;
+import seedu.healthbud.exception.InvalidClearException;
+import seedu.healthbud.exception.InvalidDeleteException;
+import seedu.healthbud.exception.InvalidFindException;
+import seedu.healthbud.exception.InvalidLogException;
+import seedu.healthbud.exception.InvalidMealException;
+import seedu.healthbud.exception.InvalidMLException;
+import seedu.healthbud.exception.InvalidPBException;
+import seedu.healthbud.exception.InvalidRecommendException;
+import seedu.healthbud.exception.InvalidWaterException;
+import seedu.healthbud.exception.InvalidWorkoutException;
 
 import seedu.healthbud.log.Meal;
 import seedu.healthbud.log.Cardio;
