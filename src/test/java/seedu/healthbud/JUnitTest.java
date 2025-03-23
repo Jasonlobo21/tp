@@ -421,7 +421,7 @@ class JUnitTest {
 
         String expected = "Noted. I've removed this log:";
         assertTrue(output.toString().contains(expected));
-        assertEquals(0, workoutLogs.getSize());
+        assertEquals(0, mealLogs.getSize());
 
     }
 
@@ -466,7 +466,7 @@ class JUnitTest {
 
         String expected = "Noted. I've removed this log:";
         assertTrue(output.toString().contains(expected));
-        assertEquals(0, workoutLogs.getSize());
+        assertEquals(0, waterLogs.getSize());
     }
 
     @Test

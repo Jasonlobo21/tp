@@ -71,6 +71,10 @@ public class LogList {
     }
 
     public void clearLogs() {
+        if (logs.isEmpty()) {
+            Ui.printMessage("No logs to clear.");
+            return;
+        }
         logs.clear();
         Storage.rewriteLogsToFile(this);
         Ui.printMessage("Noted. I've removed all logs.");
