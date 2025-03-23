@@ -49,3 +49,33 @@ WA | 1000 | 12-01-25 | 8am
 M | Chicken Rice | 550 | 12-01-25 | 9pm
 WO | Pushups | 12-01-25 | 20 | 3
 C | treadmill | 20 | 2 | 6 | 12-01-25
+M | chicken rice | 550 | 120125 | 9pm
+M | Chicken Rice | 550 | 12-01-25 | 9pm
+M | chicken rice | 550 | 12-01-25 | 9pm
+P | bench | 100 | 12-01-25
+WA | 1000 | 12-01-25 | 8am
+M | Chicken Rice | 550 | 12-01-25 | 9pm
+WO | Pushups | 12-01-25 | 20 | 3
+C | treadmill | 20 | 2 | 6 | 12-01-25
+M | chicken rice | 550 | 12-01-25 | 9pm
+WA | 500 | 12-01-25 | 8am
+WA | 500 | 12-01-25 | 8pm
+P | bench | 100 | 12-01-25
+WA | 500 | 12-01-25 | 8am
+WA | 1000 | 12-01-25 | 8am
+M | Chicken Rice | 550 | 12-01-25 | 9pm
+M | chicken rice | 550 | 12-01-25 | 9pm
+WO | Pushups | 12-01-25 | 20 | 3
+C | treadmill | 20 | 2 | 6 | 12-01-25
+WA | 500 | 12-01-25 | 8am
+WA | 500 | 12-01-25 | 8am
+P | bench | 100 | 12-01-25
+WA | 500 | 12-01-25 | 8am
+WA | 1000 | 12-01-25 | 8am
+M | Chicken Rice | 550 | 12-01-25 | 9pm
+M | chicken rice | 550 | 12-01-25 | 9pm
+WO | Pushups | 12-01-25 | 20 | 3
+C | treadmill | 20 | 2 | 6 | 12-01-25
+WO | bicep curls | 12-01-25 | 20 | 3
+WO | bicep curls | 12-01-25 | 20 | 3
+WO | bicep curls | 12-01-25 | 20 | 3

@@ -6,19 +6,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 import seedu.healthbud.command.BMICommand;
+import seedu.healthbud.command.FindCommand;
 import seedu.healthbud.command.RecommendCommand;
 import seedu.healthbud.command.AddLogCommand;
 
-import seedu.healthbud.exception.HealthBudException;
-import seedu.healthbud.exception.InvalidBMIException;
-import seedu.healthbud.exception.InvalidLogException;
-import seedu.healthbud.exception.InvalidMealException;
-import seedu.healthbud.exception.InvalidPBException;
-import seedu.healthbud.exception.InvalidRecommendException;
-import seedu.healthbud.exception.InvalidWaterException;
-import seedu.healthbud.exception.InvalidWorkoutException;
-import seedu.healthbud.exception.InvalidCardioException;
-import seedu.healthbud.exception.InvalidMLException;
+import seedu.healthbud.exception.*;
 
 import seedu.healthbud.log.Meal;
 import seedu.healthbud.log.Cardio;
@@ -259,7 +251,6 @@ class JUnitTest {
         assertTrue(output.toString().contains(expected));
     }
 
-
     @Test
     void calculateBmi_negativeNumbers_expectFailure() {
         String input = "bmi /w -68 /h 1.78";
@@ -282,5 +273,131 @@ class JUnitTest {
     void calculateBmi_invalidNumberFormat_expectFailure() {
         String input = "bmi /w seventy /h 1.78";
         assertThrows(HealthBudException.class, () -> new BMICommand(input));
+    }
+
+    // ========================= Find Meal Tests =========================
+    @Test
+    void findMeal_correctInput_expectSuccess() throws InvalidMealException, InvalidWorkoutException,
+            InvalidWaterException, InvalidLogException, InvalidPBException, InvalidMLException,
+            InvalidCardioException, InvalidFindException {
+        LogList goalLogs = new LogList();
+        LogList mealLogs = new LogList();
+        LogList workoutLogs = new LogList();
+        LogList pbLogs = new LogList();
+        LogList waterLogs = new LogList();
+        LogList cardioLogs = new LogList();
+
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(output));
+
+        String input = "add meal chicken rice /cal 550 /d 12-01-25 /t 9pm";
+        new AddLogCommand().execute(goalLogs, pbLogs, mealLogs, workoutLogs, waterLogs, cardioLogs, input);
+
+        String findInput = "find meal chicken";
+        new FindCommand().execute(goalLogs, pbLogs, mealLogs, workoutLogs, waterLogs, cardioLogs, findInput);
+
+        String expected = "1. chicken rice (550 cal) on: 12-01-25 at: 9pm";
+        assertTrue(output.toString().contains(expected));
+    }
+
+    @Test
+    void findMeal_wrongInput_expectFailure() {
+
+        LogList goalLogs = new LogList();
+        LogList mealLogs = new LogList();
+        LogList workoutLogs = new LogList();
+        LogList pbLogs = new LogList();
+        LogList waterLogs = new LogList();
+        LogList cardioLogs = new LogList();
+
+        String findInput = "find meal"; // missing keyword
+
+        assertThrows(Exception.class, () -> {
+            new FindCommand().execute(goalLogs, pbLogs, mealLogs, workoutLogs, waterLogs, cardioLogs, findInput);
+        });
+    }
+
+    // ========================= Find water Tests =========================
+    @Test
+    void findWater_correctInput_expectSuccess() throws InvalidMealException, InvalidWorkoutException,
+            InvalidWaterException, InvalidLogException, InvalidPBException, InvalidMLException,
+            InvalidCardioException, InvalidFindException {
+        LogList goalLogs = new LogList();
+        LogList mealLogs = new LogList();
+        LogList workoutLogs = new LogList();
+        LogList pbLogs = new LogList();
+        LogList waterLogs = new LogList();
+        LogList cardioLogs = new LogList();
+
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(output));
+
+        String input = "add water /ml 500 /d 12-01-25 /t 8am";
+        new AddLogCommand().execute(goalLogs, pbLogs, mealLogs, workoutLogs, waterLogs, cardioLogs, input);
+
+        String findInput = "find water 12-01-25";
+        new FindCommand().execute(goalLogs, pbLogs, mealLogs, workoutLogs, waterLogs, cardioLogs, findInput);
+
+        String expected = "1. 500 ml on (12-01-25) at 8am";
+        assertTrue(output.toString().contains(expected));
+    }
+
+    @Test
+    void findWater_wrongInput_expectFailure() {
+
+        LogList goalLogs = new LogList();
+        LogList mealLogs = new LogList();
+        LogList workoutLogs = new LogList();
+        LogList pbLogs = new LogList();
+        LogList waterLogs = new LogList();
+        LogList cardioLogs = new LogList();
+
+        String findInput = "find water"; // missing keyword
+
+        assertThrows(Exception.class, () -> {
+            new FindCommand().execute(goalLogs, pbLogs, mealLogs, workoutLogs, waterLogs, cardioLogs, findInput);
+        });
+    }
+
+    // ========================= Find water Tests =========================
+    @Test
+    void findWorkout_correctInput_expectSuccess() throws InvalidMealException, InvalidWorkoutException,
+            InvalidWaterException, InvalidLogException, InvalidPBException, InvalidMLException,
+            InvalidCardioException, InvalidFindException {
+        LogList goalLogs = new LogList();
+        LogList mealLogs = new LogList();
+        LogList workoutLogs = new LogList();
+        LogList pbLogs = new LogList();
+        LogList waterLogs = new LogList();
+        LogList cardioLogs = new LogList();
+
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(output));
+
+        String input = "add workout bicep curls /r 20 /s 3 /d 12-01-25";
+        new AddLogCommand().execute(goalLogs, pbLogs, mealLogs, workoutLogs, waterLogs, cardioLogs, input);
+
+        String findInput = "find workout bicep curls";
+        new FindCommand().execute(goalLogs, pbLogs, mealLogs, workoutLogs, waterLogs, cardioLogs, findInput);
+
+        String expected = "1. bicep curls (3 sets of 20) on 12-01-25";
+        assertTrue(output.toString().contains(expected));
+    }
+
+    @Test
+    void findWorkout_wrongInput_expectFailure() {
+
+        LogList goalLogs = new LogList();
+        LogList mealLogs = new LogList();
+        LogList workoutLogs = new LogList();
+        LogList pbLogs = new LogList();
+        LogList waterLogs = new LogList();
+        LogList cardioLogs = new LogList();
+
+        String findInput = "find workout"; // missing keyword
+
+        assertThrows(Exception.class, () -> {
+            new FindCommand().execute(goalLogs, pbLogs, mealLogs, workoutLogs, waterLogs, cardioLogs, findInput);
+        });
     }
 }
