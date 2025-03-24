@@ -20,7 +20,6 @@ public class HealthBud {
         Ui.printGreeting();
         Storage.loadLogs(mealLogs, workoutLogs, waterLogs, pbLogs, cardioLogs, goalLogs);
         Scanner in = new Scanner(System.in);
-
         boolean isLooping = true;
         while (isLooping) {
             isLooping = Parser.handleInput(goalLogs, pbLogs, mealLogs, workoutLogs, waterLogs, cardioLogs,
