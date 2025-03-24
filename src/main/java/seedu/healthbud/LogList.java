@@ -77,6 +77,20 @@ public class LogList {
         Ui.printMessage(" Noted. I've removed all logs.");
     }
 
+    public void getAllDates(){
+        List<String> dates = new ArrayList<>();
+        for (int i = 0; i < logs.size(); i++) {
+            String date = logs.get(i).getDate();
+            if (!dates.contains(date)) {
+                dates.add(date);
+            }
+        }
+        Ui.printMessage("Here are the dates available:");
+        for (int i = 0; i < dates.size(); i++) {
+            Ui.printMessage((i + 1) + ". " + dates.get(i));
+        }
+    }
+
     public void getCaloriesSum(String date) {
         int totalCalories = 0;
         for (int i = 0; i < logs.size(); i++) {

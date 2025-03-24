@@ -24,7 +24,6 @@ public class Goals extends Log {
         return instance;
     }
 
-    int waterSoFar = Water.getTotalAmount();
 
     public void setDailyWaterGoal(String dailyWaterGoal) {
         this.dailyWaterGoal = dailyWaterGoal;

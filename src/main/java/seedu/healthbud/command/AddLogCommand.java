@@ -12,6 +12,7 @@ import seedu.healthbud.exception.InvalidWaterException;
 import seedu.healthbud.exception.InvalidWorkoutException;
 import seedu.healthbud.exception.InvalidGoalException;
 import seedu.healthbud.exception.InvalidCardioException;
+import seedu.healthbud.exception.InvalidDateException;
 import seedu.healthbud.log.Meal;
 import seedu.healthbud.log.Water;
 import seedu.healthbud.log.WorkOUT;
@@ -48,6 +49,7 @@ public class AddLogCommand extends Command {
             Ui.printMessage("To exit goal setting, type 'exit'!");
             Scanner in = new Scanner(System.in);
             Goals goal = Goals.getInstance();
+            LogList logList = new LogList();
 
             String change = in.nextLine().trim();
             while (!change.contains("exit")) {
@@ -65,11 +67,17 @@ public class AddLogCommand extends Command {
                     goal.setWeightGoal(change.substring(3));
                     Ui.printMessage("Weight Goal has been updated to " + goal.getWeightGoal());
                 } else if (change.contains("progress")) {
-                    Ui.printMessage ("Here's your progress so far:\n"
-                            + "    Water: " + Water.getTotalAmount() + "ml\n"
-                            + "    Calories: " + Meal.getTotalCalories() + "kcal\n"
-                            + "    Weight: " + goal.getWeeklyWeightProgress() + "kg\n");
-
+                    Ui.printMessage("Which day would you like to view?");
+                    logList.getAllDates();
+                    String prog = in.nextLine().trim();
+                    try {
+                        Ui.printMessage("Here is your progress for " + prog + ":\n");
+                        waterLogs.getWaterSum(prog);
+                        mealLogs.getCaloriesSum(prog);
+                        goal.getWeeklyWeightProgress();
+                    } catch (InvalidDateException e) {
+                        System.out.println(e.getMessage());
+                    }
                 } else {
                         throw new InvalidGoalException();
                     }

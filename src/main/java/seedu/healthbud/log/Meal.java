@@ -2,7 +2,6 @@ package seedu.healthbud.log;
 
 public class Meal extends Log {
 
-    private static int totalCalories;
     private String name;
     private String calories;
     private String time;
@@ -12,11 +11,6 @@ public class Meal extends Log {
         this.name = name;
         this.calories = calories;
         this.time = time;
-        totalCalories += Integer.parseInt(calories);
-    }
-
-    public static int getTotalCalories() {
-        return totalCalories;
     }
 
     public String getName() {
