@@ -4,6 +4,7 @@ import seedu.healthbud.exception.HealthBudException;
 import seedu.healthbud.log.Cardio;
 import seedu.healthbud.log.Log;
 import seedu.healthbud.log.Meal;
+import seedu.healthbud.log.Water;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -81,7 +82,22 @@ public class LogList {
         Ui.printMessage("Noted. I've removed all logs.");
     }
 
-    public int getCaloriesSum(String date) {
+
+    public void getAllDates(){
+        List<String> dates = new ArrayList<>();
+        for (int i = 0; i < logs.size(); i++) {
+            String date = logs.get(i).getDate();
+            if (!dates.contains(date)) {
+                dates.add(date);
+            }
+        }
+        Ui.printMessage("Here are the dates available:");
+        for (int i = 0; i < dates.size(); i++) {
+            Ui.printMessage((i + 1) + ". " + dates.get(i));
+        }
+    }
+
+    public void getCaloriesSum(String date) {
         int totalCalories = 0;
         for (int i = 0; i < logs.size(); i++) {
             Meal meal = (Meal) logs.get(i);
@@ -109,6 +125,17 @@ public class LogList {
         }
         Ui.printMessage("Total calories burned: " + totalCardio);
         return totalCardio;
+    }
+
+    public void getWaterSum(String date) {
+        int totalWater = 0;
+        for (int i = 0; i < logs.size(); i++) {
+            Water water = (Water) logs.get(i);
+            if (logs.get(i).getDate().equals(date)) {
+                totalWater += Integer.parseInt(water.getAmount());
+            }
+        }
+        Ui.printMessage("Total water consumed: " + totalWater + "ml");
     }
 }
 
