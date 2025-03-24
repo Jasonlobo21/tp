@@ -8,7 +8,7 @@ public class WorkOUT extends Log {
     private String sets;
 
     public WorkOUT(String name, String reps, String sets, String date) {
-        super(date);
+        super(date, "workout");
         this.name = name;
         this.reps = reps;
         this.sets = sets;

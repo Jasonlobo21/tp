@@ -19,7 +19,6 @@ import seedu.healthbud.log.WorkOUT;
 import seedu.healthbud.log.PB;
 import seedu.healthbud.log.Goals;
 import seedu.healthbud.log.Cardio;
-import seedu.healthbud.storage.Storage;
 
 import java.util.Scanner;
 
@@ -118,10 +117,6 @@ public class AddLogCommand extends Command {
 
             PB newPB = new PB(pbExercise, pbWeight, pbDate);
             pbLogs.addLog(newPB);
-            Ui.printMessage(" Got it. I've added this pb log:");
-            Ui.printMessage("  " + pbLogs.getLog(pbLogs.getSize() - 1));
-            Storage.appendLogToFile(newPB);
-            Ui.printMessage(" Now you have " + pbLogs.getSize() + " pb logs in the list.");
             break;
 
         case "water":
@@ -177,10 +172,6 @@ public class AddLogCommand extends Command {
 
             Water newWater = new Water(water[1], water[2], water[3]);
             waterLogs.addLog(newWater);
-            Ui.printMessage(" Got it. I've added this water log:");
-            Ui.printMessage("  " + waterLogs.getLog(waterLogs.getSize() - 1));
-            Storage.appendLogToFile(newWater);
-            Ui.printMessage(" Now you have " + waterLogs.getSize() + " water logs in the list.");
             break;
 
         case "workout":
@@ -194,7 +185,8 @@ public class AddLogCommand extends Command {
 
             String [] workoutTokens = extractWorkoutDetails(input);
             WorkOUT newWorkout = new WorkOUT(workoutTokens[0], workoutTokens[1], workoutTokens[2], workoutTokens[3]);
-            logWorkout(workoutLogs, newWorkout);
+
+            workoutLogs.addLog(newWorkout);
             break;
 
         case "meal":
@@ -214,17 +206,14 @@ public class AddLogCommand extends Command {
             meal[1] = meal[1].substring(3).trim();
             meal[2] = meal[2].substring(1).trim();
             meal[3] = meal[3].substring(1).trim();
-            if (meal[1].isEmpty() || meal[2].isEmpty() || meal[3].isEmpty()) {
 
+
+            if (meal[1].isEmpty() || meal[2].isEmpty() || meal[3].isEmpty()) {
                 throw new InvalidMealException();
             }
 
             Meal newMeal = new Meal(meal[0].trim(), meal[1], meal[2], meal[3]);
             mealLogs.addLog(newMeal);
-            Ui.printMessage(" Got it. I've added this meal:");
-            Ui.printMessage("   " + mealLogs.getLog(mealLogs.getSize() - 1));
-            Storage.appendLogToFile(newMeal);
-            Ui.printMessage(" Now you have " + mealLogs.getSize() + " meals in the list.");
             break;
 
         case "cardio":
@@ -240,28 +229,13 @@ public class AddLogCommand extends Command {
             String[] cardioTokens = extractCardioDetails(input);
             Cardio newCardio = new Cardio(cardioTokens[0], cardioTokens[1],
                     cardioTokens[2], cardioTokens[3], cardioTokens[4]);
-            logCardio(cardioLogs, newCardio);
+
+            cardioLogs.addLog(newCardio);
             break;
 
         default:
             Ui.printMessage("Invalid type of log");
         }
-    }
-
-    private static void logWorkout(LogList workoutLogs, WorkOUT newWorkout) {
-        workoutLogs.addLog(newWorkout);
-        Ui.printMessage(" Got it. I've added this workout:");
-        Ui.printMessage("   " + workoutLogs.getLog(workoutLogs.getSize() - 1));
-        Storage.appendLogToFile(newWorkout);
-        Ui.printMessage(" Now you have " + workoutLogs.getSize() + " workout done.");
-    }
-
-    private static void logCardio(LogList cardioLogs, Cardio newCardio) throws InvalidCardioException {
-        cardioLogs.addLog(newCardio);
-        Ui.printMessage(" Got it. I've added this cardio:");
-        Ui.printMessage("   " + cardioLogs.getLog(cardioLogs.getSize() - 1));
-        Storage.appendLogToFile(newCardio); // Uncomment if needed
-        Ui.printMessage(" Now you have " + cardioLogs.getSize() + " cardio logs in the list.");
     }
 
     private String[] extractCardioDetails(String input) throws InvalidCardioException {
@@ -329,7 +303,5 @@ public class AddLogCommand extends Command {
 
         return new String[] {workoutExercise, workoutReps, workoutSets, workoutDate};
     }
-    
-    
 
 }

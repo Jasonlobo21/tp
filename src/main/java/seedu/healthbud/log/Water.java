@@ -1,6 +1,7 @@
 package seedu.healthbud.log;
 
 public class Water extends Log {
+
     private static int glass;
     private static int bottle;
     private String totalAmount; //saves the water goal on that day
@@ -8,8 +9,7 @@ public class Water extends Log {
     private String time;
 
     public Water(String amount, String date, String time){
-        super(date);
-
+        super(date, "water");
         this.amount = amount;
         this.time = time;
         updateVariables(amount);

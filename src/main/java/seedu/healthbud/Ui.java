@@ -75,4 +75,5 @@ public class Ui {
     public static void printListedFormat(LogList logs, int index) {
         printMessage((index + 1) + ". " + logs.getLog(index));
     }
+
 }

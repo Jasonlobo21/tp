@@ -32,7 +32,17 @@ public class LogList {
 
     public void addLog(Log log) {
         logs.add(log);
+        Ui.printMessage(" Got it. I've added this %s log:" + log.getLogType());
+        Ui.printMessage("  " + getLog(getSize() - 1));
+        Storage.appendLogToFile(log);
+        Ui.printMessage(String.format(" Now you have %d %s logs in the list.", getSize(), log.getLogType()));
     }
+
+    public void loadLog(Log log) {
+        logs.add(log);
+    }
+
+
 
     public void deleteLog(int index) throws HealthBudException {
 
