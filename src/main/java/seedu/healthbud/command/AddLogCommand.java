@@ -192,41 +192,9 @@ public class AddLogCommand extends Command {
                 throw new InvalidWorkoutException();
             }
 
-            String workoutDetails = input.substring("add workout ".length()).trim();
-            String[] workoutTokens = workoutDetails.split(" /");
-            if (workoutTokens.length != 4) {
-
-                throw new InvalidWorkoutException();
-            }
-
-            String workoutExercise = "";
-            String workoutReps = "";
-            String workoutSets = "";
-            String workoutDate = "";
-            //String name, String reps, String sets, String date
-            for (String token : workoutTokens) {
-                if (token.startsWith("r ")) {
-                    workoutReps = token.substring(2).trim();
-                } else if (token.startsWith("s ")) {
-                    workoutSets = token.substring(2).trim();
-                } else if (token.startsWith("d ")) {
-                    workoutDate = token.substring(2).trim();
-                } else {
-                    // If it doesn't start with a prefix, assume it's the workoutExercise name
-                    workoutExercise = token.trim();
-                }
-            }
-
-            if (workoutExercise.isEmpty() || workoutReps.isEmpty() || workoutSets.isEmpty() || workoutDate.isEmpty()) {
-                throw new InvalidWorkoutException();
-            }
-
-            WorkOUT newWorkout = new WorkOUT(workoutExercise, workoutReps, workoutSets, workoutDate);
-            workoutLogs.addLog(newWorkout);
-            Ui.printMessage(" Got it. I've added this workout:");
-            Ui.printMessage("   " + workoutLogs.getLog(workoutLogs.getSize() - 1));
-            Storage.appendLogToFile(newWorkout);
-            Ui.printMessage(" Now you have " + workoutLogs.getSize() + " workout done.");
+            String [] workoutTokens = extractWorkoutDetails(input);
+            WorkOUT newWorkout = new WorkOUT(workoutTokens[0], workoutTokens[1], workoutTokens[2], workoutTokens[3]);
+            logWorkout(workoutLogs, newWorkout);
             break;
 
         case "meal":
@@ -269,48 +237,99 @@ public class AddLogCommand extends Command {
             }
 
             // Extract cardio details
-            String cardioDetails = input.substring("add cardio".length()).trim();
-            String[] cardioTokens = cardioDetails.split("/");
-
-            String cardioExercise = "";
-            String cardioSpeed = "";
-            String cardioDuration = "";
-            String cardioIncline = "";
-            String cardioDate = "";
-
-            // Iterate through the tokens and assign values based on prefixes
-            for (String token : cardioTokens) {
-                if (token.startsWith("s ")) {
-                    cardioSpeed = token.substring(2).trim();
-                } else if (token.startsWith("i ")) {
-                    cardioIncline = token.substring(2).trim();
-                } else if (token.startsWith("t ")) {
-                    cardioDuration = token.substring(2).trim();
-                } else if (token.startsWith("d ")) {
-                    cardioDate = token.substring(2).trim();
-                } else {
-                    // If it doesn't start with a prefix, assume it's the workoutExercise name
-                    cardioExercise = token.trim();
-                }
-            }
-
-            // Validate that all fields are filled
-            if (cardioExercise.isEmpty() || cardioSpeed.isEmpty() || cardioIncline.isEmpty()
-                    || cardioDuration.isEmpty() || cardioDate.isEmpty()) {
-                throw new InvalidCardioException();
-            }
-
-            // Create and add the cardio log
-            Cardio newCardio = new Cardio(cardioExercise, cardioDuration, cardioIncline, cardioSpeed, cardioDate);
-            cardioLogs.addLog(newCardio);
-            Ui.printMessage(" Got it. I've added this cardio:");
-            Ui.printMessage("   " + cardioLogs.getLog(cardioLogs.getSize() - 1));
-            Storage.appendLogToFile(newCardio); // Uncomment if needed
-            Ui.printMessage(" Now you have " + cardioLogs.getSize() + " cardio logs in the list.");
+            String[] cardioTokens = extractCardioDetails(input);
+            Cardio newCardio = new Cardio(cardioTokens[0], cardioTokens[1],
+                    cardioTokens[2], cardioTokens[3], cardioTokens[4]);
+            logCardio(cardioLogs, newCardio);
             break;
 
         default:
             Ui.printMessage("Invalid type of log");
         }
     }
+
+    private static void logWorkout(LogList workoutLogs, WorkOUT newWorkout) {
+        workoutLogs.addLog(newWorkout);
+        Ui.printMessage(" Got it. I've added this workout:");
+        Ui.printMessage("   " + workoutLogs.getLog(workoutLogs.getSize() - 1));
+        Storage.appendLogToFile(newWorkout);
+        Ui.printMessage(" Now you have " + workoutLogs.getSize() + " workout done.");
+    }
+
+    private static void logCardio(LogList cardioLogs, Cardio newCardio) throws InvalidCardioException {
+        cardioLogs.addLog(newCardio);
+        Ui.printMessage(" Got it. I've added this cardio:");
+        Ui.printMessage("   " + cardioLogs.getLog(cardioLogs.getSize() - 1));
+        Storage.appendLogToFile(newCardio); // Uncomment if needed
+        Ui.printMessage(" Now you have " + cardioLogs.getSize() + " cardio logs in the list.");
+    }
+
+    private String[] extractCardioDetails(String input) throws InvalidCardioException {
+        String cardioDetails = input.substring("add cardio".length()).trim();
+        String[] cardioTokens = cardioDetails.split("/");
+
+        String cardioExercise = "";
+        String cardioSpeed = "";
+        String cardioDuration = "";
+        String cardioIncline = "";
+        String cardioDate = "";
+
+        // Iterate through the tokens and assign values based on prefixes
+        for (String token : cardioTokens) {
+            if (token.startsWith("s ")) {
+                cardioSpeed = token.substring(2).trim();
+            } else if (token.startsWith("i ")) {
+                cardioIncline = token.substring(2).trim();
+            } else if (token.startsWith("t ")) {
+                cardioDuration = token.substring(2).trim();
+            } else if (token.startsWith("d ")) {
+                cardioDate = token.substring(2).trim();
+            } else {
+                // If it doesn't start with a prefix, assume it's the workoutExercise name
+                cardioExercise = token.trim();
+            }
+        }
+        if (cardioExercise.isEmpty() || cardioSpeed.isEmpty() ||
+                cardioIncline.isEmpty() || cardioDuration.isEmpty() || cardioDate.isEmpty()) {
+            throw new InvalidCardioException();
+        }
+
+        return new String[]{cardioExercise, cardioDuration, cardioIncline, cardioSpeed, cardioDate};
+    }
+
+    private String [] extractWorkoutDetails(String input) throws InvalidWorkoutException {
+        String workoutDetails = input.substring("add workout ".length()).trim();
+        String[] workoutTokens = workoutDetails.split(" /");
+        if (workoutTokens.length != 4) {
+
+            throw new InvalidWorkoutException();
+        }
+
+        String workoutExercise = "";
+        String workoutReps = "";
+        String workoutSets = "";
+        String workoutDate = "";
+        //String name, String reps, String sets, String date
+        for (String token : workoutTokens) {
+            if (token.startsWith("r ")) {
+                workoutReps = token.substring(2).trim();
+            } else if (token.startsWith("s ")) {
+                workoutSets = token.substring(2).trim();
+            } else if (token.startsWith("d ")) {
+                workoutDate = token.substring(2).trim();
+            } else {
+                // If it doesn't start with a prefix, assume it's the workoutExercise name
+                workoutExercise = token.trim();
+            }
+        }
+
+        if (workoutExercise.isEmpty() || workoutReps.isEmpty() || workoutSets.isEmpty() || workoutDate.isEmpty()) {
+            throw new InvalidWorkoutException();
+        }
+
+        return new String[] {workoutExercise, workoutReps, workoutSets, workoutDate};
+    }
+    
+    
+
 }

@@ -1,5 +1,6 @@
 package seedu.healthbud.log;
 
+
 public class WorkOUT extends Log {
 
     private String name;

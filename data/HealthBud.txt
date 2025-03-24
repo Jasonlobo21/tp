@@ -50,3 +50,4 @@ M | Chicken Rice | 550 | 12-01-25 | 9pm
 WO | Pushups | 12-01-25 | 20 | 3
 C | treadmill | 20 | 2 | 6 | 12-01-25
 WA | 1000 | 2jan | 2120
+

@@ -9,6 +9,8 @@ public class ClearCommand extends Command {
     public void execute(LogList goalLogs, LogList pbLogs, LogList mealLogs, LogList workoutLogs,
                         LogList waterLogs, LogList cardioLogs, String input) {
 
+        assert input != null && !input.trim().isEmpty() : "Input must be provided for Clear command";
+
         String[] parts = input.trim().split(" ");
         if (parts.length < 2) {
             return;
