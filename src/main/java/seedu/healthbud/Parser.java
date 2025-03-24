@@ -1,5 +1,6 @@
 package seedu.healthbud;
 
+import seedu.healthbud.command.StatusCommand;
 import seedu.healthbud.command.SumCommand;
 import seedu.healthbud.command.ClearCommand;
 import seedu.healthbud.command.DeleteCommand;
@@ -20,6 +21,7 @@ import seedu.healthbud.exception.InvalidLogException;
 import seedu.healthbud.exception.InvalidMealException;
 import seedu.healthbud.exception.InvalidPBException;
 import seedu.healthbud.exception.InvalidRecommendException;
+import seedu.healthbud.exception.InvalidStatusException;
 import seedu.healthbud.exception.InvalidSumException;
 import seedu.healthbud.exception.InvalidWaterException;
 import seedu.healthbud.exception.InvalidWorkoutException;
@@ -71,6 +73,9 @@ public class Parser {
             case "view":
                 new ViewCommand().execute(goalLogs, pbLogs, mealLogs, workoutLogs, waterLogs, cardioLogs, input);
                 return true;
+            case "status":
+                new StatusCommand().execute(goalLogs, pbLogs, mealLogs, workoutLogs, waterLogs, cardioLogs, input);
+                return true;
             default:
                 Ui.printUnknownCommand();
                 return true;
@@ -78,7 +83,7 @@ public class Parser {
         } catch (InvalidMealException | InvalidRecommendException | InvalidBMIException | HealthBudException |
                  InvalidLogException | InvalidWaterException | InvalidWorkoutException | InvalidListException |
                  InvalidFindException | InvalidDeleteException | InvalidPBException | InvalidClearException |
-                 InvalidSumException | InvalidViewException
+                 InvalidSumException | InvalidViewException | InvalidStatusException
                  | InvalidCardioException | InvalidMLException | InvalidGoalException e) {
 
             System.out.println(e.getMessage());

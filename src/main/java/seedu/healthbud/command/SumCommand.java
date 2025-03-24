@@ -26,6 +26,10 @@ public class SumCommand extends Command {
             Ui.printMessage("Feature not available yet");
             break;
 
+        case "cardio":
+            Ui.printMessage("Feature not available yet");
+            break;
+
         default:
             throw new InvalidSumException();
         }

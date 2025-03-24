@@ -1,0 +1,3 @@
+M | chicken | 1000 | 170802 | 1700
+C | incline treadmill | 30 | 12 | 3 | 170802
+C | incline treadmill | 30 | 12 | 3 | 170802
