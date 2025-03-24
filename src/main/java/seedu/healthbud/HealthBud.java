@@ -17,7 +17,6 @@ public class HealthBud {
     public static LogList cardioLogs = new LogList();
 
     public static void main(String[] args) {
-
         Ui.printGreeting();
         Storage.loadLogs(mealLogs, workoutLogs, waterLogs, pbLogs, cardioLogs, goalLogs);
         Scanner in = new Scanner(System.in);
