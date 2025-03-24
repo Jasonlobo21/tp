@@ -29,6 +29,7 @@ import seedu.healthbud.exception.InvalidCardioException;
 import seedu.healthbud.exception.InvalidMLException;
 
 
+
 public class Parser {
 
     public static final String NEW_LINE = "\n     ";
