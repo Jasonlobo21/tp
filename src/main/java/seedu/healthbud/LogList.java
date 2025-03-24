@@ -97,7 +97,7 @@ public class LogList {
         }
     }
 
-    public void getCaloriesSum(String date) {
+    public int getCaloriesSum(String date) {
         int totalCalories = 0;
         for (int i = 0; i < logs.size(); i++) {
             Meal meal = (Meal) logs.get(i);
