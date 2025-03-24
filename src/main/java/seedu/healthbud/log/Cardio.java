@@ -33,7 +33,8 @@ public class Cardio extends Log{
 
     @Override
     public String toString() {
-        return name  + " (speed: " + speed + ", incline: " + incline + ", duration: " + duration + " mins) on " + getDate();
+        return name  + " (speed: " + speed + ", incline: " + incline + ", duration: " + duration + " mins) on " +
+                getDate();
 
     }
 

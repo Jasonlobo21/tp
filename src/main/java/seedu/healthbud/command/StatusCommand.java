@@ -46,6 +46,8 @@ public class StatusCommand extends Command{
                 Ui.printMessage("Your intake does not align with your goal. Net calories: " + netCalories);
             }
             break;
+        default:
+            throw new InvalidStatusException();
         }
     }
 }
