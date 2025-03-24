@@ -1,3 +1,6 @@
+M | chicken | 1000 | 170802 | 1700
+C | incline treadmill | 30 | 12 | 3 | 170802
+C | incline treadmill | 30 | 12 | 3 | 170802
 WA | 500 | 12-01-25 | 9pm
 WA | 500000 | 12-01-25 | 9pm
 WA | 125000 | 12-01-25 | 9pm
@@ -50,4 +53,3 @@ M | Chicken Rice | 550 | 12-01-25 | 9pm
 WO | Pushups | 12-01-25 | 20 | 3
 C | treadmill | 20 | 2 | 6 | 12-01-25
 WA | 1000 | 2jan | 2120
-

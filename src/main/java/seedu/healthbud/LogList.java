@@ -1,6 +1,7 @@
 package seedu.healthbud;
 
 import seedu.healthbud.exception.HealthBudException;
+import seedu.healthbud.log.Cardio;
 import seedu.healthbud.log.Log;
 import seedu.healthbud.log.Meal;
 import seedu.healthbud.log.Water;
@@ -81,6 +82,7 @@ public class LogList {
         Ui.printMessage("Noted. I've removed all logs.");
     }
 
+
     public void getAllDates(){
         List<String> dates = new ArrayList<>();
         for (int i = 0; i < logs.size(); i++) {
@@ -95,7 +97,7 @@ public class LogList {
         }
     }
 
-    public void getCaloriesSum(String date) {
+    public int getCaloriesSum(String date) {
         int totalCalories = 0;
         for (int i = 0; i < logs.size(); i++) {
             Meal meal = (Meal) logs.get(i);
@@ -104,6 +106,25 @@ public class LogList {
             }
         }
         Ui.printMessage("Total calories consumed: " + totalCalories);
+        return totalCalories;
+    }
+
+    public int getCardioSum(String date){
+        int totalCardio = 0;
+        for (int i = 0; i < logs.size(); i++) {
+            Cardio cardio = (Cardio) logs.get(i);
+            if(cardio.getDate().equals(date)){
+                int speed = Integer.parseInt(cardio.getSpeed());
+                int duration = Integer.parseInt(cardio.getDuration());
+                int incline = Integer.parseInt(cardio.getIncline());
+
+                // general formula that i got from chat idk it might be anyhow de - kin
+                // Calories = (Speed * 2) + (Incline * 5) * (Duration / 60.0) * 100
+                totalCardio += (int) (((speed * 2) + (incline * 5)) * (duration / 60.0) * 100);
+            }
+        }
+        Ui.printMessage("Total calories burned: " + totalCardio);
+        return totalCardio;
     }
 
     public void getWaterSum(String date) {
