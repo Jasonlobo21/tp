@@ -79,8 +79,8 @@ public class AddLogCommand extends Command {
                         System.out.println(e.getMessage());
                     }
                 } else {
-                        throw new InvalidGoalException();
-                    }
+                    throw new InvalidGoalException();
+                }
                 change = in.nextLine().trim();
                 }
             Ui.printMessage("Exited Goal Setting");
