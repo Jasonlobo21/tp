@@ -3,6 +3,7 @@ package seedu.healthbud;
 import seedu.healthbud.exception.HealthBudException;
 import seedu.healthbud.log.Log;
 import seedu.healthbud.log.Meal;
+import seedu.healthbud.log.Water;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -85,6 +86,17 @@ public class LogList {
             }
         }
         Ui.printMessage("Total calories consumed: " + totalCalories);
+    }
+
+    public void getWaterSum(String date) {
+        int totalWater = 0;
+        for (int i = 0; i < logs.size(); i++) {
+            Water water = (Water) logs.get(i);
+            if (logs.get(i).getDate().equals(date)) {
+                totalWater += Integer.parseInt(water.getAmount());
+            }
+        }
+        Ui.printMessage("Total water consumed: " + totalWater + "ml");
     }
 }
 
