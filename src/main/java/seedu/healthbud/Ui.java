@@ -61,7 +61,7 @@ public class Ui {
                 + "11. view <date> - view logs for that date" + NEW_LINE
                 + "12. add cardio <exercise> /s <speed> /i <incline> /t <duration> /d <date> - Add a cardio log"
                 + "13. add goals - to enter goal setting mode" + NEW_LINE
-                + "13.1  /w <waterGoals /c <calorieGoals> /m <weightGoals> - to edit respective personal goals" + NEW_LINE
+                + "13.1  /w <waterGoals /c <calorieGoals> /m <weightGoals> - to edit personal goals" + NEW_LINE
                 + "14. status change <cutting/bulking> - Update your cutting/bulking status." + NEW_LINE
                 + "15. status report - View your current cutting/bulking progress" + NEW_LINE);
     }
