@@ -43,7 +43,8 @@ public class AddLogCommand extends Command {
             Ui.printMessage("Welcome to Goal Setting! \n");
             Ui.printMessage("Here are your current goals:\n" + "\n" + Goals.getInstance());
             Ui.printMessage("To change a goal please enter /name + value, " +
-                    "/w for Water Goal, /c for Calorie Goal, /m for Weight Goal");
+                    "/w for Water Goal, /c for Calorie Goal, /m for Weight Goal\n");
+            Ui.printMessage("To check your progress, type 'progress'!");
             Ui.printMessage("To exit goal setting, type 'exit'!");
             Scanner in = new Scanner(System.in);
             Goals goal = Goals.getInstance();
