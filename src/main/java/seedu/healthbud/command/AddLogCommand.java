@@ -82,7 +82,7 @@ public class AddLogCommand extends Command {
                     throw new InvalidGoalException();
                 }
                 change = in.nextLine().trim();
-                }
+            }
             Ui.printMessage("Exited Goal Setting");
             break;
 
