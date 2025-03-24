@@ -12,6 +12,7 @@ import seedu.healthbud.exception.InvalidWaterException;
 import seedu.healthbud.exception.InvalidWorkoutException;
 import seedu.healthbud.exception.InvalidGoalException;
 import seedu.healthbud.exception.InvalidCardioException;
+import seedu.healthbud.exception.InvalidDateException;
 import seedu.healthbud.log.Meal;
 import seedu.healthbud.log.Water;
 import seedu.healthbud.log.WorkOUT;
@@ -43,26 +44,46 @@ public class AddLogCommand extends Command {
             Ui.printMessage("Welcome to Goal Setting! \n");
             Ui.printMessage("Here are your current goals:\n" + "\n" + Goals.getInstance());
             Ui.printMessage("To change a goal please enter /name + value, " +
-                    "/w for Water Goal, /c for Calorie Goal, /m for Weight Goal");
+                    "/w for Water Goal, /c for Calorie Goal, /m for Weight Goal\n");
+            Ui.printMessage("To check your progress, type 'progress'!");
+            Ui.printMessage("To exit goal setting, type 'exit'!");
             Scanner in = new Scanner(System.in);
-            String change = in.nextLine().trim();
-
             Goals goal = Goals.getInstance();
-            if (change.contains("/w")) {
+            LogList logList = new LogList();
 
-                goal.setDailyWaterGoal(change.substring(3));
-                Ui.printMessage("Water Goal has been updated to " + goal.getDailyWaterGoal());
-            } else if (change.contains("/c")) {
+            String change = in.nextLine().trim();
+            while (!change.contains("exit")) {
 
-                goal.setDailyCalorieGoal(change.substring(3));
-                Ui.printMessage("Calorie Goal has been updated to " + goal.getDailyCalorieGoal());
-            } else if (change.contains("/m")) {
+                if (change.contains("/w")) {
 
-                goal.setWeightGoal(change.substring(3));
-                Ui.printMessage("Weight Goal has been updated to " + goal.getWeightGoal());
-            } else {
-                throw new InvalidGoalException();
+                    goal.setDailyWaterGoal(change.substring(3));
+                    Ui.printMessage("Water Goal has been updated to " + goal.getDailyWaterGoal());
+                } else if (change.contains("/c")) {
+
+                    goal.setDailyCalorieGoal(change.substring(3));
+                    Ui.printMessage("Calorie Goal has been updated to " + goal.getDailyCalorieGoal());
+                } else if (change.contains("/m")) {
+
+                    goal.setWeightGoal(change.substring(3));
+                    Ui.printMessage("Weight Goal has been updated to " + goal.getWeightGoal());
+                } else if (change.contains("progress")) {
+                    Ui.printMessage("Which day would you like to view?");
+                    logList.getAllDates();
+                    String prog = in.nextLine().trim();
+                    try {
+                        Ui.printMessage("Here is your progress for " + prog + ":\n");
+                        waterLogs.getWaterSum(prog);
+                        mealLogs.getCaloriesSum(prog);
+                        goal.getWeeklyWeightProgress();
+                    } catch (InvalidDateException e) {
+                        System.out.println(e.getMessage());
+                    }
+                } else {
+                    throw new InvalidGoalException();
+                }
+                change = in.nextLine().trim();
             }
+            Ui.printMessage("Exited Goal Setting");
             break;
 
         case "pb":

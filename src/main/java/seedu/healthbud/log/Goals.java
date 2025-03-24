@@ -60,7 +60,7 @@ public class Goals extends Log {
     public String toString() {
         return String.format("    Daily Water Goal: %s ml\n"
                 + "    Daily Calorie Goal: %s cal\n"
-                + "    Weight Goal: %s kg\n"
+                + "    Weight Goal: %s kg \n"
                 + "    Weekly Weight Progress: %s kg\n"
                 , dailyWaterGoal, dailyCalorieGoal, weightGoal, weeklyWeightProgress);
     }

@@ -61,7 +61,8 @@ public class Ui {
                 + "11. view <date> - view logs for that date" + NEW_LINE
                 + "12. add cardio <exercise> /s <speed> /i <incline> /t <duration> /d <date> - Add a cardio log"
                 + NEW_LINE
-                + "13. add goals (keane needs to edit this)");
+                + "13. add goals (to enter goal setting mode)" + NEW_LINE
+                + "  /w <waterGoals /c <calorieGoals> /m <weightGoals>");
     }
 
     /**
