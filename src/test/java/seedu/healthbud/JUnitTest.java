@@ -613,7 +613,8 @@ class JUnitTest {
         assertThrows(InvalidDateFormatException.class, () -> DateParser.formatDate("2023-13-25")); // Invalid month
         assertThrows(InvalidDateFormatException.class, () -> DateParser.formatDate("32/12/2023")); // Invalid day
         assertThrows(InvalidDateFormatException.class, () -> DateParser.formatDate("random text")); // Random string
-        assertThrows(InvalidDateFormatException.class, () -> DateParser.formatDate("2023-02-30")); // Invalid day in month
+        assertThrows(InvalidDateFormatException.class,
+                () -> DateParser.formatDate("2023-02-30")); // Invalid day in month
         assertThrows(InvalidDateFormatException.class, () -> DateParser.formatDate(null)); // Null input
         assertThrows(InvalidDateFormatException.class, () -> DateParser.formatDate("")); // Empty string
     }

@@ -217,7 +217,8 @@ public class AddLogCommand extends Command {
 
             // Extract cardio details
             String[] cardioTokens = extractCardioDetails(input);
-            Cardio newCardio = new Cardio(cardioTokens[0], cardioTokens[1], cardioTokens[2], cardioTokens[3], cardioTokens[4]);
+            Cardio newCardio = new Cardio(cardioTokens[0], cardioTokens[1],
+                    cardioTokens[2], cardioTokens[3], cardioTokens[4]);
             logCardio(cardioLogs, newCardio);
             break;
 
@@ -267,7 +268,8 @@ public class AddLogCommand extends Command {
                 cardioExercise = token.trim();
             }
         }
-        if (cardioExercise.isEmpty() || cardioSpeed.isEmpty() || cardioIncline.isEmpty() || cardioDuration.isEmpty() || cardioDate.isEmpty()) {
+        if (cardioExercise.isEmpty() || cardioSpeed.isEmpty() ||
+                cardioIncline.isEmpty() || cardioDuration.isEmpty() || cardioDate.isEmpty()) {
             throw new InvalidCardioException();
         }
 
