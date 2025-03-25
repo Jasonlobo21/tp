@@ -1,27 +1,32 @@
 @startuml
 'https://plantuml.com/class-diagram
 
-abstract class AbstractList
-abstract AbstractCollection
-interface List
-interface Collection
-
-List <|-- AbstractList
-Collection <|-- AbstractCollection
-
-Collection <|- List
-AbstractCollection <|- AbstractList
-AbstractList <|-- ArrayList
-
-class ArrayList {
-Object[] elementData
-size()
+abstract class Command {
+    +execute(LogList goalLogs, LogList pbLogs, LogList mealLogs, LogList workoutLogs,
+             LogList waterLogs, LogList cardioLogs, String input)
 }
 
-enum TimeUnit {
-DAYS
-HOURS
-MINUTES
+class RecommendCommand {
+    +execute(LogList goalLogs, LogList pbLogs, LogList mealLogs, LogList workoutLogs,
+                          LogList waterLogs, LogList cardioLogs, String input)
+    +getRecommendation(input: String): String
 }
+
+Command <|-- RecommendCommand
+
+class Parser {
+    +handleInput(...)
+}
+
+Parser --> RecommendCommand : creates
+
+class LogList
+
+class InvalidRecommendException
+class HealthBudException
+
+RecommendCommand ..> LogList
+RecommendCommand ..> InvalidRecommendException
+RecommendCommand ..> HealthBudException
 
 @enduml
