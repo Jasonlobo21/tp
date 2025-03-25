@@ -1,14 +1,24 @@
 @startuml
 'https://plantuml.com/class-diagram
 
+/' dependency: parameter, return type, local variable, or exception thrown '/
+/' inheritance: once got extend means inheritance i think '/
+/' navigability: means A create B or smthing'/
+
+/'
+--|> inheritance
+--> navigability/association
+..> dependency
+'/
+
 abstract class Command {
     +execute(LogList goalLogs, LogList pbLogs, LogList mealLogs, LogList workoutLogs,
-             LogList waterLogs, LogList cardioLogs, String input)
+             LogList waterLogs, LogList cardioLogs, String input): void
 }
 
 class RecommendCommand {
     +execute(LogList goalLogs, LogList pbLogs, LogList mealLogs, LogList workoutLogs,
-                          LogList waterLogs, LogList cardioLogs, String input)
+                          LogList waterLogs, LogList cardioLogs, String input): void
     +getRecommendation(input: String): String
 }
 
@@ -18,13 +28,44 @@ class Parser {
     +handleInput(...)
 }
 
-Parser --> RecommendCommand : creates
+Parser "1" --> "0..1" RecommendCommand : creates
 
 class LogList
 
 class InvalidRecommendException
 class HealthBudException
 
+class LogList {
+    -logs: List<Log>
+
+    +getLog(index: int): Log
+    +getSize(): int
+    +isEmpty(): boolean
+    +addLog(log: Log): void
+    +loadLog(log: Log): void
+    +deleteLog(index: int): void
+    +listLogs(): void
+    +findLog(keyword: String): void
+    +clearLogs(): void
+    +getAllDates(): void
+    +getCaloriesSum(date: String): int
+    +getCardioSum(date: String): int
+    +getWaterSum(date: String): void
+}
+
+class InvalidRecommendException {
+    +InvalidRecommendException()
+}
+
+class HealthBudException {
+    +HealthBudException()
+}
+
+/'inheritance'/
+InvalidRecommendException --|> Exception
+HealthBudException --|> Exception
+
+/'dependency'/
 RecommendCommand ..> LogList
 RecommendCommand ..> InvalidRecommendException
 RecommendCommand ..> HealthBudException
