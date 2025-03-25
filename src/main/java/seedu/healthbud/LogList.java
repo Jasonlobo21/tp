@@ -14,7 +14,6 @@ public class LogList {
 
     private List<Log> logs;
 
-
     public LogList(){
         logs = new ArrayList<>();
     }
@@ -42,8 +41,6 @@ public class LogList {
     public void loadLog(Log log) {
         logs.add(log);
     }
-
-
 
     public void deleteLog(int index) throws HealthBudException {
 
@@ -91,7 +88,6 @@ public class LogList {
         Storage.rewriteLogsToFile(this);
         Ui.printMessage("Noted. I've removed all logs.");
     }
-
 
     public void getAllDates(){
         List<String> dates = new ArrayList<>();

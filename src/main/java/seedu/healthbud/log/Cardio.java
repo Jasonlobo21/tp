@@ -7,7 +7,7 @@ public class Cardio extends Log{
     private String incline;
     private String speed;
 
-    public Cardio(String name, String duration, String incline, String speed, String date) {
+    public Cardio(String name, String speed, String incline, String duration, String date) {
         super(date, "cardio");
         this.name = name;
         this.duration = duration;

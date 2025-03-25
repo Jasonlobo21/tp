@@ -1,3 +1,0 @@
-WO | <exercise> | 2023-12-25 | <reps> | <sets>
-M | <meal_name> | <calories> | <date> | <time>
-WO | <exercise> | <date> | <reps> | <sets>
