@@ -10,7 +10,7 @@ public class Goals extends Log {
 
     private Goals(String dailyWaterGoal, String dailyCalorieGoal,
                   String weightGoal, String weeklyWeightProgress, String date) {
-        super(date);
+        super(date, "goals");
         this.dailyWaterGoal = dailyWaterGoal;
         this.dailyCalorieGoal = dailyCalorieGoal;
         this.weightGoal = weightGoal;
@@ -56,6 +56,7 @@ public class Goals extends Log {
     public String getWeeklyWeightProgress() {
         return weeklyWeightProgress;
     }
+
 
     public String toString() {
         return String.format("    Daily Water Goal: %s ml\n"

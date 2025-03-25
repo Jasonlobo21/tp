@@ -1,11 +1,13 @@
 package seedu.healthbud.log;
 
 public class PB extends Log {
+
+    private String logType = "pb";
     private String exercise;
     private String weight;
 
     public PB(String exercise, String weight, String date){
-        super(date);
+        super(date, "pb");
         this.exercise = exercise;
         this.weight = weight;
     }
