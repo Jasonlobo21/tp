@@ -23,7 +23,7 @@ public class SumCommand extends Command {
             break;
 
         case "vol":
-            Ui.printMessage("Feature not available yet");
+            waterLogs.getWaterSum(parts[2]);
             break;
 
         case "cardio":

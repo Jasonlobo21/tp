@@ -2,7 +2,6 @@ package seedu.healthbud.log;
 
 public class PB extends Log {
 
-    private String logType = "pb";
     private String exercise;
     private String weight;
 

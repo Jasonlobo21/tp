@@ -1,7 +1,5 @@
 package seedu.healthbud.command;
 
-// Imports
-
 import seedu.healthbud.LogList;
 import seedu.healthbud.Ui;
 import seedu.healthbud.exception.InvalidMLException;
@@ -19,7 +17,9 @@ import seedu.healthbud.log.WorkOUT;
 import seedu.healthbud.log.PB;
 import seedu.healthbud.log.Goals;
 import seedu.healthbud.log.Cardio;
+import seedu.healthbud.ParserParameters;
 
+import java.util.Map;
 import java.util.Scanner;
 
 public class AddLogCommand extends Command {
@@ -32,11 +32,13 @@ public class AddLogCommand extends Command {
 
 
         String[] parts = input.trim().split(" ");
+        String command = parts[1];
         if (parts.length < 2) {
-
             throw new InvalidLogException();
         }
-        String command = parts[1];
+
+        Map<String, String> param = ParserParameters.parseParameters(input);
+
         switch (command) {
 
         case "goal":
@@ -86,133 +88,94 @@ public class AddLogCommand extends Command {
             break;
 
         case "pb":
-            if (!input.contains("/e") || !input.contains("/w") || !input.contains("/d")) {
 
+            if (!input.contains("/w ") || !input.contains("/d ")) {
                 throw new InvalidPBException();
             }
 
-            String[] pb = input.substring(7).split("/");
-            if (pb.length != 4) {
+            input = input.substring("add pb".length()).trim();
 
+            String pbName = input.substring(0, input.indexOf("/")).trim();
+
+            if (pbName.isEmpty() || param.get("w").isEmpty() || param.get("d").isEmpty()) {
                 throw new InvalidPBException();
             }
 
-            String pbExercise = "";
-            String pbWeight = "";
-            String pbDate = "";
-
-            for (String part : pb) {
-                if (part.startsWith("e ")) {
-                    pbExercise = part.substring(2).trim();
-                } else if (part.startsWith("w ")) {
-                    pbWeight = part.substring(2).trim();
-                } else if (part.startsWith("d ")) {
-                    pbDate = part.substring(2).trim();
-                }
-            }
-
-            if (pbExercise.isEmpty() || pbWeight.isEmpty() || pbDate.isEmpty()) {
+            if (!param.get("w").matches("\\d+")) {
                 throw new InvalidPBException();
             }
 
-            PB newPB = new PB(pbExercise, pbWeight, pbDate);
+            PB newPB = new PB(pbName, param.get("w"), param.get("d"));
             pbLogs.addLog(newPB);
             break;
 
-        case "water":
+        case "water": // bottle 1000 /glass 250
             assert input != null : "Invalid water input!";
             assert !input.trim().isEmpty() : "Input should not be empty!";
-            if (!input.contains("/ml") || !input.contains("/d") || !input.contains("/t")) {
 
+            if (!input.contains("/ml ") || !input.contains("/d ") || !input.contains("/t ")) {
                 throw new InvalidWaterException();
             }
 
-            String[] water = input.substring(10).split("/");
-            if (water.length != 4) {
+            input = input.substring("add water".length()).trim();
 
-                throw new InvalidMealException();
-            }
-
-            // when u define the string use waterDate, waterML, waterTime if not will conflict - kin
-
-            if (water[1].toLowerCase().contains("bottle") || water[1].toLowerCase().contains("bottles")) {
-
-                water[1] = water[1].substring(3).trim();
-                int keyIndex = water[1].indexOf("bottle");
-                try {
-                    int toInteger = Integer.parseInt(water[1].substring(0, keyIndex).trim());
-                } catch (InvalidMLException e) {
-                    System.out.println(e.getMessage());
-                }
-                int toInteger = Integer.parseInt(water[1].substring(0, keyIndex).trim()) * 1000;
-                water[1] = Integer.toString(toInteger);
-            } else if (water[1].toLowerCase().contains("glass")) {
-
-                water[1] = water[1].substring(3).trim();
-                int keyIndex = water[1].indexOf("glass");
-                try {
-                    int toInteger = Integer.parseInt(water[1].substring(0, keyIndex).trim());
-                } catch (InvalidMLException e) {
-                    System.out.println(e.getMessage());
-                }
-                int toInteger = Integer.parseInt(water[1].substring(0, keyIndex).trim()) * 250;
-                water[1] = Integer.toString(toInteger);
-            } else {
-
-                water[1] = water[1].substring(3).trim();
-            }
-
-            water[2] = water[2].substring(1).trim();  // Corrected indentation
-            water[3] = water[3].substring(1).trim();  // Corrected indentation
-
-            if (water[1].isEmpty() || water[2].isEmpty() || water[3].isEmpty()) {
-
+            if (param.get("ml").isEmpty() || param.get("d").isEmpty() || param.get("t").isEmpty()) {
                 throw new InvalidWaterException();
             }
 
-            Water newWater = new Water(water[1], water[2], water[3]);
+            if (!param.get("ml").matches("\\d+")) {
+                throw new InvalidWaterException();
+            }
+
+            Water newWater = new Water(param.get("ml"), param.get("d"), param.get("t"));
             waterLogs.addLog(newWater);
             break;
 
         case "workout":
+
             assert input != null : "Invalid workout input!";
-            assert !input.trim().isEmpty() : "Input should not be empty!";
 
-            if (!input.contains("/r") || !input.contains("/s") || !input.contains("/d")) {
-
+            if (!input.contains("/r ") || !input.contains("/s ") || !input.contains("/d ")) {
                 throw new InvalidWorkoutException();
             }
 
-            String [] workoutTokens = extractWorkoutDetails(input);
-            WorkOUT newWorkout = new WorkOUT(workoutTokens[0], workoutTokens[1], workoutTokens[2], workoutTokens[3]);
+            input = input.substring("add workout".length()).trim();
 
+            String workoutName = input.substring(0, input.indexOf("/")).trim();
+
+            if (param.get("r").isEmpty() || param.get("s").isEmpty() || param.get("d").isEmpty()
+                    || workoutName.isEmpty()) {
+                throw new InvalidWorkoutException();
+            }
+
+            if (!param.get("r").matches("\\d+") || !param.get("s").matches("\\d+")) {
+                throw new InvalidWaterException();
+            }
+
+            WorkOUT newWorkout = new WorkOUT(workoutName, param.get("r"), param.get("s"), param.get("d"));
             workoutLogs.addLog(newWorkout);
             break;
 
         case "meal":
-            if (!input.contains("/d") || !input.contains("/t") || !input.contains("/cal")) {
 
+            if(!input.contains("/cal ") || !input.contains("/d ") || !input.contains("/t ")) {
                 throw new InvalidMealException();
             }
 
-            String[] meal = input.substring(8).split("/");
-            if (meal.length != 4) {
+            input = input.substring("add meal".length()).trim();
 
+            String mealName = input.substring(0, input.indexOf("/")).trim();
+
+            if (param.get("cal").isEmpty() || param.get("d").isEmpty() || param.get("t").isEmpty()
+                    || mealName.isEmpty()) {
                 throw new InvalidMealException();
             }
 
-            // when u define the string use mealDate, mealCal, mealTime if not will conflict - kin
-
-            meal[1] = meal[1].substring(3).trim();
-            meal[2] = meal[2].substring(1).trim();
-            meal[3] = meal[3].substring(1).trim();
-
-
-            if (meal[1].isEmpty() || meal[2].isEmpty() || meal[3].isEmpty()) {
+            if (!param.get("cal").matches("\\d+")) {
                 throw new InvalidMealException();
             }
 
-            Meal newMeal = new Meal(meal[0].trim(), meal[1], meal[2], meal[3]);
+            Meal newMeal = new Meal(mealName, param.get("cal"), param.get("d"), param.get("t"));
             mealLogs.addLog(newMeal);
             break;
 
@@ -220,15 +183,26 @@ public class AddLogCommand extends Command {
             assert input != null : "Invalid cardio input!";
             assert !input.trim().isEmpty() : "Input should not be empty!";
 
-            // Check if all required prefixes are present
-            if (!input.contains("/s") || !input.contains("/i") || !input.contains("/t") || !input.contains("/d")) {
+            if (!input.contains("/s ") || !input.contains("/i ") || !input.contains("/t ") || !input.contains("/d ")) {
                 throw new InvalidCardioException();
             }
 
-            // Extract cardio details
-            String[] cardioTokens = extractCardioDetails(input);
-            Cardio newCardio = new Cardio(cardioTokens[0], cardioTokens[1],
-                    cardioTokens[2], cardioTokens[3], cardioTokens[4]);
+            input = input.substring("add cardio".length()).trim();
+
+            String cardioName = input.substring(0, input.indexOf("/")).trim();
+
+            if (cardioName.isEmpty() || param.get("s").isEmpty() || param.get("i").isEmpty()
+                    || param.get("t").isEmpty() || param.get("d").isEmpty()) {
+                throw new InvalidCardioException();
+            }
+
+            if (!param.get("s").matches("\\d+") || !param.get("i").matches("\\d+") ||
+                    !param.get("t").matches("\\d+")) {
+                throw new InvalidCardioException();
+            }
+
+            Cardio newCardio = new Cardio(cardioName, param.get("s"), param.get("i"), param.get("t"),
+                    param.get("d"));
 
             cardioLogs.addLog(newCardio);
             break;
@@ -236,72 +210,6 @@ public class AddLogCommand extends Command {
         default:
             Ui.printMessage("Invalid type of log");
         }
-    }
-
-    private String[] extractCardioDetails(String input) throws InvalidCardioException {
-        String cardioDetails = input.substring("add cardio".length()).trim();
-        String[] cardioTokens = cardioDetails.split("/");
-
-        String cardioExercise = "";
-        String cardioSpeed = "";
-        String cardioDuration = "";
-        String cardioIncline = "";
-        String cardioDate = "";
-
-        // Iterate through the tokens and assign values based on prefixes
-        for (String token : cardioTokens) {
-            if (token.startsWith("s ")) {
-                cardioSpeed = token.substring(2).trim();
-            } else if (token.startsWith("i ")) {
-                cardioIncline = token.substring(2).trim();
-            } else if (token.startsWith("t ")) {
-                cardioDuration = token.substring(2).trim();
-            } else if (token.startsWith("d ")) {
-                cardioDate = token.substring(2).trim();
-            } else {
-                // If it doesn't start with a prefix, assume it's the workoutExercise name
-                cardioExercise = token.trim();
-            }
-        }
-        if (cardioExercise.isEmpty() || cardioSpeed.isEmpty() ||
-                cardioIncline.isEmpty() || cardioDuration.isEmpty() || cardioDate.isEmpty()) {
-            throw new InvalidCardioException();
-        }
-
-        return new String[]{cardioExercise, cardioDuration, cardioIncline, cardioSpeed, cardioDate};
-    }
-
-    private String [] extractWorkoutDetails(String input) throws InvalidWorkoutException {
-        String workoutDetails = input.substring("add workout ".length()).trim();
-        String[] workoutTokens = workoutDetails.split(" /");
-        if (workoutTokens.length != 4) {
-
-            throw new InvalidWorkoutException();
-        }
-
-        String workoutExercise = "";
-        String workoutReps = "";
-        String workoutSets = "";
-        String workoutDate = "";
-        //String name, String reps, String sets, String date
-        for (String token : workoutTokens) {
-            if (token.startsWith("r ")) {
-                workoutReps = token.substring(2).trim();
-            } else if (token.startsWith("s ")) {
-                workoutSets = token.substring(2).trim();
-            } else if (token.startsWith("d ")) {
-                workoutDate = token.substring(2).trim();
-            } else {
-                // If it doesn't start with a prefix, assume it's the workoutExercise name
-                workoutExercise = token.trim();
-            }
-        }
-
-        if (workoutExercise.isEmpty() || workoutReps.isEmpty() || workoutSets.isEmpty() || workoutDate.isEmpty()) {
-            throw new InvalidWorkoutException();
-        }
-
-        return new String[] {workoutExercise, workoutReps, workoutSets, workoutDate};
     }
 
 }

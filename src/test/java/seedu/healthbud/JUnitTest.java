@@ -198,7 +198,7 @@ class JUnitTest {
         LogList pbLogs = new LogList();
         LogList waterLogs = new LogList();
         LogList cardioLogs = new LogList();
-        String input = "add pb /e bench /w 100 /d 12-01-25";
+        String input = "add pb bench /w 100 /d 12-01-25";
 
         new AddLogCommand().execute(goalLogs, pbLogs, mealLogs, workoutLogs, waterLogs, cardioLogs, input);
 
@@ -354,7 +354,7 @@ class JUnitTest {
         String findInput = "find water 12-01-25";
         new FindCommand().execute(goalLogs, pbLogs, mealLogs, workoutLogs, waterLogs, cardioLogs, findInput);
 
-        String expected = "1. 500 ml on (12-01-25) at 8am";
+        String expected = "1. 2.0 glass of water on (12-01-25) at 8am";
         assertTrue(output.toString().contains(expected));
     }
 
