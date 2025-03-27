@@ -1,8 +1,6 @@
 package seedu.healthbud.command.OneLogAndInput;
 
 import seedu.healthbud.LogList;
-
-import seedu.healthbud.exception.InvalidLogException;
 import seedu.healthbud.log.Meal;
 
 public class AddMealCommand extends OneLogCommand {
@@ -21,7 +19,7 @@ public class AddMealCommand extends OneLogCommand {
     }
 
     @Override
-    public void execute() throws InvalidLogException {
+    public void execute() {
         Meal newMeal = new Meal(name, calories, date, time);
         logList.addLog(newMeal);
     }

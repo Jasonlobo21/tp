@@ -3,7 +3,6 @@ package seedu.healthbud.parser;
 import seedu.healthbud.LogList;
 import seedu.healthbud.command.OneLogAndInput.AddCardioCommand;
 import seedu.healthbud.exception.InvalidCardioException;
-import seedu.healthbud.exception.InvalidLogException;
 
 import java.util.Map;
 

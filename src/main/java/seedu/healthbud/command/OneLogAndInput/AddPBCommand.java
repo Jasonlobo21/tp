@@ -1,8 +1,6 @@
 package seedu.healthbud.command.OneLogAndInput;
 
 import seedu.healthbud.LogList;
-
-import seedu.healthbud.exception.InvalidPBException;
 import seedu.healthbud.log.PB;
 
 public class AddPBCommand extends OneLogCommand {
@@ -19,7 +17,7 @@ public class AddPBCommand extends OneLogCommand {
     }
 
     @Override
-    public void execute() throws InvalidPBException {
+    public void execute() {
         PB newPB = new PB(name, weight, date);
         logList.addLog(newPB);
     }

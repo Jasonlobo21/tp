@@ -1,7 +1,6 @@
 package seedu.healthbud.command.OneLogAndInput;
 
 import seedu.healthbud.LogList;
-import seedu.healthbud.exception.InvalidLogException;
 import seedu.healthbud.log.WorkOUT;
 
 public class AddWorkoutCommand extends OneLogCommand {
@@ -20,7 +19,7 @@ public class AddWorkoutCommand extends OneLogCommand {
     }
 
     @Override
-    public void execute() throws InvalidLogException {
+    public void execute(){
         WorkOUT newWorkout = new WorkOUT(name, reps, sets, date);
         logList.addLog(newWorkout);
     }

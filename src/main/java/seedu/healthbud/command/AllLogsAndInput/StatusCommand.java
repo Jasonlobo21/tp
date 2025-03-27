@@ -15,7 +15,7 @@ public class StatusCommand extends AllLogsCommand {
     }
 
     @Override
-    public void execute() {
+    public void execute(){
         Ui.printMessage(message);
     }
 }

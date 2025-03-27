@@ -2,7 +2,6 @@ package seedu.healthbud.parser;
 
 import seedu.healthbud.LogList;
 import seedu.healthbud.command.OneLogAndInput.AddWorkoutCommand;
-import seedu.healthbud.exception.InvalidLogException;
 import seedu.healthbud.exception.InvalidWorkoutException;
 
 import java.util.Map;

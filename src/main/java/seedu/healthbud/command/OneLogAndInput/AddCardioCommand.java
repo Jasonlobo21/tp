@@ -1,8 +1,6 @@
 package seedu.healthbud.command.OneLogAndInput;
 
 import seedu.healthbud.LogList;
-
-import seedu.healthbud.exception.InvalidLogException;
 import seedu.healthbud.log.Cardio;
 
 public class AddCardioCommand extends OneLogCommand {
@@ -24,7 +22,7 @@ public class AddCardioCommand extends OneLogCommand {
     }
 
     @Override
-    public void execute() throws InvalidLogException {
+    public void execute() {
         Cardio newCardio = new Cardio(name, sets, intensity, time, date);
         logList.addLog(newCardio);
     }

@@ -1,7 +1,6 @@
 package seedu.healthbud.command.OneLogAndInput;
 
 import seedu.healthbud.LogList;
-import seedu.healthbud.exception.InvalidLogException;
 import seedu.healthbud.log.Water;
 
 public class AddWaterCommand extends OneLogCommand {
@@ -18,7 +17,7 @@ public class AddWaterCommand extends OneLogCommand {
     }
 
     @Override
-    public void execute() throws InvalidLogException {
+    public void execute(){
         Water newWater = new Water(ml, date, time);
         logList.addLog(newWater);
     }

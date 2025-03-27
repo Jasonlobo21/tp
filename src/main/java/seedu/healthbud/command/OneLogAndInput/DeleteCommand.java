@@ -2,7 +2,6 @@ package seedu.healthbud.command.OneLogAndInput;
 
 import seedu.healthbud.LogList;
 import seedu.healthbud.exception.HealthBudException;
-import seedu.healthbud.exception.InvalidDeleteException;
 
 public class DeleteCommand extends OneLogCommand {
 
@@ -14,7 +13,7 @@ public class DeleteCommand extends OneLogCommand {
     }
 
     @Override
-    public void execute() throws InvalidDeleteException, HealthBudException {
+    public void execute() throws HealthBudException {
         if (!input.trim().matches(".*\\d+.*")) {
             throw new HealthBudException("Insert a valid task number");
         }

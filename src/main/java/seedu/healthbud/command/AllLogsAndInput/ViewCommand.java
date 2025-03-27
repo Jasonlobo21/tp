@@ -2,7 +2,6 @@ package seedu.healthbud.command.AllLogsAndInput;
 
 import seedu.healthbud.LogList;
 import seedu.healthbud.Ui;
-import seedu.healthbud.exception.InvalidViewException;
 
 public class ViewCommand extends AllLogsCommand {
 
@@ -16,7 +15,7 @@ public class ViewCommand extends AllLogsCommand {
     }
 
     @Override
-    public void execute() throws InvalidViewException {
+    public void execute() {
         assert input != null && !input.trim().isEmpty() : "Input should not be null or empty for view command";
 
         if (arg.equals("all")) {

@@ -2,7 +2,6 @@ package seedu.healthbud.parser;
 
 import seedu.healthbud.LogList;
 import seedu.healthbud.command.OneLogAndInput.AddWaterCommand;
-import seedu.healthbud.exception.InvalidLogException;
 import seedu.healthbud.exception.InvalidWaterException;
 
 import java.util.Map;
