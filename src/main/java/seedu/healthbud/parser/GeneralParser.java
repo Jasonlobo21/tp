@@ -59,7 +59,7 @@ public class GeneralParser {
             command.execute();
             return true;
         } // dn put alll the different type of exceptions cause they are all subclasses of Exception, so if put
-         // Exception it handles everything le - Kin
+        // Exception it handles everything le - Kin
         catch (Exception e) {
             System.out.println(e.getMessage());
         }
