@@ -116,12 +116,43 @@ Allow users to customize search parameters or filter results based on date range
 6. Future Improvements
 
 #### command uw to talk about keane
-1. Feature overview
-2. Implementation details
-3. Why this design
-4. Alternatives considered
+1. Feature Overview
+
+The Goals feature allows users to set and view personalized health goals within the chatbot. These include:
+Daily Water Intake Goal (/w), Daily Calorie Intake Goal (/c), Weight Goal (/m)
+Additionally, users can check their progress using the progress command or exit the goal setting interface with exit.
+
+2. Implementation Details
+
+The goal command is implemented as part of a switch statement in the main command handling logic. Here's how it works:
+Upon entering the goal command, the user is greeted and shown their current goals from the singleton Goals class 
+instance. The chatbot enters a loop where it listens for specific goal-editing commands:
+/w [value] updates the daily water goal, /c [value] updates the daily calorie goal, /m [value] updates the target
+weight progress prompts the user to select a day to view progress data from waterLogs, mealLogs, and weight history 
+exit terminates the loop and exits the goal setting mode. The user inputs are parsed with Scanner, and exceptions 
+such as InvalidDateException and InvalidGoalException are handled gracefully.
+
+3. Why This Design
+Simplicity: Using a command-line loop with conditionals provides clear control flow and is easy to debug.
+Singleton Pattern: Goals.getInstance() ensures consistent access and modification of user goals.
+User-Friendly Prompts: Each interaction provides guidance on valid inputs and current status.
+Separation of Concerns: Goal logic is kept distinct from log retrieval (waterLogs, mealLogs), enabling modular testing.
+
+4. Alternatives Considered
+Command Pattern: We considered implementing a command design pattern to encapsulate each action 
+(e.g., update water goal), but deemed it too complex for the scope.
+GUI-based input: Given the chatbot nature and CLI interaction, we opted not to build a graphical interface.
+Database-backed goal storage: For now, data is likely held in-memory for simplicity; persistent storage could 
+be added later.
+
 5. Sequence Diagrams
+
 6. Future Improvements
+Input validation: Add regex or parsing to ensure valid numeric inputs.
+Persistent Storage: Save goals and logs to a file or database for state retention across sessions.
+Multi-user support: Refactor to support multiple user profiles.
+Goal recommendations: Suggest goals based on user history or health data.
+GUI/Web Interface: Build a frontend to visualize progress and make goal-setting more intuitive.
 
 ## Product scope
 ### Target user profile
