@@ -7,7 +7,7 @@ import seedu.healthbud.command.Command;
 import seedu.healthbud.exception.InvalidPBException;
 import seedu.healthbud.log.PB;
 
-public abstract class AddPersonalBestCommand extends Command {
+public class AddPersonalBestCommand extends Command {
 
     public void execute(LogList pbLogs, String input) throws InvalidPBException {
         String[] parts = input.trim().split(" ");
@@ -36,5 +36,11 @@ public abstract class AddPersonalBestCommand extends Command {
 
         PB newPB = new PB(pbName, param.get("w"), param.get("d"));
         pbLogs.addLog(newPB);
+    }
+
+    @Override
+    public void execute(LogList goalLogs, LogList pbLogs, LogList mealLogs, LogList workoutLogs,
+                        LogList waterLogs, LogList cardioLogs, String input) throws Exception {
+
     }
 }
