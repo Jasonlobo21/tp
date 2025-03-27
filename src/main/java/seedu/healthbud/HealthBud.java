@@ -1,6 +1,5 @@
 package seedu.healthbud;
 
-import seedu.healthbud.parser.Parser;
 import seedu.healthbud.storage.Storage;
 
 import java.util.Scanner;
