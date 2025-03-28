@@ -2,44 +2,44 @@
 package seedu.healthbud;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+//import static org.junit.jupiter.api.Assertions.assertThrows;
+//import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 
 import org.junit.jupiter.api.Test;
 //import seedu.healthbud.command.AddLogCommand;
-import seedu.healthbud.command.InputOnly.BMICommand;
-import seedu.healthbud.command.OneLogAndInput.ClearCommand;
-import seedu.healthbud.command.OneLogAndInput.DeleteCommand;
-import seedu.healthbud.command.OneLogAndInput.FindCommand;
-import seedu.healthbud.command.InputOnly.RecommendCommand;
+//import seedu.healthbud.command.InputOnly.BMICommand;
+//import seedu.healthbud.command.OneLogAndInput.ClearCommand;
+//import seedu.healthbud.command.OneLogAndInput.DeleteCommand;
+//import seedu.healthbud.command.OneLogAndInput.FindCommand;
+//import seedu.healthbud.command.InputOnly.RecommendCommand;
 import seedu.healthbud.command.OneLogAndInput.AddMealCommand;
 
-import seedu.healthbud.exception.HealthBudException;
-import seedu.healthbud.exception.InvalidBMIException;
-import seedu.healthbud.exception.InvalidCardioException;
-import seedu.healthbud.exception.InvalidClearException;
-import seedu.healthbud.exception.InvalidDeleteException;
-import seedu.healthbud.exception.InvalidFindException;
-import seedu.healthbud.exception.InvalidLogException;
-import seedu.healthbud.exception.InvalidMealException;
-import seedu.healthbud.exception.InvalidMLException;
-import seedu.healthbud.exception.InvalidPBException;
-import seedu.healthbud.exception.InvalidRecommendException;
-import seedu.healthbud.exception.InvalidWaterException;
-import seedu.healthbud.exception.InvalidWorkoutException;
-import seedu.healthbud.exception.InvalidDateFormatException;
+//import seedu.healthbud.exception.HealthBudException;
+//import seedu.healthbud.exception.InvalidBMIException;
+//import seedu.healthbud.exception.InvalidCardioException;
+//import seedu.healthbud.exception.InvalidClearException;
+//import seedu.healthbud.exception.InvalidDeleteException;
+//import seedu.healthbud.exception.InvalidFindException;
+//import seedu.healthbud.exception.InvalidLogException;
+//import seedu.healthbud.exception.InvalidMealException;
+//import seedu.healthbud.exception.InvalidMLException;
+//import seedu.healthbud.exception.InvalidPBException;
+//import seedu.healthbud.exception.InvalidRecommendException;
+//import seedu.healthbud.exception.InvalidWaterException;
+//import seedu.healthbud.exception.InvalidWorkoutException;
+//import seedu.healthbud.exception.InvalidDateFormatException;
 
 import seedu.healthbud.log.Meal;
-import seedu.healthbud.log.Cardio;
-import seedu.healthbud.log.PB;
-import seedu.healthbud.log.Water;
-import seedu.healthbud.log.WorkOUT;
-import seedu.healthbud.parser.DateParser;
-
-
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
+//import seedu.healthbud.log.Cardio;
+//import seedu.healthbud.log.PB;
+//import seedu.healthbud.log.Water;
+//import seedu.healthbud.log.WorkOUT;
+//import seedu.healthbud.parser.DateParser;
+//
+//
+//import java.io.ByteArrayOutputStream;
+//import java.io.PrintStream;
 
 public class JUnitTest {
 
