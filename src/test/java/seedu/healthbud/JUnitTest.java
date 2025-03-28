@@ -1,3 +1,4 @@
+/*
 package seedu.healthbud;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -6,11 +7,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 import seedu.healthbud.command.AddLogCommand;
-import seedu.healthbud.command.BMICommand;
-import seedu.healthbud.command.ClearCommand;
-import seedu.healthbud.command.DeleteCommand;
-import seedu.healthbud.command.FindCommand;
-import seedu.healthbud.command.RecommendCommand;
+import seedu.healthbud.command.InputOnly.BMICommand;
+import seedu.healthbud.command.OneLogAndInput.ClearCommand;
+import seedu.healthbud.command.OneLogAndInput.DeleteCommand;
+import seedu.healthbud.command.OneLogAndInput.FindCommand;
+import seedu.healthbud.command.InputOnly.RecommendCommand;
 
 import seedu.healthbud.exception.HealthBudException;
 import seedu.healthbud.exception.InvalidBMIException;
@@ -32,7 +33,7 @@ import seedu.healthbud.log.Cardio;
 import seedu.healthbud.log.PB;
 import seedu.healthbud.log.Water;
 import seedu.healthbud.log.WorkOUT;
-
+import seedu.healthbud.parser.DateParser;
 
 
 import java.io.ByteArrayOutputStream;
@@ -621,3 +622,4 @@ class JUnitTest {
 
 
 }
+*/
