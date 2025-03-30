@@ -14,7 +14,7 @@ import seedu.healthbud.exception.InvalidGoalException;
 
 public class AddParser {
 
-    
+    //@author Ahmish15
     public static Command parse(String subCommand, LogList mealLogs, LogList waterLogs, LogList cardioLogs,
                                 LogList pbLogs, LogList workoutLogs, LogList goalLogs, String input) throws InvalidLogException,
                                 InvalidCardioException, InvalidMealException, InvalidPBException, InvalidWaterException,
