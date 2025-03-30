@@ -3,18 +3,21 @@ package seedu.healthbud.parser;
 import seedu.healthbud.LogList;
 import seedu.healthbud.command.CommandInterface.Command;
 import seedu.healthbud.exception.InvalidCardioException;
+import seedu.healthbud.exception.InvalidGoalException;
 import seedu.healthbud.exception.InvalidLogException;
 import seedu.healthbud.exception.InvalidMealException;
 import seedu.healthbud.exception.InvalidPBException;
 import seedu.healthbud.exception.InvalidWaterException;
 import seedu.healthbud.exception.InvalidWorkoutException;
+import seedu.healthbud.exception.InvalidGoalException;
+
 
 public class AddParser {
 
     public static Command parse(String subCommand, LogList mealLogs, LogList waterLogs, LogList cardioLogs,
-                                LogList pbLogs, LogList workoutLogs, String input) throws InvalidLogException,
+                                LogList pbLogs, LogList workoutLogs, LogList goalLogs, String input) throws InvalidLogException,
                                 InvalidCardioException, InvalidMealException, InvalidPBException, InvalidWaterException,
-                                InvalidWorkoutException {
+                                InvalidWorkoutException, InvalidGoalException {
 
         switch (subCommand) {
         case "meal":
@@ -27,6 +30,8 @@ public class AddParser {
             return AddPBParser.parse(pbLogs, input);
         case "workout":
             return AddWorkoutParser.parse(workoutLogs, input);
+        case "goal":
+            return AddGoalParser.parse(goalLogs, input);
         default:
             throw new InvalidLogException();
         }

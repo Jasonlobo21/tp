@@ -31,6 +31,12 @@ public class LogList {
         return logs.isEmpty();
     }
 
+    public void updateLog(Log log){
+        Ui.printMessage(" Got it this Log has been updated:");
+        Ui.printMessage("  " + log.toString());
+        Storage.appendLogToFile(log);
+    }
+
     public void addLog(Log log) {
         logs.add(log);
         Ui.printMessage(" Got it. I've added this log:" + log.getLogType());
