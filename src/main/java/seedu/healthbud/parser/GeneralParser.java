@@ -2,8 +2,9 @@ package seedu.healthbud.parser;
 
 import seedu.healthbud.LogList;
 import seedu.healthbud.Ui;
-import seedu.healthbud.command.CommandInterface.Command;
+import seedu.healthbud.command.commandinterface.Command;
 import seedu.healthbud.exception.HealthBudException;
+import seedu.healthbud.parser.addcommandparser.AddParser;
 
 public class GeneralParser {
 
