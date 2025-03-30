@@ -11,7 +11,7 @@ public class GeneralParser {
 
     public static boolean handleInput(LogList goalLogs, LogList pbLogs, LogList mealLogs, LogList workoutLogs,
                                       LogList waterLogs, LogList cardioLogs, String input) throws HealthBudException {
-        String[] parts = input.split(" ");
+        String[] parts = input.trim().split("\\s+");
 
         try {
             Command command;

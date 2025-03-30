@@ -8,13 +8,15 @@ import seedu.healthbud.exception.InvalidMealException;
 import seedu.healthbud.exception.InvalidPBException;
 import seedu.healthbud.exception.InvalidWaterException;
 import seedu.healthbud.exception.InvalidWorkoutException;
+import seedu.healthbud.exception.InvalidDateFormatException;
+
 
 public class AddParser {
 
     public static Command parse(String subCommand, LogList mealLogs, LogList waterLogs, LogList cardioLogs,
                                 LogList pbLogs, LogList workoutLogs, String input) throws InvalidLogException,
-                                InvalidCardioException, InvalidMealException, InvalidPBException, InvalidWaterException,
-                                InvalidWorkoutException {
+            InvalidCardioException, InvalidMealException, InvalidPBException, InvalidWaterException,
+            InvalidWorkoutException, InvalidDateFormatException {
 
         switch (subCommand) {
         case "meal":

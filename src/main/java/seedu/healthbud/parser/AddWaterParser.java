@@ -2,13 +2,16 @@ package seedu.healthbud.parser;
 
 import seedu.healthbud.LogList;
 import seedu.healthbud.command.OneLogAndInput.AddWaterCommand;
+import seedu.healthbud.exception.InvalidDateFormatException;
 import seedu.healthbud.exception.InvalidWaterException;
 
 import java.util.Map;
 
 public class AddWaterParser {
 
-    public static AddWaterCommand parse(LogList waterLogs, String input) throws InvalidWaterException {
+    public static AddWaterCommand parse(LogList waterLogs, String input)
+            throws InvalidWaterException, InvalidDateFormatException {
+
         String[] parts = input.trim().split(" ");
         if (parts.length < 2) {
             throw new InvalidWaterException();
@@ -21,11 +24,23 @@ public class AddWaterParser {
             throw new InvalidWaterException();
         }
 
-        input = input.substring("add water".length()).trim();
+        input = input.replaceFirst("add water", "").trim();
+        if (input.isEmpty()) {
+            throw new InvalidWaterException();
+        }
 
-        Map<String, String> param = ParserParameters.parseParameters(input);
+        int firstParamIndex = input.indexOf('/');
+        String waterInput;
+        if (firstParamIndex > 0) {
+            waterInput = input.substring(0, firstParamIndex).trim();
+        } else {
+            waterInput = "";  // No name provided before parameters
+        }
+        Map<String, String> param = ParserParameters.parseParameters(input.substring(firstParamIndex));
 
-        if (param.get("ml").isEmpty() || param.get("d").isEmpty() || param.get("t").isEmpty()) {
+        if (!param.containsKey("ml") || param.get("ml").isEmpty() ||
+                !param.containsKey("d") || param.get("d").isEmpty() ||
+                !param.containsKey("t") || param.get("t").isEmpty()) {
             throw new InvalidWaterException();
         }
 
@@ -33,6 +48,9 @@ public class AddWaterParser {
             throw new InvalidWaterException();
         }
 
-        return new AddWaterCommand(waterLogs, input, param.get("ml"), param.get("d"), param.get("t"));
+        String formattedDate = DateParser.formatDate(param.get("d"));
+
+        return new AddWaterCommand(waterLogs, waterInput,
+                param.get("ml"), formattedDate, param.get("t"));
     }
 }
