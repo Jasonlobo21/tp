@@ -1,9 +1,11 @@
-package seedu.healthbud.parser;
+package seedu.healthbud.parser.addcommandparser;
 
 import seedu.healthbud.LogList;
-import seedu.healthbud.command.OneLogAndInput.AddMealCommand;
+import seedu.healthbud.command.onelogandinput.AddMealCommand;
 import seedu.healthbud.exception.InvalidDateFormatException;
 import seedu.healthbud.exception.InvalidMealException;
+import seedu.healthbud.parser.DateParser;
+import seedu.healthbud.parser.ParserParameters;
 
 import java.util.Map;
 
