@@ -14,6 +14,7 @@ public class AddWorkoutParser {
     //@@author Ahmish15
     public static AddWorkoutCommand parse(LogList workoutLogs, String input)
             throws InvalidWorkoutException, InvalidDateFormatException {
+
         String[] parts = input.trim().split(" ");
         if (parts.length < 2) {
             throw new InvalidWorkoutException();
