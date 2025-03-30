@@ -9,7 +9,8 @@ import java.util.Map;
 
 public class AddPBParser {
 
-    public static AddPBCommand parse(LogList pbLogs, String input) throws InvalidPBException, InvalidDateFormatException {
+    public static AddPBCommand parse(LogList pbLogs, String input)
+            throws InvalidPBException, InvalidDateFormatException {
 
         String[] parts = input.trim().split(" ");
         if (parts.length < 2) {

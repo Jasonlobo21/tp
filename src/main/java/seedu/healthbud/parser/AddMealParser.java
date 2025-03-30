@@ -4,13 +4,13 @@ import seedu.healthbud.LogList;
 import seedu.healthbud.command.OneLogAndInput.AddMealCommand;
 import seedu.healthbud.exception.InvalidDateFormatException;
 import seedu.healthbud.exception.InvalidMealException;
-import seedu.healthbud.exception.InvalidWorkoutException;
 
 import java.util.Map;
 
 public class AddMealParser {
 
-    public static AddMealCommand parse(LogList mealLogs, String input) throws InvalidMealException, InvalidDateFormatException {
+    public static AddMealCommand parse(LogList mealLogs, String input)
+            throws InvalidMealException, InvalidDateFormatException {
 
         String[] parts = input.trim().split(" ");
 

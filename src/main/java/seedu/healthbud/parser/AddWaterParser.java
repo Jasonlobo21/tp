@@ -9,7 +9,8 @@ import java.util.Map;
 
 public class AddWaterParser {
 
-    public static AddWaterCommand parse(LogList waterLogs, String input) throws InvalidWaterException, InvalidDateFormatException {
+    public static AddWaterCommand parse(LogList waterLogs, String input)
+            throws InvalidWaterException, InvalidDateFormatException {
 
         String[] parts = input.trim().split(" ");
         if (parts.length < 2) {
