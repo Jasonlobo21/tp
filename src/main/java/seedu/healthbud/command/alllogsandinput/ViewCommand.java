@@ -90,6 +90,15 @@ public class ViewCommand extends AllLogsCommand {
         return foundAny;
     }
 
+    private boolean printAllLogs(LogList logs, String label) {
+        boolean found = false;
+        for (int i = 0; i < logs.getSize(); i++) {
+            Ui.printMessage(label + ": " + logs.getLog(i).toString());
+            found = true;
+        }
+        return found;
+    }
+
     private boolean printLogsForDate() {
         boolean foundAny = false;
         foundAny |= printLogsForDate(goalLogs, "Goal", date);
@@ -101,7 +110,17 @@ public class ViewCommand extends AllLogsCommand {
         return foundAny;
     }
 
-    // Rest of the helper methods remain the same...
+    private boolean printLogsForDate(LogList logs, String label, String date) {
+        boolean found = false;
+        for (int i = 0; i < logs.getSize(); i++) {
+            if (logs.getLog(i).getDate().equals(date)) {
+                Ui.printMessage(label + ": " + logs.getLog(i).toString());
+                found = true;
+            }
+        }
+        return found;
+    }
+
     private LogList getTargetLogList() {
         switch (logType) {
         case "goal": return goalLogs;
@@ -124,25 +143,5 @@ public class ViewCommand extends AllLogsCommand {
         case "cardio": return "Cardio";
         default: return "Unknown";
         }
-    }
-
-    private boolean printLogsForDate(LogList logs, String label, String date) {
-        boolean found = false;
-        for (int i = 0; i < logs.getSize(); i++) {
-            if (logs.getLog(i).getDate().equals(date)) {
-                Ui.printMessage(label + ": " + logs.getLog(i).toString());
-                found = true;
-            }
-        }
-        return found;
-    }
-
-    private boolean printAllLogs(LogList logs, String label) {
-        boolean found = false;
-        for (int i = 0; i < logs.getSize(); i++) {
-            Ui.printMessage(label + ": " + logs.getLog(i).toString());
-            found = true;
-        }
-        return found;
     }
 }
