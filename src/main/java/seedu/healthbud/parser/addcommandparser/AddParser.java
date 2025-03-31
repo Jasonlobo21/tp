@@ -1,24 +1,23 @@
-package seedu.healthbud.parser;
+package seedu.healthbud.parser.addcommandparser;
 
 import seedu.healthbud.LogList;
-import seedu.healthbud.command.CommandInterface.Command;
+import seedu.healthbud.command.commandinterface.Command;
 import seedu.healthbud.exception.InvalidCardioException;
+import seedu.healthbud.exception.InvalidDateFormatException;
 import seedu.healthbud.exception.InvalidGoalException;
 import seedu.healthbud.exception.InvalidLogException;
 import seedu.healthbud.exception.InvalidMealException;
 import seedu.healthbud.exception.InvalidPBException;
 import seedu.healthbud.exception.InvalidWaterException;
 import seedu.healthbud.exception.InvalidWorkoutException;
-import seedu.healthbud.exception.InvalidGoalException;
-
 
 public class AddParser {
 
-    //@author Ahmish15
     public static Command parse(String subCommand, LogList mealLogs, LogList waterLogs, LogList cardioLogs,
-                                LogList pbLogs, LogList workoutLogs, LogList goalLogs, String input) throws InvalidLogException,
+                                LogList pbLogs, LogList workoutLogs, LogList goalLogs, String input) throws
+                                InvalidLogException,
                                 InvalidCardioException, InvalidMealException, InvalidPBException, InvalidWaterException,
-                                InvalidWorkoutException, InvalidGoalException {
+                                InvalidWorkoutException, InvalidDateFormatException, InvalidGoalException {
 
         switch (subCommand) {
         case "meal":
@@ -33,7 +32,7 @@ public class AddParser {
             return AddWorkoutParser.parse(workoutLogs, input);
         case "goal":
             return AddGoalParser.parse(goalLogs, input);
-        default:
+            default:
             throw new InvalidLogException();
         }
     }

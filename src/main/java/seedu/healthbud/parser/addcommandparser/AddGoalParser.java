@@ -1,10 +1,11 @@
-package seedu.healthbud.parser;
+package seedu.healthbud.parser.addcommandparser;
 
 import seedu.healthbud.LogList;
 import seedu.healthbud.Ui;
 import seedu.healthbud.command.OneLogAndInput.AddGoalCommand;
 import seedu.healthbud.exception.InvalidGoalException;
 import seedu.healthbud.log.Goals;
+import seedu.healthbud.parser.ParserParameters;
 
 import java.util.Map;
 

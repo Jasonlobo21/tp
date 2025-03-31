@@ -1,4 +1,5 @@
 package seedu.healthbud.command.OneLogAndInput;
+//package seedu.healthbud.parser.addcommandparser;
 import seedu.healthbud.Ui;
 import seedu.healthbud.log.Goals;
 import seedu.healthbud.LogList;
