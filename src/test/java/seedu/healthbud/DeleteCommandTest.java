@@ -12,6 +12,8 @@ import seedu.healthbud.log.WorkOUT;
 import seedu.healthbud.parser.DeleteParser;
 
 public class DeleteCommandTest {
+    private LogList workoutLogs;
+
     @Test
     void validPBDelete_expectSuccess() throws InvalidDeleteException, HealthBudException {
         LogList mealLogs = new LogList();
@@ -139,7 +141,6 @@ public class DeleteCommandTest {
                 DeleteParser.parse(input, mealLogs, workoutLogs, waterLogs, pbLogs, cardioLogs));
     }
 
-    private LogList workoutLogs;
 
     @BeforeEach
     void setUp() {
