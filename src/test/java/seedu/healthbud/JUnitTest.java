@@ -1,18 +1,26 @@
-
 package seedu.healthbud;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
 //import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 import org.junit.jupiter.api.Test;
 import seedu.healthbud.command.inputonly.RecommendCommand;
+import seedu.healthbud.command.inputonly.BMICommand;
 
+import seedu.healthbud.command.onelogandinput.ListCommand;
 import seedu.healthbud.exception.HealthBudException;
 import seedu.healthbud.exception.InvalidRecommendException;
+import seedu.healthbud.exception.InvalidBMIException;
+
 
 import seedu.healthbud.parser.RecommendParser;
+import seedu.healthbud.parser.BMIParser;
+
+
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
 class JUnitTest {
@@ -41,6 +49,42 @@ class JUnitTest {
     void recommendWorkout_missingInput_expectFailure() {
         String input = "recommend";
         assertThrows(InvalidRecommendException.class, () -> RecommendParser.parse(input));
+    }
+
+
+    //        ========================= BMI Tests =========================
+    @Test
+    void parse_validInput_expectSuccess() throws HealthBudException, InvalidBMIException {
+        String input = "bmi /w 70 /h 1.75";
+        BMICommand command = BMIParser.parse(input);
+        assertNotNull(command, "BMICommand should not be null for valid input");
+    }
+
+    @Test
+    void parse_withoutHeightOrWeight_expectInvalidBmiException() {
+        String input = "bmi";
+        assertThrows(InvalidBMIException.class, () -> BMIParser.parse(input));
+    }
+
+    @Test
+    void parse_tooFewParts_expectInvalidBmiException() {
+        String input = "bmi 70 /h";
+        assertThrows(InvalidBMIException.class, () -> BMIParser.parse(input));
+    }
+
+    @Test
+    void parse_invalidNumberFormat_expectInvalidBmiException() {
+        String input = "bmi seventy /h 1.75";
+        assertThrows(InvalidBMIException.class, () -> BMIParser.parse(input));
+    }
+    //        ========================= ListTests =========================
+    @Test
+    void listCommand_creation_notNull() {
+        LogList mealLogs;
+        mealLogs = new LogList();
+        // Basic test to ensure the command is created properly
+        ListCommand listCommand = new ListCommand("list meal", mealLogs);
+        assertNotNull(listCommand, "ListCommand object should not be null after creation.");
     }
 
     // ================================================================= till here

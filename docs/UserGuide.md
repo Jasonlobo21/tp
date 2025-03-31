@@ -107,14 +107,6 @@ Format: `clear <pb|meal|workout|water>`
 
 Example of usage: `clear meal`
 
-### View
-View logs for a specific date or log type
-
-Format: `view /m <logtype> /d <date> or view /m all`
-
-Example of usage: `view /m workout /d 020225`
-Example of usage: `view /m all`
-
 ### Status Change
 Update your cutting/bulking status
 
@@ -129,6 +121,13 @@ Format: `status report`
 
 Example of usage: `status report`
 
+### Search Keywords/date
+Search for logs by keywords or date
+
+Format: `search <loglist> /k <keyword>` OR `search <loglist> /d <date>`
+
+Example of usage: `search workout /k bench` OR `search meal /d 6/5/2025`(search for all meals on 5th June 2025)
+
 ## Command Summary
 1. `help` - Display this list of commands
 2. `bye` - Exit the program
@@ -140,10 +139,10 @@ Example of usage: `status report`
 8. `add pb <exercise> /w <weight_in_kg> /d <date>` - Record a personal best
 9. `sum <cal|vol> /d <date>` - Sum up the total calories/water for the day
 10. `clear <pb|meal|workout|water>` - Clear the respective log
-11. `view /m <logtype> /d <date>` or `view /m all` - View respective logs or all logs
-12. `add cardio <exercise> /s <speed> /i <incline> /t <duration> /d <date>` - Add a cardio log
-13. `add goals` - to enter goal setting mode
+11. `add cardio <exercise> /s <speed> /i <incline> /t <duration> /d <date>` - Add a cardio log
+12. `add goals` - to enter goal setting mode
     13.1  `/w <waterGoals /c <calorieGoals> /m <weightGoals>` - to edit personal goals
-14. `status change <cutting/bulking>` - Update your cutting/bulking status
-15. `status report` - View your current cutting/bulking progress
+13. `status change <cutting/bulking>` - Update your cutting/bulking status
+14. `status report` - View your current cutting/bulking progress
+15.   `search <logType> /d <date>` OR `search <logType> /k <keyword>`- Search for logs by keywords or date
 

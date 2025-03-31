@@ -116,7 +116,7 @@ The concise code structure makes it easy to unit test and maintain.
 Extensibility:
 Future changes (e.g., additional BMI categories or metrics) can be made in this class without impacting other parts of the system.
 ###  4. Alternatives considered:
-nline Calculation in the Parser
+online Calculation in the Parser
 
 Implementing BMI logic directly in the parser would mix concerns and lead to a more complex parser design.
 
@@ -126,6 +126,54 @@ Given the simplicity of the BMI formula, an external library would add unnecessa
 
 5. Sequence Diagrams
 6. Future Improvements
+
+## SearchCommand
+### 1. Feature overview:
+The SearchCommand feature allows users to search through their logs by either a specific date or a keyword. This enables users to quickly filter and locate log entries—for example, finding all logs on a particular day or identifying entries that mention a specific term.
+### 2. Implementation details:
+#### Inheritance:
+Inherits from OneLogCommand (which in turn extends the base Command class) to operate on a single LogList.
+#### Immutable Fields:
+Stores the search parameters (either date or keyword) as immutable (final) fields.
+#### Dual Search Logic:
+implements two search approaches:
+1. **Keyword Search**: Searches through the log entries for a specific keyword.
+2. **Date Search**: Filters log entries based on a specific date.
+### 3. Why this design:
+Single Responsibility:
+The search functionality is isolated within its own command, ensuring the logic is clean, focused, and easy to manage.
+
+Readability & Testability:
+The clear separation between date-based and keyword-based searches simplifies both understanding and unit testing.
+
+Extensibility:
+Future enhancements—such as combining filters or adding new search criteria—can be integrated with minimal changes to the existing structure.
+Readability & Testability:
+The concise code structure makes it easy to unit test and maintain.
+
+Extensibility:
+Future changes (e.g., additional BMI categories or metrics) can be made in this class without impacting other parts of the system.
+###  4. Alternatives considered:
+Extending AllLogsCommand:
+One alternative was to have the search functionality span multiple log types simultaneously by extending AllLogsCommand. However, this approach was rejected because it would complicate the search logic and user interface. Users typically search within a single log category, so isolating the search to one log list made the command simpler and clearer.
+
+Parser-Only Filtering:
+Another alternative was to handle filtering entirely within the parser, returning a filtered list rather than a command that executes a search. This was not chosen because encapsulating the search behavior in a dedicated command class improves separation of concerns and aligns with the command-based architecture used throughout the project.
+
+5. Sequence Diagrams 
+### Future Improvements
+Combined Search Criteria:
+Future enhancements could allow users to combine search parameters (e.g., filtering by both date and keyword simultaneously) to refine their search results further.
+
+Advanced Filtering Options:
+Implementing range-based date searches, fuzzy matching for keywords, or even categorizing results by relevance could improve user experience.
+
+Result Ranking & Pagination:
+For logs with many entries, adding functionality to rank results by relevance or paginate long lists could enhance usability.
+
+Improved Logging & Metrics:
+Incorporating logging of search queries and performance metrics could help monitor usage patterns and optimize search efficiency in future releases.
+
 
 
 #### command uw to talk about travis
