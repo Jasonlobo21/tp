@@ -36,9 +36,6 @@ public class GeneralParser {
             case "bmi":
                 command = BMIParser.parse(input);
                 break;
-            case "find":
-                command = FindParser.parse(input, mealLogs, workoutLogs, waterLogs, pbLogs, cardioLogs);
-                break;
             case "delete":
                 command = DeleteParser.parse(input, mealLogs, workoutLogs, waterLogs, pbLogs, cardioLogs);
                 break;
@@ -47,9 +44,6 @@ public class GeneralParser {
                 break;
             case "sum":
                 command = SumParser.parse(input, mealLogs, waterLogs, cardioLogs);
-                break;
-            case "view":
-                command = ViewParser.parse(input, goalLogs, pbLogs, mealLogs, workoutLogs, waterLogs, cardioLogs);
                 break;
             case "status":
                 command = StatusParser.parse(input, goalLogs, pbLogs, mealLogs, workoutLogs, waterLogs, cardioLogs);
