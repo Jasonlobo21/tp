@@ -1,7 +1,7 @@
 package seedu.healthbud.parser;
 
 import seedu.healthbud.LogList;
-import seedu.healthbud.command.AllLogsAndInput.ViewCommand;
+import seedu.healthbud.command.alllogsandinput.ViewCommand;
 import seedu.healthbud.exception.InvalidDateException;
 import seedu.healthbud.exception.InvalidViewException;
 import seedu.healthbud.exception.InvalidDateFormatException;
