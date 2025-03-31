@@ -1,4 +1,4 @@
-package seedu.healthbud.command.inputonly;
+package seedu.healthbud.command.InputOnly;
 
 import seedu.healthbud.Ui;
 

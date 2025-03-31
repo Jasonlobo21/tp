@@ -1,4 +1,4 @@
-package seedu.healthbud.command.onelogandinput;
+package seedu.healthbud.command.OneLogAndInput;
 
 import seedu.healthbud.LogList;
 import seedu.healthbud.exception.HealthBudException;

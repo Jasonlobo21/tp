@@ -1,4 +1,4 @@
-package seedu.healthbud.command.alllogsandinput;
+package seedu.healthbud.command.AllLogsAndInput;
 
 import seedu.healthbud.LogList;
 import seedu.healthbud.Ui;
