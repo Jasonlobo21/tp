@@ -105,5 +105,6 @@ Example of usage: `clear meal`
 * 10. `clear <pb|meal|workout|water>` - Clear the respective log
 * 11. `view <date>` - view logs for that date + NEW_LINE
 * 12. `add cardio <exercise> /s <speed> /i <incline> /t <duration> /d <date>` - Add a cardio log
-* 13. `add goals` (keane needs to edit this);
+* 13. `add goal` - to view current goals.
+* 14. `add goal /w <water> /cal <calories> /kg <weight>` Add goals to goal list 
 
