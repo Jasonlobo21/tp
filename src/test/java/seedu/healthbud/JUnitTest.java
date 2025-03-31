@@ -1,53 +1,73 @@
 
 package seedu.healthbud;
 
-//import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 //import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-//import seedu.healthbud.command.onelogandinput.AddMealCommand;
 
-//import org.junit.jupiter.api.Test;
-//import seedu.healthbud.command.onelogandinput.AddMealCommand;
-//import seedu.healthbud.command.onelogandinput.AddMealCommand;
-//import seedu.healthbud.log.Meal;
-//import seedu.healthbud.command.AddLogCommand;
-//import seedu.healthbud.command.InputOnly.BMICommand;
-//import seedu.healthbud.command.OneLogAndInput.ClearCommand;
-//import seedu.healthbud.command.OneLogAndInput.DeleteCommand;
-//import seedu.healthbud.command.OneLogAndInput.FindCommand;
-//import seedu.healthbud.command.InputOnly.RecommendCommand;
-//import seedu.healthbud.command.onelogandinput.AddMealCommand;
+import org.junit.jupiter.api.Test;
+import seedu.healthbud.command.inputonly.RecommendCommand;
 
-//import seedu.healthbud.exception.HealthBudException;
-//import seedu.healthbud.exception.InvalidBMIException;
-//import seedu.healthbud.exception.InvalidCardioException;
-//import seedu.healthbud.exception.InvalidClearException;
-//import seedu.healthbud.exception.InvalidDeleteException;
-//import seedu.healthbud.exception.InvalidFindException;
-//import seedu.healthbud.exception.InvalidLogException;
-//import seedu.healthbud.exception.InvalidMealException;
-//import seedu.healthbud.exception.InvalidMLException;
-//import seedu.healthbud.exception.InvalidPBException;
-//import seedu.healthbud.exception.InvalidRecommendException;
-//import seedu.healthbud.exception.InvalidWaterException;
-//import seedu.healthbud.exception.InvalidWorkoutException;
-//import seedu.healthbud.exception.InvalidDateFormatException;
+import seedu.healthbud.exception.HealthBudException;
+import seedu.healthbud.exception.InvalidRecommendException;
 
-//import seedu.healthbud.command.onelogandinput.AddMealCommand;
-//import seedu.healthbud.log.Meal;
-//import seedu.healthbud.log.Cardio;
-//import seedu.healthbud.log.PB;
-//import seedu.healthbud.log.Water;
-//import seedu.healthbud.log.WorkOUT;
-//import seedu.healthbud.parser.DateParser;
-//
-//
-//import java.io.ByteArrayOutputStream;
-//import java.io.PrintStream;
+import seedu.healthbud.parser.RecommendParser;
 
-/*
+
 class JUnitTest {
 
+    //        ========================= Recommend Tests =========================
+    @Test
+    void recommendWorkout_correctInput_expectSuccess() throws InvalidRecommendException, HealthBudException {
+        String input = "recommend biceps";
+        RecommendCommand command = RecommendParser.parse(input);
+
+        String expected = "Here are some recommended biceps exercises:\n     "
+                + "1. Barbell Bicep Curls\n     "
+                + "2. Hammer Curls\n     "
+                + "3. Cable Curls";
+
+        assertEquals(expected, command.getMessage());
+    }
+
+    @Test
+    void recommendWorkout_invalidMuscle_expectFailure() {
+        String input = "recommend toes";
+        assertThrows(HealthBudException.class, () -> RecommendParser.parse(input));
+    }
+
+    @Test
+    void recommendWorkout_missingInput_expectFailure() {
+        String input = "recommend";
+        assertThrows(InvalidRecommendException.class, () -> RecommendParser.parse(input));
+    }
+
+    // ================================================================= till here
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*
     //        ========================= Meal Log Tests =========================
 
     @Test
@@ -626,7 +646,7 @@ class JUnitTest {
         assertThrows(InvalidDateFormatException.class, () -> DateParser.formatDate(null)); // Null input
         assertThrows(InvalidDateFormatException.class, () -> DateParser.formatDate("")); // Empty string
     }
-
+    */
 
 }
-*/
+
