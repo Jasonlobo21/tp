@@ -67,7 +67,7 @@ class JUnitTest {
 
 
 
-/*
+    /*
     //        ========================= Meal Log Tests =========================
 
     @Test
@@ -646,7 +646,7 @@ class JUnitTest {
         assertThrows(InvalidDateFormatException.class, () -> DateParser.formatDate(null)); // Null input
         assertThrows(InvalidDateFormatException.class, () -> DateParser.formatDate("")); // Empty string
     }
-*/
+    */
 
 }
 
