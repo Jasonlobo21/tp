@@ -54,15 +54,16 @@ public class GeneralParser {
             case "status":
                 command = StatusParser.parse(input, goalLogs, pbLogs, mealLogs, workoutLogs, waterLogs, cardioLogs);
                 break;
+            case "search":
+                command = SearchParser.parse(input, mealLogs, workoutLogs, waterLogs, pbLogs, cardioLogs, goalLogs);
+                break;
             default:
                 Ui.printUnknownCommand();
                 return true;
             }
             command.execute();
             return true;
-        } // dn put alll the different type of exceptions cause they are all subclasses of Exception, so if put
-        // Exception it handles everything le - Kin
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
         return true;
