@@ -19,7 +19,7 @@ class JUnitTest {
 
     //        ========================= Recommend Tests =========================
     @Test
-    void recommendWorkout_correctInput_expectSuccess() throws InvalidRecommendException, HealthBudException{
+    void recommendWorkout_correctInput_expectSuccess() throws InvalidRecommendException, HealthBudException {
         String input = "recommend biceps";
         RecommendCommand command = RecommendParser.parse(input);
 
@@ -32,7 +32,7 @@ class JUnitTest {
     }
 
     @Test
-    void recommendWorkout_invalidMuscle_expectFailure(){
+    void recommendWorkout_invalidMuscle_expectFailure() {
         String input = "recommend toes";
         assertThrows(HealthBudException.class, () -> RecommendParser.parse(input));
     }
