@@ -82,12 +82,6 @@ public class Goals extends Log {
         } else {
             finalString += "    Weight Goal: " + goal.getWeightGoal() + " kg\n";
         }
-//        return String.format("    Daily Water Goal: %s ml\n"
-//                + "    Daily Calorie Goal: %s cal\n"
-//                + "    Weight Goal: %s kg \n"
-//                + "    Weekly Weight Progress: %s kg\n"
-//                , dailyWaterGoal, dailyCalorieGoal, weightGoal, weeklyWeightProgress);
-//    }
         return finalString;
     }
 }
