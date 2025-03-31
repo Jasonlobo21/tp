@@ -3,7 +3,6 @@ package seedu.healthbud;
 //import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import seedu.healthbud.command.inputonly.RecommendCommand;
 import seedu.healthbud.command.inputonly.BMICommand;
@@ -18,10 +17,10 @@ import seedu.healthbud.parser.RecommendParser;
 import seedu.healthbud.parser.BMIParser;
 
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
 class JUnitTest {
@@ -78,10 +77,7 @@ class JUnitTest {
         String input = "bmi seventy /h 1.75";
         assertThrows(InvalidBMIException.class, () -> BMIParser.parse(input));
     }
-
-
-
-
+    //        ========================= ListTests =========================
     @Test
     void listCommand_creation_notNull() {
         LogList mealLogs;
