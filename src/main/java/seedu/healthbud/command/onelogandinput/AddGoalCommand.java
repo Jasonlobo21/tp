@@ -12,7 +12,8 @@ public class AddGoalCommand extends OneLogCommand{
     private static String weeklyWeightProgress;
     Goals goal = Goals.getInstance();
 
-    public AddGoalCommand(LogList goalLogs, String input, String waterGoal, String calorieGoal, String weightGoal){
+    public AddGoalCommand(LogList goalLogs, String input, String waterGoal,
+                          String calorieGoal, String weightGoal){
         super(goalLogs, input);
         this.waterGoal = waterGoal;
         this.calorieGoal = calorieGoal;

@@ -32,7 +32,7 @@ public class AddParser {
             return AddWorkoutParser.parse(workoutLogs, input);
         case "goal":
             return AddGoalParser.parse(goalLogs, input);
-            default:
+        default:
             throw new InvalidLogException();
         }
     }

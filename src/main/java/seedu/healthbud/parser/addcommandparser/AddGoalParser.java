@@ -32,7 +32,8 @@ public class AddGoalParser{
             throw new InvalidGoalException();
         }
         if (!input.contains("/w") && !input.contains("/cal") && !input.contains("/kg")) {
-            Ui.printMessage("Welcome to goal setting! Here are your current goals: \n" + Goals.getInstance().toString());
+            Ui.printMessage("Welcome to goal setting! Here are your current goals: \n"
+                    + Goals.getInstance().toString());
             Ui.printMessage("What goal would you like to add today?\n");
             return new AddGoalCommand(goalLogs, input, Goals.getInstance().getDailyWaterGoal(),
                     Goals.getInstance().getDailyCalorieGoal(), Goals.getInstance().getWeightGoal());
