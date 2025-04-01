@@ -1,7 +1,6 @@
 package seedu.healthbud.parser.addcommandparser;
 
 import seedu.healthbud.LogList;
-import seedu.healthbud.Ui;
 import seedu.healthbud.command.onelogandinput.AddGoalCommand;
 import seedu.healthbud.exception.InvalidGoalException;
 import seedu.healthbud.log.Goals;
