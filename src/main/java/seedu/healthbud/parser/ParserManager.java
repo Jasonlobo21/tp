@@ -20,7 +20,8 @@ public class ParserManager {
             case "bye":
                 return Ui.printGoodbye();
             case "add":
-                command = AddParser.parse(parts[1], mealLogs, waterLogs, cardioLogs,
+                String subCommand = parts[1].toLowerCase();
+                command = AddParser.parse(subCommand, mealLogs, waterLogs, cardioLogs,
                         pbLogs, workoutLogs, goalLogs, input);
                 break;
             case "help":
