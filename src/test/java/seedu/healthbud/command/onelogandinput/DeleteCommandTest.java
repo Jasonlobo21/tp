@@ -6,7 +6,7 @@ import seedu.healthbud.exception.HealthBudException;
 import seedu.healthbud.exception.InvalidCardioException;
 import seedu.healthbud.exception.InvalidDeleteException;
 import seedu.healthbud.exception.InvalidMLException;
-import seedu.healthbud.exception.InvalidPBException;
+import seedu.healthbud.exception.InvalidPersonalBestException;
 import seedu.healthbud.parser.DeleteParser;
 
 import java.io.ByteArrayOutputStream;
@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class DeleteCommandTest {
 
     @Test
-    void deleteMeal_correctInput_expectSuccess() throws InvalidPBException, InvalidMLException,
+    void deleteMeal_correctInput_expectSuccess() throws InvalidPersonalBestException, InvalidMLException,
             InvalidCardioException, HealthBudException {
 
         ByteArrayOutputStream output = new ByteArrayOutputStream();

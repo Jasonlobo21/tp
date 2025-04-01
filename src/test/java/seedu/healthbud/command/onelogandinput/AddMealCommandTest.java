@@ -10,7 +10,7 @@ import seedu.healthbud.log.Meal;
 import seedu.healthbud.parser.addcommandparser.AddMealParser;
 import seedu.healthbud.exception.InvalidCardioException;
 import seedu.healthbud.exception.InvalidMealException;
-import seedu.healthbud.exception.InvalidPBException;
+import seedu.healthbud.exception.InvalidPersonalBestException;
 import seedu.healthbud.exception.InvalidMLException;
 
 class AddMealCommandTest {
@@ -48,7 +48,7 @@ class AddMealCommandTest {
     }
 
     @Test
-    void validMealAddsToLogList_expectSuccess() throws InvalidPBException, InvalidMLException, InvalidCardioException {
+    void validMealAddsToLogList_expectSuccess() throws InvalidPersonalBestException, InvalidMLException, InvalidCardioException {
 
         LogList mealLogs = new LogList();
         String input = "add meal chicken rice /cal 550 /d 12-01-2025 /t 9pm";
