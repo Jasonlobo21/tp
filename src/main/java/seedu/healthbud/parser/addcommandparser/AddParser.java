@@ -15,9 +15,9 @@ public class AddParser {
 
     public static Command parse(String subCommand, LogList mealLogs, LogList waterLogs, LogList cardioLogs,
                                 LogList pbLogs, LogList workoutLogs, LogList goalLogs, String input) throws
-                                InvalidLogException,
-                                InvalidCardioException, InvalidMealException, InvalidPersonalBestException, InvalidWaterException,
-                                InvalidWorkoutException, InvalidDateFormatException, InvalidGoalException {
+                                InvalidLogException, InvalidCardioException, InvalidMealException,
+                                InvalidPersonalBestException, InvalidWaterException, InvalidWorkoutException,
+                                InvalidDateFormatException, InvalidGoalException {
 
         switch (subCommand) {
         case "meal":
