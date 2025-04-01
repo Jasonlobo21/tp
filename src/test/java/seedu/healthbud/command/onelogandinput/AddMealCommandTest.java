@@ -48,7 +48,8 @@ class AddMealCommandTest {
     }
 
     @Test
-    void validMealAddsToLogList_expectSuccess() throws InvalidPersonalBestException, InvalidMLException, InvalidCardioException {
+    void validMealAddsToLogList_expectSuccess() throws InvalidPersonalBestException, InvalidMLException
+            , InvalidCardioException {
 
         LogList mealLogs = new LogList();
         String input = "add meal chicken rice /cal 550 /d 12-01-2025 /t 9pm";
