@@ -7,7 +7,8 @@ import seedu.healthbud.exception.InvalidPersonalBestException;
 import seedu.healthbud.log.PersonalBest;
 import seedu.healthbud.parser.addcommandparser.AddPersonalBestParser;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class AddPersonalBestCommandTest {
 
