@@ -19,7 +19,8 @@ public class ParserManager {
             case "bye":
                 return Ui.printGoodbye();
             case "add":
-                command = AddParser.parse(parts[1], mealLogs, waterLogs, cardioLogs, pbLogs, workoutLogs, goalLogs, input);
+                command = AddParser.parse(parts[1], mealLogs, waterLogs, cardioLogs, pbLogs,
+                        workoutLogs, goalLogs, input);
                 break;
             case "help":
                 Ui.printHelp();
