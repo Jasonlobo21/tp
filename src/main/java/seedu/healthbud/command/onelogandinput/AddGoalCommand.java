@@ -3,6 +3,7 @@ package seedu.healthbud.command.onelogandinput;
 import seedu.healthbud.Ui;
 import seedu.healthbud.log.Goals;
 import seedu.healthbud.LogList;
+import seedu.healthbud.storage.Storage;
 
 public class AddGoalCommand extends OneLogCommand {
 
@@ -25,6 +26,7 @@ public class AddGoalCommand extends OneLogCommand {
                 || !calorieGoal.equals(goal.getDailyCalorieGoal()) || !weightGoal.equals(goal.getWeightGoal())) {
             goal.updateGoals(waterGoal, calorieGoal, weightGoal);
             Ui.printMessage("Goal has been updated:\n" + goal.toString());
+            Storage.appendLogToFile(goal);
         }
         else {
             goal.updateGoals(waterGoal, calorieGoal, weightGoal);
