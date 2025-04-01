@@ -66,10 +66,13 @@ class StatusCommandTest {
 
         StatusParser.parse("status change bulking", empty, empty, meal, empty, empty, cardio);
 
-        new AddMealCommand(meal, "", "Lunch", "300", "2024-04-01", "12:00").execute();
-        new AddCardioCommand(cardio, "", "Stairs", "4", "1", "30", "2024-04-01").execute();
+        new AddMealCommand(meal, "", "Lunch", "300",
+                "2024-04-01", "12:00").execute();
+        new AddCardioCommand(cardio, "", "Stairs", "4",
+                "1", "30", "2024-04-01").execute();
 
-        StatusCommand command = StatusParser.parse("status report 2024-04-01", empty, empty, meal, empty, empty, cardio);
+        StatusCommand command = StatusParser.parse("status report 2024-04-01", empty,
+                empty, meal, empty, empty, cardio);
         String expected = "Current Status: bulking\nYour intake does not align with your goal. Net calories: -350";
         assertEquals(expected, getCommandOutput(command));
     }
@@ -83,9 +86,11 @@ class StatusCommandTest {
         StatusParser.parse("status change bulking", empty, empty, meal, empty, empty, cardio);
 
         new AddMealCommand(meal, "", "Lunch", "300", "2024-04-01", "12:00").execute();
-        new AddCardioCommand(cardio, "", "Jog", "1", "0", "30", "2024-04-01").execute();
+        new AddCardioCommand(cardio, "", "Jog", "1", "0",
+                "30", "2024-04-01").execute();
 
-        StatusCommand command = StatusParser.parse("status report 2024-04-01", empty, empty, meal, empty, empty, cardio);
+        StatusCommand command = StatusParser.parse("status report 2024-04-01", empty, empty, meal,
+                empty, empty, cardio);
         String expected = "Current Status: bulking\nYou are on track for bulking! Net calories: 200";
         assertEquals(expected, getCommandOutput(command));
     }
@@ -100,9 +105,11 @@ class StatusCommandTest {
         StatusParser.parse("status change cutting", empty, empty, meal, empty, empty, cardio);
 
         new AddMealCommand(meal, "", "Dinner", "300", "2024-04-01", "18:00").execute();
-        new AddCardioCommand(cardio, "", "Jog", "1", "0", "30", "2024-04-01").execute();
+        new AddCardioCommand(cardio, "", "Jog", "1", "0",
+                "30", "2024-04-01").execute();
 
-        StatusCommand command = StatusParser.parse("status report 2024-04-01", empty, empty, meal, empty, empty, cardio);
+        StatusCommand command = StatusParser.parse("status report 2024-04-01", empty, empty,
+                meal, empty, empty, cardio);
         String expected = "Current Status: cutting\nYour intake does not align with your goal. Net calories: 200";
         assertEquals(expected, getCommandOutput(command));
     }
@@ -116,9 +123,11 @@ class StatusCommandTest {
         StatusParser.parse("status change cutting", empty, empty, meal, empty, empty, cardio);
 
         new AddMealCommand(meal, "", "Oats", "200", "2024-04-01", "08:00").execute();
-        new AddCardioCommand(cardio, "", "HIIT", "3", "0", "30", "2024-04-01").execute();
+        new AddCardioCommand(cardio, "", "HIIT", "3", "0",
+                "30", "2024-04-01").execute();
 
-        StatusCommand command = StatusParser.parse("status report 2024-04-01", empty, empty, meal, empty, empty, cardio);
+        StatusCommand command = StatusParser.parse("status report 2024-04-01", empty, empty,
+                meal, empty, empty, cardio);
         String expected = "Current Status: cutting\nYou are on track for cutting! Net calories: -100";
         assertEquals(expected, getCommandOutput(command));
     }
