@@ -21,7 +21,14 @@ public class AddGoalCommand extends OneLogCommand {
     }
 
     public void execute(){
-        goal.updateGoals(waterGoal, calorieGoal, weightGoal);
-        Ui.printMessage("Goal has been updated:\n" + goal.toString());
+        if (!waterGoal.equals(goal.getDailyWaterGoal())
+                || !calorieGoal.equals(goal.getDailyCalorieGoal()) || !weightGoal.equals(goal.getWeightGoal())) {
+            goal.updateGoals(waterGoal, calorieGoal, weightGoal);
+            Ui.printMessage("Goal has been updated:\n" + goal.toString());
+        }
+        else {
+            goal.updateGoals(waterGoal, calorieGoal, weightGoal);
+
+        }
     }
 }
