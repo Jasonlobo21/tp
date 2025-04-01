@@ -1,10 +1,11 @@
 package seedu.healthbud.command.onelogandinput;
 
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import seedu.healthbud.LogList;
-import seedu.healthbud.exception.InvalidDateFormatException;
 import seedu.healthbud.log.Meal;
 import seedu.healthbud.parser.addcommandparser.AddMealParser;
 import seedu.healthbud.exception.InvalidCardioException;
@@ -19,8 +20,7 @@ class AddMealCommandTest {
         LogList mealLogs = new LogList();
         String input = "add meal /cal 550 /d 12-01-2025 /t 9pm";
 
-        assertThrows(InvalidMealException.class, () ->
-                AddMealParser.parse(mealLogs, input));
+        assertThrows(InvalidMealException.class, () -> AddMealParser.parse(mealLogs, input));
     }
 
     @Test
@@ -28,8 +28,7 @@ class AddMealCommandTest {
         LogList mealLogs = new LogList();
         String input = "add meal chicken rice /d 12-01-2025 /t 9pm";
 
-        assertThrows(InvalidMealException.class, () ->
-                AddMealParser.parse(mealLogs, input));
+        assertThrows(InvalidMealException.class, () -> AddMealParser.parse(mealLogs, input));
     }
 
     @Test
@@ -37,8 +36,7 @@ class AddMealCommandTest {
         LogList mealLogs = new LogList();
         String input = "add meal chicken rice /cal high /d 12-01-2025 /t 9pm";
 
-        assertThrows(InvalidMealException.class, () ->
-                AddMealParser.parse(mealLogs, input));
+        assertThrows(InvalidMealException.class, () -> AddMealParser.parse(mealLogs, input));
     }
 
     @Test
@@ -46,13 +44,11 @@ class AddMealCommandTest {
         LogList mealLogs = new LogList();
         String input = "add meal";
 
-        assertThrows(InvalidMealException.class, () ->
-                AddMealParser.parse(mealLogs, input));
+        assertThrows(InvalidMealException.class, () -> AddMealParser.parse(mealLogs, input));
     }
 
     @Test
-    void validMealAddsToLogList_expectSuccess() throws InvalidMealException, InvalidPBException,
-            InvalidMLException, InvalidCardioException, InvalidDateFormatException {
+    void validMealAddsToLogList_expectSuccess() throws InvalidPBException, InvalidMLException, InvalidCardioException {
 
         LogList mealLogs = new LogList();
         String input = "add meal chicken rice /cal 550 /d 12-01-2025 /t 9pm";
@@ -70,5 +66,4 @@ class AddMealCommandTest {
         String expected = "chicken rice (550 cal) on: 12 Jan 2025 at: 9pm";
         assertEquals(expected, meal.toString());
     }
-
 }

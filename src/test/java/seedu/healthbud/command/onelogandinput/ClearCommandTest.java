@@ -4,12 +4,8 @@ import org.junit.jupiter.api.Test;
 import seedu.healthbud.LogList;
 import seedu.healthbud.exception.InvalidCardioException;
 import seedu.healthbud.exception.InvalidClearException;
-import seedu.healthbud.exception.InvalidLogException;
 import seedu.healthbud.exception.InvalidMLException;
-import seedu.healthbud.exception.InvalidMealException;
 import seedu.healthbud.exception.InvalidPBException;
-import seedu.healthbud.exception.InvalidWaterException;
-import seedu.healthbud.exception.InvalidWorkoutException;
 import seedu.healthbud.parser.ClearParser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -21,8 +17,7 @@ import java.io.PrintStream;
 
 class ClearCommandTest {
     @Test
-    void clear_correctInput_expectSuccess() throws InvalidMealException, InvalidWorkoutException,
-            InvalidWaterException, InvalidLogException, InvalidPBException, InvalidMLException,
+    void clear_correctInput_expectSuccess() throws InvalidPBException, InvalidMLException,
             InvalidCardioException, InvalidClearException {
 
         ByteArrayOutputStream output = new ByteArrayOutputStream();
