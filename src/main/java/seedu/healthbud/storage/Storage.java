@@ -2,7 +2,7 @@ package seedu.healthbud.storage;
 
 import seedu.healthbud.LogList;
 import seedu.healthbud.log.Meal;
-import seedu.healthbud.log.WorkOUT;
+import seedu.healthbud.log.Workout;
 import seedu.healthbud.log.Water;
 import seedu.healthbud.log.Log;
 import seedu.healthbud.log.PB;
@@ -49,7 +49,7 @@ public class Storage {
                     // Distribute log based on its type
                     if (log instanceof Meal) {
                         mealLogs.loadLog(log);
-                    } else if (log instanceof WorkOUT) {
+                    } else if (log instanceof Workout) {
                         workoutLogs.loadLog(log);
                     } else if (log instanceof Water) {
                         waterLogs.loadLog(log);
@@ -86,7 +86,7 @@ public class Storage {
             if (parts.length != 6) {
                 throw new IllegalArgumentException("Invalid workout format");
             }
-            return new WorkOUT(parts[1], parts[2], parts[3], parts[4], parts[5]);
+            return new Workout(parts[1], parts[2], parts[3], parts[4], parts[5]);
         case "WA":
             if (parts.length != 4) {
                 throw new IllegalArgumentException("Invalid water format");
@@ -139,8 +139,8 @@ public class Storage {
             Meal meal = (Meal) log;
             return "M | " + meal.getName() + " | " + meal.getCalories()
                     + " | " + meal.getDate() + " | " + meal.getTime();
-        } else if (log instanceof WorkOUT) {
-            WorkOUT workout = (WorkOUT) log;
+        } else if (log instanceof Workout) {
+            Workout workout = (Workout) log;
             return "WO | " + workout.getName() + " | " + workout.getReps()
                     + " | " + workout.getSets() + " | " + workout.getDate()
                     + " | " + workout.getWeight();
