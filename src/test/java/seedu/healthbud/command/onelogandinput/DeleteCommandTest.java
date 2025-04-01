@@ -86,6 +86,8 @@ class DeleteCommandTest {
         assertThrows(InvalidDeleteException.class, () ->
                 DeleteParser.parse(input, mealLogs, workoutLogs, waterLogs, pbLogs, cardioLogs));
     }
+
+    
 }
 
 

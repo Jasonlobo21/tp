@@ -2,9 +2,13 @@
 
 ## Introduction
 
-HealthBud is a fitness tracking application that helps users manage their workout routines, meal logs, water intake, and
-personal bests (PBs). With an easy-to-use command-line interface, users can log, view, and manage their fitness data
-efficiently.
+Welcome to HealthBud, your personal fitness companion! Whether you're tracking workouts, logging meals, monitoring water
+intake, or recording personal bests (PBs), HealthBud makes fitness management simple and effective. With an intuitive 
+command-line interface, you can easily log, view, and organize your fitness data.
+
+HealthBud goes beyond basic tracking by helping you set and monitor fitness goals, calculate BMI, track your cutting 
+or bulking progress, and even receive workout recommendations. Stay motivated and in control of your health journey with
+HealthBud!
 
 ## Quick Start
 
@@ -167,8 +171,9 @@ Format: `sum <cal|vol> /d <date>`
 
 Example of usage: `sum cal /d 02/02/2025`
 ``` 
-Total calories consumed: 0
+Total calories consumed: 500
 ``` 
+
 ### Clear
 Clear the respective log
 
@@ -178,6 +183,7 @@ Example of usage: `clear meal`
 ``` 
 Noted. I've removed all logs.
 ``` 
+
 ### Status Change
 Update your cutting/bulking status
 
@@ -187,6 +193,7 @@ Example of usage: `status change bulking`
 ``` 
 Status updated to: bulking
 ``` 
+
 ### Status report
 View your current cutting/bulking progress
 
