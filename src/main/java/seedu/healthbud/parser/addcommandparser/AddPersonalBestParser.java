@@ -1,7 +1,7 @@
 package seedu.healthbud.parser.addcommandparser;
 
 import seedu.healthbud.LogList;
-import seedu.healthbud.command.onelogandinput.AddPBCommand;
+import seedu.healthbud.command.onelogandinput.AddPersonalBestCommand;
 import seedu.healthbud.exception.InvalidDateFormatException;
 import seedu.healthbud.exception.InvalidPBException;
 import seedu.healthbud.parser.DateParser;
@@ -9,9 +9,9 @@ import seedu.healthbud.parser.ParserParameters;
 
 import java.util.Map;
 
-public class AddPBParser {
+public class AddPersonalBestParser {
 
-    public static AddPBCommand parse(LogList pbLogs, String input)
+    public static AddPersonalBestCommand parse(LogList pbLogs, String input)
             throws InvalidPBException, InvalidDateFormatException {
 
         String[] parts = input.trim().split(" ");
@@ -50,7 +50,7 @@ public class AddPBParser {
         }
         String formattedDate = DateParser.formatDate(param.get("d"));
 
-        return new AddPBCommand(pbLogs, input, name,
+        return new AddPersonalBestCommand(pbLogs, input, name,
                 param.get("w"), formattedDate);
     }
 }

@@ -5,7 +5,7 @@ import seedu.healthbud.log.Meal;
 import seedu.healthbud.log.Workout;
 import seedu.healthbud.log.Water;
 import seedu.healthbud.log.Log;
-import seedu.healthbud.log.PB;
+import seedu.healthbud.log.PersonalBest;
 import seedu.healthbud.log.Cardio;
 import seedu.healthbud.log.Goals;
 
@@ -53,7 +53,7 @@ public class Storage {
                         workoutLogs.loadLog(log);
                     } else if (log instanceof Water) {
                         waterLogs.loadLog(log);
-                    } else if (log instanceof PB){
+                    } else if (log instanceof PersonalBest){
                         pbLogs.loadLog(log);
                     } else if (log instanceof Cardio){
                         cardioLogs.loadLog(log);
@@ -96,7 +96,7 @@ public class Storage {
             if (parts.length != 4) {
                 throw new IllegalArgumentException("Invalid pb format");
             }
-            return new PB(parts[1], parts[2], parts[3]);
+            return new PersonalBest(parts[1], parts[2], parts[3]);
         case "C":
             if (parts.length != 6) {
                 throw new IllegalArgumentException("Invalid cardio format");
@@ -147,8 +147,8 @@ public class Storage {
         } else if (log instanceof Water) {
             Water water = (Water) log;
             return "WA | " + water.getAmount() + " | " + water.getDate() + " | " + water.getTime();
-        } else if (log instanceof PB) {
-            PB pb = (PB) log;
+        } else if (log instanceof PersonalBest) {
+            PersonalBest pb = (PersonalBest) log;
             return "P | " + pb.getExercise() + " | " + pb.getWeight() + " | " + pb.getDate();
         } else if (log instanceof Cardio) {
             Cardio cardio = (Cardio) log;

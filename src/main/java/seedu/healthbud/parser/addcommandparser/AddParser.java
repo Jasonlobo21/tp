@@ -27,7 +27,7 @@ public class AddParser {
         case "cardio":
             return AddCardioParser.parse(cardioLogs, input);
         case "pb":
-            return AddPBParser.parse(pbLogs, input);
+            return AddPersonalBestParser.parse(pbLogs, input);
         case "workout":
             return AddWorkoutParser.parse(workoutLogs, input);
         case "goal":
