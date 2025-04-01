@@ -7,7 +7,10 @@ import seedu.healthbud.exception.InvalidDateFormatException;
 import seedu.healthbud.log.Cardio;
 import seedu.healthbud.parser.addcommandparser.AddCardioParser;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+//import static org.junit.jupiter.api.Assertions.*;
 
 class AddCardioCommandTest {
     @Test
