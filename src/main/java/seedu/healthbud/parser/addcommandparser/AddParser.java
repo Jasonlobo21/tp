@@ -7,7 +7,7 @@ import seedu.healthbud.exception.InvalidDateFormatException;
 import seedu.healthbud.exception.InvalidGoalException;
 import seedu.healthbud.exception.InvalidLogException;
 import seedu.healthbud.exception.InvalidMealException;
-import seedu.healthbud.exception.InvalidPBException;
+import seedu.healthbud.exception.InvalidPersonalBestException;
 import seedu.healthbud.exception.InvalidWaterException;
 import seedu.healthbud.exception.InvalidWorkoutException;
 
@@ -15,9 +15,9 @@ public class AddParser {
 
     public static Command parse(String subCommand, LogList mealLogs, LogList waterLogs, LogList cardioLogs,
                                 LogList pbLogs, LogList workoutLogs, LogList goalLogs, String input) throws
-                                InvalidLogException,
-                                InvalidCardioException, InvalidMealException, InvalidPBException, InvalidWaterException,
-                                InvalidWorkoutException, InvalidDateFormatException, InvalidGoalException {
+                                InvalidLogException, InvalidCardioException, InvalidMealException,
+                                InvalidPersonalBestException, InvalidWaterException, InvalidWorkoutException,
+                                InvalidDateFormatException, InvalidGoalException {
 
         switch (subCommand) {
         case "meal":
