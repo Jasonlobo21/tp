@@ -6,13 +6,40 @@ HealthBud is a fitness tracking application that helps users manage their workou
 personal bests (PBs). With an easy-to-use command-line interface, users can log, view, and manage their fitness data
 efficiently.
 
-## Quick Start
+## Quick start
+1. Ensure you have Java 17 or above installed in your Computer. You can download the latest version of Java from here.
 
-1. Ensure that you have Java 17 or above installed.
-2. Download the latest version of HealthBud from here.
-3. Open a terminal and navigate to the folder where the application is located.
-4. Run java -jar HealthBud.jar to start the application.
-5. Start entering commands to log your fitness activities!
+
+2. Download the latest .jar file from here.
+
+
+3. Copy the file to the folder you want to use as the home folder for HealthBud.
+
+
+4. Open a command terminal, cd into the folder you put the jar file in, and use the java -jar HealthBud.jar command to run the application.
+
+
+5. Your command terminal should show the following:
+
+//insert healthbud starting page
+
+6. Type the command in the command terminal and press Enter to execute it.
+
+
+   Some example commands you can try:
+
+- `add meal` chicken rice `/cal` 200 `/d` 02/02/2025 `/t` 1700: Adds a meal type task with description chicken rice, calories 200, date 02/02/2025 and time 1700 to the task tracker.
+
+
+- `list workout`: Lists all workout logs.
+
+
+- `delete water` 1: Deletes the water log with index 1.
+
+
+- `bye`: Exits the app.
+
+
 
 ## Features
 

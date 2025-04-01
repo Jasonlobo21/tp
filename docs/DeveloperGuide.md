@@ -81,6 +81,8 @@ The DeleteCommand:
 
 #### Sequence Diagram
 ![DeleteLog.png](Images/DeleteSD.png)
+WHICH IS BETTER
+![DeleteLog.png](Images/DeleteSD1.png)
 
 Diagram Explanation <br>
 1. User Input:
