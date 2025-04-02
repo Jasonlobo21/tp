@@ -140,7 +140,7 @@ public class LogList {
         return totalCardio;
     }
 
-    public int getWaterSum(String date) {
+    public void getWaterSum(String date) {
         int totalWater = 0;
         for (int i = 0; i < logs.size(); i++) {
             Water water = (Water) logs.get(i);
@@ -149,9 +149,7 @@ public class LogList {
             }
         }
         Ui.printMessage("Total water consumed: " + totalWater + "ml");
-        return totalWater;
     }
-
 
 }
 

@@ -3,13 +3,14 @@ package seedu.healthbud.parser;
 import seedu.healthbud.LogList;
 import seedu.healthbud.Ui;
 import seedu.healthbud.command.multilog.TrackGoalCommand;
+import seedu.healthbud.exception.InvalidDateFormatException;
 import seedu.healthbud.exception.InvalidTrackException;
 
 public class TrackGoalParser {
 
     public static TrackGoalCommand parse(String input, LogList goalLogs, LogList pbLogs, LogList mealLogs,
                                          LogList workoutLogs, LogList waterLogs, LogList cardioLogs)
-            throws InvalidTrackException {
+            throws InvalidTrackException, InvalidDateFormatException {
         String[] parts = input.trim().split(" ");
 
         if (parts.length < 4 || !parts[2].equals("/d")) {

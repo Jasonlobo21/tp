@@ -3,7 +3,9 @@ package seedu.healthbud.command.multilog;
 import seedu.healthbud.LogList;
 import seedu.healthbud.Ui;
 import seedu.healthbud.command.MultiLogCommand;
+import seedu.healthbud.exception.InvalidDateFormatException;
 import seedu.healthbud.exception.InvalidTrackException;
+import seedu.healthbud.parser.DateParser;
 
 public class TrackGoalCommand extends MultiLogCommand {
 
@@ -13,11 +15,11 @@ public class TrackGoalCommand extends MultiLogCommand {
 
     public TrackGoalCommand(String date, LogList goalLogs, LogList pbLogs, LogList mealLogs,
                             LogList workoutLogs, LogList waterLogs, LogList cardioLogs
-                            ) throws InvalidTrackException {
+                            ) throws InvalidTrackException, InvalidDateFormatException {
         super(goalLogs, pbLogs, mealLogs, workoutLogs, waterLogs, cardioLogs, date);
         this.waterLogs = waterLogs;
         this.mealLogs = mealLogs;
-        this.date = date;
+        this.date = DateParser.formatDate(date);
     }
 
     @Override
