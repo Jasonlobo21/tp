@@ -7,8 +7,7 @@ The application incorporates robust command parsing, in-memory log management, a
 # Summary of Contributions
 ## Code contributed
 
-Give a link to your code on tP Code Dashboard. The link is available in the Project List Page -- linked to the  icon
-under your profile picture.
+[Team Dashboard](https://nus-cs2113-ay2425s2.github.io/tp-dashboard/#/widget/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2025-02-21&chartGroupIndex=40&chartIndex=1)
 
 ## Enhancements implemented
 

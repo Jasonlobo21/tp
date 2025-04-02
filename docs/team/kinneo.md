@@ -7,7 +7,8 @@ intelligent features such as progress status and workout recommendations.
 # Summary of Contributions
 ## Code contributed
 
-// need to ask cf how to get the link first
+[Team Dashboard](https://nus-cs2113-ay2425s2.github.io/tp-dashboard/#/widget/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2025-02-21&chartGroupIndex=40&chartIndex=3)
+
 
 ## Enhancements implemented
 
