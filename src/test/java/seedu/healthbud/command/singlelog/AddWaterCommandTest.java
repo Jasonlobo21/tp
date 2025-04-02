@@ -14,7 +14,7 @@ class AddWaterCommandTest {
 
     @Test
     void addWater_correctInput_expectSuccess()
-        throws InvalidDateFormatException, InvalidWaterException {
+            throws InvalidDateFormatException, InvalidWaterException {
 
         LogList waterLogs = new LogList();
         String input = "add water /ml 1000 /d 12-04-2002 /t 1200";
