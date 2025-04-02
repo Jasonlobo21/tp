@@ -4,6 +4,7 @@ import seedu.healthbud.Ui;
 import seedu.healthbud.command.SingleLogCommand;
 import seedu.healthbud.log.Goals;
 import seedu.healthbud.LogList;
+import seedu.healthbud.storage.Storage;
 
 public class AddGoalCommand extends SingleLogCommand {
 
@@ -22,7 +23,15 @@ public class AddGoalCommand extends SingleLogCommand {
     }
 
     public void execute(){
-        goal.updateGoals(waterGoal, calorieGoal, weightGoal);
-        Ui.printMessage("Goal has been updated:\n" + goal.toString());
+        if (!waterGoal.equals(goal.getDailyWaterGoal())
+                || !calorieGoal.equals(goal.getDailyCalorieGoal()) || !weightGoal.equals(goal.getWeightGoal())) {
+            goal.updateGoals(waterGoal, calorieGoal, weightGoal);
+            Ui.printMessage("Goal has been updated:\n" + goal.toString());
+            Storage.appendLogToFile(goal);
+        }
+        else {
+            goal.updateGoals(waterGoal, calorieGoal, weightGoal);
+
+        }
     }
 }
