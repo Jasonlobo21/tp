@@ -49,6 +49,9 @@ public class ParserManager {
             case "search":
                 command = SearchParser.parse(input, mealLogs, workoutLogs, waterLogs, pbLogs, cardioLogs, goalLogs);
                 break;
+            case "view":
+                ViewGoalsParser.parse(input);
+                return true;
             default:
                 Ui.printUnknownCommand();
                 return true;

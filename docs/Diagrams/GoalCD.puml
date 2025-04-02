@@ -29,6 +29,7 @@ package seedu.healthbud.log {
     Log <|-- Goals
 }
 
+
 package seedu.healthbud.command.onelogandinput {
     class OneLogCommand {
         +OneLogCommand(LogList, String)
