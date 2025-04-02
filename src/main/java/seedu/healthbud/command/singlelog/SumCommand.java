@@ -4,7 +4,7 @@ import seedu.healthbud.LogList;
 import seedu.healthbud.command.SingleLogCommand;
 import seedu.healthbud.exception.InvalidDateException;
 import seedu.healthbud.exception.InvalidSumException;
-import seedu.healthbud.exception.InvalidDateException;
+
 
 public class SumCommand extends SingleLogCommand {
 
