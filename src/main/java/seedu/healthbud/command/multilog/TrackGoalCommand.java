@@ -11,15 +11,11 @@ import seedu.healthbud.exception.InvalidTrackException;
 public class TrackGoalCommand extends MultiLogCommand {
 
     private final String date;
-    LogList waterLogs;
-    LogList mealLogs;
 
     public TrackGoalCommand(String date, LogList goalLogs, LogList pbLogs, LogList mealLogs,
                             LogList workoutLogs, LogList waterLogs, LogList cardioLogs
                             ) throws InvalidTrackException, InvalidDateFormatException {
         super(goalLogs, pbLogs, mealLogs, workoutLogs, waterLogs, cardioLogs, date);
-        this.waterLogs = waterLogs;
-        this.mealLogs = mealLogs;
         this.date = DateParser.formatDate(date);
     }
 
