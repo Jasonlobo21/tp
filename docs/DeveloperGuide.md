@@ -35,9 +35,15 @@ The bulk of the CLI's work id done by the following components:
 
 ### UI
 
+![UI_Class_Diagram](Images/UiCD.png) <br>
+
+- The UI component is responsible for user interactions. It handles displaying messages, prompts, and error messages to the user. 
+
+
+
+
 ### Parser
 
-![Parser_Class_Diagram](Images/ParserCD.png)
 
 The Parser interface uses a series of classes to implement the various commands.
 
@@ -71,51 +77,63 @@ This design promotes extensibility and encapsulation, allowing new log types to 
 `//TODO: include SD here`
 
 ### Delete Log Command
-The delete log feature allows users to remove a log by its index in the application's log list. This feature is handled by the DeleteCommand class, which performs validation, deletion, and error handling.
+The delete log feature allows users to remove a log by its index from the application's log list. This feature is handled by the `DeleteCommand` class, which performs validation, deletion, and error handling.
 
 1. User Input: <br>
-  The user enters the delete command followed by the log's index (e.g., delete meal 3).
+   - The user enters the delete command followed by the log's index (e.g., `delete meal 3`).
 
 
 2. Command Parsing: <br>
-The Parser converts the input into a DeleteCommand object, adjusting the index to match the list’s 0-based indexing.
+   - The Parser converts the input into a `DeleteCommand` object, adjusting the index to match the list’s 0-based indexing. This process is handled by the `ParserManager` and the `DeleteParser.`
 
 
-3. Execution: <br>
-The DeleteCommand:
+3. The `DeleteCommand` executes as follows: <br>
+   - Validation: Verifies whether the specified index is valid and corresponds to an existing meal log.
 
-- Validation: Verifies whether the specified index is valid and corresponds to an existing meal log.
+   - Error Handling: If the index is invalid, an error message is returned to the user.
 
-- Error Handling: If the index is invalid, an error message is returned to the user.
+   - Deletion: If the index is valid, the command retrieves the log’s details, removes the log from the Logs list, and generates a success message.
 
-- Deletion: If the index is valid, the command retrieves the meal log’s details, removes the meal log from the mealLogs list, and generates a success message.
 
-#### Sequence Diagram
+4. How the feature is implemented: <br>
+   - The deletion functionality is handled by the DeleteCommand class. It validates the user-provided index, adjusts it to match the 0-based indexing of the log list, and performs the deletion on the LogList object. This keeps the deletion logic isolated, making it easier to maintain and test.
+
+
+5. Why it is implemented that way: <br>
+    - Using a dedicated command class follows the Command Pattern, which separates concerns effectively. Isolating deletion logic into its own class adheres to the Single Responsibility Principle, simplifying debugging and future enhancements without impacting other parts of the system.
+
+
+6. Alternatives considered: <br>
+    - One alternative was to embed the deletion logic directly in the parser or UI layer. However, this approach would mix user input handling with business logic, resulting in code that is harder to maintain and test. Delegating deletion to a specialized command class keeps the design modular and scalable.
+
+### Sequence Diagram
 ![DeleteLog.png](Images/DeleteSD.png)
-WHICH IS BETTER
-![DeleteLog.png](Images/DeleteSD1.png)
+
 
 Diagram Explanation <br>
-1. User Input:
-The user enters delete meal 3 in the CLI.
+
+1. User Input: <br>
+   - The user enters `delete meal 3` in the CLI.
 
 
 2. Parsing: <br>
-The ParserManager receives the command and calls DeleteParser to interpret it. <br>
-DeleteParser returns a DeleteCommand object (with the index adjusted to 0-based indexing) to ParserManager.
+   - `HealthBud` receives the command and passes it to the `GeneralParser`.
+   - The `GeneralParser` calls `DeleteParser`, which extracts the log type ("meal") and the index (3). The index is then adjusted for 0-based indexing.
+   - A `DeleteCommand` object is created and returned to the `GeneralParser`.
 
 
-3. Command Execution:
-ParserManager calls execute() on the DeleteCommand.
-DeleteCommand invokes deleteLog(3) on mealLogs.
 
+
+3. Command Execution: <br>
+   - The `GeneralParser` invokes `execute()` on the `DeleteCommand`.
+   - The `DeleteCommand` calls `deleteLog(2)` on the `mealLogs` (since index 3 from the user corresponds to index 2 internally).
+   - The log is deleted from the `mealLogs`, and a success message is generated.
 
 4. Outcome: <br>
-An alternative flow distinguishes between:
 
-- Invalid Index: An error message is returned and displayed to the user.
+   - If the index is invalid, the command returns an error message.
 
-- Valid Index: The meal log is removed from mealLogs and a success message is shown.
+   - If the index is valid, the meal log is removed and a success message is displayed to the user.
 
 This clear separation of user input, command parsing, and execution ensures that the deletion operation is handled in a structured and predictable manner.
 
