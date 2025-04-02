@@ -71,23 +71,23 @@ This design promotes extensibility and encapsulation, allowing new log types to 
 `//TODO: include command class diagram here`
 
 
-## Implementation
+# Implementation
 
-### Add Log Command
+## Add Log Command
 `//TODO: include SD here`
 
-### Delete Log Command
+## Delete Log Command
 The delete log feature allows users to remove a log by its index from the application's log list. This feature is handled by the `DeleteCommand` class, which performs validation, deletion, and error handling.
 
-1. User Input: <br>
+### 1. User Input: <br>
    - The user enters the delete command followed by the log's index (e.g., `delete meal 3`).
 
 
-2. Command Parsing: <br>
+### 2. Command Parsing: <br>
    - The Parser converts the input into a `DeleteCommand` object, adjusting the index to match the list’s 0-based indexing. This process is handled by the `ParserManager` and the `DeleteParser.`
 
 
-3. The `DeleteCommand` executes as follows: <br>
+### 3. The `DeleteCommand` executes as follows: <br>
    - Validation: Verifies whether the specified index is valid and corresponds to an existing meal log.
 
    - Error Handling: If the index is invalid, an error message is returned to the user.
@@ -95,15 +95,15 @@ The delete log feature allows users to remove a log by its index from the applic
    - Deletion: If the index is valid, the command retrieves the log’s details, removes the log from the Logs list, and generates a success message.
 
 
-4. How the feature is implemented: <br>
+### 4. How the feature is implemented: <br>
    - The deletion functionality is handled by the DeleteCommand class. It validates the user-provided index, adjusts it to match the 0-based indexing of the log list, and performs the deletion on the LogList object. This keeps the deletion logic isolated, making it easier to maintain and test.
 
 
-5. Why it is implemented that way: <br>
+### 5. Why it is implemented that way: <br>
     - Using a dedicated command class follows the Command Pattern, which separates concerns effectively. Isolating deletion logic into its own class adheres to the Single Responsibility Principle, simplifying debugging and future enhancements without impacting other parts of the system.
 
 
-6. Alternatives considered: <br>
+### 6. Alternatives considered: <br>
     - One alternative was to embed the deletion logic directly in the parser or UI layer. However, this approach would mix user input handling with business logic, resulting in code that is harder to maintain and test. Delegating deletion to a specialized command class keeps the design modular and scalable.
 
 ### Sequence Diagram
@@ -175,7 +175,10 @@ This structure clearly separates parsing, command creation, and UI interaction f
 - Move recommendations to a config/JSON file for easier updates without modifying source code.
 - Support partial string matches and synonyms for better UX.
 
+
+
 ## BMICommand
+
 ### 1. Feature overview:
 The **BMICommand** feature allows users to calculate their Body Mass Index (BMI) and receive a classification (e.g., underweight, normal weight, overweight, obese). It’s useful for users who want a quick health metric based on their height and weight inputs.
 ### 2. Implementation details:
@@ -202,6 +205,8 @@ Given the simplicity of the BMI formula, an external library would add unnecessa
 
 5. Sequence Diagrams
 6. Future Improvements
+
+
 
 ## SearchCommand
 ### 1. Feature overview:
