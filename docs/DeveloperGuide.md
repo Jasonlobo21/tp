@@ -35,9 +35,15 @@ The bulk of the CLI's work id done by the following components:
 
 ### UI
 
+![UI_Class_Diagram](Images/UiCD.png) <br>
+
+- The UI component is responsible for user interactions. It handles displaying messages, prompts, and error messages to the user. 
+
+
+
+
 ### Parser
 
-![Parser_Class_Diagram](Images/ParserCD.png)
 
 The Parser interface uses a series of classes to implement the various commands.
 
@@ -45,7 +51,18 @@ The Parser interface uses a series of classes to implement the various commands.
 `//TODO: include command class diagram here`
 
 ### LogList
-`//TODO: include command class diagram here`
+![LogList_Class_Diagram](Images/LogListCD.png)
+
+The LogList class manages a list of logs, each representing a fitness-related entry such as meals, workouts, water 
+intake, cardio sessions, personal bests, or goals. It maintains a List<Log> and provides methods to add, delete, update,
+list, and search through these logs.
+
+- The abstract Log class is the superclass for all log types.
+- Subclasses like Meal, Workout, Water, Cardio, PersonalBest, and Goals extend Log and store specific data for each log type.
+- LogList has a one-to-many association with Log, represented by the contains relationship.
+- The Goals class follows a singleton pattern via getInstance() and stores user-defined fitness goals.
+
+This design promotes extensibility and encapsulation, allowing new log types to be added easily while maintaining a consistent interface.
 
 ### Storage
 `//TODO: include command class diagram here`
@@ -54,57 +71,69 @@ The Parser interface uses a series of classes to implement the various commands.
 `//TODO: include command class diagram here`
 
 
-## implementation
+# Implementation
 
-### Add Log Command
+## Add Log Command
 `//TODO: include SD here`
 
-### Delete Log Command
-The delete log feature allows users to remove a log by its index in the application's log list. This feature is handled by the DeleteCommand class, which performs validation, deletion, and error handling.
+## Delete Log Command
+The delete log feature allows users to remove a log by its index from the application's log list. This feature is handled by the `DeleteCommand` class, which performs validation, deletion, and error handling.
 
-1. User Input: <br>
-  The user enters the delete command followed by the log's index (e.g., delete meal 3).
-
-
-2. Command Parsing: <br>
-The Parser converts the input into a DeleteCommand object, adjusting the index to match the list’s 0-based indexing.
+### 1. User Input: <br>
+   - The user enters the delete command followed by the log's index (e.g., `delete meal 3`).
 
 
-3. Execution: <br>
-The DeleteCommand:
+### 2. Command Parsing: <br>
+   - The Parser converts the input into a `DeleteCommand` object, adjusting the index to match the list’s 0-based indexing. This process is handled by the `ParserManager` and the `DeleteParser.`
 
- - Validation: Verifies whether the specified index is valid and corresponds to an existing meal log.
 
-- Error Handling: If the index is invalid, an error message is returned to the user.
+### 3. The `DeleteCommand` executes as follows: <br>
+   - Validation: Verifies whether the specified index is valid and corresponds to an existing meal log.
 
-- Deletion: If the index is valid, the command retrieves the meal log’s details, removes the meal log from the mealLogs list, and generates a success message.
+   - Error Handling: If the index is invalid, an error message is returned to the user.
 
-#### Sequence Diagram
+   - Deletion: If the index is valid, the command retrieves the log’s details, removes the log from the Logs list, and generates a success message.
+
+
+### 4. How the feature is implemented: <br>
+   - The deletion functionality is handled by the DeleteCommand class. It validates the user-provided index, adjusts it to match the 0-based indexing of the log list, and performs the deletion on the LogList object. This keeps the deletion logic isolated, making it easier to maintain and test.
+
+
+### 5. Why it is implemented that way: <br>
+    - Using a dedicated command class follows the Command Pattern, which separates concerns effectively. Isolating deletion logic into its own class adheres to the Single Responsibility Principle, simplifying debugging and future enhancements without impacting other parts of the system.
+
+
+### 6. Alternatives considered: <br>
+    - One alternative was to embed the deletion logic directly in the parser or UI layer. However, this approach would mix user input handling with business logic, resulting in code that is harder to maintain and test. Delegating deletion to a specialized command class keeps the design modular and scalable.
+
+### Sequence Diagram
 ![DeleteLog.png](Images/DeleteSD.png)
-WHICH IS BETTER
-![DeleteLog.png](Images/DeleteSD1.png)
+
 
 Diagram Explanation <br>
-1. User Input:
-The user enters delete meal 3 in the CLI.
+
+1. User Input: <br>
+   - The user enters `delete meal 3` in the CLI.
 
 
 2. Parsing: <br>
-The ParserManager receives the command and calls DeleteParser to interpret it. <br>
-DeleteParser returns a DeleteCommand object (with the index adjusted to 0-based indexing) to ParserManager.
+   - `HealthBud` receives the command and passes it to the `GeneralParser`.
+   - The `GeneralParser` calls `DeleteParser`, which extracts the log type ("meal") and the index (3). The index is then adjusted for 0-based indexing.
+   - A `DeleteCommand` object is created and returned to the `GeneralParser`.
 
 
-3. Command Execution:
-ParserManager calls execute() on the DeleteCommand.
-DeleteCommand invokes deleteLog(3) on mealLogs.
 
+
+3. Command Execution: <br>
+   - The `GeneralParser` invokes `execute()` on the `DeleteCommand`.
+   - The `DeleteCommand` calls `deleteLog(2)` on the `mealLogs` (since index 3 from the user corresponds to index 2 internally).
+   - The log is deleted from the `mealLogs`, and a success message is generated.
 
 4. Outcome: <br>
-An alternative flow distinguishes between:
 
-- Invalid Index: An error message is returned and displayed to the user.
+   - If the index is invalid, the command returns an error message.
 
-- Valid Index: The meal log is removed from mealLogs and a success message is shown.
+   - If the index is valid, the meal log is removed and a success message is displayed to the user.
 
 This clear separation of user input, command parsing, and execution ensures that the deletion operation is handled in a structured and predictable manner.
 
@@ -112,49 +141,44 @@ This clear separation of user input, command parsing, and execution ensures that
 ## Recommend
 
 ### 1. Feature overview
-   The RecommendCommand feature allows users to receive workout recommendations tailored to a specific muscle group. The
-   command takes the form recommend <muscle_group> and responds with a set of 3 recommended exercises. This feature is
-   intended for fitness enthusiasts who may need guidance or variety in their training routines.
-
+The recommend <muscle_group> command provides users with 3 curated workout suggestions based on the specified muscle group, helping users diversify their fitness routines.
 ### 2. Implementation details
-   The RecommendCommand class extends the base Command class and overrides the execute method. The command supports inputs
-   like recommend biceps, recommend legs, and so on. The logic of selecting which recommendation to print is
-   encapsulated in a helper method getRecommendation(String input) which parses the input and returns a corresponding
-   string. The execute method is kept clean and only responsible for printing this result to the console. This
-   separation also makes the logic more testable, as the string-producing logic in getRecommendation() can be unit
-   tested independently without checking the output stream.
+- RecommendParser handles parsing and validation of user input.
+- Based on the muscle group, it creates a RecommendCommand with the appropriate message.
+- RecommendCommand is responsible solely for displaying the recommendation using Ui.printMessage().
 
 ### 3. Why this design
-- Separation of concerns: By moving the recommendation content generation to a separate method, we improve readability
-  and testability.
-- Scalability: Adding new muscle groups or modifying messages is centralized in getRecommendation(), making it easier to
-  extend.
-- Robustness: Proper input validation and informative error messages ensure a good user experience.
+- Separation of Concerns: Logic for parsing and message generation is in the parser, while command execution is kept simple and focused.
+- Testability: Easy to write unit tests for RecommendParser without needing to simulate UI output.
+- Readability: Clean execute() method and well-structured parser make the code intuitive and maintainable
 
 ### 4. Alternatives considered
-- Using Enums for muscle groups: Initially considered using an enum with mappings to lists of exercises. While this
-  improves type-safety, it adds overhead and less flexibility for user input variations.
-- Reading recommendations from a file: Considered storing recommendations in a file, but added unnecessary I/O for a
-  static set of data.
+- Enums for muscle groups: More structured but restrictive; dropped in favor of flexible string matching.
+- External file storage for recommendations: Overhead for static data; current implementation is simpler and faster.
 
 ### 5. Sequence Diagrams
-- {to be updated using plantUML}
+![Recommend_Sequence_Diagram](Images/RecommendSD.png)
+
+Diagram Explanation <br>
+
+1. User Input: The user enters recommend <muscle_group> in the CLI.
+2. Parsing: RecommendParser parses the input and creates a RecommendCommand with a list of exercises.
+3. Command Execution: RecommendCommand.execute() is called. It sends the exercise list to Ui to display.
+4. Outcome: <br>
+An alt block handles:
+- Valid Input: The recommended exercises are displayed and a success message is returned.
+- Invalid Input: An exception is thrown and an error message is shown to the user.
+
+This structure clearly separates parsing, command creation, and UI interaction for robust handling.
 
 ### 6. Future Improvements
-- Store recommendations in a config file or JSON for easier modification.
+- Move recommendations to a config/JSON file for easier updates without modifying source code.
+- Support partial string matches and synonyms for better UX.
 
 
-### 6. Future Improvements:
-   Enhanced Search Capabilities:
-   Incorporate multi-keyword search, case-insensitive matching, or fuzzy search to better capture user intent.
-   UI Feedback Enhancements:
-   Improve user feedback by highlighting the keyword in the matching results or providing suggestions when no matches are found.
-   Support for Additional Log Types:
-   As the application evolves, extend the command to support searching in other log categories (e.g., cardio or pb).
-   Configuration Options:
-   Allow users to customize search parameters or filter results based on date ranges or other log attributes.
 
 ## BMICommand
+
 ### 1. Feature overview:
 The **BMICommand** feature allows users to calculate their Body Mass Index (BMI) and receive a classification (e.g., underweight, normal weight, overweight, obese). It’s useful for users who want a quick health metric based on their height and weight inputs.
 ### 2. Implementation details:
@@ -181,6 +205,8 @@ Given the simplicity of the BMI formula, an external library would add unnecessa
 
 5. Sequence Diagrams
 6. Future Improvements
+
+
 
 ## SearchCommand
 ### 1. Feature overview:
