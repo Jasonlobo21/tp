@@ -52,6 +52,9 @@ public class ParserManager {
             case "view":
                 ViewGoalsParser.parse(input);
                 return true;
+            case "track":
+                TrackGoalParser.parse(input);
+                return true;
             default:
                 Ui.printUnknownCommand();
                 return true;
