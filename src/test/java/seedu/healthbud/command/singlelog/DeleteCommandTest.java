@@ -21,6 +21,8 @@ import static seedu.healthbud.HealthBud.pbLogs;
 
 class DeleteCommandTest {
 
+    private LogList workoutLogs;
+
     @Test
     void deleteMeal_correctInput_expectSuccess() throws InvalidPersonalBestException, InvalidMLException,
             InvalidCardioException, HealthBudException {
@@ -187,8 +189,6 @@ class DeleteCommandTest {
         assertThrows(InvalidDeleteException.class, () ->
                 DeleteParser.parse(input, mealLogs, workoutLogs, waterLogs, pbLogs, cardioLogs));
     }
-
-    private LogList workoutLogs;
 
     @BeforeEach
     void setUp() {

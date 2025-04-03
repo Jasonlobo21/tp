@@ -222,15 +222,16 @@ class AddCardioCommandTest {
     }
 
 @Test
-    void validCardioToStringReturnsCorrectString_expectSuccess() {
-        LogList cardioLogs = new LogList();
-        String input = "add cardio running /s 8.5 /i 2 /t 30 /d 25-12-2023";
-        AddCardioCommand command = new AddCardioCommand(
-                cardioLogs, input, "running", "8.5", "2", "30", "25 Dec 2023");
+void validCardioToStringReturnsCorrectString_expectSuccess() {
+    LogList cardioLogs = new LogList();
+    String input = "add cardio running /s 8.5 /i 2 /t 30 /d 25-12-2023";
+    AddCardioCommand command = new AddCardioCommand(
+            cardioLogs, input, "running", "8.5", "2", "30", "25 Dec 2023");
 
-        String expected = "running (speed: 8.5, incline: 2, duration: 30 mins) on 25 Dec 2023";
-        Cardio cardio = new Cardio("running", "8.5", "2", "30", "25 Dec 2023");
+    String expected = "running (speed: 8.5, incline: 2, duration: 30 mins) on 25 Dec 2023";
+    Cardio cardio = new Cardio("running", "8.5", "2", "30", "25 Dec 2023");
 
-        assertEquals(expected, cardio.toString());
+    assertEquals(expected, cardio.toString());
     }
+
 }
