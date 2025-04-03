@@ -11,8 +11,8 @@ public class SumCommand extends SingleLogCommand {
     private final String type;
     private final String date;
 
-    public SumCommand(String input, LogList logList, String type, String date) {
-        super(logList, input);
+    public SumCommand(LogList logList, String type, String date) {
+        super(logList);
         this.type = type;
         this.date = date;
     }

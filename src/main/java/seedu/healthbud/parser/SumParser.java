@@ -21,11 +21,11 @@ public class SumParser {
 
         switch (type) {
         case "cal":
-            return new SumCommand(input, mealLogs, type, parseDate);
+            return new SumCommand(mealLogs, type, parseDate);
         case "vol":
-            return new SumCommand(input, waterLogs, type, parseDate);
+            return new SumCommand(waterLogs, type, parseDate);
         case "cardio":
-            return new SumCommand(input, cardioLogs, type, parseDate);
+            return new SumCommand(cardioLogs, type, parseDate);
         default:
             throw new InvalidSumException();
         }

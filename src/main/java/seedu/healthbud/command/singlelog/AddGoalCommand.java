@@ -14,9 +14,9 @@ public class AddGoalCommand extends SingleLogCommand {
     private static String weeklyWeightProgress;
     Goals goal = Goals.getInstance();
 
-    public AddGoalCommand(LogList goalLogs, String input, String waterGoal,
+    public AddGoalCommand(LogList goalLogs, String waterGoal,
                           String calorieGoal, String weightGoal){
-        super(goalLogs, input);
+        super(goalLogs);
         this.waterGoal = waterGoal;
         this.calorieGoal = calorieGoal;
         this.weightGoal = weightGoal;
