@@ -28,7 +28,8 @@ class DeleteCommandTest {
         LogList mealLogs = new LogList();
         String input = "add meal chicken rice /cal 550 /d 12-01-25 /t 9pm";
 
-        AddMealCommand addCommand = new AddMealCommand(mealLogs, input, "chicken rice", "550", "12 Jan 2025", "9pm");
+        AddMealCommand addCommand = new AddMealCommand(mealLogs, input, "chicken rice", "550",
+                "12 Jan 2025", "9pm");
         addCommand.execute();
         assertEquals(1, mealLogs.getSize());
 
@@ -87,7 +88,54 @@ class DeleteCommandTest {
                 DeleteParser.parse(input, mealLogs, workoutLogs, waterLogs, pbLogs, cardioLogs));
     }
 
-    
+    @Test
+    void deleteWorkout_correctInput_expectSuccess() throws Exception {
+        LogList workoutLogs = new LogList();
+        LogList empty = new LogList();
+        String input = "delete workout 1";
+        DeleteCommand command = DeleteParser.parse(input, empty, workoutLogs, empty, empty, empty);
+        assertEquals(workoutLogs, command.getLogList());
+    }
+
+    @Test
+    void deleteWater_correctInput_expectSuccess() throws Exception {
+        LogList waterLogs = new LogList();
+        LogList empty = new LogList();
+        String input = "delete water 1";
+        DeleteCommand command = DeleteParser.parse(input, empty, empty, waterLogs, empty, empty);
+        assertEquals(waterLogs, command.getLogList());
+    }
+
+    @Test
+    void deletePB_correctInput_expectSuccess() throws Exception {
+        LogList pbLogs = new LogList();
+        LogList empty = new LogList();
+        String input = "delete pb 1";
+        DeleteCommand command = DeleteParser.parse(input, empty, empty, empty, pbLogs, empty);
+        assertEquals(pbLogs, command.getLogList());
+    }
+
+    @Test
+    void deleteCardio_correctInput_expectSuccess() throws Exception {
+        LogList cardioLogs = new LogList();
+        LogList empty = new LogList();
+        String input = "delete cardio 1";
+        DeleteCommand command = DeleteParser.parse(input, empty, empty, empty, empty, cardioLogs);
+        assertEquals(cardioLogs, command.getLogList());
+    }
+
+    @Test
+    void deleteCommand_invalidExecuteInput_expectThrowsHealthBudException() {
+        LogList mealLogs = new LogList();
+        String badInput = "delete meal noindex";
+
+        DeleteCommand command = new DeleteCommand(mealLogs, badInput, 1);
+
+        HealthBudException exception = assertThrows(HealthBudException.class, command::execute);
+        assertEquals("Insert a valid task number", exception.getMessage());
+    }
+
+
 }
 
 

@@ -81,101 +81,100 @@ The Storage class manages HealthBud log persistence by reading and writing to a 
 The delete log feature allows users to remove a log by its index from the application's log list. This feature is handled by the `DeleteCommand` class, which performs validation, deletion, and error handling.
 
 ### 1. User Input: <br>
-   - The user enters the delete command followed by the log's index (e.g., `delete meal 3`).
-
+- The user enters the delete command followed by the log's index (e.g., `delete meal 3`).
 
 ### 2. Command Parsing: <br>
-   - The Parser converts the input into a `DeleteCommand` object, adjusting the index to match the list’s 0-based indexing. This process is handled by the `ParserManager` and the `DeleteParser.`
-
+- The Parser converts the input into a `DeleteCommand` object, adjusting the index to match the list’s 0-based indexing. This process is handled by the `ParserManager` and the `DeleteParser.`
 
 ### 3. The `DeleteCommand` executes as follows: <br>
-   - Validation: Verifies whether the specified index is valid and corresponds to an existing meal log.
-
-   - Error Handling: If the index is invalid, an error message is returned to the user.
-
-   - Deletion: If the index is valid, the command retrieves the log’s details, removes the log from the Logs list, and generates a success message.
-
+- Validation: Verifies whether the specified index is valid and corresponds to an existing meal log.
+- Error Handling: If the index is invalid, an error message is returned to the user.
+- Deletion: If the index is valid, the command retrieves the log’s details, removes the log from the Logs list, and generates a success message.
 
 ### 4. How the feature is implemented: <br>
-   - The deletion functionality is handled by the DeleteCommand class. It validates the user-provided index, adjusts it to match the 0-based indexing of the log list, and performs the deletion on the LogList object. This keeps the deletion logic isolated, making it easier to maintain and test.
-
+- The deletion functionality is handled by the DeleteCommand class. It validates the user-provided index, adjusts it to match the 0-based indexing of the log list, and performs the deletion on the LogList object. This keeps the deletion logic isolated, making it easier to maintain and test.
 
 ### 5. Why it is implemented that way: <br>
-    - Using a dedicated command class follows the Command Pattern, which separates concerns effectively. Isolating deletion logic into its own class adheres to the Single Responsibility Principle, simplifying debugging and future enhancements without impacting other parts of the system.
-
+- Using a dedicated command class follows the Command Pattern, which separates concerns effectively. Isolating deletion logic into its own class adheres to the Single Responsibility Principle, simplifying debugging and future enhancements without impacting other parts of the system.
 
 ### 6. Alternatives considered: <br>
-    - One alternative was to embed the deletion logic directly in the parser or UI layer. However, this approach would mix user input handling with business logic, resulting in code that is harder to maintain and test. Delegating deletion to a specialized command class keeps the design modular and scalable.
+- One alternative was to embed the deletion logic directly in the parser or UI layer. However, this approach would mix user input handling with business logic, resulting in code that is harder to maintain and test. Delegating deletion to a specialized command class keeps the design modular and scalable.
 
 ### Sequence Diagram
 ![DeleteLog.png](images/DeleteSD.png)
 
-
 Diagram Explanation <br>
 
 1. User Input: <br>
-   - The user enters `delete meal 3` in the CLI.
-
+- The user enters `delete meal 3` in the CLI.
 
 2. Parsing: <br>
-   - `HealthBud` receives the command and passes it to the `GeneralParser`.
-   - The `GeneralParser` calls `DeleteParser`, which extracts the log type ("meal") and the index (3). The index is then adjusted for 0-based indexing.
-   - A `DeleteCommand` object is created and returned to the `GeneralParser`.
-
-
-
+- `HealthBud` receives the command and passes it to the `GeneralParser`.
+- The `GeneralParser` calls `DeleteParser`, which extracts the log type ("meal") and the index (3). The index is then adjusted for 0-based indexing.
+- A `DeleteCommand` object is created and returned to the `GeneralParser`.
 
 3. Command Execution: <br>
-   - The `GeneralParser` invokes `execute()` on the `DeleteCommand`.
-   - The `DeleteCommand` calls `deleteLog(2)` on the `mealLogs` (since index 3 from the user corresponds to index 2 internally).
-   - The log is deleted from the `mealLogs`, and a success message is generated.
+- The `GeneralParser` invokes `execute()` on the `DeleteCommand`.
+- The `DeleteCommand` calls `deleteLog(2)` on the `mealLogs` (since index 3 from the user corresponds to index 2 internally).
+- The log is deleted from the `mealLogs`, and a success message is generated.
 
 4. Outcome: <br>
-
-   - If the index is invalid, the command returns an error message.
-
-   - If the index is valid, the meal log is removed and a success message is displayed to the user.
+- If the index is invalid, the command returns an error message.
+- If the index is valid, the meal log is removed and a success message is displayed to the user.
 
 This clear separation of user input, command parsing, and execution ensures that the deletion operation is handled in a structured and predictable manner.
 
 
-## Recommend
-
-### 1. Feature overview
+## Recommend Command
 The recommend <muscle_group> command provides users with 3 curated workout suggestions based on the specified muscle group, helping users diversify their fitness routines.
-### 2. Implementation details
-- RecommendParser handles parsing and validation of user input.
-- Based on the muscle group, it creates a RecommendCommand with the appropriate message.
-- RecommendCommand is responsible solely for displaying the recommendation using Ui.printMessage().
 
-### 3. Why this design
+### 1. User Input: <br>
+- The user enters the recommend command followed by a muscle group that they are interested in working out (e.g., `recommend biceps`).
+
+### 2. Command Parsing: <br>
+- The RecommendParser handles parsing and validation of the user input. 
+- It checks that at least one argument (a muscle group) is present. 
+- It uses a switch-case on the muscle group to determine the recommended exercises. 
+- If the muscle group is unrecognized, it throws a HealthBudException with guidance.
+
+### 3. The `RecommendCommand` executes as follows: <br>
+- Once constructed, the RecommendCommand calls Ui.printMessage() with the appropriate recommendation message.
+- The execute() method only handles display and does not contain logic beyond that.
+
+### 4. How the feature is implemented: <br>
+- The command string is split and validated in RecommendParser.
+- A corresponding message for each muscle group is hardcoded into the switch-case.
+- RecommendCommand simply wraps this message and prints it during execution.
+
+### 5. Why it is implemented that way: <br>
 - Separation of Concerns: Logic for parsing and message generation is in the parser, while command execution is kept simple and focused.
 - Testability: Easy to write unit tests for RecommendParser without needing to simulate UI output.
 - Readability: Clean execute() method and well-structured parser make the code intuitive and maintainable
 
-### 4. Alternatives considered
+### 6. Alternatives considered: <br>
 - Enums for muscle groups: More structured but restrictive; dropped in favor of flexible string matching.
 - External file storage for recommendations: Overhead for static data; current implementation is simpler and faster.
 
-### 5. Sequence Diagrams
-![Recommend_Sequence_Diagram](images/RecommendSD.png)
+### Sequence Diagrams
+![Recommend_Sequence_Diagram](Images/RecommendSD.png)
 
 Diagram Explanation <br>
 
-1. User Input: The user enters recommend <muscle_group> in the CLI.
-2. Parsing: RecommendParser parses the input and creates a RecommendCommand with a list of exercises.
-3. Command Execution: RecommendCommand.execute() is called. It sends the exercise list to Ui to display.
+1. User Input: <br>
+- The user enters recommend <muscle_group> in the CLI.
+
+2. Parsing: <br>
+- RecommendParser parses the input and creates a RecommendCommand with a list of exercises.
+
+3. Command Execution: <br>
+- RecommendCommand.execute() is called. It sends the exercise list to Ui to display.
+
 4. Outcome: <br>
 An alt block handles:
 - Valid Input: The recommended exercises are displayed and a success message is returned.
 - Invalid Input: An exception is thrown and an error message is shown to the user.
 
 This structure clearly separates parsing, command creation, and UI interaction for robust handling.
-
-### 6. Future Improvements
-- Move recommendations to a config/JSON file for easier updates without modifying source code.
-- Support partial string matches and synonyms for better UX.
-
 
 
 ## BMICommand
