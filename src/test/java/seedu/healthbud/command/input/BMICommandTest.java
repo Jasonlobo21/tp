@@ -168,4 +168,70 @@ public class BMICommandTest {
         assertThrows(InvalidBMIException.class, () -> BMIParser.parse(input),
                 "Expected exception for uppercase parameter flags.");
     }
+
+    @Test
+    void execute_zeroWeight_throwsAssertionError() {
+        BMICommand command = new BMICommand("bmi /w 0 /h 1.75", 0, 1.75);
+        assertThrows(AssertionError.class, command::execute);
+    }
+
+    @Test
+    void execute_negativeHeight_throwsAssertionError() {
+        BMICommand command = new BMICommand("bmi /w 70 /h -1.75", 70, -1.75);
+        assertThrows(AssertionError.class, command::execute);
+    }
+
+    @Test
+    void parser_nullInput_throwsAssertionError() {
+        assertThrows(AssertionError.class, () -> BMIParser.parse(null));
+    }
+    @Test
+    void parse_missingWeightKey_expectInvalidBMIException() {
+        String input = "bmi /h 1.75";
+        assertThrows(InvalidBMIException.class, () -> BMIParser.parse(input));
+    }
+
+    @Test
+    void parse_missingHeightKey_expectInvalidBMIException() {
+        String input = "bmi /w 70";
+        assertThrows(InvalidBMIException.class, () -> BMIParser.parse(input));
+    }
+
+    @Test
+    void parse_emptyWeightValue_expectInvalidBMIException() {
+        String input = "bmi /w   /h 1.75";
+        assertThrows(InvalidBMIException.class, () -> BMIParser.parse(input));
+    }
+
+    @Test
+    void parse_emptyHeightValue_expectInvalidBMIException() {
+        String input = "bmi /w 70 /h   ";
+        assertThrows(InvalidBMIException.class, () -> BMIParser.parse(input));
+    }
+
+    @Test
+    void parse_heightTooSmall_expectInvalidBMIException() {
+        String input = "bmi /w 60 /h 0.1";
+        assertThrows(InvalidBMIException.class, () -> BMIParser.parse(input));
+    }
+
+    @Test
+    void parse_heightTooLarge_expectInvalidBMIException() {
+        String input = "bmi /w 60 /h 3.1";
+        assertThrows(InvalidBMIException.class, () -> BMIParser.parse(input));
+    }
+
+    @Test
+    void parse_weightZero_expectInvalidBMIException() {
+        String input = "bmi /w 0 /h 1.75";
+        assertThrows(InvalidBMIException.class, () -> BMIParser.parse(input));
+    }
+
+    @Test
+    void parse_weightNegative_expectInvalidBMIException() {
+        String input = "bmi /w -50 /h 1.75";
+        assertThrows(InvalidBMIException.class, () -> BMIParser.parse(input));
+    }
+
+
 }

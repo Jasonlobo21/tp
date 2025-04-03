@@ -10,7 +10,6 @@ public class SumCommand extends SingleLogCommand {
 
     public SumCommand(LogList logList, String type, String date) {
         super(logList);
-        assert logList != null : "LogList should not be null";
         assert type != null : "Type should not be null";
         assert date != null : "Date should not be null";
         this.type = type;

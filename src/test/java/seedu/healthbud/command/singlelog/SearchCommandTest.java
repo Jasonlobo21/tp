@@ -246,4 +246,18 @@ public class SearchCommandTest {
         SearchCommand command = SearchParser.parse(input, mealLogs, workoutLogs, waterLogs, pbLogs, cardioLogs);
         assertNotNull(command, "Command should not be null for valid cardio date search.");
     }
+
+    @Test
+    void parse_nullInput_expectAssertionError() {
+        LogList mealLogs = new LogList();
+        LogList workoutLogs = new LogList();
+        LogList waterLogs = new LogList();
+        LogList pbLogs = new LogList();
+        LogList cardioLogs = new LogList();
+
+        assertThrows(AssertionError.class, () ->
+                SearchParser.parse(null, mealLogs, workoutLogs, waterLogs, pbLogs, cardioLogs)
+        );
+    }
+
 }

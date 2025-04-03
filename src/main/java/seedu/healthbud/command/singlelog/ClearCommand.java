@@ -8,7 +8,6 @@ public class ClearCommand extends SingleLogCommand {
 
     public ClearCommand(LogList logList) {
         super(logList);
-        assert logList != null : "LogList should not be null";
     }
 
     @Override

@@ -135,4 +135,39 @@ public class SumCommandTest {
                 SumParser.parse("sum cal 2024-04-03", mealLogs, waterLogs, cardioLogs));
     }
 
+    @Test
+    void sumCommand_nullType_throwsAssertionError() {
+        LogList dummyLogs = new LogList();
+        assertThrows(AssertionError.class, () ->
+                new SumCommand(dummyLogs, null, "2024-04-03"));
+    }
+
+    @Test
+    void sumCommand_nullDate_throwsAssertionError() {
+        LogList dummyLogs = new LogList();
+        assertThrows(AssertionError.class, () ->
+                new SumCommand(dummyLogs, "cal", null));
+    }
+
+    @Test
+    void sumParser_nullInput_throwsAssertionError() {
+        LogList mealLogs = new LogList();
+        LogList waterLogs = new LogList();
+        LogList cardioLogs = new LogList();
+
+        assertThrows(AssertionError.class, () ->
+                SumParser.parse(null, mealLogs, waterLogs, cardioLogs));
+    }
+
+    @Test
+    void sumParser_tooFewTokens_throwsInvalidSumException() {
+        LogList mealLogs = new LogList();
+        LogList waterLogs = new LogList();
+        LogList cardioLogs = new LogList();
+
+        String input = "sum cal"; // Only 2 tokens
+        assertThrows(InvalidSumException.class, () ->
+                SumParser.parse(input, mealLogs, waterLogs, cardioLogs));
+    }
+
 }

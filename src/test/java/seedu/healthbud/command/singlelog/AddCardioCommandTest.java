@@ -149,5 +149,19 @@ class AddCardioCommandTest {
         assertThrows(InvalidCardioException.class, () -> AddCardioParser.parse(logs, input));
     }
 
+    @Test
+    void parser_tooFewTokens_throwsInvalidCardioException() {
+        LogList logs = new LogList();
+        String input = "add"; // only one token
+        assertThrows(InvalidCardioException.class, () -> AddCardioParser.parse(logs, input));
+    }
+
+    @Test
+    void parser_nullInput_throwsAssertionError() {
+        LogList logs = new LogList();
+        assertThrows(AssertionError.class, () -> AddCardioParser.parse(logs, null));
+    }
+
+
 }
 

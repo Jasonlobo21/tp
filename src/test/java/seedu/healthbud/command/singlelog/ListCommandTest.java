@@ -126,4 +126,11 @@ class ListCommandTest {
         assertThrows(InvalidListException.class, () ->
                 ListParser.parse("", new LogList(), new LogList(), new LogList(), new LogList(), new LogList()));
     }
+
+    @Test
+    void list_nullInput_expectAssertionError() {
+        assertThrows(AssertionError.class, () ->
+                ListParser.parse(null, new LogList(), new LogList(), new LogList(), new LogList(), new LogList()));
+    }
+
 }

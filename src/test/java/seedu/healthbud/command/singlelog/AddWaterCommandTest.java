@@ -160,4 +160,10 @@ class AddWaterCommandTest {
         assertThrows(InvalidWaterException.class, () -> AddWaterParser.parse(waterLogs, input));
     }
 
+    @Test
+    void addWater_nullInput_expectAssertionError() {
+        LogList waterLogs = new LogList();
+        assertThrows(AssertionError.class, () -> AddWaterParser.parse(waterLogs, null));
+    }
+
 }
