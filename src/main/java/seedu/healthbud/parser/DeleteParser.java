@@ -18,7 +18,7 @@ public class DeleteParser {
             throw new InvalidDeleteException();
         }
 
-        String logType = parts[1].toLowerCase();
+        String logType = parts[1];
         int index;
 
         try {

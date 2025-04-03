@@ -23,27 +23,6 @@ public class AddCardioCommand extends SingleLogCommand {
         this.date = date;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getSets() {
-        return sets;
-    }
-
-    public String getIntensity() {
-        return intensity;
-    }
-
-    public String getTime() {
-        return time;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-
     @Override
     public void execute() {
         Cardio newCardio = new Cardio(name, sets, intensity, time, date);

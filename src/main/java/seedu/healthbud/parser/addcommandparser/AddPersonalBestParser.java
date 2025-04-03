@@ -14,30 +14,16 @@ public class AddPersonalBestParser {
     public static AddPersonalBestCommand parse(LogList pbLogs, String input)
             throws InvalidPersonalBestException, InvalidDateFormatException {
 
-        String[] parts = input.trim().split(" ");
-        if (parts.length < 2) {
-            throw new InvalidPersonalBestException();
-        }
-
         assert input != null : "Invalid personal best input!";
         if (!input.contains("/w ") || !input.contains("/d ")) {
             throw new InvalidPersonalBestException();
         }
 
-        input = input.replaceFirst("add pb", "").trim();
+        input = input.substring("add pb".length()).trim();
 
-        if (input.isEmpty()) {
-            throw new InvalidPersonalBestException();
-        }
+        String name = input.substring(0, input.indexOf("/")).trim();
 
-        int firstParamIndex = input.indexOf('/');
-        String name;
-        if (firstParamIndex > 0) {
-            name = input.substring(0, firstParamIndex).trim();
-        } else {
-            name = "";  // No name provided before parameters
-        }
-        Map<String, String> param = ParserParameters.parseParameters(input.substring(firstParamIndex));
+        Map<String, String> param = ParserParameters.parseParameters(input.substring(name.length()));
 
         if (name.isEmpty() ||
                 !param.containsKey("w") || param.get("w").isEmpty() ||
@@ -50,8 +36,7 @@ public class AddPersonalBestParser {
         }
         String formattedDate = DateParser.formatDate(param.get("d"));
 
-        return new AddPersonalBestCommand(pbLogs, input, name,
-                param.get("w"), formattedDate);
+        return new AddPersonalBestCommand(pbLogs, input, name, param.get("w"), formattedDate);
     }
 }
 

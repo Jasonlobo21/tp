@@ -14,11 +14,6 @@ public class AddWaterParser {
     public static AddWaterCommand parse(LogList waterLogs, String input)
             throws InvalidWaterException, InvalidDateFormatException {
 
-        String[] parts = input.trim().split(" ");
-        if (parts.length < 2) {
-            throw new InvalidWaterException();
-        }
-
         assert input != null : "Invalid water input!";
         assert !input.trim().isEmpty() : "Input should not be empty!";
 
@@ -26,19 +21,9 @@ public class AddWaterParser {
             throw new InvalidWaterException();
         }
 
-        input = input.replaceFirst("add water", "").trim();
-        if (input.isEmpty()) {
-            throw new InvalidWaterException();
-        }
+        input = input.substring("add water".length()).trim();
 
-        int firstParamIndex = input.indexOf('/');
-        String waterInput;
-        if (firstParamIndex > 0) {
-            waterInput = input.substring(0, firstParamIndex).trim();
-        } else {
-            waterInput = "";  // No name provided before parameters
-        }
-        Map<String, String> param = ParserParameters.parseParameters(input.substring(firstParamIndex));
+        Map<String, String> param = ParserParameters.parseParameters(input);
 
         if (!param.containsKey("ml") || param.get("ml").isEmpty() ||
                 !param.containsKey("d") || param.get("d").isEmpty() ||
@@ -52,7 +37,6 @@ public class AddWaterParser {
 
         String formattedDate = DateParser.formatDate(param.get("d"));
 
-        return new AddWaterCommand(waterLogs, waterInput,
-                param.get("ml"), formattedDate, param.get("t"));
+        return new AddWaterCommand(waterLogs, input, param.get("ml"), formattedDate, param.get("t"));
     }
 }

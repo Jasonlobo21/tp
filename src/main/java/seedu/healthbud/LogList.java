@@ -39,10 +39,10 @@ public class LogList {
 
     public void addLog(Log log) {
         logs.add(log);
-        Ui.printMessage(" Got it. I've added this log:" + log.getLogType());
-        Ui.printMessage("  " + getLog(getSize() - 1));
+        Ui.printMessage(String.format("Got it. I've added this %s log:", log.getLogType()));
+        Ui.printMessage(" " + getLog(getSize() - 1));
         Storage.appendLogToFile(log);
-        Ui.printMessage(String.format(" Now you have %d %s logs in the list.", getSize(), log.getLogType()));
+        Ui.printMessage(String.format("Now you have %d %s logs in the list.", getSize(), log.getLogType()));
     }
 
     public void loadLog(Log log) {
@@ -55,11 +55,11 @@ public class LogList {
             throw new HealthBudException("Task number not in range");
         }
 
-        Ui.printMessage(" Noted. I've removed this log:");
-        Ui.printMessage("  " + getLog(index - 1));
+        Ui.printMessage("Noted. I've removed this log:");
+        Ui.printMessage(" " + getLog(index - 1));
         logs.remove(index - 1);
         Storage.rewriteLogsToFile(this);
-        Ui.printMessage(" Now you have " + getSize() + " logs in the list.");
+        Ui.printMessage("Now you have " + getSize() + " logs in the list.");
     }
 
     public void listLogs() {

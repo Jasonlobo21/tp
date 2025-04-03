@@ -16,37 +16,19 @@ public class AddMealParser {
     public static AddMealCommand parse(LogList mealLogs, String input)
             throws InvalidMealException, InvalidDateFormatException {
 
-        String[] parts = input.trim().split(" ");
-
-        if (parts.length < 2) {
-            throw new InvalidMealException();
-        }
-
         assert input != null : "Invalid meal input!";
         if (!input.contains("/cal ") || !input.contains("/d ") || !input.contains("/t ")) {
             throw new InvalidMealException();
         }
 
-        input = input.replaceFirst("add meal", "").trim();
+        input = input.substring("add meal".length()).trim();
 
-        if (input.isEmpty()) {
-            throw new InvalidMealException();
-        }
+        String name = input.substring(0, input.indexOf("/")).trim();
 
-        int firstParamIndex = input.indexOf('/');
-        String name;
-        if (firstParamIndex > 0) {
-            name = input.substring(0, firstParamIndex).trim();
-        } else {
-            name = "";  // No name provided before parameters
-        }
-        Map<String, String> param = ParserParameters.parseParameters(input.substring(firstParamIndex));
+        Map<String, String> param = ParserParameters.parseParameters(input.substring(name.length()));
 
-
-        if (name.isEmpty() ||
-                !param.containsKey("cal") || param.get("cal").isEmpty() ||
-                !param.containsKey("d") || param.get("d").isEmpty() ||
-                !param.containsKey("t") || param.get("t").isEmpty()) {
+        if (name.isEmpty() || !param.containsKey("cal") || param.get("cal").isEmpty() || !param.containsKey("d")
+                || param.get("d").isEmpty() || !param.containsKey("t") || param.get("t").isEmpty()) {
             throw new InvalidMealException();
         }
 
