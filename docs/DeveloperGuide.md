@@ -11,7 +11,7 @@ This application was developed as part of a university software engineering modu
 
 ### Architecture
 
-`//include architecture diagram here`
+![img.png](img.png)
 
 The Architecture Diagram given above explains the high-level design of the HealthBud.
 
@@ -67,10 +67,6 @@ This design promotes extensibility and encapsulation, allowing new log types to 
 ### Storage
 The Storage class manages HealthBud log persistence by reading and writing to a designated text file. It creates necessary directories and files, loads logs by parsing each line into specific types (Meal, Workout, etc.), and distributes them into corresponding LogLists. It also appends and rewrites logs using formatted string representations while handling errors gracefully.
 ![Storage_Class_Diagram](images/StorageCD.png)
-
-### Data
-`//TODO: include command class diagram here`
-
 
 # Implementation
 
@@ -180,41 +176,57 @@ An alt block handles:
 This structure clearly separates parsing, command creation, and UI interaction for robust handling.
 
 
-## BMICommand
+## BMI Command
+The command calculates the user's Body Mass Index (BMI) based on the provided weight (in kilograms) and height (in meters), then categorizes the user as underweight, normal weight, overweight, or obese.
 
-### 1. User Input: <br>
-- The user enters the bmi command followed by their weight in kilograms and height in metres eg.("bmi /w 40 /h 1.75").
+### 1. User Input:
+- The user enters `bmi /w <weight> /h <height>` (e.g., `bmi /w 60 /h 1.70`).
+- Weight must be a valid number representing kilograms.
+- Height must be a valid number representing meters.
 
-### 2. Command Parsing: <br>
-- The RecommendParser handles parsing and validation of the user input.
-- It checks that at least one argument (a muscle group) is present.
-- It uses a switch-case on the muscle group to determine the recommended exercises.
-- If the muscle group is unrecognized, it throws a HealthBudException with guidance.
+### 2. Command Parsing:
+- **BMIParser** handles parsing and validation of the user input.
+- It checks that:
+   - The input is not null or empty.
+   - The input contains a slash (`/`) separating weight and height.
+   - Both weight and height can be parsed into valid numeric values.
+- If any of these checks fail, an **InvalidBMIException** is thrown, prompting the user to correct their input format.
 
-### 3. The `RecommendCommand` executes as follows: <br>
-- Once constructed, the RecommendCommand calls Ui.printMessage() with the appropriate recommendation message.
-- The execute() method only handles display and does not contain logic beyond that.
+### 3. The `BMICommand` Executes as Follows:
+- Once constructed with the valid weight and height, **BMICommand** calculates the BMI using the formula:
+  \[
+  \text{BMI} = \frac{\text{weight}}{(\text{height} \times \text{height})}
+  \]
+- The command then checks the BMI value and calls **Ui.printMessage()** with a message indicating whether the user is:
+   - Underweight (BMI < 18.5)
+   - Normal weight (18.5 ≤ BMI < 25)
+   - Overweight (25 ≤ BMI < 30)
+   - Obese (BMI ≥ 30)
 
-### 4. How the feature is implemented: <br>
-- The command string is split and validated in RecommendParser.
-- A corresponding message for each muscle group is hardcoded into the switch-case.
-- RecommendCommand simply wraps this message and prints it during execution.
+### 4. How the Feature is Implemented:
+- **BMIParser** extracts the numerical values for weight and height from the user input.
+- It instantiates a **BMICommand** object with these parsed values.
+- **BMICommand** performs the BMI calculation and categorization in its `execute()` method.
+- The categorization strings are hardcoded for clarity and simplicity.
 
-### 5. Why it is implemented that way: <br>
-- Separation of Concerns: Logic for parsing and message generation is in the parser, while command execution is kept simple and focused.
-- Testability: Easy to write unit tests for RecommendParser without needing to simulate UI output.
-- Readability: Clean execute() method and well-structured parser make the code intuitive and maintainable
+### 5. Why It Is Implemented That Way:
+- **Separation of Concerns**: Parsing logic (e.g., checking for valid input and splitting the string) resides in **BMIParser**, while the command class focuses on calculation and message output.
+- **Clarity**: Keeping the BMI formula and category checks in `execute()` makes it straightforward to read and maintain.
+- **Testability**: This approach allows unit testing the parser separately from the command execution, ensuring each component is robust and reliable.
 
-### 6. Alternatives considered: <br>
-- Enums for muscle groups: More structured but restrictive; dropped in favor of flexible string matching.
-- External file storage for recommendations: Overhead for static data; current implementation is simpler and faster.
+### 6. Alternatives Considered:
+- **Single-Class Implementation**: Combining parsing and execution logic into one class would reduce the number of classes but make the code less organized and harder to maintain.
+- **More Complex Validation**: Additional checks (e.g., extremely high or low values) could be added, but the current design focuses on standard BMI ranges and clear user prompts.
+- **External Configuration**: Storing BMI thresholds or messages in an external file could add flexibility but also increase overhead for what is essentially static data.
 
 
 5. Sequence Diagrams
    ![BMI_Sequence_Diagram](images/BMISD.png)
+   
+Diagram Explanation <br>
 
-6. ### Future Improvements
-   Future improvements for the BMI command could include personalized BMI thresholds based on user profiles, comprehensive historical tracking, and clear visualizations of BMI changes over time for improved health insights.
+The user inputs a BMI command with weight and height. HealthBud delegates parsing to BMIParser, which validates data and returns a BMICommand. The command calculates BMI and displays the result.
+   
 
 
 
