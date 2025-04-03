@@ -99,7 +99,8 @@ class ClearCommandTest {
     @Test
     void clear_invalidLogType_expectFailure() {
         assertThrows(InvalidClearException.class, () -> {
-            ClearParser.parse("clear invalid", new LogList(), new LogList(), new LogList(), new LogList(), new LogList());
+            ClearParser.parse("clear invalid", new LogList(), new LogList(),
+                    new LogList(), new LogList(), new LogList());
         });
     }
 
