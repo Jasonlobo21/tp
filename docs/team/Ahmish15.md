@@ -10,7 +10,7 @@ Implemented all the Add commands and their respective parser classes. Also imple
 [Team Dashboard](https://nus-cs2113-ay2425s2.github.io/tp-dashboard/#/widget/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2025-02-21&chartGroupIndex=40&chartIndex=0)
 
 ## Enhancements implemented
-Split the AddLogsCommand into 5 different classes to make it more modular and easier to read. Added the SearchCommand and BMICommand classes to allow users to search for their logs and calculate their BMI respectively.
+Split the AddLogsCommand into 5 different classes to make it more modular and easier to read. Added the SearchCommand and BMICommand classes to allow users to search for their logs and calculate their BMI respectively. I also played a key role in implementing testing for the BMI, search and List commands.
 
 ## Contributions to the UG
 
@@ -18,9 +18,10 @@ added the following commands to the user guide: SearchCommand and BMICommand
 
 ## Contributions to the DG
 
-BMI Sequence Diagram and Storage Class Diagram. I also talked about the BMI command in the DG.
+BMI Sequence Diagram and Storage Class Diagram. I also talked about the BMI command and Storage class in the DG.
 
 ## Contributions to team-based tasks
+revamped our add commands by splitting them into their logic and parsing respectively. This made it easier to read and understand.
 
 ## Review/mentoring contributions
 Links to PRs reviewed, instances of helping team members in other ways.
