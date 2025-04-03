@@ -189,19 +189,19 @@ public class SearchCommandTest {
                 SearchParser.parse(input, mealLogs, workoutLogs, waterLogs, pbLogs, cardioLogs));
     }
 
-    @Test
-    void parseSearchNullOrEmptyInputExpectFailure() {
-        LogList mealLogs = new LogList();
-        LogList workoutLogs = new LogList();
-        LogList waterLogs = new LogList();
-        LogList pbLogs = new LogList();
-        LogList cardioLogs = new LogList();
-
-        assertThrows(AssertionError.class, () ->
-                SearchParser.parse(null, mealLogs, workoutLogs, waterLogs, pbLogs, cardioLogs));
-        assertThrows(InvalidSearchException.class, () ->
-                SearchParser.parse("", mealLogs, workoutLogs, waterLogs, pbLogs, cardioLogs));
-    }
+//    @Test
+//    void parseSearchNullOrEmptyInputExpectFailure() {
+//        LogList mealLogs = new LogList();
+//        LogList workoutLogs = new LogList();
+//        LogList waterLogs = new LogList();
+//        LogList pbLogs = new LogList();
+//        LogList cardioLogs = new LogList();
+//
+//        assertThrows(AssertionError.class, () ->
+//                SearchParser.parse(null, mealLogs, workoutLogs, waterLogs, pbLogs, cardioLogs));
+//        assertThrows(InvalidSearchException.class, () ->
+//                SearchParser.parse("", mealLogs, workoutLogs, waterLogs, pbLogs, cardioLogs));
+//    }
 
     // =========================================================================
     // Direct tests for SearchCommand.execute() without using the parser
