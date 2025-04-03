@@ -1,13 +1,13 @@
 package seedu.healthbud.parser;
 
 import seedu.healthbud.command.input.BMICommand;
-import seedu.healthbud.exception.*;
+import seedu.healthbud.exception.InvalidBMIException;
 
-import java.util.*;
+import java.util.Map;
 
 public class BMIParser {
 
-    public static BMICommand parse(String input) throws HealthBudException, InvalidBMIException {
+    public static BMICommand parse(String input) throws InvalidBMIException {
         assert input != null && !input.trim().isEmpty() : "Input should not be null or empty";
 
         if (!input.contains("/h") || !input.contains("/w")) {

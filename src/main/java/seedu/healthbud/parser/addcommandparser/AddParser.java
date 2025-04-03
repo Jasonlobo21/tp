@@ -2,7 +2,14 @@ package seedu.healthbud.parser.addcommandparser;
 
 import seedu.healthbud.LogList;
 import seedu.healthbud.command.Command;
-import seedu.healthbud.exception.*;
+import seedu.healthbud.exception.InvalidAddLogException;
+import seedu.healthbud.exception.InvalidCardioException;
+import seedu.healthbud.exception.InvalidDateFormatException;
+import seedu.healthbud.exception.InvalidGoalException;
+import seedu.healthbud.exception.InvalidMealException;
+import seedu.healthbud.exception.InvalidPersonalBestException;
+import seedu.healthbud.exception.InvalidWaterException;
+import seedu.healthbud.exception.InvalidWorkoutException;
 
 public class AddParser {
 

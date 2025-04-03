@@ -2,7 +2,6 @@ package seedu.healthbud.parser;
 
 import seedu.healthbud.command.input.RecommendCommand;
 import seedu.healthbud.exception.InvalidRecommendException;
-import seedu.healthbud.exception.HealthBudException;
 
 public class RecommendParser {
 
