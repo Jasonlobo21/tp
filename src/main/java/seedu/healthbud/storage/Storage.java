@@ -16,6 +16,11 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
+/**
+ * Storage class for the HealthBud application.
+ * This class handles all file operations such as loading, appending, and rewriting logs.
+ * It also provides utility methods to parse log objects to and from strings.
+ */
 public class Storage {
 
     public static final String DATA_DIRECTORY = "data";
@@ -26,9 +31,12 @@ public class Storage {
      * Loads logs from the storage file into the provided LogLists.
      * If the file or directory does not exist, they are created.
      *
-     * @param mealLogs the LogList to load meal logs into
+     * @param mealLogs    the LogList to load meal logs into
      * @param workoutLogs the LogList to load workout logs into
-     * @param waterLogs the LogList to load water logs into
+     * @param waterLogs   the LogList to load water logs into
+     * @param pbLogs      the LogList to load personal best logs into
+     * @param cardioLogs  the LogList to load cardio logs into
+     * @param goalLogs    the LogList to load goal logs into
      */
     public static void loadLogs(LogList mealLogs, LogList workoutLogs, LogList waterLogs,
                                 LogList pbLogs, LogList cardioLogs, LogList goalLogs) {
@@ -69,6 +77,13 @@ public class Storage {
         }
     }
 
+    /**
+     * Parses a log string from the storage file into a Log object.
+     *
+     * @param line the line from the file representing a log
+     * @return the parsed Log object
+     * @throws IllegalArgumentException if the log format is invalid or unknown
+     */
     public static Log parseStringToLog(String line) {
         String[] parts = line.split(" \\| ");
         if (parts.length < 2) {
@@ -116,6 +131,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Appends the given log to the storage file.
+     *
+     * @param log the log to append; must not be null.
+     */
     public static void appendLogToFile(Log log) {
         try (FileWriter fw = new FileWriter(DATA_PATH.toString(), true)) {
             fw.write(parseLogToString(log) + System.lineSeparator());
@@ -124,6 +144,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Rewrites the storage file with the current list of logs.
+     *
+     * @param logs the LogList containing all current logs
+     */
     public static void rewriteLogsToFile(LogList logs) {
         try (FileWriter fw = new FileWriter(DATA_PATH.toString())) {
             for (int i = 0; i < logs.getSize(); i++) {
@@ -134,6 +159,13 @@ public class Storage {
         }
     }
 
+    /**
+     * Converts a Log object into its string representation for storage.
+     *
+     * @param log the log object to be converted; must not be null.
+     * @return the string representation of the log
+     * @throws IllegalArgumentException if the log type is unknown
+     */
     public static String parseLogToString(Log log) {
         if (log instanceof Meal) {
             Meal meal = (Meal) log;

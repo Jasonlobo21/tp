@@ -5,8 +5,20 @@ import seedu.healthbud.exception.InvalidBMIException;
 
 import java.util.Map;
 
+/**
+ * BMIParser is responsible for parsing the BMI command input.
+ * It extracts the weight and height parameters from the input string and returns a BMICommand.
+ */
 public class BMIParser {
 
+    /**
+     * Parses the given input string and returns a BMICommand.
+     *
+     * @param input the input string containing the BMI command; must not be null.
+     * @return a BMICommand with the parsed weight and height values.
+     * @throws InvalidBMIException if the input does not contain valid /h and /w parameters,
+     *                             or if the weight or height values are invalid.
+     */
     public static BMICommand parse(String input) throws InvalidBMIException {
         assert input != null : "Input should not be null";
 

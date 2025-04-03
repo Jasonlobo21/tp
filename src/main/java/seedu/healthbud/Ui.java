@@ -1,5 +1,12 @@
 package seedu.healthbud;
 
+/**
+ * UI class for the HealthBud application.
+ * <p>
+ * This class handles all the user interface aspects by providing methods to print messages
+ * to the console. It includes methods for displaying greetings, help information, ASCII art,
+ * and other status messages.
+ */
 public class Ui {
 
     /**
@@ -17,7 +24,7 @@ public class Ui {
     }
 
     /**
-     * Prints Terry in ASCII to the user.
+     * Prints the HealthBud ASCII art to the user.
      */
     public static void printHealthBuds() {
         System.out.println("""
@@ -45,6 +52,9 @@ public class Ui {
 
     /**
      * Prints the greeting message to the user.
+     * <p>
+     * This method displays the HealthBud ASCII art followed by a greeting message.
+     * </p>
      */
     public static void printGreeting() {
         printHealthBuds();
@@ -93,8 +103,13 @@ public class Ui {
         printMessage("I don't recognize that command. Type 'help' to see the list of commands.");
     }
 
+    /**
+     * Prints a log entry in a listed format.
+     *
+     * @param logs  the LogList containing the logs; must not be null.
+     * @param index the index of the log to print.
+     */
     public static void printListedFormat(LogList logs, int index) {
         printMessage((index + 1) + ". " + logs.getLog(index));
     }
-
 }

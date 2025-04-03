@@ -12,9 +12,22 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-
+/**
+ * AddMealParser is responsible for parsing the input command for adding a meal log.
+ * It extracts the meal name, calorie count, date, and time parameters from the input string
+ * and returns an AddMealCommand with the parsed details.
+ */
 public class AddMealParser {
 
+    /**
+     * Parses the given input command for adding a meal log and returns an AddMealCommand.
+     *
+     * @param mealLogs the LogList for meal logs; must not be null.
+     * @param input the input command string; must not be null.
+     * @return an AddMealCommand with the parsed meal log details.
+     * @throws InvalidMealException if the input format is invalid or required parameters are missing.
+     * @throws InvalidDateFormatException if the provided date cannot be parsed.
+     */
     //@@author Ahmish15
     public static AddMealCommand parse(LogList mealLogs, String input)
             throws InvalidMealException, InvalidDateFormatException {

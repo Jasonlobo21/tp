@@ -12,8 +12,21 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * AddWorkoutParser is responsible for parsing the input command for adding a workout.
+ * It extracts the workout details from the input string and returns an AddWorkoutCommand.
+ */
 public class AddWorkoutParser {
 
+    /**
+     * Parses the input command for adding a workout and returns an AddWorkoutCommand.
+     *
+     * @param workoutLogs the LogList for workout logs; must not be null.
+     * @param input the input command string; must not be null.
+     * @return an AddWorkoutCommand containing the parsed workout details.
+     * @throws InvalidWorkoutException if the input format is invalid or required parameters are missing.
+     * @throws InvalidDateFormatException if the date provided cannot be parsed.
+     */
     //@@author Ahmish15
     public static AddWorkoutCommand parse(LogList workoutLogs, String input)
             throws InvalidWorkoutException, InvalidDateFormatException {

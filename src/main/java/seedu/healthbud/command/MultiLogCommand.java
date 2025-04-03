@@ -3,7 +3,10 @@ package seedu.healthbud.command;
 import seedu.healthbud.LogList;
 
 // FOR COMMANDS THAT NEEDS MORE THAN 1 LOG LIST AND INPUT
-
+/**
+ * Abstract base class for commands that require multiple LogLists and an input string.
+ * This class provides a common structure for commands that operate on various types of logs.
+ */
 public abstract class MultiLogCommand implements Command {
     protected LogList goalLogs;
     protected LogList pbLogs;
@@ -13,6 +16,17 @@ public abstract class MultiLogCommand implements Command {
     protected LogList cardioLogs;
     protected String input;
 
+    /**
+     * Constructs a MultiLogCommand with the specified LogLists and input string.
+     *
+     * @param goalLogs    the LogList for goal logs; must not be null.
+     * @param pbLogs      the LogList for personal best logs; must not be null.
+     * @param mealLogs    the LogList for meal logs; must not be null.
+     * @param workoutLogs the LogList for workout logs; must not be null.
+     * @param waterLogs   the LogList for water logs; must not be null.
+     * @param cardioLogs  the LogList for cardio logs; must not be null.
+     * @param input       the input string; must not be null.
+     */
     public MultiLogCommand(LogList goalLogs, LogList pbLogs, LogList mealLogs, LogList workoutLogs,
                            LogList waterLogs, LogList cardioLogs, String input) {
         assert goalLogs != null : "Goal logs should not be null";

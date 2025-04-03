@@ -4,10 +4,27 @@ import seedu.healthbud.LogList;
 import seedu.healthbud.command.multilog.StatusCommand;
 import seedu.healthbud.exception.InvalidStatusException;
 
+/**
+ * StatusParser is responsible for parsing the input command to generate a StatusCommand.
+ * It handles the "change" and "report" actions for status updates and reporting.
+ */
 public class StatusParser {
 
     private static String currentStatus = "neutral";
 
+    /**
+     * Parses the given input and returns a StatusCommand based on the action and argument provided.
+     *
+     * @param input the input string; must not be null.
+     * @param goalLogs the LogList for goal logs.
+     * @param pbLogs the LogList for personal best logs.
+     * @param mealLogs the LogList for meal logs.
+     * @param workoutLogs the LogList for workout logs.
+     * @param waterLogs the LogList for water logs.
+     * @param cardioLogs the LogList for cardio logs.
+     * @return a new StatusCommand based on the parsed input.
+     * @throws InvalidStatusException if the input does not conform to the expected format.
+     */
     public static StatusCommand parse(String input, LogList goalLogs, LogList pbLogs, LogList mealLogs,
                                       LogList workoutLogs, LogList waterLogs, LogList cardioLogs)
             throws InvalidStatusException {

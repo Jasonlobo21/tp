@@ -11,8 +11,32 @@ import seedu.healthbud.exception.InvalidPersonalBestException;
 import seedu.healthbud.exception.InvalidWaterException;
 import seedu.healthbud.exception.InvalidWorkoutException;
 
+/**
+ * AddParser is responsible for parsing the input command for adding logs.
+ * It dispatches the command to the appropriate sub-parser based on the log type.
+ */
 public class AddParser {
 
+    /**
+     * Parses the given input command and returns a Command for adding a log.
+     *
+     * @param input the input command string; must not be null.
+     * @param mealLogs the LogList for meal logs.
+     * @param waterLogs the LogList for water logs.
+     * @param cardioLogs the LogList for cardio logs.
+     * @param pbLogs the LogList for personal best logs.
+     * @param workoutLogs the LogList for workout logs.
+     * @param goalLogs the LogList for goal logs.
+     * @return a Command object corresponding to the log type to be added.
+     * @throws InvalidAddLogException if the input command has insufficient parts or an unrecognized log type.
+     * @throws InvalidCardioException if the input command for a cardio log is invalid.
+     * @throws InvalidMealException if the input command for a meal log is invalid.
+     * @throws InvalidPersonalBestException if the input command for a personal best log is invalid.
+     * @throws InvalidWaterException if the input command for a water log is invalid.
+     * @throws InvalidWorkoutException if the input command for a workout log is invalid.
+     * @throws InvalidDateFormatException if the date in the input cannot be parsed.
+     * @throws InvalidGoalException if the input command for a goal log is invalid.
+     */
     public static Command parse(String input, LogList mealLogs, LogList waterLogs, LogList cardioLogs,
                                 LogList pbLogs, LogList workoutLogs, LogList goalLogs) throws
             InvalidAddLogException, InvalidCardioException, InvalidMealException,
