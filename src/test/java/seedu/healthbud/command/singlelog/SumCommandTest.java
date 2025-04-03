@@ -2,7 +2,6 @@ package seedu.healthbud.command.singlelog;
 
 import org.junit.jupiter.api.Test;
 import seedu.healthbud.LogList;
-import seedu.healthbud.exception.InvalidDateFormatException;
 import seedu.healthbud.exception.InvalidSumException;
 import seedu.healthbud.log.Meal;
 import seedu.healthbud.log.Cardio;

@@ -2,9 +2,6 @@ package seedu.healthbud.command.singlelog;
 
 import seedu.healthbud.LogList;
 import seedu.healthbud.command.SingleLogCommand;
-import seedu.healthbud.exception.InvalidDateException;
-import seedu.healthbud.exception.InvalidSumException;
-
 
 public class SumCommand extends SingleLogCommand {
 
@@ -28,6 +25,8 @@ public class SumCommand extends SingleLogCommand {
             break;
         case "cardio":
             logList.getCardioSum(date);
+            break;
+        default:
             break;
         }
     }

@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 import seedu.healthbud.LogList;
-import seedu.healthbud.exception.InvalidDateFormatException;
 import seedu.healthbud.exception.InvalidWorkoutException;
 import seedu.healthbud.log.Workout;
 import seedu.healthbud.parser.addcommandparser.AddWorkoutParser;

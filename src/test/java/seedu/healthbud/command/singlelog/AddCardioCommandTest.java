@@ -56,7 +56,7 @@ class AddCardioCommandTest {
     }
 
     @Test
-    void cardioLog__missingTime_throwsInvalidCardioException() {
+    void cardioLog_missingTime_throwsInvalidCardioException() {
         String input = "add cardio Running /s 8 /i 5 /d 2023-12-25";
         LogList cardioLogs = new LogList();
 

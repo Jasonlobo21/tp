@@ -1,21 +1,13 @@
 package seedu.healthbud.command.singlelog;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import seedu.healthbud.LogList;
 
 import seedu.healthbud.exception.HealthBudException;
-import seedu.healthbud.exception.InvalidCardioException;
 import seedu.healthbud.exception.InvalidDeleteException;
-import seedu.healthbud.exception.InvalidMLException;
-import seedu.healthbud.exception.InvalidPersonalBestException;
-import seedu.healthbud.log.Workout;
 import seedu.healthbud.parser.DeleteParser;
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.healthbud.HealthBud.pbLogs;
 
 class DeleteCommandTest {
