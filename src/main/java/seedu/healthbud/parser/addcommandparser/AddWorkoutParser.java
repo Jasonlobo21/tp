@@ -18,7 +18,8 @@ public class AddWorkoutParser {
     public static AddWorkoutCommand parse(LogList workoutLogs, String input)
             throws InvalidWorkoutException, InvalidDateFormatException {
 
-        assert input != null : "Invalid workout input!";
+        assert input != null : "Input should not be null";
+
         if (!input.contains("/r ") || !input.contains("/s ") || !input.contains("/d ") || !input.contains("/w ")) {
             throw new InvalidWorkoutException();
         }

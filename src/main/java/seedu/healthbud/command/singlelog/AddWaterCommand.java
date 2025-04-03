@@ -14,6 +14,9 @@ public class AddWaterCommand extends SingleLogCommand {
 
     public AddWaterCommand(LogList waterLogs, String ml, String date, String time) {
         super(waterLogs);
+
+        assert waterLogs != null : "LogList (waterLogs) should not be null";
+
         this.ml = ml;
         this.date = date;
         this.time = time;

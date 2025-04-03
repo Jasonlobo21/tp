@@ -14,6 +14,9 @@ public class AddMealCommand extends SingleLogCommand {
 
     public AddMealCommand(LogList mealLogs, String name, String calories, String date, String time) {
         super(mealLogs);
+
+        assert mealLogs != null : "LogList (mealLogs) should not be null";
+
         this.name = name;
         this.calories = calories;
         this.date = date;

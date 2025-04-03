@@ -8,7 +8,7 @@ import java.util.Map;
 public class BMIParser {
 
     public static BMICommand parse(String input) throws InvalidBMIException {
-        assert input != null && !input.trim().isEmpty() : "Input should not be null or empty";
+        assert input != null : "Input should not be null";
 
         if (!input.contains("/h") || !input.contains("/w")) {
             throw new InvalidBMIException();

@@ -19,7 +19,7 @@ public class AddMealParser {
     public static AddMealCommand parse(LogList mealLogs, String input)
             throws InvalidMealException, InvalidDateFormatException {
 
-        assert input != null : "Invalid meal input!";
+        assert input != null : "Input should not be null";
         if (!input.contains("/cal ") || !input.contains("/d ") || !input.contains("/t ")) {
             throw new InvalidMealException();
         }

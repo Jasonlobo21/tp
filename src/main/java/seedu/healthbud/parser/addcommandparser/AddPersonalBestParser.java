@@ -16,7 +16,8 @@ public class AddPersonalBestParser {
     public static AddPersonalBestCommand parse(LogList pbLogs, String input)
             throws InvalidPersonalBestException, InvalidDateFormatException {
 
-        assert input != null : "Invalid personal best input!";
+        assert input != null : "Input should not be null";
+
         if (!input.contains("/w ") || !input.contains("/d ")) {
             throw new InvalidPersonalBestException();
         }

@@ -9,6 +9,8 @@ public class SumParser {
 
     public static SumCommand parse(String input, LogList mealLogs, LogList waterLogs, LogList cardioLogs) throws
             InvalidSumException, InvalidDateFormatException {
+
+        assert input != null : "Input should not be null";
         String[] parts = input.trim().split(" ");
 
         if (parts.length < 4 || !parts[2].equals("/d")) {

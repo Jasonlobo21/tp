@@ -25,6 +25,7 @@ public class AddGoalParser {
     }
 
     public static AddGoalCommand parse(LogList goalLogs, String input) throws InvalidGoalException {
+        assert input != null : "Input should not be null";
         String[] parts = input.trim().split(" ");
 
         if (parts.length <=  2) {

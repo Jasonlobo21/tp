@@ -17,8 +17,7 @@ public class AddWaterParser {
     public static AddWaterCommand parse(LogList waterLogs, String input)
             throws InvalidWaterException, InvalidDateFormatException {
 
-        assert input != null : "Invalid water input!";
-        assert !input.trim().isEmpty() : "Input should not be empty!";
+        assert input != null : "Input should not be null";
 
         input = input.substring("add water".length()).trim();
 

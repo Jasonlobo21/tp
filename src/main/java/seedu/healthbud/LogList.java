@@ -20,6 +20,7 @@ public class LogList {
     }
 
     public Log getLog(int index){
+        assert index >= 0 && index < logs.size() : "Index out of bounds";
         return logs.get(index);
     }
 
@@ -31,13 +32,8 @@ public class LogList {
         return logs.isEmpty();
     }
 
-    public void updateLog(Log log){
-        Ui.printMessage(" Got it this Log has been updated:");
-        Ui.printMessage("  " + log.toString());
-        Storage.appendLogToFile(log);
-    }
-
     public void addLog(Log log) {
+        assert log != null : "Log to add should not be null";
         logs.add(log);
         Ui.printMessage(String.format("Got it. I've added this %s log:", log.getLogType()));
         Ui.printMessage(" " + getLog(getSize() - 1));
@@ -46,11 +42,11 @@ public class LogList {
     }
 
     public void loadLog(Log log) {
+        assert log != null : "Log to load should not be null";
         logs.add(log);
     }
 
     public void deleteLog(int index) throws HealthBudException {
-
         if (index < 1 || index > getSize()) {
             throw new HealthBudException("Task number not in range");
         }
@@ -73,6 +69,7 @@ public class LogList {
     }
 
     public void findLog(String keyword) {
+        assert keyword != null : "Keyword should not be null";
         boolean notFound = true;
         for (int i = 0; i < logs.size(); i++) {
             if (logs.get(i).toString().contains(keyword)) {
@@ -110,21 +107,8 @@ public class LogList {
         Ui.printMessage("Noted. I've removed all logs.");
     }
 
-    public void getAllDates(){
-        List<String> dates = new ArrayList<>();
-        for (int i = 0; i < logs.size(); i++) {
-            String date = logs.get(i).getDate();
-            if (!dates.contains(date)) {
-                dates.add(date);
-            }
-        }
-        Ui.printMessage("Here are the dates available:");
-        for (int i = 0; i < dates.size(); i++) {
-            Ui.printMessage((i + 1) + ". " + dates.get(i));
-        }
-    }
-
     public int getCaloriesSum(String date) {
+        assert date != null : "Date should not be null";
         int totalCalories = 0;
         for (int i = 0; i < logs.size(); i++) {
             Meal meal = (Meal) logs.get(i);
@@ -137,6 +121,7 @@ public class LogList {
     }
 
     public int getCardioSum(String date){
+        assert date != null : "Date should not be null";
         int totalCardio = 0;
         for (int i = 0; i < logs.size(); i++) {
             Cardio cardio = (Cardio) logs.get(i);
@@ -155,6 +140,7 @@ public class LogList {
     }
 
     public int getWaterSum(String date) {
+        assert date != null : "Date should not be null";
         int totalWater = 0;
         for (int i = 0; i < logs.size(); i++) {
             Water water = (Water) logs.get(i);
