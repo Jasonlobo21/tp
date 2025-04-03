@@ -37,6 +37,6 @@ public class AddWaterParser {
 
         String formattedDate = DateParser.formatDate(param.get("d"));
 
-        return new AddWaterCommand(waterLogs, input, param.get("ml"), formattedDate, param.get("t"));
+        return new AddWaterCommand(waterLogs, param.get("ml"), formattedDate, param.get("t"));
     }
 }

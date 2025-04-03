@@ -36,7 +36,7 @@ public class AddPersonalBestParser {
         }
         String formattedDate = DateParser.formatDate(param.get("d"));
 
-        return new AddPersonalBestCommand(pbLogs, input, name, param.get("w"), formattedDate);
+        return new AddPersonalBestCommand(pbLogs, name, param.get("w"), formattedDate);
     }
 }
 

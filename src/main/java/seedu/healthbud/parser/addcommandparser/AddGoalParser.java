@@ -41,6 +41,6 @@ public class AddGoalParser {
             throw new InvalidGoalException();
         }
 
-        return new AddGoalCommand(goalLogs, input, param.get("w"), param.get("cal"), param.get("kg"));
+        return new AddGoalCommand(goalLogs, param.get("w"), param.get("cal"), param.get("kg"));
     }
 }

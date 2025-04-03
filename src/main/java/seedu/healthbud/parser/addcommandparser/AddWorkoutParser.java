@@ -42,7 +42,7 @@ public class AddWorkoutParser {
 
         String formattedDate = DateParser.formatDate(param.get("d"));
 
-        return new AddWorkoutCommand(workoutLogs, input, name, param.get("r"), param.get("s"),
+        return new AddWorkoutCommand(workoutLogs, name, param.get("r"), param.get("s"),
                 formattedDate, param.get("w"));
     }
 }

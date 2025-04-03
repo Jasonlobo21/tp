@@ -8,8 +8,8 @@ public class SearchCommand extends SingleLogCommand {
     private final String date;
     private final String keyword;
 
-    public SearchCommand(String input, LogList logList, String date, String keyword) {
-        super(logList, input);
+    public SearchCommand(LogList logList, String date, String keyword) {
+        super(logList);
         this.date = date;
         this.keyword = keyword;
     }

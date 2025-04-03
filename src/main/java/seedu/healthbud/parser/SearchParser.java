@@ -70,6 +70,6 @@ public class SearchParser {
             throw new InvalidSearchException("Invalid log type. Valid types: meal, workout, water, pb, cardio.");
         }
 
-        return new SearchCommand(input, targetLogList, date, keyword);
+        return new SearchCommand(targetLogList, date, keyword);
     }
 }

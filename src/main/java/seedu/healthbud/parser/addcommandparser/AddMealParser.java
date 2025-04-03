@@ -38,6 +38,6 @@ public class AddMealParser {
 
         String formattedDate = DateParser.formatDate(param.get("d"));
 
-        return new AddMealCommand(mealLogs, input, name, param.get("cal"), formattedDate, param.get("t"));
+        return new AddMealCommand(mealLogs, name, param.get("cal"), formattedDate, param.get("t"));
     }
 }

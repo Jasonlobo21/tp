@@ -13,9 +13,9 @@ public class AddCardioCommand extends SingleLogCommand {
     private final String time;
     private final String date;
 
-    public AddCardioCommand(LogList cardioLogs, String input, String name, String sets,
+    public AddCardioCommand(LogList cardioLogs, String name, String sets,
                             String intensity, String time, String date) {
-        super(cardioLogs, input);
+        super(cardioLogs);
         this.name = name;
         this.sets = sets;
         this.intensity = intensity;

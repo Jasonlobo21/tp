@@ -2,12 +2,9 @@ package seedu.healthbud.command.singlelog;
 
 import org.junit.jupiter.api.Test;
 import seedu.healthbud.LogList;
-import seedu.healthbud.exception.HealthBudException;
-import seedu.healthbud.exception.InvalidCardioException;
-import seedu.healthbud.exception.InvalidDeleteException;
-import seedu.healthbud.exception.InvalidMLException;
-import seedu.healthbud.exception.InvalidPersonalBestException;
+import seedu.healthbud.exception.*;
 import seedu.healthbud.parser.DeleteParser;
+import seedu.healthbud.parser.addcommandparser.*;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -20,7 +17,7 @@ class DeleteCommandTest {
 
     @Test
     void deleteMeal_correctInput_expectSuccess() throws InvalidPersonalBestException, InvalidMLException,
-            InvalidCardioException, HealthBudException {
+            InvalidCardioException, HealthBudException, InvalidMealException, InvalidDateFormatException, InvalidDeleteException {
 
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         System.setOut(new PrintStream(output));
@@ -28,12 +25,13 @@ class DeleteCommandTest {
         LogList mealLogs = new LogList();
         String input = "add meal chicken rice /cal 550 /d 12-01-25 /t 9pm";
 
-        AddMealCommand addCommand = new AddMealCommand(mealLogs, input, "chicken rice", "550", "12 Jan 2025", "9pm");
-        addCommand.execute();
+
+        AddMealCommand command = AddMealParser.parse(mealLogs, input);
+        command.execute();
         assertEquals(1, mealLogs.getSize());
 
         String deleteInput = "delete meal 1";
-        DeleteCommand deleteCommand = new DeleteCommand(mealLogs, deleteInput, 1);
+        DeleteCommand deleteCommand = DeleteParser.parse(deleteInput, mealLogs, new LogList(), new LogList(), new LogList(), new LogList());
         deleteCommand.execute();
 
         String expected = "Noted. I've removed this log:";
@@ -58,7 +56,7 @@ class DeleteCommandTest {
     }
 
     @Test
-    void deleteParser_nonNumericIndex_expectThrowsHealthBudException() {
+    void deleteParser_nonNumericIndex_expectThrowsInvalidDeleteException() {
         LogList mealLogs = new LogList();
         LogList workoutLogs = new LogList();
         LogList waterLogs = new LogList();
@@ -68,9 +66,9 @@ class DeleteCommandTest {
         // Non-numeric index provided
         String input = "delete meal one";
 
-        HealthBudException exception = assertThrows(HealthBudException.class, () ->
+        InvalidDeleteException exception = assertThrows(InvalidDeleteException.class, () ->
                 DeleteParser.parse(input, mealLogs, workoutLogs, waterLogs, pbLogs, cardioLogs));
-        assertEquals("Insert a valid task number", exception.getMessage());
+        assertEquals("Invalid delete command - delete <meal|workout|water|pb> <index>", exception.getMessage());
     }
 
     @Test

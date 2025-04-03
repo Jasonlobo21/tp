@@ -58,7 +58,7 @@ public class AddCardioParser {
         // Parse and format the date
         String formattedDate = DateParser.formatDate(param.get("d"));
 
-        return new AddCardioCommand(cardioLogs, input, cardioName,
+        return new AddCardioCommand(cardioLogs, cardioName,
                 param.get("s"), param.get("i"), param.get("t"),
                 formattedDate);
     }

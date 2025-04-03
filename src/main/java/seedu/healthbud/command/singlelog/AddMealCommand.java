@@ -12,8 +12,8 @@ public class AddMealCommand extends SingleLogCommand {
     private final String date;
     private final String time;
 
-    public AddMealCommand(LogList mealLogs, String input, String name, String calories, String date, String time) {
-        super(mealLogs, input);
+    public AddMealCommand(LogList mealLogs, String name, String calories, String date, String time) {
+        super(mealLogs);
         this.name = name;
         this.calories = calories;
         this.date = date;

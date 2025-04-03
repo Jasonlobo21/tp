@@ -8,17 +8,13 @@ public class DeleteCommand extends SingleLogCommand {
 
     private final int index;
 
-    public DeleteCommand(LogList targetLogList, String input, int index) {
-        super(targetLogList, input);
+    public DeleteCommand(LogList targetLogList, int index) {
+        super(targetLogList);
         this.index = index;
     }
 
     @Override
     public void execute() throws HealthBudException {
-        if (!input.trim().matches(".*\\d+.*")) {
-            throw new HealthBudException("Insert a valid task number");
-        }
-
         logList.deleteLog(index);
     }
 

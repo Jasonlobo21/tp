@@ -4,8 +4,8 @@ import seedu.healthbud.LogList;
 import seedu.healthbud.command.SingleLogCommand;
 
 public class ListCommand extends SingleLogCommand {
-    public ListCommand(String input, LogList logList) {
-        super(logList, input);
+    public ListCommand(LogList logList) {
+        super(logList);
     }
 
     @Override

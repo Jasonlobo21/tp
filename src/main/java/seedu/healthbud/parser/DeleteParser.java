@@ -2,14 +2,13 @@ package seedu.healthbud.parser;
 
 import seedu.healthbud.LogList;
 import seedu.healthbud.command.singlelog.DeleteCommand;
-import seedu.healthbud.exception.HealthBudException;
 import seedu.healthbud.exception.InvalidDeleteException;
 
 public class DeleteParser {
 
     public static DeleteCommand parse(String input, LogList mealLogs, LogList workoutLogs, LogList waterLogs,
                                       LogList pbLogs, LogList cardioLogs)
-            throws InvalidDeleteException, HealthBudException {
+            throws InvalidDeleteException {
 
         assert input != null : "Input should not be null";
 
@@ -24,20 +23,20 @@ public class DeleteParser {
         try {
             index = Integer.parseInt(parts[2]);
         } catch (NumberFormatException e) {
-            throw new HealthBudException("Insert a valid task number");
+            throw new InvalidDeleteException();
         }
 
         switch (logType) {
         case "meal":
-            return new DeleteCommand(mealLogs, input, index);
+            return new DeleteCommand(mealLogs, index);
         case "workout":
-            return new DeleteCommand(workoutLogs, input, index);
+            return new DeleteCommand(workoutLogs, index);
         case "water":
-            return new DeleteCommand(waterLogs, input, index);
+            return new DeleteCommand(waterLogs, index);
         case "pb":
-            return new DeleteCommand(pbLogs, input, index);
+            return new DeleteCommand(pbLogs, index);
         case "cardio":
-            return new DeleteCommand(cardioLogs, input, index);
+            return new DeleteCommand(cardioLogs, index);
 
         default:
             throw new InvalidDeleteException();
