@@ -4,15 +4,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import seedu.healthbud.LogList;
 
-import seedu.healthbud.exception.InvalidDeleteException;
-import seedu.healthbud.exception.InvalidDateFormatException;
-import seedu.healthbud.exception.InvalidMLException;
+import seedu.healthbud.exception.HealthBudException;
 import seedu.healthbud.exception.InvalidCardioException;
+import seedu.healthbud.exception.InvalidDeleteException;
+import seedu.healthbud.exception.InvalidMLException;
 import seedu.healthbud.exception.InvalidPersonalBestException;
-
 import seedu.healthbud.log.Workout;
 import seedu.healthbud.parser.DeleteParser;
-import seedu.healthbud.parser.addcommandparser.AddMealParser;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -26,8 +24,7 @@ class DeleteCommandTest {
 
     @Test
     void deleteMeal_correctInput_expectSuccess() throws InvalidPersonalBestException, InvalidMLException,
-            InvalidCardioException, HealthBudException, InvalidMealException,
-            InvalidDateFormatException, InvalidDeleteException {
+            InvalidCardioException, InvalidDeleteException, HealthBudException {
 
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         System.setOut(new PrintStream(output));
@@ -37,7 +34,7 @@ class DeleteCommandTest {
 
 
 
-        AddMealCommand addCommand = new AddMealCommand(mealLogs, input, "chicken rice", "550", "12 Jan 2025", "9pm");
+        AddMealCommand addCommand = new AddMealCommand(mealLogs, "chicken rice", "550", "12 Jan 2025", "9pm");
         addCommand.execute();
         assertEquals(1, mealLogs.getSize());
 
@@ -53,7 +50,7 @@ class DeleteCommandTest {
     }
 
     @Test
-    void validWaterDelete_expectSuccess() throws InvalidDeleteException, HealthBudException {
+    void validWaterDelete_expectSuccess() throws InvalidDeleteException {
         LogList mealLogs = new LogList();
         LogList workoutLogs = new LogList();
         LogList waterLogs = new LogList();
@@ -139,7 +136,7 @@ class DeleteCommandTest {
         LogList cardioLogs = new LogList();
 
         String input = "delete water 1.5";
-        assertThrows(HealthBudException.class, () ->
+        assertThrows(InvalidDeleteException.class, () ->
                 DeleteParser.parse(input, mealLogs, workoutLogs, waterLogs, pbLogs, cardioLogs));
 
     }
@@ -153,7 +150,7 @@ class DeleteCommandTest {
         LogList cardioLogs = new LogList();
 
         String input = "delete PB one";
-        assertThrows(HealthBudException.class, () ->
+        assertThrows(InvalidDeleteException.class, () ->
                 DeleteParser.parse(input, mealLogs, workoutLogs, waterLogs, pbLogs, cardioLogs));
     }
 
@@ -208,7 +205,7 @@ class DeleteCommandTest {
         assertEquals(2, workoutLogs.getSize());
 
         String input = "delete pb 1";
-        DeleteCommand command = new DeleteCommand(workoutLogs, input, 1);
+        DeleteCommand command = new DeleteCommand(workoutLogs, 1);
         command.execute();
 
         assertEquals(1, workoutLogs.getSize());
@@ -218,7 +215,7 @@ class DeleteCommandTest {
     @Test
     void deleteLog_indexOutOfBounds_expectThrowsHealthBudException() {
         String input = "delete pb 3";
-        DeleteCommand command = new DeleteCommand(pbLogs, input, 3);
+        DeleteCommand command = new DeleteCommand(pbLogs, 3);
 
         assertThrows(HealthBudException.class, () -> command.execute());
     }
@@ -227,7 +224,7 @@ class DeleteCommandTest {
     @Test
     void deleteLog_negativeIndex_expectThrowsHealthBudException() {
         String input = "delete workout -1";
-        DeleteCommand command = new DeleteCommand(workoutLogs, input, -1);
+        DeleteCommand command = new DeleteCommand(workoutLogs, -1);
 
         assertThrows(HealthBudException.class, () -> command.execute());
     }
@@ -235,7 +232,7 @@ class DeleteCommandTest {
     @Test
     void deleteLog_zeroIndex_expectThrowsHealthBudException() {
         String input = "delete pb 0";
-        DeleteCommand command = new DeleteCommand(pbLogs, input, 0);
+        DeleteCommand command = new DeleteCommand(pbLogs, 0);
 
         assertThrows(HealthBudException.class, () -> command.execute());
     }
@@ -243,7 +240,7 @@ class DeleteCommandTest {
     @Test
     void deleteLog_missingNumberInInput_expectThrowsHealthBudException() {
         String input = "delete pb";
-        DeleteCommand command = new DeleteCommand(pbLogs, input, 1);
+        DeleteCommand command = new DeleteCommand(pbLogs, 1);
 
         assertThrows(HealthBudException.class, () -> command.execute());
     }
