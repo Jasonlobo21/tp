@@ -35,7 +35,7 @@ The bulk of the CLI's work id done by the following components:
 
 ### UI
 
-![UI_Class_Diagram](Images/UiCD.png) <br>
+![UI_Class_Diagram](images/UiCD.png) <br>
 
 - The UI component is responsible for user interactions. It handles displaying messages, prompts, and error messages to the user. 
 
@@ -51,7 +51,7 @@ The Parser interface uses a series of classes to implement the various commands.
 `//TODO: include command class diagram here`
 
 ### LogList
-![LogList_Class_Diagram](Images/LogListCD.png)
+![LogList_Class_Diagram](images/LogListCD.png)
 
 The LogList class manages a list of logs, each representing a fitness-related entry such as meals, workouts, water 
 intake, cardio sessions, personal bests, or goals. It maintains a List<Log> and provides methods to add, delete, update,
@@ -65,7 +65,8 @@ list, and search through these logs.
 This design promotes extensibility and encapsulation, allowing new log types to be added easily while maintaining a consistent interface.
 
 ### Storage
-`//TODO: include command class diagram here`
+The Storage class manages HealthBud log persistence by reading and writing to a designated text file. It creates necessary directories and files, loads logs by parsing each line into specific types (Meal, Workout, etc.), and distributes them into corresponding LogLists. It also appends and rewrites logs using formatted string representations while handling errors gracefully.
+![Storage_Class_Diagram](images/StorageCD.png)
 
 ### Data
 `//TODO: include command class diagram here`
@@ -107,7 +108,7 @@ The delete log feature allows users to remove a log by its index from the applic
     - One alternative was to embed the deletion logic directly in the parser or UI layer. However, this approach would mix user input handling with business logic, resulting in code that is harder to maintain and test. Delegating deletion to a specialized command class keeps the design modular and scalable.
 
 ### Sequence Diagram
-![DeleteLog.png](Images/DeleteSD.png)
+![DeleteLog.png](images/DeleteSD.png)
 
 
 Diagram Explanation <br>
@@ -157,7 +158,7 @@ The recommend <muscle_group> command provides users with 3 curated workout sugge
 - External file storage for recommendations: Overhead for static data; current implementation is simpler and faster.
 
 ### 5. Sequence Diagrams
-![Recommend_Sequence_Diagram](Images/RecommendSD.png)
+![Recommend_Sequence_Diagram](images/RecommendSD.png)
 
 Diagram Explanation <br>
 
@@ -204,56 +205,10 @@ Using an External Library
 Given the simplicity of the BMI formula, an external library would add unnecessary complexity.
 
 5. Sequence Diagrams
-6. Future Improvements
+   ![BMI_Sequence_Diagram](images/BMISD.png)
 
-
-
-## SearchCommand
-### 1. Feature overview:
-The SearchCommand feature allows users to search through their logs by either a specific date or a keyword. This enables users to quickly filter and locate log entries—for example, finding all logs on a particular day or identifying entries that mention a specific term.
-### 2. Implementation details:
-#### Inheritance:
-Inherits from OneLogCommand (which in turn extends the base Command class) to operate on a single LogList.
-#### Immutable Fields:
-Stores the search parameters (either date or keyword) as immutable (final) fields.
-#### Dual Search Logic:
-implements two search approaches:
-1. **Keyword Search**: Searches through the log entries for a specific keyword.
-2. **Date Search**: Filters log entries based on a specific date.
-### 3. Why this design:
-Single Responsibility:
-The search functionality is isolated within its own command, ensuring the logic is clean, focused, and easy to manage.
-
-Readability & Testability:
-The clear separation between date-based and keyword-based searches simplifies both understanding and unit testing.
-
-Extensibility:
-Future enhancements—such as combining filters or adding new search criteria—can be integrated with minimal changes to the existing structure.
-Readability & Testability:
-The concise code structure makes it easy to unit test and maintain.
-
-Extensibility:
-Future changes (e.g., additional BMI categories or metrics) can be made in this class without impacting other parts of the system.
-###  4. Alternatives considered:
-Extending AllLogsCommand:
-One alternative was to have the search functionality span multiple log types simultaneously by extending AllLogsCommand. However, this approach was rejected because it would complicate the search logic and user interface. Users typically search within a single log category, so isolating the search to one log list made the command simpler and clearer.
-
-Parser-Only Filtering:
-Another alternative was to handle filtering entirely within the parser, returning a filtered list rather than a command that executes a search. This was not chosen because encapsulating the search behavior in a dedicated command class improves separation of concerns and aligns with the command-based architecture used throughout the project.
-
-5. Sequence Diagrams 
-### Future Improvements
-Combined Search Criteria:
-Future enhancements could allow users to combine search parameters (e.g., filtering by both date and keyword simultaneously) to refine their search results further.
-
-Advanced Filtering Options:
-Implementing range-based date searches, fuzzy matching for keywords, or even categorizing results by relevance could improve user experience.
-
-Result Ranking & Pagination:
-For logs with many entries, adding functionality to rank results by relevance or paginate long lists could enhance usability.
-
-Improved Logging & Metrics:
-Incorporating logging of search queries and performance metrics could help monitor usage patterns and optimize search efficiency in future releases.
+6. ### Future Improvements
+   Future improvements for the BMI command could include personalized BMI thresholds based on user profiles, comprehensive historical tracking, and clear visualizations of BMI changes over time for improved health insights.
 
 
 
