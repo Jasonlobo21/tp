@@ -109,7 +109,7 @@ class RecommendCommandTest {
     @Test
     void recommendWorkout_invalidMuscle_expectFailure() {
         String input = "recommend toes";
-        assertThrows(HealthBudException.class, () -> RecommendParser.parse(input));
+        assertThrows(InvalidRecommendException.class, () -> RecommendParser.parse(input));
     }
 
     @Test

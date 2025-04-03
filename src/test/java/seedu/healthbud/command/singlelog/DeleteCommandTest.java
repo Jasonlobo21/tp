@@ -126,7 +126,7 @@ class DeleteCommandTest {
         LogList mealLogs = new LogList();
         String badInput = "delete meal noindex";
 
-        DeleteCommand command = new DeleteCommand(mealLogs, badInput, 1);
+        DeleteCommand command = new DeleteCommand(mealLogs, 1);
 
         HealthBudException exception = assertThrows(HealthBudException.class, command::execute);
         assertEquals("Insert a valid task number", exception.getMessage());
