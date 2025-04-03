@@ -3,7 +3,6 @@ package seedu.healthbud.command.singlelog;
 import org.junit.jupiter.api.Test;
 
 import seedu.healthbud.LogList;
-import seedu.healthbud.command.singlelog.AddCardioCommand;
 import seedu.healthbud.exception.InvalidCardioException;
 import seedu.healthbud.log.Cardio;
 import seedu.healthbud.parser.addcommandparser.AddCardioParser;
@@ -200,7 +199,8 @@ class AddCardioCommandTest {
     //        LogList cardioLogs = new LogList();
     //        String input = "add cardio Running /s 8 /i 5 /t 90 /d 2023-12-25";
     //
-    //        AddCardioCommand command = new AddCardioCommand(cardioLogs, input, "running", "8", "5", "90", "12 Jan 2025");
+    //        AddCardioCommand command = new AddCardioCommand(cardioLogs, input,
+    //        "running", "8", "5", "90", "12 Jan 2025");
     //
     //
     //        command.execute();
