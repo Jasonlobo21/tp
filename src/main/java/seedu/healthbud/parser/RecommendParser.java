@@ -17,7 +17,8 @@ public class RecommendParser {
      *
      * @param input the input command; must not be null.
      * @return a RecommendCommand with the recommendation message.
-     * @throws InvalidRecommendException if the input does not have exactly two parts or the muscle group is unrecognized.
+     * @throws InvalidRecommendException
+     * if the input does not have exactly two parts or the muscle group is unrecognized.
      */
     public static RecommendCommand parse(String input) throws InvalidRecommendException {
         assert input != null : "Input should not be null";
