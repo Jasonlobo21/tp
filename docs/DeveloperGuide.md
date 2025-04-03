@@ -75,10 +75,8 @@ The Add Log feature allows users to create and store different types of logs (e.
 This feature is handled by the AddCommand hierarchy, where each log type has a dedicated parser and command class for structured input validation and storage.
 
 ### 1. User Input: <br>
-- The user enters a command in the following general format: <br> 
-  ` add <log_type> <details> [parameters] `
-For example (Workout): <br>
-  ` add workout Benchpress /r 10 /s 3 /d 2023-12-25 /w 50 `
+- The user enters a command in the following general format: ` add <log_type> <details> [parameters] `
+- For example (Workout): ` add workout Benchpress /r 10 /s 3 /d 2023-12-25 /w 50 `
 
 ### 2. Command Parsing: <br>
 1. ParserManager identifies the add command and extracts the log type (e.g., workout, meal).
@@ -174,6 +172,7 @@ The recommend <muscle_group> command provides users with 3 curated workout sugge
 - The user enters the recommend command followed by a muscle group that they are interested in working out (e.g., `recommend biceps`).
 
 ### 2. Command Parsing: <br>
+
 - The RecommendParser handles parsing and validation of the user input. 
 - It checks that at least one argument (a muscle group) is present. 
 - It uses a switch-case on the muscle group to determine the recommended exercises. 
@@ -194,6 +193,7 @@ The recommend <muscle_group> command provides users with 3 curated workout sugge
 - Readability: Clean execute() method and well-structured parser make the code intuitive and maintainable
 
 ### 6. Alternatives considered: <br>
+
 - Enums for muscle groups: More structured but restrictive; dropped in favor of flexible string matching.
 - External file storage for recommendations: Overhead for static data; current implementation is simpler and faster.
 
