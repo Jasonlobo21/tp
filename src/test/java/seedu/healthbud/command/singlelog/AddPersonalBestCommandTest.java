@@ -96,4 +96,10 @@ class AddPersonalBestCommandTest {
         assertThrows(InvalidPersonalBestException.class, () -> AddPersonalBestParser.parse(pbLogs, input));
     }
 
+    @Test
+    void addPersonalBest_nullInput_throwsAssertionError() {
+        LogList pbLogs = new LogList();
+        assertThrows(AssertionError.class, () -> AddPersonalBestParser.parse(pbLogs, null));
+    }
+
 }

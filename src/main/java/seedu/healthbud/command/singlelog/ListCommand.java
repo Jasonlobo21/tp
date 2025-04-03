@@ -6,7 +6,6 @@ import seedu.healthbud.command.SingleLogCommand;
 public class ListCommand extends SingleLogCommand {
     public ListCommand(LogList logList) {
         super(logList);
-        assert logList != null : "LogList should not be null";
     }
 
     @Override

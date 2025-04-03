@@ -68,4 +68,66 @@ class AddMealCommandTest {
         String expected = "chicken rice (550 cal) on: 12 Jan 2025 at: 9pm";
         assertEquals(expected, meal.toString());
     }
+
+    @Test
+    void mealLog_nullInput_expectAssertionError() {
+        LogList mealLogs = new LogList();
+        assertThrows(AssertionError.class, () -> AddMealParser.parse(mealLogs, null));
+    }
+
+    @Test
+    void mealLog_extraParameterKey_expectThrowsInvalidMealException() {
+        LogList mealLogs = new LogList();
+        String input = "add meal chicken rice /cal 550 /d 12-01-2025 /t 9pm /x extra";
+        assertThrows(InvalidMealException.class, () -> AddMealParser.parse(mealLogs, input));
+    }
+
+    @Test
+    void mealLog_missingCalorieKey_expectThrowsInvalidMealException() {
+        LogList mealLogs = new LogList();
+        String input = "add meal chicken rice /d 12-01-2025 /t 9pm";
+        assertThrows(InvalidMealException.class, () -> AddMealParser.parse(mealLogs, input));
+    }
+
+    @Test
+    void mealLog_missingDateKey_expectThrowsInvalidMealException() {
+        LogList mealLogs = new LogList();
+        String input = "add meal chicken rice /cal 550 /t 9pm";
+        assertThrows(InvalidMealException.class, () -> AddMealParser.parse(mealLogs, input));
+    }
+
+    @Test
+    void mealLog_missingTimeKey_expectThrowsInvalidMealException() {
+        LogList mealLogs = new LogList();
+        String input = "add meal chicken rice /cal 550 /d 12-01-2025";
+        assertThrows(InvalidMealException.class, () -> AddMealParser.parse(mealLogs, input));
+    }
+
+    @Test
+    void mealLog_emptyCalorieValue_expectThrowsInvalidMealException() {
+        LogList mealLogs = new LogList();
+        String input = "add meal chicken rice /cal   /d 12-01-2025 /t 9pm";
+        assertThrows(InvalidMealException.class, () -> AddMealParser.parse(mealLogs, input));
+    }
+
+    @Test
+    void mealLog_emptyDateValue_expectThrowsInvalidMealException() {
+        LogList mealLogs = new LogList();
+        String input = "add meal chicken rice /cal 550 /d   /t 9pm";
+        assertThrows(InvalidMealException.class, () -> AddMealParser.parse(mealLogs, input));
+    }
+
+    @Test
+    void mealLog_emptyTimeValue_expectThrowsInvalidMealException() {
+        LogList mealLogs = new LogList();
+        String input = "add meal chicken rice /cal 550 /d 12-01-2025 /t   ";
+        assertThrows(InvalidMealException.class, () -> AddMealParser.parse(mealLogs, input));
+    }
+
+    @Test
+    void mealLog_onlyWhitespaceInName_expectThrowsInvalidMealException() {
+        LogList mealLogs = new LogList();
+        String input = "add meal    /cal 550 /d 12-01-2025 /t 9pm";
+        assertThrows(InvalidMealException.class, () -> AddMealParser.parse(mealLogs, input));
+    }
 }

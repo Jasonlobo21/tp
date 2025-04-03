@@ -16,7 +16,6 @@ public class TrackGoalCommand extends MultiLogCommand {
             throws InvalidTrackException, InvalidDateFormatException {
         super(goalLogs, pbLogs, mealLogs, workoutLogs, waterLogs, cardioLogs, date);
 
-        assert date != null : "Date string should not be null";
         assert !date.trim().isEmpty() : "Date string should not be empty";
 
         this.date = DateParser.formatDate(date);

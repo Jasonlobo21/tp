@@ -6,12 +6,14 @@ import seedu.healthbud.command.singlelog.AddMealCommand;
 import seedu.healthbud.command.singlelog.AddWaterCommand;
 import seedu.healthbud.exception.InvalidTrackException;
 import seedu.healthbud.parser.TrackGoalParser;
+import seedu.healthbud.parser.ViewGoalsParser;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class TrackGoalCommandTest {
 
@@ -84,5 +86,55 @@ class TrackGoalCommandTest {
         assertThrows(InvalidTrackException.class, () ->
                 TrackGoalParser.parse(input, empty, empty, empty, empty, empty, empty));
     }
+
+    @Test
+    void constructor_nullDate_throwsAssertionError() {
+        LogList empty = new LogList();
+        assertThrows(AssertionError.class, () ->
+                new TrackGoalCommand(null, empty, empty, empty, empty, empty, empty));
+    }
+
+    @Test
+    void parser_nullInput_throwsAssertionError() {
+        LogList empty = new LogList();
+        assertThrows(AssertionError.class, () ->
+                TrackGoalParser.parse(null, empty, empty, empty, empty, empty, empty));
+    }
+
+    @Test
+    void constructor_emptyDate_throwsAssertionError() {
+        LogList empty = new LogList();
+        assertThrows(AssertionError.class, () ->
+                new TrackGoalCommand("   ", empty, empty, empty, empty, empty, empty));
+    }
+    @Test
+    void trackGoalConstructor_nullDate_throwsAssertionError() {
+        LogList empty = new LogList();
+        assertThrows(AssertionError.class, () ->
+                new TrackGoalCommand(null, empty, empty, empty, empty, empty, empty));
+    }
+
+    @Test
+    void viewGoalsParser_validInput_printsGoalMessage() {
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(outContent));
+
+        ViewGoalsParser.parse("view goal");
+
+        System.setOut(originalOut);
+        String output = outContent.toString().trim();
+
+        assertTrue(output.contains("Welcome to goal setting! Here are your current goals:"),
+                "Should print welcome message with current goals");
+        assertTrue(output.contains("What goal would you like to add today?"),
+                "Should prompt the user to add a goal");
+    }
+
+    @Test
+    void viewGoalsParser_nullInput_throwsAssertionError() {
+        assertThrows(AssertionError.class, () -> ViewGoalsParser.parse(null));
+    }
+
 
 }

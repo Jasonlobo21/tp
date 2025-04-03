@@ -193,4 +193,33 @@ public class AddWorkoutCommandTest {
                 AddWorkoutParser.parse(workoutLogs, input));
     }
 
+    @Test
+    void workoutConstructor_nullName_throwsAssertionError() {
+        assertThrows(AssertionError.class, () ->
+                new Workout(null, "10", "3", "25-12-2023", "50")
+        );
+    }
+
+    @Test
+    void workoutConstructor_nullReps_throwsAssertionError() {
+        assertThrows(AssertionError.class, () ->
+                new Workout("squats", null, "3", "25-12-2023", "50")
+        );
+    }
+
+    @Test
+    void workoutConstructor_nullSets_throwsAssertionError() {
+        assertThrows(AssertionError.class, () ->
+                new Workout("squats", "10", null, "25-12-2023", "50")
+        );
+    }
+
+    @Test
+    void workoutConstructor_nullWeight_throwsAssertionError() {
+        assertThrows(AssertionError.class, () ->
+                new Workout("squats", "10", "3", "25-12-2023", null)
+        );
+    }
+
+
 }

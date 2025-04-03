@@ -103,4 +103,12 @@ class ClearCommandTest {
         });
     }
 
+    @Test
+    void parser_nullInput_throwsAssertionError() {
+        LogList logs = new LogList();
+        assertThrows(AssertionError.class, () ->
+                ClearParser.parse(null, logs, logs, logs, logs, logs));
+    }
+
+
 }

@@ -149,5 +149,10 @@ class AddGoalCommandTest {
         assertEquals("65", goals.getWeightGoal()); // default
     }
 
+    @Test
+    public void addGoal_nullInput_expectAssertionError() {
+        LogList goalLogs = new LogList();
+        assertThrows(AssertionError.class, () -> AddGoalParser.parse(goalLogs, null));
+    }
 
 }

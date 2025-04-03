@@ -9,7 +9,6 @@ public class SearchCommand extends SingleLogCommand {
 
     public SearchCommand(LogList logList, String date, String keyword) {
         super(logList);
-        assert logList != null : "LogList should not be null";
         this.date = date;
         this.keyword = keyword;
     }

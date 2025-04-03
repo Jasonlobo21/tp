@@ -179,5 +179,18 @@ class DeleteCommandTest {
 
         assertThrows(HealthBudException.class, () -> command.execute());
     }
+
+    @Test
+    void delete_nullInput_expectThrowsAssertionError() {
+        LogList mealLogs = new LogList();
+        LogList workoutLogs = new LogList();
+        LogList waterLogs = new LogList();
+        LogList pbLogs = new LogList();
+        LogList cardioLogs = new LogList();
+
+        assertThrows(AssertionError.class, () ->
+                DeleteParser.parse(null, mealLogs, workoutLogs, waterLogs, pbLogs, cardioLogs));
+    }
+
 }
 
