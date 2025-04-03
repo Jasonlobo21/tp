@@ -103,10 +103,60 @@ class AddWaterCommandTest {
         assertThrows(InvalidWaterException.class, () -> AddWaterParser.parse(waterLogs, input));
     }
 
+    @Test
     void addWater_missingTParameters_expectThrowsInvalidWaterException(){
         LogList waterLogs = new LogList();
         String input  = "add water /ml 2000 /d 12-02-2002 /t";
 
+        assertThrows(InvalidWaterException.class, () -> AddWaterParser.parse(waterLogs, input));
+    }
+
+    @Test
+    void addWater_noSlashPrefix_expectThrowsInvalidWaterException() {
+        LogList waterLogs = new LogList();
+        String input = "add water ml 1000 /d 12-02-2002 /t 1000"; // missing '/' before 'ml'
+        assertThrows(InvalidWaterException.class, () -> AddWaterParser.parse(waterLogs, input));
+    }
+
+    @Test
+    void addWater_emptyMl_expectThrowsInvalidWaterException() {
+        LogList waterLogs = new LogList();
+        String input = "add water /ml   /d 12-02-2002 /t 1000";
+        assertThrows(InvalidWaterException.class, () -> AddWaterParser.parse(waterLogs, input));
+    }
+
+    @Test
+    void addWater_emptyDate_expectThrowsInvalidWaterException() {
+        LogList waterLogs = new LogList();
+        String input = "add water /ml 1000 /d   /t 1000";
+        assertThrows(InvalidWaterException.class, () -> AddWaterParser.parse(waterLogs, input));
+    }
+
+    @Test
+    void addWater_whitespaceOnlyInput_expectThrowsInvalidWaterException() {
+        LogList waterLogs = new LogList();
+        String input = "add water     ";
+        assertThrows(InvalidWaterException.class, () -> AddWaterParser.parse(waterLogs, input));
+    }
+
+    @Test
+    void addWater_missingOneKey_expectThrowsInvalidWaterException() {
+        LogList waterLogs = new LogList();
+        String input = "add water /ml 1000 /d 12-02-2002";
+        assertThrows(InvalidWaterException.class, () -> AddWaterParser.parse(waterLogs, input));
+    }
+
+    @Test
+    void addWater_nullInput_expectThrowsAssertionError() {
+        LogList waterLogs = new LogList();
+        String input = null;
+        assertThrows(AssertionError.class, () -> AddWaterParser.parse(waterLogs, input));
+    }
+
+    @Test
+    void addWater_missingSlashAtStart_expectThrowsInvalidWaterException() {
+        LogList waterLogs = new LogList();
+        String input = "add water ml 1000 /d 12-02-2022 /t 1000"; // missing '/' before ml
         assertThrows(InvalidWaterException.class, () -> AddWaterParser.parse(waterLogs, input));
     }
 

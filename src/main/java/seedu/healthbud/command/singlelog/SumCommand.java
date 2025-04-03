@@ -18,7 +18,7 @@ public class SumCommand extends SingleLogCommand {
     }
 
     @Override
-    public void execute() throws InvalidSumException, InvalidDateException {
+    public void execute(){
         switch (type) {
         case "cal":
             logList.getCaloriesSum(date);
@@ -29,8 +29,6 @@ public class SumCommand extends SingleLogCommand {
         case "cardio":
             logList.getCardioSum(date);
             break;
-        default:
-            throw new InvalidSumException();
         }
     }
 }
