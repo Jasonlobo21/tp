@@ -152,7 +152,8 @@ class StatusCommandTest {
     @Test
     void execute_nullMessage_throwsAssertionError() {
         LogList empty = new LogList();
-        StatusCommand command = new StatusCommand(empty, empty, empty, empty, empty, empty, "status change cutting", null);
+        StatusCommand command = new StatusCommand(empty, empty, empty, empty, empty, empty,
+                "status change cutting", null);
         assertThrows(AssertionError.class, command::execute);
     }
 
