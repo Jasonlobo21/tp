@@ -25,23 +25,51 @@ I have actively contributed to refining both my own code and that of my teammate
 
 ## Contributions to the UG
 
-Which sections did you contribute to the UG?
-
-i did parts about delete clear
-meal 
-about any order
-list
+I contributed significantly to the UG by writing and standardizing the sections on delete, clear and meal logs. 
+My focus was on ensuring that these sections were clear, concise, and consistent, which greatly improved the overall quality and readability of our documentation.
 
 
 ## Contributions to the DG
 
-Which sections did you contribute to the DG? Which UML diagrams did you add/updated?
+For the DG, I added and updated the class diagrams for the UI component. 
+I also provided detailed sequence diagrams illustrating the execution flow of commands – for example, 
+I included a sequence diagram for the "delete meal" command that explains step-by-step how the delete operation is performed.
 
 ## Contributions to team-based tasks
+I actively participated in team discussions, contributed to code reviews, and assisted teammates in refining their code. 
+My efforts included collaborating on design decisions and ensuring that our project documentation was consistent and maintained a high quality across the board.
+
+I played a key role in ensuring that our team always adhered to the principles of OOP. 
+Specifically, I revamped the command classes and wrote comprehensive tests for the add meal, delete, and clear functionalities, achieving 100% code coverage.
+
+In terms of project management, I took ownership of initiating the project and setting a clear direction, ensuring that my teammates were aligned with the overall vision. 
+I also ensured smooth merges with no loss of data and provided ongoing support with tools such as SourceTree and GitHub whenever teammates encountered difficulties.
 
 ## Review/mentoring contributions
 Links to PRs reviewed, instances of helping team members in other ways.
 
+- https://github.com/AY2425S2-CS2113-W13-4/tp/pull/139
+- https://github.com/AY2425S2-CS2113-W13-4/tp/pull/137
+- https://github.com/AY2425S2-CS2113-W13-4/tp/pull/134
+- https://github.com/AY2425S2-CS2113-W13-4/tp/pull/129
+- https://github.com/AY2425S2-CS2113-W13-4/tp/pull/123
+- https://github.com/AY2425S2-CS2113-W13-4/tp/pull/113
+- https://github.com/AY2425S2-CS2113-W13-4/tp/pull/110
+- https://github.com/AY2425S2-CS2113-W13-4/tp/pull/90
+- https://github.com/AY2425S2-CS2113-W13-4/tp/pull/73
+- https://github.com/AY2425S2-CS2113-W13-4/tp/pull/70
+- https://github.com/AY2425S2-CS2113-W13-4/tp/pull/66
+- https://github.com/AY2425S2-CS2113-W13-4/tp/pull/52
+- https://github.com/AY2425S2-CS2113-W13-4/tp/pull/51
+- https://github.com/AY2425S2-CS2113-W13-4/tp/pull/47
+- https://github.com/AY2425S2-CS2113-W13-4/tp/pull/38
+- https://github.com/AY2425S2-CS2113-W13-4/tp/pull/29
+- https://github.com/AY2425S2-CS2113-W13-4/tp/pull/22
+- https://github.com/AY2425S2-CS2113-W13-4/tp/pull/4
+- 
+
+
 ## Contributions beyond the project team:
-Evidence of helping others e.g. responses you posted in our forum, bugs you reported in other team's products,
-Evidence of technical leadership e.g. sharing useful information in the forum
+I reviewed other teams' code and developer guides, offering constructive tips for improvement, and provided help during tutorial sessions to assist other groups.
+
+https://github.com/nus-cs2113-AY2425S2/tp/pull/47/files/abeed9984adccad0e277d2158466071b33b8a665..d4f97488ed10b50e5ba6bd156a3b3802bd05cc85

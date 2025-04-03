@@ -11,8 +11,22 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * AddPersonalBestParser is responsible for parsing the input command for adding a personal best log.
+ * It extracts the exercise name, weight, and date parameters from the input string and returns an
+ * AddPersonalBestCommand.
+ */
 public class AddPersonalBestParser {
 
+    /**
+     * Parses the input command for adding a personal best and returns an AddPersonalBestCommand.
+     *
+     * @param pbLogs the LogList for personal best logs; must not be null.
+     * @param input  the input command string; must not be null.
+     * @return an AddPersonalBestCommand with the parsed exercise name, weight, and date.
+     * @throws InvalidPersonalBestException if the input format is invalid or required parameters are missing.
+     * @throws InvalidDateFormatException if the provided date cannot be parsed.
+     */
     public static AddPersonalBestCommand parse(LogList pbLogs, String input)
             throws InvalidPersonalBestException, InvalidDateFormatException {
 

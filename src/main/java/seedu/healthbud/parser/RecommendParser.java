@@ -3,10 +3,15 @@ package seedu.healthbud.parser;
 import seedu.healthbud.command.input.RecommendCommand;
 import seedu.healthbud.exception.InvalidRecommendException;
 
+/**
+ * RecommendParser is responsible for parsing the input command for workout recommendations.
+ * It validates the input format and returns a RecommendCommand containing a message
+ * with recommended exercises for a specific muscle group.
+ */
 public class RecommendParser {
 
     private static final String NEW_LINE = "\n     ";
-
+    
     public static RecommendCommand parse(String input) throws InvalidRecommendException {
         assert input != null : "Input should not be null";
         String[] parts = input.trim().split(" ");

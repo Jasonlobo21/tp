@@ -5,10 +5,14 @@ import seedu.healthbud.storage.Storage;
 import java.util.Scanner;
 
 
+/**
+ * The main entry point for the HealthBud application.
+ * <p>
+ * This class initializes all the necessary log lists, loads persisted data,
+ * and starts the command-line interface to process user commands.
+ * </p>
+ */
 public class HealthBud {
-    /**
-     * Main entry-point for the java.duke.Duke application.
-     */
 
     public static LogList mealLogs = new LogList();
     public static LogList workoutLogs = new LogList();
@@ -17,7 +21,11 @@ public class HealthBud {
     public static LogList cardioLogs = new LogList();
     public static LogList goalLogs = new LogList();
 
-
+    /**
+     * Main method that runs the HealthBud application.
+     *
+     * @param args the command-line arguments (not used)
+     */
     public static void main(String[] args) {
 
         Ui.printGreeting();

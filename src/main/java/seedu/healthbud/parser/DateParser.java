@@ -8,6 +8,12 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * DateParser provides utility methods for parsing and formatting date strings.
+ * It attempts to parse the input date using several predefined formats and returns the date
+ * formatted as "dd MMM yyyy". If the input date cannot be parsed using any supported format,
+ * an InvalidDateFormatException is thrown.
+ */
 public class DateParser {
 
     private static final String OUTPUT_FORMAT = "dd MMM yyyy";
@@ -34,6 +40,13 @@ public class DateParser {
 
     );
 
+    /**
+     * Formats the input date string into the standard output format "dd MMM yyyy".
+     *
+     * @param inputDate the input date string; must not be null or empty.
+     * @return the formatted date string.
+     * @throws InvalidDateFormatException if the input date cannot be parsed using any supported format.
+     */
     public static String formatDate(String inputDate) throws InvalidDateFormatException {
         assert inputDate != null : "Input date should not be null";
 

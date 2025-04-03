@@ -12,8 +12,21 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * AddWaterParser is responsible for parsing the input command for adding a water log.
+ * It extracts the water volume, date, and time parameters from the input string and returns an AddWaterCommand.
+ */
 public class AddWaterParser {
 
+    /**
+     * Parses the input command for adding a water log and returns an AddWaterCommand.
+     *
+     * @param waterLogs the LogList for water logs; must not be null.
+     * @param input     the input command string; must not be null.
+     * @return an AddWaterCommand with the parsed water log details.
+     * @throws InvalidWaterException if the input format is invalid or required parameters are missing.
+     * @throws InvalidDateFormatException if the date provided cannot be parsed.
+     */
     public static AddWaterCommand parse(LogList waterLogs, String input)
             throws InvalidWaterException, InvalidDateFormatException {
 

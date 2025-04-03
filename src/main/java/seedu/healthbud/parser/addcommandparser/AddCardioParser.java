@@ -12,8 +12,23 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * AddCardioParser is responsible for parsing the input command for adding a cardio log.
+ * It extracts the exercise name, speed, incline, duration, and date parameters from the input
+ * string and returns an AddCardioCommand with the parsed details.
+ */
 public class AddCardioParser {
 
+    /**
+     * Parses the input command for adding a cardio log and returns an AddCardioCommand.
+     *
+     * @param cardioLogs the LogList for cardio logs; must not be null.
+     * @param input      the input command string; must not be null.
+     * @return an AddCardioCommand with the parsed cardio log details.
+     * @throws InvalidCardioException if the input format is invalid, required parameters are missing,
+     *                                or parameter values are not valid numbers.
+     * @throws InvalidDateFormatException if the provided date cannot be parsed.
+     */
     public static AddCardioCommand parse(LogList cardioLogs, String input)
             throws InvalidCardioException, InvalidDateFormatException {
 
@@ -28,7 +43,6 @@ public class AddCardioParser {
             throw new InvalidCardioException();
         }
 
-        // Remove command prefix and trim
         input = input.replaceFirst("add cardio", "").trim();
 
         String name = input.substring(0, input.indexOf("/")).trim();
@@ -57,7 +71,6 @@ public class AddCardioParser {
             throw new InvalidCardioException();
         }
 
-        // Parse and format the date
         String formattedDate = DateParser.formatDate(param.get("d"));
 
         return new AddCardioCommand(cardioLogs, name,
