@@ -11,7 +11,7 @@ This application was developed as part of a university software engineering modu
 
 ### Architecture
 
-`//include architecture diagram here`
+![img.png](img.png)
 
 The Architecture Diagram given above explains the high-level design of the HealthBud.
 

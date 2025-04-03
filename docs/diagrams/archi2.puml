@@ -1,12 +1,12 @@
 @startuml
 
-' Actors
+' Actor
 actor User
 
-' System components in rectangles
+' System modules in rectangles
 rectangle {
     rectangle Ui
-    rectangle HealthBud
+    rectangle "HealthBud [Main]" as Main
     rectangle seedu.healthbud.log
     rectangle seedu.healthbud.parser
     rectangle seedu.healthbud.storage
@@ -18,10 +18,10 @@ rectangle {
 User --[dotted]> Ui
 
 ' Main app calls
-HealthBud --> Ui
-HealthBud --> LogList
-HealthBud --> seedu.healthbud.storage
-HealthBud --> seedu.healthbud.parser
+Main --> Ui
+Main --> LogList
+Main --> seedu.healthbud.storage
+Main --> seedu.healthbud.parser
 
 ' UI accesses model indirectly
 Ui -[dotted]> seedu.healthbud.log
