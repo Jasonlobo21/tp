@@ -11,15 +11,7 @@ import seedu.healthbud.exception.InvalidRecommendException;
 public class RecommendParser {
 
     private static final String NEW_LINE = "\n     ";
-
-    /**
-     * Parses the given input and returns a RecommendCommand with the corresponding recommendations.
-     *
-     * @param input the input command; must not be null.
-     * @return a RecommendCommand with the recommendation message.
-     * @throws InvalidRecommendException
-     * if the input does not have exactly two parts or the muscle group is unrecognized.
-     */
+    
     public static RecommendCommand parse(String input) throws InvalidRecommendException {
         assert input != null : "Input should not be null";
         String[] parts = input.trim().split(" ");
