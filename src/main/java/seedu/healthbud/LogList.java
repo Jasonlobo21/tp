@@ -86,6 +86,20 @@ public class LogList {
         }
     }
 
+    public void findLogByDate(String date) {
+        boolean notFound = true;
+        for (int i = 0; i < logs.size(); i++) {
+            if (logs.get(i).getDate().equals(date)) {
+                notFound = false;
+                Ui.printListedFormat(this, i);
+            }
+        }
+
+        if (notFound) {
+            Ui.printMessage("No logs found for this date: " + date);
+        }
+    }
+
     public void clearLogs() {
         if (logs.isEmpty()) {
             Ui.printMessage("No logs to clear.");
