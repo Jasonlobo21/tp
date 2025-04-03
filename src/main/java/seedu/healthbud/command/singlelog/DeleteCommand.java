@@ -10,6 +10,7 @@ public class DeleteCommand extends SingleLogCommand {
 
     public DeleteCommand(LogList targetLogList, int index) {
         super(targetLogList);
+        assert targetLogList != null : "LogList should not be null";
         this.index = index;
     }
 

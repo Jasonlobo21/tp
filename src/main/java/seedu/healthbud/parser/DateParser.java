@@ -35,6 +35,8 @@ public class DateParser {
     );
 
     public static String formatDate(String inputDate) throws InvalidDateFormatException {
+        assert inputDate != null : "Input date should not be null";
+
         if (inputDate == null || inputDate.trim().isEmpty()) {
             throw new InvalidDateFormatException();
         }

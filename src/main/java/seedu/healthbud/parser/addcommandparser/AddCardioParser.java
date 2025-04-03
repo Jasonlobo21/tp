@@ -16,12 +16,14 @@ public class AddCardioParser {
 
     public static AddCardioCommand parse(LogList cardioLogs, String input)
             throws InvalidCardioException, InvalidDateFormatException {
+
+        assert input != null : "Input should not be null";
+
         String[] parts = input.trim().split(" ");
         if (parts.length < 2) {
             throw new InvalidCardioException();
         }
 
-        assert input != null : "Invalid cardio input!";
         if (!input.contains("/s ") || !input.contains("/i ") || !input.contains("/t ") || !input.contains("/d ")) {
             throw new InvalidCardioException();
         }

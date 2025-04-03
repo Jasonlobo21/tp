@@ -9,7 +9,7 @@ public class ListParser {
     public static ListCommand parse(String input, LogList mealLogs, LogList workoutLogs,
                                     LogList waterLogs, LogList pbLogs, LogList cardioLogs)
             throws InvalidListException {
-
+        assert input != null : "Input should not be null";
         String[] parts = input.trim().split(" ");
 
         if (parts.length != 2) {

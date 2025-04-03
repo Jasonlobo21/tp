@@ -11,6 +11,7 @@ public class SearchParser {
                                       LogList mealLogs, LogList workoutLogs,
                                       LogList waterLogs, LogList pbLogs, LogList cardioLogs)
             throws InvalidSearchException, InvalidDateFormatException {
+        assert input != null : "Input should not be null";
 
         if (input == null || input.trim().isEmpty()) {
             throw new InvalidSearchException(

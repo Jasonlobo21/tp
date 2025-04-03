@@ -197,7 +197,7 @@ public class SearchCommandTest {
         LogList pbLogs = new LogList();
         LogList cardioLogs = new LogList();
 
-        assertThrows(InvalidSearchException.class, () ->
+        assertThrows(AssertionError.class, () ->
                 SearchParser.parse(null, mealLogs, workoutLogs, waterLogs, pbLogs, cardioLogs));
         assertThrows(InvalidSearchException.class, () ->
                 SearchParser.parse("", mealLogs, workoutLogs, waterLogs, pbLogs, cardioLogs));

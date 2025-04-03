@@ -8,7 +8,7 @@ public class RecommendParser {
     private static final String NEW_LINE = "\n     ";
 
     public static RecommendCommand parse(String input) throws InvalidRecommendException {
-
+        assert input != null : "Input should not be null";
         String[] parts = input.trim().split(" ");
         if (parts.length != 2) {
             throw new InvalidRecommendException();

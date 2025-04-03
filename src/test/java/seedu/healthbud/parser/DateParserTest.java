@@ -31,7 +31,7 @@ class DateParserTest {
 
     @Test
     void formatDate_nullInput_expectException() {
-        assertThrows(InvalidDateFormatException.class, () ->
+        assertThrows(AssertionError.class, () ->
                 DateParser.formatDate(null));
     }
 }

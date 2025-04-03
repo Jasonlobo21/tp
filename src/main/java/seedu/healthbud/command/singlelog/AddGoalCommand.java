@@ -17,6 +17,9 @@ public class AddGoalCommand extends SingleLogCommand {
     public AddGoalCommand(LogList goalLogs, String waterGoal,
                           String calorieGoal, String weightGoal){
         super(goalLogs);
+
+        assert goalLogs != null : "LogList (goalLogs) should not be null";
+
         this.waterGoal = waterGoal;
         this.calorieGoal = calorieGoal;
         this.weightGoal = weightGoal;

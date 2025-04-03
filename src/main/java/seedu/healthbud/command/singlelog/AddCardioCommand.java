@@ -16,6 +16,9 @@ public class AddCardioCommand extends SingleLogCommand {
     public AddCardioCommand(LogList cardioLogs, String name, String sets,
                             String intensity, String time, String date) {
         super(cardioLogs);
+
+        assert cardioLogs != null : "LogList (cardioLogs) should not be null";
+
         this.name = name;
         this.sets = sets;
         this.intensity = intensity;

@@ -17,6 +17,9 @@ public class AddWorkoutCommand extends SingleLogCommand {
     public AddWorkoutCommand(LogList workoutLogs, String name,
                              String reps, String sets, String date, String weight) {
         super(workoutLogs);
+
+        assert workoutLogs != null : "LogList (workoutLogs) should not be null";
+
         this.name = name;
         this.reps = reps;
         this.sets = sets;
