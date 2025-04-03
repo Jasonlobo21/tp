@@ -11,7 +11,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
@@ -31,32 +30,30 @@ class ListCommandTest {
         outputStream.reset();
     }
 
-    // ------------------------------------------------------------------------
-    // 1) Parser-based Tests: list <logType>
-    // ------------------------------------------------------------------------
+    private String executeListCommand(String input,
+                                      LogList mealLogs, LogList workoutLogs,
+                                      LogList pbLogs, LogList waterLogs, LogList cardioLogs)
+            throws InvalidListException {
+        outputStream.reset();
+        ListCommand command = ListParser.parse(input, mealLogs, workoutLogs, pbLogs, waterLogs, cardioLogs);
+        command.execute();
+        System.out.flush();
+        return outputStream.toString();
+    }
 
     @Test
-    void listMealLogsWithNoLogsExpectNoLogsAvailableMessage() throws InvalidListException {
-        // Prepare empty lists
+    void listMealLogsWithNoLogsExpectNoLogsAvailable() throws InvalidListException {
         LogList mealLogs = new LogList();
-        LogList workoutLogs = new LogList();
-        LogList pbLogs = new LogList();
-        LogList waterLogs = new LogList();
-        LogList cardioLogs = new LogList();
-
-        // "list meal" => should list mealLogs, which is empty
-        ListCommand command = ListParser.parse("list meal", mealLogs, workoutLogs, pbLogs, waterLogs, cardioLogs);
-        command.execute();
-
-        String output = outputStream.toString();
+        String output = executeListCommand(
+                "list meal", mealLogs, new LogList(), new LogList(), new LogList(), new LogList());
         assertTrue(output.contains("No logs available."),
                 "Should print 'No logs available.' for empty mealLogs.");
     }
 
     @Test
-    void listMealLogsWithExistingLogsExpectLogsListed() throws InvalidListException {
-        // Prepare mealLogs with some entries
+    void listMealLogsWithExistingLogsExpectListed() throws InvalidListException {
         LogList mealLogs = new LogList();
+        // Add logs to mealLogs
         AddMealCommand addMeal1 = new AddMealCommand(
                 mealLogs, "chicken rice", "550", "12 Jan 2025", "9pm");
         AddMealCommand addMeal2 = new AddMealCommand(
@@ -65,86 +62,68 @@ class ListCommandTest {
         addMeal2.execute();
         assertEquals(2, mealLogs.getSize());
 
-        // Other categories remain empty
-        LogList workoutLogs = new LogList();
-        LogList pbLogs = new LogList();
-        LogList waterLogs = new LogList();
-        LogList cardioLogs = new LogList();
-
-        // "list meal" => should list the two meal logs
-        outputStream.reset();
-        ListCommand command = ListParser.parse("list meal", mealLogs, workoutLogs, pbLogs, waterLogs, cardioLogs);
-        command.execute();
-
-        String output = outputStream.toString();
-        assertTrue(output.contains("chicken rice"),
-                "Should list 'chicken rice' in mealLogs.");
-        assertTrue(output.contains("tom yum"),
-                "Should list 'tom yum' in mealLogs.");
+        String output = executeListCommand(
+                "list meal", mealLogs, new LogList(), new LogList(), new LogList(), new LogList());
+        assertTrue(output.contains("chicken rice"), "Should list 'chicken rice' log.");
+        assertTrue(output.contains("tom yum"), "Should list 'tom yum' log.");
     }
 
+
     @Test
-    void listInvalidLogTypeExpectException() {
-        // All logs are empty, but that doesn't matter for invalid log type
-        LogList mealLogs = new LogList();
+    void listWorkoutLogsWithNoLogsExpectNoLogsAvailable() throws InvalidListException {
         LogList workoutLogs = new LogList();
-        LogList pbLogs = new LogList();
-        LogList waterLogs = new LogList();
-        LogList cardioLogs = new LogList();
-
-        String input = "list invalidType";
-        assertThrows(InvalidListException.class, () ->
-                ListParser.parse(input, mealLogs, workoutLogs, pbLogs, waterLogs, cardioLogs));
-    }
-
-    @Test
-    void listMissingLogTypeExpectException() {
-        // Only "list" => missing the second token for log type
-        LogList mealLogs = new LogList();
-        LogList workoutLogs = new LogList();
-        LogList pbLogs = new LogList();
-        LogList waterLogs = new LogList();
-        LogList cardioLogs = new LogList();
-
-        String input = "list";
-        assertThrows(InvalidListException.class, () ->
-                ListParser.parse(input, mealLogs, workoutLogs, pbLogs, waterLogs, cardioLogs));
-    }
-
-    // ------------------------------------------------------------------------
-    // 2) Direct Command Execution Tests
-    // ------------------------------------------------------------------------
-
-    @Test
-    void executeDirectCallNoLogsExpectNoLogsAvailableMessage() {
-        // Directly construct a ListCommand with an empty LogList
-        LogList mealLogs = new LogList();
-        ListCommand command = new ListCommand(mealLogs);
-
-        outputStream.reset();
-        command.execute();
-
-        String output = outputStream.toString();
+        String output = executeListCommand(
+                "list workout", new LogList(), workoutLogs, new LogList(), new LogList(), new LogList());
         assertTrue(output.contains("No logs available."),
-                "Should print 'No logs available.' when log list is empty.");
+                "Should print 'No logs available.' for empty workoutLogs.");
     }
 
     @Test
-    void executeDirectCallWithLogsExpectLogsListed() {
-        // Populate a LogList with a single meal
-        LogList mealLogs = new LogList();
-        AddMealCommand addMeal = new AddMealCommand(
-                mealLogs, "fried rice", "600", "12 Jan 2025", "7pm");
-        addMeal.execute();
-        assertEquals(1, mealLogs.getSize());
+    void listWaterLogsWithNoLogsExpectNoLogsAvailable() throws InvalidListException {
+        LogList waterLogs = new LogList();
+        String output = executeListCommand(
+                "list water", new LogList(), new LogList(), new LogList(), waterLogs, new LogList());
+        assertTrue(output.contains("No logs available."),
+                "Should print 'No logs available.' for empty waterLogs.");
+    }
 
-        // Construct a ListCommand directly
-        outputStream.reset();
-        ListCommand command = new ListCommand(mealLogs);
-        command.execute();
+    @Test
+    void listPbLogsWithNoLogsExpectNoLogsAvailable() throws InvalidListException {
+        LogList pbLogs = new LogList();
+        String output = executeListCommand(
+                "list pb", new LogList(), new LogList(), pbLogs, new LogList(), new LogList());
+        assertTrue(output.contains("No logs available."),
+                "Should print 'No logs available.' for empty pbLogs.");
+    }
 
-        String output = outputStream.toString();
-        assertTrue(output.contains("fried rice"),
-                "Should print 'fried rice' in the list.");
+    @Test
+    void listCardioLogsWithNoLogsExpectNoLogsAvailable() throws InvalidListException {
+        LogList cardioLogs = new LogList();
+        String output = executeListCommand(
+                "list cardio", new LogList(), new LogList(), new LogList(), new LogList(), cardioLogs);
+        assertTrue(output.contains("No logs available."),
+                "Should print 'No logs available.' for empty cardioLogs.");
+    }
+
+    @Test
+    void listMissingLogTypeExpectInvalidListException() {
+        // Just "list" => no second token
+        assertThrows(InvalidListException.class, () ->
+                ListParser.parse(
+                        "list", new LogList(), new LogList(), new LogList(), new LogList(), new LogList()));
+    }
+
+    @Test
+    void listInvalidLogTypeExpectInvalidListException() {
+        // "list randomType" => not recognized
+        assertThrows(InvalidListException.class, () ->
+                ListParser.parse("list randomType", new LogList(), new LogList(),
+                        new LogList(), new LogList(), new LogList()));
+    }
+
+    @Test
+    void listEmptyInputExpectInvalidListException() {
+        assertThrows(InvalidListException.class, () ->
+                ListParser.parse("", new LogList(), new LogList(), new LogList(), new LogList(), new LogList()));
     }
 }
