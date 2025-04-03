@@ -15,7 +15,7 @@ public class AddWaterParser {
             throws InvalidWaterException, InvalidDateFormatException {
 
         String[] parts = input.trim().split(" ");
-        if (parts.length < 2) {
+        if (parts.length < 2 || parts.length > 8) {
             throw new InvalidWaterException();
         }
 
