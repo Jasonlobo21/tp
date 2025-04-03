@@ -63,5 +63,51 @@ class AddWaterCommandTest {
         assertThrows(InvalidWaterException.class, () -> AddWaterParser.parse(waterLogs, input));
     }
 
+    @Test
+    void addWater_missingParameters_expectThrowsInvalidWaterException() {
+        LogList waterLogs = new LogList();
+        String input  = "add water /ml";
+
+        assertThrows(InvalidWaterException.class, () -> AddWaterParser.parse(waterLogs, input));
+    }
+
+    @Test
+    void addWater_missingAllParameters_expectThrowsInvalidWaterException() {
+        LogList waterLogs = new LogList();
+        String input  = "add water /ml /d /t";
+
+        assertThrows(InvalidWaterException.class, () -> AddWaterParser.parse(waterLogs, input));
+    }
+
+    @Test
+    void addWater_extraParameters_expectThrowsInvalidWaterException() {
+        LogList waterLogs = new LogList();
+        String input  = "add water /ml 1000 /d 12-02-2000 /t 1200 /e 10000";
+
+        assertThrows(InvalidWaterException.class, () -> AddWaterParser.parse(waterLogs, input));
+    }
+
+    @Test
+    void addWater_wrongParametersML_expectThrowsInvalidWaterException(){
+        LogList waterLogs = new LogList();
+        String input  = "add water /ml messi /d 12-02-2000 /t 1000";
+
+        assertThrows(InvalidWaterException.class, () -> AddWaterParser.parse(waterLogs, input));
+    }
+
+    @Test
+    void addWater_extraLines_expectThrowsInvalidWaterException(){
+        LogList waterLogs = new LogList();
+        String input  = "add water morning hydration /ml 1000 /d 12-02-2000 /t 1000";
+
+        assertThrows(InvalidWaterException.class, () -> AddWaterParser.parse(waterLogs, input));
+    }
+
+    void addWater_missingTParameters_expectThrowsInvalidWaterException(){
+        LogList waterLogs = new LogList();
+        String input  = "add water /ml 2000 /d 12-02-2002 /t";
+
+        assertThrows(InvalidWaterException.class, () -> AddWaterParser.parse(waterLogs, input));
+    }
 
 }
