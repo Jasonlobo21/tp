@@ -71,10 +71,53 @@ The Storage class manages HealthBud log persistence by reading and writing to a 
 # Implementation
 
 ## Add Log Command
-`//TODO: include SD here`
-The add Log command ensures that when users add a new log(e.g "add workout..."),
-The inputted entry would be appended into an array list in its corresponding Loglist. 
+The Add Log feature allows users to create and store different types of logs (e.g., workouts, meals, water intake) in HealthBud. 
+This feature is handled by the AddCommand hierarchy, where each log type has a dedicated parser and command class for structured input validation and storage.
+
+### 1. User Input: <br>
+- The user enters a command in the following general format: <br> 
+  ` add <log_type> <details> [parameters] `
+For example (Workout): <br>
+  ` add workout Benchpress /r 10 /s 3 /d 2023-12-25 /w 50 `
+
+### 2. Command Parsing: <br>
+1. ParserManager identifies the add command and extracts the log type (e.g., workout, meal).
+2. AddParser routes parsing to the respective log-specific parser (e.g., AddWorkoutParser, AddMealParser).
+3. Log-Specific Parser (e.g., AddWorkoutParser):
+  - Extracts mandatory fields (e.g., exercise name, reps, date).
+  - Validates numeric values (e.g., reps, weight).
+  - Formats the date using DateParser (converts 2023-12-25 → 25 Dec 2023).
+4. Returns a validated AddCommand object (e.g., AddWorkoutCommand).
+
+### 3. Command execution 
+1. AddCommand (e.g., AddWorkoutCommand):
+- Creates a new log object (e.g., Workout("Benchpress", "10", "3", "25 Dec 2023", "50")).
+- Passes the log to LogList for storage.
+2. LogList:
+- Adds the log to its internal list.
+- Calls Storage.appendLogToFile(log) to save data persistently.
+
+### 4. How the feature is implemented: <br>
+1. Input Routing: ParserManager detects add → delegates to AddParser
+2. Specialized Parsing: Log-specific parsers (AddWorkoutParser, etc.) extract and validate parameters
+3. Standardization: DateParser converts dates to consistent format
+4. Execution: Commands create log objects → LogList stores them → Storage saves to file
+5. Feedback: UI confirms success with parsed details
+
+### 6. Sequence Diagram
 ![AddLogCommand SD.png](images/AddLogCommand%20SD.png)
+
+### 7. Design Rationale
+1. Modular Parsers: Isolate validation logic per log type (avoids giant switch-case)
+2. Early Validation: Fail before object creation (saves memory/CPU cycles)
+3. Command Pattern: Keeps parsing separate from execution (cleaner testing)
+4. Centralized Storage: LogList manages all persistence (single source of truth)
+
+### 8. Alternatives considered: <br>
+1. Inheritance-Based Logs was considered but it causes deep class hierarchy for different log types. Which Makes file storage and retrieval harder. 
+
+3. UI Feedback:
+- Confirms successful addition (e.g., "Added: Benchpress (3 sets of 50 kg for 10 reps) on 25 Dec 2023").
 
 ## Delete Log Command
 The delete log feature allows users to remove a log by its index from the application's log list. This feature is handled by the `DeleteCommand` class, which performs validation, deletion, and error handling.
@@ -232,54 +275,48 @@ The user inputs a BMI command with weight and height. HealthBud delegates parsin
 
 ## AddWorkoutCommand
 ### 1. Feature overview
+Tracks strength training exercises in HealthBud by recording:
+1. Exercise name
+2. Weight (kg)
+3. Repetitions
+4. Sets
+5. Date
 
-The AddWorkoutCommand allows users to track their strength training exercise in the HealthBud application.
-This feature captures five key pieces of information for each workout session:
-The name of the exercise, the weight done in Kg, the number of repetitions performed, the number of sets completed, and the date of the workout.
-The system stores these records in a dedicated workout log list that users can view, modify, or analyze over time.
-
-Users interact with this feature through a structured command format:
-`add workout` [Workout_name] /w [weight in Kg] /r [number of reps] /s [number of sets] /d [date]
+Command Format:
+`add workout [name] /w [weight] /r [reps] /s [sets] /d [date]`
 
 ### 2. Implementation details
+1. Command Parsing:
+- GeneralParser identifies the command and delegates to AddWorkoutParser.
+- Parameters (/w, /r, /s, /d) are validated:
+  - Weight, reps, and sets must be positive numbers.
+  - Date must follow a valid format.
+  - Exercise name is extracted before the first parameter marker.
+2. Execution:
+- Creates an immutable Workout object with validated data.
+- Adds the record to the workout log list.
+- Throws descriptive errors for invalid input.
 
-When users enter an "add workout" command, the system follows a defined sequence of operations to ensure proper recording of exercise data.
-The process begins with the GeneralParser, which identifies the command type and directs workout entries to the specialized AddWorkoutParser.
-This dedicated parser performs comprehensive validation of three required parameters:
-the weight done in kg (/w) repetition count (/r), set count (/s), and workout date (/d).
-Each parameter undergoes strict format checking - repetitions and sets must be positive integers, while the date must follow a valid, recognizable format.
-For the workout name, the system extracts all text preceding the first parameter marker while ensuring it contains valid characters
-During command execution, the system instantiates a new WorkOUT object with the verified parameters.
-This immutable data object is then added to the application's centralized workout log.
-All exceptions, including invalid numeric values or date formats, are caught and presented to users as actionable error messages.
 ### 3. Why this design
-
-The current implementation follows several key design principles to ensure robustness and maintainability.
-The command pattern was deliberately chosen to create a clear separation between parsing user input and executing commands.
-This architectural decision makes the system more modular, allowing individual workout commands to be modified or extended without affecting other components.
-
-Parameter processing follows a flexible yet strict validation approach.
-By using dedicated markers (/w, /r, /s, /d), the system accommodates natural variations in command entry while maintaining rigorous data quality standards.
-This design choice significantly improves user experience by accepting parameters in any order, rather than enforcing a rigid sequence.
-
-The WorkOUT class implements an immutable design pattern for important reliability benefits.
-Once created, workout records cannot be accidentally modified, which prevents data corruption and simplifies debugging.
-This immutability also enables thread-safe operations, future-proofing the application for potential multi-threaded enhancements.
-
-The parsing logic incorporates multiple validation layers for maximum data integrity.
-Each parameter undergoes type checking, format verification, and range validation before being accepted.
-This thorough validation occurs before any changes to application state, following the fail-fast principle to prevent partial or invalid updates.
+1. Modularity:
+- Uses the Command Pattern to separate parsing and execution.
+- Easy to extend/modify without impacting other components
+2. User Experience:
+- Marker-based parameters (/w, /r, etc.) allow flexible input order.
+- Strict validation ensures data integrity while accommodating variations.
+3. Reliability:
+- Immutable Workout objects prevent accidental modification.
+- Thread-safe design for future scalability.
+4. Validation:
+- Fail-fast approach with multiple checks (type, format, range).
+- Prevents invalid state changes.
+- 
 ### 4. Alternatives considered
-
-We initially considered using positional arguments rather than parameter markers,
-where users would enter values in a fixed order (e.g., "add workout [name] [weight] [reps] [sets] [date]").
-This approach was ultimately rejected because it proved less intuitive for users and more prone to input errors.
-The current marker-based system (/w, /r, /s, /d) provides clearer visual separation of parameters and allows for more flexible command entry.
-
-We also explored using a single unified Log class with type differentiation,
-rather than dedicated classes for each log type.
-This unified approach was abandoned because it would have required extensive runtime type checking and reduced type safety.
-The current specialized class structure provides better compile-time checks and more intuitive code organization.
+1. Positional Arguments:
+- Rejected: Less intuitive and more error-prone than marker-based input.
+2. Unified Log Class:
+- Rejected: Would require runtime type checks and reduce type safety.
+- Current specialized classes provide better compile-time validation.
 
 ### 5. Sequence Diagrams
 ![AddWorkoutSD.png](images/AddWorkoutSD.png)
