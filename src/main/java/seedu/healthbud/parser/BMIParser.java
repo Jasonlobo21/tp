@@ -23,7 +23,6 @@ public class BMIParser {
             throw new InvalidBMIException();
         }
 
-        //checks if both are numbers and if height is a decimal
         if (!param.get("w").matches("\\d+") || !param.get("h").matches("^\\d+(\\.\\d+)?$")) {
             throw new InvalidBMIException();
         }
@@ -31,8 +30,7 @@ public class BMIParser {
         double weight = Double.parseDouble(param.get("w"));
         double height = Double.parseDouble(param.get("h"));
 
-        //checks if height is in m
-        if(height > 3.0 || height < 0.2) {
+        if(height > 3.0 || height < 0.2 || weight <= 0) {
             throw new InvalidBMIException();
         }
 

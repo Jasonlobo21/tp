@@ -5,8 +5,8 @@ import seedu.healthbud.Ui;
 import seedu.healthbud.command.SingleLogCommand;
 
 public class SearchCommand extends SingleLogCommand {
-    private final String date;
-    private final String keyword;
+    private final String date;      // null if searching by keyword
+    private final String keyword;   // null if searching by date
 
     public SearchCommand(LogList logList, String date, String keyword) {
         super(logList);
@@ -16,7 +16,7 @@ public class SearchCommand extends SingleLogCommand {
 
     @Override
     public void execute() {
-        // Check that exactly one of date or keyword is provided
+        // Check if both or neither param is provided => invalid
         if ((date != null && keyword != null) || (date == null && keyword == null)) {
             Ui.printMessage("Invalid search parameters. Provide either /d <date> or /k <keyword>, but not both.");
             return;
@@ -25,14 +25,14 @@ public class SearchCommand extends SingleLogCommand {
         if (date != null) {
             // Search by date
             Ui.printMessage("Showing logs for date: " + date);
-            boolean foundAny = printLogsForDate(logList, date);
+            boolean foundAny = printLogsForDate(super.logList, date);
             if (!foundAny) {
                 Ui.printMessage("No logs found for this date.");
             }
         } else {
             // Search by keyword
             Ui.printMessage("Showing logs containing keyword: " + keyword);
-            logList.findLog(keyword);
+            super.logList.findLog(keyword);
         }
     }
 

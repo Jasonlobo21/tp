@@ -182,29 +182,33 @@ This structure clearly separates parsing, command creation, and UI interaction f
 
 ## BMICommand
 
-### 1. Feature overview:
-The **BMICommand** feature allows users to calculate their Body Mass Index (BMI) and receive a classification (e.g., underweight, normal weight, overweight, obese). It’s useful for users who want a quick health metric based on their height and weight inputs.
-### 2. Implementation details:
-Inherits from InputOnlyCommand (which in turn extends the base Command class) to handle input parsing.
+### 1. User Input: <br>
+- The user enters the bmi command followed by their weight in kilograms and height in metres eg.("bmi /w 40 /h 1.75").
 
-Stores weight and height as immutable (final) fields.
-### 3. Why this design:
-Single Responsibility:
-The BMI calculation is isolated in its own command, keeping the logic clean and focused.
+### 2. Command Parsing: <br>
+- The RecommendParser handles parsing and validation of the user input.
+- It checks that at least one argument (a muscle group) is present.
+- It uses a switch-case on the muscle group to determine the recommended exercises.
+- If the muscle group is unrecognized, it throws a HealthBudException with guidance.
 
-Readability & Testability:
-The concise code structure makes it easy to unit test and maintain.
+### 3. The `RecommendCommand` executes as follows: <br>
+- Once constructed, the RecommendCommand calls Ui.printMessage() with the appropriate recommendation message.
+- The execute() method only handles display and does not contain logic beyond that.
 
-Extensibility:
-Future changes (e.g., additional BMI categories or metrics) can be made in this class without impacting other parts of the system.
-###  4. Alternatives considered:
-online Calculation in the Parser
+### 4. How the feature is implemented: <br>
+- The command string is split and validated in RecommendParser.
+- A corresponding message for each muscle group is hardcoded into the switch-case.
+- RecommendCommand simply wraps this message and prints it during execution.
 
-Implementing BMI logic directly in the parser would mix concerns and lead to a more complex parser design.
+### 5. Why it is implemented that way: <br>
+- Separation of Concerns: Logic for parsing and message generation is in the parser, while command execution is kept simple and focused.
+- Testability: Easy to write unit tests for RecommendParser without needing to simulate UI output.
+- Readability: Clean execute() method and well-structured parser make the code intuitive and maintainable
 
-Using an External Library
+### 6. Alternatives considered: <br>
+- Enums for muscle groups: More structured but restrictive; dropped in favor of flexible string matching.
+- External file storage for recommendations: Overhead for static data; current implementation is simpler and faster.
 
-Given the simplicity of the BMI formula, an external library would add unnecessary complexity.
 
 5. Sequence Diagrams
    ![BMI_Sequence_Diagram](images/BMISD.png)
