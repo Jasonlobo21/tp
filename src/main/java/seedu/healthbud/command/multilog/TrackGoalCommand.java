@@ -19,7 +19,7 @@ public class TrackGoalCommand extends MultiLogCommand {
     }
 
     @Override
-    public void execute() throws InvalidTrackException{
+    public void execute(){
         Ui.printMessage("Here is your goal progress for " + date + ": \n");
         waterLogs.getWaterSum(date);
         mealLogs.getCaloriesSum(date);

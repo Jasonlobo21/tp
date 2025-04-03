@@ -57,4 +57,44 @@ class ClearCommandTest {
             ClearParser.parse(input, mealLogs, workoutLogs, waterLogs, pbLogs, cardioLogs);
         });
     }
+
+    @Test
+    void clear_workoutLogs_expectSuccess() throws InvalidClearException {
+        LogList workoutLogs = new LogList();
+        ClearCommand command = ClearParser.parse("clear workout", new LogList(), new LogList(), new LogList(), new LogList(), workoutLogs);
+        command.execute();
+        assertEquals(0, workoutLogs.getSize());
+    }
+
+    @Test
+    void clear_pbLogs_expectSuccess() throws InvalidClearException {
+        LogList pbLogs = new LogList();
+        ClearCommand command = ClearParser.parse("clear pb", pbLogs, new LogList(), new LogList(), new LogList(), new LogList());
+        command.execute();
+        assertEquals(0, pbLogs.getSize());
+    }
+
+    @Test
+    void clear_waterLogs_expectSuccess() throws InvalidClearException {
+        LogList waterLogs = new LogList();
+        ClearCommand command = ClearParser.parse("clear water", new LogList(), new LogList(), waterLogs, new LogList(), new LogList());
+        command.execute();
+        assertEquals(0, waterLogs.getSize());
+    }
+
+    @Test
+    void clear_cardioLogs_expectSuccess() throws InvalidClearException {
+        LogList cardioLogs = new LogList();
+        ClearCommand command = ClearParser.parse("clear cardio", new LogList(), new LogList(), new LogList(), new LogList(), cardioLogs);
+        command.execute();
+        assertEquals(0, cardioLogs.getSize());
+    }
+
+    @Test
+    void clear_invalidLogType_expectFailure() {
+        assertThrows(InvalidClearException.class, () -> {
+            ClearParser.parse("clear invalid", new LogList(), new LogList(), new LogList(), new LogList(), new LogList());
+        });
+    }
+
 }

@@ -58,3 +58,7 @@ run {
     enableAssertions = true
 }
 
+test {
+    jvmArgs '-ea'
+}
+

@@ -87,7 +87,50 @@ class DeleteCommandTest {
                 DeleteParser.parse(input, mealLogs, workoutLogs, waterLogs, pbLogs, cardioLogs));
     }
 
-    
+    @Test
+    void deleteWorkout_correctInput_expectSuccess() throws Exception {
+        LogList workoutLogs = new LogList();
+        String input = "delete workout 1";
+        DeleteCommand command = DeleteParser.parse(input, new LogList(), workoutLogs, new LogList(), new LogList(), new LogList());
+        assertEquals(workoutLogs, command.getLogList());
+    }
+
+    @Test
+    void deleteWater_correctInput_expectSuccess() throws Exception {
+        LogList waterLogs = new LogList();
+        String input = "delete water 1";
+        DeleteCommand command = DeleteParser.parse(input, new LogList(), new LogList(), waterLogs, new LogList(), new LogList());
+        assertEquals(waterLogs, command.getLogList());
+    }
+
+    @Test
+    void deletePB_correctInput_expectSuccess() throws Exception {
+        LogList pbLogs = new LogList();
+        String input = "delete pb 1";
+        DeleteCommand command = DeleteParser.parse(input, new LogList(), new LogList(), new LogList(), pbLogs, new LogList());
+        assertEquals(pbLogs, command.getLogList());
+    }
+
+    @Test
+    void deleteCardio_correctInput_expectSuccess() throws Exception {
+        LogList cardioLogs = new LogList();
+        String input = "delete cardio 1";
+        DeleteCommand command = DeleteParser.parse(input, new LogList(), new LogList(), new LogList(), new LogList(), cardioLogs);
+        assertEquals(cardioLogs, command.getLogList());
+    }
+
+    @Test
+    void deleteCommand_invalidExecuteInput_expectThrowsHealthBudException() {
+        LogList mealLogs = new LogList();
+        String badInput = "delete meal noindex";
+
+        DeleteCommand command = new DeleteCommand(mealLogs, badInput, 1);
+
+        HealthBudException exception = assertThrows(HealthBudException.class, command::execute);
+        assertEquals("Insert a valid task number", exception.getMessage());
+    }
+
+
 }
 
 
