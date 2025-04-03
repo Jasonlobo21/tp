@@ -326,35 +326,43 @@ Daily Water Intake Goal (/w), Daily Calorie Intake Goal (/cal), Weight Goal (/kg
 
 ### 2. Implementation Details
 
-The goal command is implemented as part of a switch statement in the main command handling logic. Here's how it works:
-Upon entering the goal command using the command "add goal", the user is greeted and shown their current goals from the
-singleton Goals class instance. The chatbot enters a loop where it listens for specific goal-editing commands:
-/w [value] updates the daily water goal, /cal [value] updates the daily calorie goal, /kg [value] updates the target
-weight progress prompts the user to select a day to view progress data from waterLogs, mealLogs, and weight history.
-The user inputs are parsed with Scanner, and exceptions such as InvalidDateException and InvalidGoalException
-are handled gracefully.
+The add goal command is implemented in the main parser logic using a switch statement. Here's how it works:
+
+- When the user enters add goal /w [value] /cal [value] /kg [value], the input is parsed using AddGoalParser.
+- If any parameters are missing (e.g., no /cal provided), they are auto-filled using the current values stored 
+in the Goals singleton instance.
+- ParserParameters extracts the parameters into a key-value map.
+- AddGoalCommand is then created with the parsed values and executed.
+- If the values differ from the current ones, Goals.updateGoals() updates the stored values, and the goal is 
+logged to the goalLogs list.
+- Track function (called with track goal /d <date>) as well as the view function (called with view goal) are 
+supplementary functions provided to increase the accountability of the user by giving him easy access to previous and
+current stats.
+
+Exceptions such as InvalidGoalException and InvalidDateFormatException are handled gracefully to ensure robustness.
 
 ### 3. Why This Design
-  Simplicity: Using a command-line loop with conditionals provides clear control flow and is easy to debug.
-  Singleton Pattern: Goals.getInstance() ensures consistent access and modification of user goals.
-  User-Friendly Prompts: Each interaction provides guidance on valid inputs and current status.
-  Separation of Concerns: Goal logic is kept distinct from log retrieval (waterLogs, mealLogs), enabling modular testing.
+- Simplicity: A single command (add goal) handles all updates in one go, keeping the interaction concise 
+and easy to use.
+- Singleton Pattern: Using Goals.getInstance() ensures centralized access to the current user goals across the app.
+- Auto-Fill Support: Missing parameters default to current goal values, streamlining repeated updates.
+- Separation of Concerns: Goal parsing and updating are kept modular and separate from logging and UI logic
 
 ### 4. Alternatives Considered
-   Command Pattern: We considered implementing a command design pattern to encapsulate each action
-   (e.g., update water goal), but deemed it too complex for the scope.
-   GUI-based input: Given the chatbot nature and CLI interaction, we opted not to build a graphical interface.
-   Database-backed goal storage: For now, data is likely held in-memory for simplicity; persistent storage could
-   be added later.
+- Command Pattern: We considered creating individual commands for each goal type (e.g., SetWaterGoalCommand), 
+but found a unified approach more straightforward for the CLI.
+- Interactive CLI Loop: Earlier versions used a conversational loop for goal editing, but it was replaced by a 
+single-line command to reduce complexity.
+- Persistent Storage: While current goal data is stored in-memory and appended to the log file, we plan to enhance 
+persistence for full session retention.
 
 ### 5. Sequence Diagrams
-
+![GoalSD.png](Images/GoalSD.png)
 ### 6. Future Improvements
-   Input validation: Add regex or parsing to ensure valid numeric inputs.
-   Persistent Storage: Save goals and logs to a file or database for state retention across sessions.
-   Multi-user support: Refactor to support multiple user profiles.
-   Goal recommendations: Suggest goals based on user history or health data.
-   GUI/Web Interface: Build a frontend to visualize progress and make goal-setting more intuitive.
+- Input Validation: Use regex or stricter parsing to ensure only valid integers are accepted.
+- Persistent Goal Storage: Store and reload goals from file or database to retain state between sessions.
+- Multi-User Support: Refactor the singleton Goals class to support different profiles.
+- Goal Recommendations: Use history from logs (e.g., average water intake) to suggest realistic goal values
 
 ## Product scope
 ### Target user profile
