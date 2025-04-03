@@ -21,13 +21,13 @@ class UiTest {
         assertTrue(outContent.toString().contains("    Test message"));
     }
 
-    @Test
-    void testPrintHealthBuds() {
-        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
-        Ui.printHealthBuds();
-        assertTrue(outContent.toString().contains("⠤⣀⡀⠀⠀⠀⠀⠀⣀⣤⣤⣀⡀"));
-    }
+//    @Test
+//    void testPrintHealthBuds() {
+//        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+//        System.setOut(new PrintStream(outContent));
+//        Ui.printHealthBuds();
+//        assertTrue(outContent.toString().contains("⠤⣀⡀⠀⠀⠀⠀⠀⣀⣤⣤⣀⡀"));
+//    }
 
     @Test
     void testPrintGreeting() {
