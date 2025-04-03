@@ -13,62 +13,38 @@ public class SearchParser {
             throws InvalidSearchException, InvalidDateFormatException {
         assert input != null : "Input should not be null";
 
-        if (input == null || input.trim().isEmpty()) {
-            throw new InvalidSearchException(
-                    "Invalid search command - Try search <logType> /d <date> OR search <logType> /k <keyword>");
-        }
-        String paramsString = input.replaceFirst("(?i)^search", "").trim();
-        if (paramsString.isEmpty()) {
-            throw new InvalidSearchException(
-                    "Invalid search command - Try search <logType> /d <date> OR search <logType> /k <keyword>");
+
+        String[] parts = input.split(" ");
+        if (parts.length != 4) {
+            throw new InvalidSearchException();
         }
 
-        // Split into exactly 3 parts: [logType, flag, parameter]
-        String[] parts = paramsString.split("\\s+");
-        if (parts.length != 3) {
-            throw new InvalidSearchException(
-                    "Invalid search command - Provide exactly one logType and one parameter flag (/d or /k).");
+        if (!input.contains("/k ") && !input.contains("/d ")) {
+            throw new InvalidSearchException();
         }
 
-        String logType = parts[0].toLowerCase();
-        String flag = parts[1].toLowerCase();
-        String parameter = parts[2];
-
-        // Parse date or keyword
         String date = null;
         String keyword = null;
-        if (flag.equals("/d")) {
-            // May throw InvalidDateFormatException
-            date = DateParser.formatDate(parameter);
-        } else if (flag.equals("/k")) {
-            keyword = parameter;
+
+        if (input.contains("/d")) {
+            date = DateParser.formatDate(parts[3]);
         } else {
-            throw new InvalidSearchException("Invalid parameter flag. Use /d for date or /k for keyword.");
+            keyword = parts[3];
         }
 
-        // Determine which LogList to target
-        LogList targetLogList;
-        switch (logType) {
+        switch (parts[1]) {
         case "meal":
-            targetLogList = mealLogs;
-            break;
+            return new SearchCommand(mealLogs, date, keyword);
         case "workout":
-            targetLogList = workoutLogs;
-            break;
+            return new SearchCommand(workoutLogs, date, keyword);
         case "water":
-            targetLogList = waterLogs;
-            break;
+            return new SearchCommand(waterLogs, date, keyword);
         case "pb":
-            targetLogList = pbLogs;
-            break;
+            return new SearchCommand(pbLogs, date, keyword);
         case "cardio":
-            targetLogList = cardioLogs;
-            break;
+            return new SearchCommand(cardioLogs, date, keyword);
         default:
-            throw new InvalidSearchException("Invalid log type. Valid types: meal, workout, water, pb, cardio.");
+            throw new InvalidSearchException();
         }
-
-        // Build and return a SearchCommand (no searching or printing here!)
-        return new SearchCommand(targetLogList, date, keyword);
     }
 }
