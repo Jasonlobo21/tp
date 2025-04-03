@@ -76,6 +76,9 @@ The Storage class manages HealthBud log persistence by reading and writing to a 
 
 ## Add Log Command
 `//TODO: include SD here`
+The add Log command ensures that when users add a new log(e.g "add workout..."),
+The inputted entry would be appended into an array list in its corresponding Loglist. 
+![AddLogCommand SD.png](images/AddLogCommand%20SD.png)
 
 ## Delete Log Command
 The delete log feature allows users to remove a log by its index from the application's log list. This feature is handled by the `DeleteCommand` class, which performs validation, deletion, and error handling.
@@ -263,7 +266,7 @@ This unified approach was abandoned because it would have required extensive run
 The current specialized class structure provides better compile-time checks and more intuitive code organization.
 
 ### 5. Sequence Diagrams
-![Addworkout.png](images/Addworkout.png)
+![AddWorkoutSD.png](images/AddWorkoutSD.png)
 
 ### 6. Future Improvements
 The weight tracking functionality will be enhanced to support more advanced strength training scenarios.
