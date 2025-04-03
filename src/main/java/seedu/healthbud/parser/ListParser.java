@@ -12,13 +12,11 @@ public class ListParser {
 
         String[] parts = input.trim().split(" ");
 
-        if (parts.length < 2) {
+        if (parts.length != 2) {
             throw new InvalidListException();
         }
 
-        String logType = parts[1].toLowerCase();
-
-        switch (logType) {
+        switch (parts[1]) {
         case "meal":
             return new ListCommand(mealLogs);
         case "workout":

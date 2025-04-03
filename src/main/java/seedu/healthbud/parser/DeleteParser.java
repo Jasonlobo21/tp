@@ -13,11 +13,10 @@ public class DeleteParser {
         assert input != null : "Input should not be null";
 
         String[] parts = input.trim().split(" ");
-        if (parts.length < 3) {
+        if (parts.length != 3) {
             throw new InvalidDeleteException();
         }
 
-        String logType = parts[1];
         int index;
 
         try {
@@ -26,7 +25,7 @@ public class DeleteParser {
             throw new InvalidDeleteException();
         }
 
-        switch (logType) {
+        switch (parts[1]) {
         case "meal":
             return new DeleteCommand(mealLogs, index);
         case "workout":
@@ -37,7 +36,6 @@ public class DeleteParser {
             return new DeleteCommand(pbLogs, index);
         case "cardio":
             return new DeleteCommand(cardioLogs, index);
-
         default:
             throw new InvalidDeleteException();
         }

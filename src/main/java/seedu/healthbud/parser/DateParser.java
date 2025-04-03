@@ -39,7 +39,6 @@ public class DateParser {
             throw new InvalidDateFormatException();
         }
 
-        // Try each format until one works
         for (String format : INPUT_FORMATS) {
             try {
                 SimpleDateFormat sdf = new SimpleDateFormat(format);
@@ -51,15 +50,12 @@ public class DateParser {
                 }
                 Date date = sdf.parse(inputDate);
 
-                // Format to the desired output
                 SimpleDateFormat outputSdf = new SimpleDateFormat(OUTPUT_FORMAT);
                 return outputSdf.format(date);
             } catch (ParseException e) {
                 // Try next format
             }
         }
-
         throw new InvalidDateFormatException();
-
     }
 }

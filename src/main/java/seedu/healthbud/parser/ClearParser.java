@@ -11,14 +11,11 @@ public class ClearParser {
                                     InvalidClearException {
 
         String[] parts = input.trim().split(" ");
-
-        if (parts.length < 2) {
+        if (parts.length != 2) {
             throw new InvalidClearException();
         }
 
-        String logType = parts[1].toLowerCase();
-
-        switch (logType) {
+        switch (parts[1]) {
         case "pb":
             return new ClearCommand(pbLogs);
         case "meal":
