@@ -52,6 +52,9 @@ public class ParserManager {
             case "view":
                 ViewGoalsParser.parse(input);
                 return true;
+            case "track":
+                command = TrackGoalParser.parse(input, goalLogs, pbLogs, mealLogs, workoutLogs, waterLogs, cardioLogs);
+                break;
             default:
                 Ui.printUnknownCommand();
                 return true;
