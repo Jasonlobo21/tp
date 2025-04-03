@@ -7,7 +7,10 @@ import seedu.healthbud.exception.InvalidMealException;
 import seedu.healthbud.parser.DateParser;
 import seedu.healthbud.parser.ParserParameters;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 
 public class AddMealParser {
@@ -26,6 +29,10 @@ public class AddMealParser {
         String name = input.substring(0, input.indexOf("/")).trim();
 
         Map<String, String> param = ParserParameters.parseParameters(input.substring(name.length()));
+        Set<String> allowedKeys = new HashSet<>(Arrays.asList("cal", "d", "t"));
+        if (!param.keySet().equals(allowedKeys)) {
+            throw new InvalidMealException();
+        }
 
         if (name.isEmpty() || !param.containsKey("cal") || param.get("cal").isEmpty() || !param.containsKey("d")
                 || param.get("d").isEmpty() || !param.containsKey("t") || param.get("t").isEmpty()) {

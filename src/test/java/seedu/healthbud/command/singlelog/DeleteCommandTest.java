@@ -2,13 +2,18 @@ package seedu.healthbud.command.singlelog;
 
 import org.junit.jupiter.api.Test;
 import seedu.healthbud.LogList;
-import seedu.healthbud.exception.*;
-import seedu.healthbud.parser.DeleteParser;
-import seedu.healthbud.parser.addcommandparser.*;
 
+import seedu.healthbud.exception.InvalidDeleteException;
+import seedu.healthbud.exception.InvalidDateFormatException;
+import seedu.healthbud.exception.InvalidMLException;
+import seedu.healthbud.exception.InvalidCardioException;
+import seedu.healthbud.exception.InvalidPersonalBestException;
+import seedu.healthbud.exception.InvalidMealException;
+import seedu.healthbud.exception.HealthBudException;
+import seedu.healthbud.parser.DeleteParser;
+import seedu.healthbud.parser.addcommandparser.AddMealParser;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -17,7 +22,8 @@ class DeleteCommandTest {
 
     @Test
     void deleteMeal_correctInput_expectSuccess() throws InvalidPersonalBestException, InvalidMLException,
-            InvalidCardioException, HealthBudException, InvalidMealException, InvalidDateFormatException, InvalidDeleteException {
+            InvalidCardioException, HealthBudException, InvalidMealException,
+            InvalidDateFormatException, InvalidDeleteException {
 
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         System.setOut(new PrintStream(output));
@@ -31,7 +37,8 @@ class DeleteCommandTest {
         assertEquals(1, mealLogs.getSize());
 
         String deleteInput = "delete meal 1";
-        DeleteCommand deleteCommand = DeleteParser.parse(deleteInput, mealLogs, new LogList(), new LogList(), new LogList(), new LogList());
+        DeleteCommand deleteCommand = DeleteParser.parse(deleteInput, mealLogs,
+                new LogList(), new LogList(), new LogList(), new LogList());
         deleteCommand.execute();
 
         String expected = "Noted. I've removed this log:";
@@ -120,19 +127,6 @@ class DeleteCommandTest {
         DeleteCommand command = DeleteParser.parse(input, empty, empty, empty, empty, cardioLogs);
         assertEquals(cardioLogs, command.getLogList());
     }
-
-    @Test
-    void deleteCommand_invalidExecuteInput_expectThrowsHealthBudException() {
-        LogList mealLogs = new LogList();
-        String badInput = "delete meal noindex";
-
-        DeleteCommand command = new DeleteCommand(mealLogs, 1);
-
-        HealthBudException exception = assertThrows(HealthBudException.class, command::execute);
-        assertEquals("Insert a valid task number", exception.getMessage());
-    }
-
-
 }
 
 

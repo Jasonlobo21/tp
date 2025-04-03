@@ -7,7 +7,10 @@ import seedu.healthbud.exception.InvalidDateFormatException;
 import seedu.healthbud.parser.DateParser;
 import seedu.healthbud.parser.ParserParameters;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 public class AddCardioParser {
 
@@ -39,6 +42,10 @@ public class AddCardioParser {
         }
 
         Map<String, String> param = ParserParameters.parseParameters(input.substring(firstParamIndex));
+        Set<String> allowedKeys = new HashSet<>(Arrays.asList("s", "i", "t", "d"));
+        if (!param.keySet().equals(allowedKeys)) {
+            throw new InvalidCardioException();
+        }
 
         // Validate required parameters
         if (cardioName.isEmpty() ||

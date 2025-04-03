@@ -7,7 +7,10 @@ import seedu.healthbud.exception.InvalidWaterException;
 import seedu.healthbud.parser.DateParser;
 import seedu.healthbud.parser.ParserParameters;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 public class AddWaterParser {
 
@@ -17,13 +20,18 @@ public class AddWaterParser {
         assert input != null : "Invalid water input!";
         assert !input.trim().isEmpty() : "Input should not be empty!";
 
-        if (!input.contains("/ml ") || !input.contains("/d ") || !input.contains("/t ")) {
+        input = input.substring("add water".length()).trim();
+
+        if (!input.contains("/ml ") || !input.contains("/d ") || !input.contains("/t ") || !input.startsWith("/")) {
             throw new InvalidWaterException();
         }
 
-        input = input.substring("add water".length()).trim();
-
         Map<String, String> param = ParserParameters.parseParameters(input);
+
+        Set<String> allowedKeys = new HashSet<>(Arrays.asList("ml", "d", "t"));
+        if (!param.keySet().equals(allowedKeys)) {
+            throw new InvalidWaterException();
+        }
 
         if (!param.containsKey("ml") || param.get("ml").isEmpty() ||
                 !param.containsKey("d") || param.get("d").isEmpty() ||

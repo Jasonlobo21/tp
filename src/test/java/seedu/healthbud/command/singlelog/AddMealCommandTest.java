@@ -6,9 +6,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import seedu.healthbud.LogList;
-import seedu.healthbud.exception.*;
+import seedu.healthbud.exception.InvalidDateFormatException;
+import seedu.healthbud.exception.InvalidMLException;
+import seedu.healthbud.exception.InvalidMealException;
+import seedu.healthbud.exception.InvalidPersonalBestException;
+import seedu.healthbud.exception.InvalidCardioException;
 import seedu.healthbud.log.Meal;
-import seedu.healthbud.parser.addcommandparser.*;
+import seedu.healthbud.parser.addcommandparser.AddMealParser;
 
 class AddMealCommandTest {
 

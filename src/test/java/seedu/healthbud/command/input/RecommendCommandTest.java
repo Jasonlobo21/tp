@@ -1,7 +1,6 @@
 package seedu.healthbud.command.input;
 
 import org.junit.jupiter.api.Test;
-import seedu.healthbud.exception.HealthBudException;
 import seedu.healthbud.exception.InvalidRecommendException;
 import seedu.healthbud.parser.RecommendParser;
 

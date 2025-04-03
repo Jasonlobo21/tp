@@ -6,8 +6,10 @@ import seedu.healthbud.exception.InvalidDateFormatException;
 import seedu.healthbud.exception.InvalidPersonalBestException;
 import seedu.healthbud.parser.DateParser;
 import seedu.healthbud.parser.ParserParameters;
-
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 public class AddPersonalBestParser {
 
@@ -24,6 +26,10 @@ public class AddPersonalBestParser {
         String name = input.substring(0, input.indexOf("/")).trim();
 
         Map<String, String> param = ParserParameters.parseParameters(input.substring(name.length()));
+        Set<String> allowedKeys = new HashSet<>(Arrays.asList("w", "d"));
+        if (!param.keySet().equals(allowedKeys)) {
+            throw new InvalidPersonalBestException();
+        }
 
         if (name.isEmpty() ||
                 !param.containsKey("w") || param.get("w").isEmpty() ||
