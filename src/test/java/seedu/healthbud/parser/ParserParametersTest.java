@@ -4,7 +4,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ParserParametersTest {
 
@@ -68,7 +69,7 @@ class ParserParametersTest {
         assertEquals("60", params.get("w"));
         assertEquals(4, params.size());
     }
-    
+
     @Test
     void parseParameters_multiWordValue_expectConcatenatedString() {
         String input = "/desc grilled chicken breast /cal 400";
