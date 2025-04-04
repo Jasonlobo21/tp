@@ -25,9 +25,9 @@ class AddWaterCommandTest {
         Water water = (Water) waterLogs.getLog(0);
         assertEquals("1000", water.getAmount());
         assertEquals("12 Apr 2002", water.getDate());
-        assertEquals("1200", water.getTime());
+        assertEquals("12:00pm", water.getTime());
 
-        String expected = "4.0 glass of water on (12 Apr 2002) at 1200";
+        String expected = "4.0 glass of water on (12 Apr 2002) at 12:00pm";
         assertEquals(expected, water.toString());
     }
 

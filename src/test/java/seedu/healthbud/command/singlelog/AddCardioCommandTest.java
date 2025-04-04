@@ -3,6 +3,7 @@ package seedu.healthbud.command.singlelog;
 import org.junit.jupiter.api.Test;
 
 import seedu.healthbud.LogList;
+import seedu.healthbud.exception.HealthBudException;
 import seedu.healthbud.exception.InvalidCardioException;
 import seedu.healthbud.exception.InvalidDateFormatException;
 import seedu.healthbud.log.Cardio;
@@ -13,7 +14,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class AddCardioCommandTest {
 
     @Test
-    void validCardioAddsToLogList_expectSuccess() throws InvalidCardioException, InvalidDateFormatException {
+    void validCardioAddsToLogList_expectSuccess()
+            throws InvalidCardioException, InvalidDateFormatException, HealthBudException {
         LogList cardioLogs = new LogList();
         String input = "add cardio running /s 8.5 /i 2 /t 30 /d 25-12-2023";
 

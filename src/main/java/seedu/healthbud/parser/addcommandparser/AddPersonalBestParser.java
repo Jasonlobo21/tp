@@ -4,6 +4,7 @@ import seedu.healthbud.LogList;
 import seedu.healthbud.command.singlelog.AddPersonalBestCommand;
 import seedu.healthbud.exception.InvalidDateFormatException;
 import seedu.healthbud.exception.InvalidPersonalBestException;
+import seedu.healthbud.exception.HealthBudException;
 import seedu.healthbud.parser.DateParser;
 import seedu.healthbud.parser.ParserParameters;
 import java.util.Arrays;
@@ -28,7 +29,7 @@ public class AddPersonalBestParser {
      * @throws InvalidDateFormatException if the provided date cannot be parsed.
      */
     public static AddPersonalBestCommand parse(LogList pbLogs, String input)
-            throws InvalidPersonalBestException, InvalidDateFormatException {
+            throws InvalidPersonalBestException, InvalidDateFormatException, HealthBudException {
 
         assert input != null : "Input should not be null";
 
@@ -52,9 +53,16 @@ public class AddPersonalBestParser {
             throw new InvalidPersonalBestException();
         }
 
-        if (!param.get("w").matches("\\d+")) {
+        if (!param.get("w").matches("^-?\\d+(\\.\\d+)?$")) {
             throw new InvalidPersonalBestException();
         }
+
+        Double weight = Double.parseDouble(param.get("w"));
+
+        if (weight <= 0 || weight > 1000) {
+            throw new HealthBudException("Weight should be greater than 0 and less than 1000kg.");
+        }
+
         String formattedDate = DateParser.formatDate(param.get("d"));
 
         return new AddPersonalBestCommand(pbLogs, name, param.get("w"), formattedDate);

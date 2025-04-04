@@ -2,6 +2,7 @@ package seedu.healthbud.parser.addcommandparser;
 
 import seedu.healthbud.LogList;
 import seedu.healthbud.command.singlelog.AddCardioCommand;
+import seedu.healthbud.exception.HealthBudException;
 import seedu.healthbud.exception.InvalidCardioException;
 import seedu.healthbud.exception.InvalidDateFormatException;
 import seedu.healthbud.parser.DateParser;
@@ -30,7 +31,7 @@ public class AddCardioParser {
      * @throws InvalidDateFormatException if the provided date cannot be parsed.
      */
     public static AddCardioCommand parse(LogList cardioLogs, String input)
-            throws InvalidCardioException, InvalidDateFormatException {
+            throws InvalidCardioException, InvalidDateFormatException, HealthBudException {
 
         assert input != null : "Input should not be null";
 
@@ -65,10 +66,24 @@ public class AddCardioParser {
             throw new InvalidCardioException();
         }
 
-        if (!param.get("s").matches("\\d+(\\.\\d+)?") ||
-                !param.get("i").matches("\\d+(\\.\\d+)?") ||
-                !param.get("t").matches("\\d+(\\.\\d+)?")) {
+        if (!param.get("s").matches("^-?\\d+(\\.\\d+)?$") ||
+                !param.get("i").matches("^-?\\d+$") ||
+                !param.get("t").matches("^-?\\d+$")) {
             throw new InvalidCardioException();
+        }
+
+        int time = Integer.parseInt(param.get("t"));
+        int incline = Integer.parseInt(param.get("i"));
+        double speed = Double.parseDouble(param.get("s"));
+
+        if (time <= 0 || time > 1440) {
+            throw new HealthBudException("Time should be between 1 minute and 24 hours.");
+        }
+        if (incline < 0 || incline > 100) {
+            throw new HealthBudException("Incline should be between 0 and 100.");
+        }
+        if (speed <= 0 || speed > 50) {
+            throw new HealthBudException("Speed should be between 1 and 50.");
         }
 
         String formattedDate = DateParser.formatDate(param.get("d"));

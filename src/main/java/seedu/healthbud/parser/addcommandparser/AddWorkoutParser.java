@@ -2,6 +2,7 @@ package seedu.healthbud.parser.addcommandparser;
 
 import seedu.healthbud.LogList;
 import seedu.healthbud.command.singlelog.AddWorkoutCommand;
+import seedu.healthbud.exception.HealthBudException;
 import seedu.healthbud.exception.InvalidDateFormatException;
 import seedu.healthbud.exception.InvalidWorkoutException;
 import seedu.healthbud.parser.DateParser;
@@ -29,7 +30,7 @@ public class AddWorkoutParser {
      */
     //@@author Ahmish15
     public static AddWorkoutCommand parse(LogList workoutLogs, String input)
-            throws InvalidWorkoutException, InvalidDateFormatException {
+            throws InvalidWorkoutException, InvalidDateFormatException, HealthBudException {
 
         assert input != null : "Input should not be null";
 
@@ -55,9 +56,23 @@ public class AddWorkoutParser {
             throw new InvalidWorkoutException();
         }
 
-        if (!param.get("r").matches("\\d+") || !param.get("s").matches("\\d+") ||
-                !param.get("w").matches("\\d+(\\.\\d+)?")) {
+        if (!param.get("r").matches("^-?\\d+$") || !param.get("s").matches("^-?\\d+$") ||
+                !param.get("w").matches("^-?\\d+(\\.\\d+)?$")) {
             throw new InvalidWorkoutException();
+        }
+
+        int reps = Integer.parseInt(param.get("r"));
+        int sets = Integer.parseInt(param.get("s"));
+        Double weight = Double.parseDouble(param.get("w"));
+
+        if (reps <= 0 || reps > 100) {
+            throw new HealthBudException("Reps should be a positive integer between 1 and 100.");
+        }
+        if (sets <= 0 || sets > 100) {
+            throw new HealthBudException("Sets should be a positive integer between 1 and 100.");
+        }
+        if (weight <= 0 || weight > 1000) {
+            throw new HealthBudException("Weight should be greater than 0 and less than 1000kg.");
         }
 
         String formattedDate = DateParser.formatDate(param.get("d"));

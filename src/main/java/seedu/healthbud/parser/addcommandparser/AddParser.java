@@ -2,6 +2,7 @@ package seedu.healthbud.parser.addcommandparser;
 
 import seedu.healthbud.LogList;
 import seedu.healthbud.command.Command;
+import seedu.healthbud.exception.HealthBudException;
 import seedu.healthbud.exception.InvalidAddLogException;
 import seedu.healthbud.exception.InvalidCardioException;
 import seedu.healthbud.exception.InvalidDateFormatException;
@@ -40,8 +41,8 @@ public class AddParser {
     public static Command parse(String input, LogList mealLogs, LogList waterLogs, LogList cardioLogs,
                                 LogList pbLogs, LogList workoutLogs, LogList goalLogs) throws
             InvalidAddLogException, InvalidCardioException, InvalidMealException,
-                                InvalidPersonalBestException, InvalidWaterException, InvalidWorkoutException,
-                                InvalidDateFormatException, InvalidGoalException {
+            InvalidPersonalBestException, InvalidWaterException, InvalidWorkoutException,
+            InvalidDateFormatException, InvalidGoalException, HealthBudException {
 
         assert input != null : "Input should not be null";
 

@@ -8,7 +8,7 @@ import seedu.healthbud.command.singlelog.AddGoalCommand;
 import seedu.healthbud.command.singlelog.AddMealCommand;
 import seedu.healthbud.command.singlelog.AddPersonalBestCommand;
 import seedu.healthbud.command.singlelog.AddWaterCommand;
-import seedu.healthbud.command.singlelog.AddWorkoutCommand;
+import seedu.healthbud.exception.HealthBudException;
 import seedu.healthbud.exception.InvalidAddLogException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -53,12 +53,12 @@ class AddParserTest {
     }
 
     @Test
-    void parse_validWorkoutInput_success() throws Exception {
+    void parse_validWorkoutInput_success() {
         LogList workoutLogs = new LogList();
         String input = "add workout pushup /w 0 /r 10 /s 3 /d 12-04-2024";
-        Command command = AddParser.parse(input, new LogList(), new LogList(), new LogList(),
-                new LogList(), workoutLogs, new LogList());
-        assertEquals(AddWorkoutCommand.class, command.getClass());
+        assertThrows(HealthBudException.class, () ->
+                AddParser.parse(input, new LogList(), new LogList(), new LogList(),
+                        new LogList(), new LogList(), new LogList()));
     }
 
     @Test
