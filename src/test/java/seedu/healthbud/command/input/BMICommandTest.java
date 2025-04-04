@@ -8,6 +8,7 @@ import java.io.PrintStream;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.healthbud.exception.HealthBudException;
 import seedu.healthbud.exception.InvalidBMIException;
 import seedu.healthbud.parser.BMIParser;
 
@@ -25,7 +26,7 @@ public class BMICommandTest {
 
 
     @Test
-    void parse_validInput_expectSuccess() throws InvalidBMIException {
+    void parse_validInput_expectSuccess() throws InvalidBMIException, HealthBudException {
         String input = "bmi /w 70 /h 1.75";
         BMICommand command = BMIParser.parse(input);
         String output = executeAndCaptureOutput(command);
@@ -51,16 +52,15 @@ public class BMICommandTest {
     void parse_zeroOrNegativeValues_expectHealthBudException() {
         // Zero weight
         String zeroWeightInput = "bmi /w 0 /h 1.75";
-        assertThrows(InvalidBMIException.class, () -> BMIParser.parse(zeroWeightInput));
+        assertThrows(HealthBudException.class, () -> BMIParser.parse(zeroWeightInput));
 
         // Negative height
         String negativeHeightInput = "bmi /w 70 /h -1.75";
-        assertThrows(InvalidBMIException.class, () -> BMIParser.parse(negativeHeightInput),
-                "Expected InvalidBMIException for negative height.");
+        assertThrows(HealthBudException.class, () -> BMIParser.parse(negativeHeightInput));
     }
 
     @Test
-    void parse_underweightInput_expectUnderweightMessage() throws InvalidBMIException {
+    void parse_underweightInput_expectUnderweightMessage() throws InvalidBMIException, HealthBudException {
         String input = "bmi /w 50 /h 1.75";
         BMICommand command = BMIParser.parse(input);
         String output = executeAndCaptureOutput(command);
@@ -70,7 +70,7 @@ public class BMICommandTest {
     }
 
     @Test
-    void parse_overweightInput_expectOverweightMessage() throws InvalidBMIException {
+    void parse_overweightInput_expectOverweightMessage() throws InvalidBMIException, HealthBudException {
         String input = "bmi /w 80 /h 1.75";
         BMICommand command = BMIParser.parse(input);
         String output = executeAndCaptureOutput(command);
@@ -80,7 +80,7 @@ public class BMICommandTest {
     }
 
     @Test
-    void parse_obeseInput_expectObeseMessage() throws InvalidBMIException {
+    void parse_obeseInput_expectObeseMessage() throws InvalidBMIException, HealthBudException {
         String input = "bmi /w 100 /h 1.75";
         BMICommand command = BMIParser.parse(input);
         String output = executeAndCaptureOutput(command);
@@ -105,11 +105,13 @@ public class BMICommandTest {
     }
 
     @Test
-    void parse_weightWithDecimal_expectInvalidBMIException() {
+    void parse_weightWithDecimal_expectInvalidBMIException() throws HealthBudException, InvalidBMIException {
         // Weight must match "\\d+" so decimals are not allowed.
         String input = "bmi /w 70.5 /h 1.75";
-        assertThrows(InvalidBMIException.class, () -> BMIParser.parse(input),
-                "Expected exception for weight with decimals.");
+        BMICommand command = BMIParser.parse(input);
+        String output = executeAndCaptureOutput(command);
+        String expected = "Your BMI is: 23.02, you are of normal weight.";
+        assertEquals(expected, output);
     }
 
     @Test
@@ -121,7 +123,7 @@ public class BMICommandTest {
     }
 
     @Test
-    void parse_boundaryHeightLower_expectSuccess() throws InvalidBMIException {
+    void parse_boundaryHeightLower_expectSuccess() throws InvalidBMIException, HealthBudException {
         // Height exactly at 0.2 is allowed.
         String input = "bmi /w 70 /h 0.2";
         BMICommand command = BMIParser.parse(input);
@@ -132,7 +134,7 @@ public class BMICommandTest {
     }
 
     @Test
-    void parse_boundaryHeightUpper_expectSuccess() throws InvalidBMIException {
+    void parse_boundaryHeightUpper_expectSuccess() throws InvalidBMIException, HealthBudException {
         // Height exactly at 3.0 is allowed.
         String input = "bmi /w 70 /h 3.0";
         BMICommand command = BMIParser.parse(input);
@@ -143,14 +145,10 @@ public class BMICommandTest {
     }
 
     @Test
-    void parse_weightOne_expectSuccess() throws InvalidBMIException {
+    void parse_weightOne_expectSuccess() throws InvalidBMIException, HealthBudException {
         // Minimal weight that is positive.
         String input = "bmi /w 1 /h 1.75";
-        BMICommand command = BMIParser.parse(input);
-        // BMI = 1 / (1.75^2) ~ 0.33, underweight.
-        String output = executeAndCaptureOutput(command);
-        String expected = "Your BMI is: 0.33, you are underweight.";
-        assertEquals(expected, output);
+        assertThrows(HealthBudException.class, () -> BMIParser.parse(input));
     }
 
     @Test
@@ -210,27 +208,27 @@ public class BMICommandTest {
     }
 
     @Test
-    void parse_heightTooSmall_expectInvalidBMIException() {
+    void parse_heightTooSmall_expectHealthBudException() {
         String input = "bmi /w 60 /h 0.1";
-        assertThrows(InvalidBMIException.class, () -> BMIParser.parse(input));
+        assertThrows(HealthBudException.class, () -> BMIParser.parse(input));
     }
 
     @Test
     void parse_heightTooLarge_expectInvalidBMIException() {
         String input = "bmi /w 60 /h 3.1";
-        assertThrows(InvalidBMIException.class, () -> BMIParser.parse(input));
+        assertThrows(HealthBudException.class, () -> BMIParser.parse(input));
     }
 
     @Test
     void parse_weightZero_expectInvalidBMIException() {
         String input = "bmi /w 0 /h 1.75";
-        assertThrows(InvalidBMIException.class, () -> BMIParser.parse(input));
+        assertThrows(HealthBudException.class, () -> BMIParser.parse(input));
     }
 
     @Test
     void parse_weightNegative_expectInvalidBMIException() {
         String input = "bmi /w -50 /h 1.75";
-        assertThrows(InvalidBMIException.class, () -> BMIParser.parse(input));
+        assertThrows(HealthBudException.class, () -> BMIParser.parse(input));
     }
 
 

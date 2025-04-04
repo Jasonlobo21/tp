@@ -5,6 +5,7 @@ import seedu.healthbud.command.singlelog.AddWaterCommand;
 import seedu.healthbud.exception.InvalidDateFormatException;
 import seedu.healthbud.exception.InvalidWaterException;
 import seedu.healthbud.parser.DateParser;
+import seedu.healthbud.parser.TimeParser;
 import seedu.healthbud.parser.ParserParameters;
 
 import java.util.Arrays;
@@ -56,7 +57,8 @@ public class AddWaterParser {
         }
 
         String formattedDate = DateParser.formatDate(param.get("d"));
+        String formattedTime = TimeParser.formatTime(param.get("t"));
 
-        return new AddWaterCommand(waterLogs, param.get("ml"), formattedDate, param.get("t"));
+        return new AddWaterCommand(waterLogs, param.get("ml"), formattedDate, formattedTime);
     }
 }

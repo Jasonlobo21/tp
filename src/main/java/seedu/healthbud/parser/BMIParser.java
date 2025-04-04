@@ -1,6 +1,7 @@
 package seedu.healthbud.parser;
 
 import seedu.healthbud.command.input.BMICommand;
+import seedu.healthbud.exception.HealthBudException;
 import seedu.healthbud.exception.InvalidBMIException;
 
 import java.util.Map;
@@ -19,7 +20,7 @@ public class BMIParser {
      * @throws InvalidBMIException if the input does not contain valid /h and /w parameters,
      *                             or if the weight or height values are invalid.
      */
-    public static BMICommand parse(String input) throws InvalidBMIException {
+    public static BMICommand parse(String input) throws InvalidBMIException, HealthBudException {
         assert input != null : "Input should not be null";
 
         if (!input.contains("/h") || !input.contains("/w")) {
@@ -35,15 +36,17 @@ public class BMIParser {
             throw new InvalidBMIException();
         }
 
-        if (!param.get("w").matches("\\d+") || !param.get("h").matches("^\\d+(\\.\\d+)?$")) {
+        if (!param.get("w").matches(
+                "^-?\\d+(\\.\\d+)?$") || !param.get("h").matches("^-?\\d+(\\.\\d+)?$")) {
             throw new InvalidBMIException();
         }
 
         double weight = Double.parseDouble(param.get("w"));
         double height = Double.parseDouble(param.get("h"));
 
-        if(height > 3.0 || height < 0.2 || weight <= 0) {
-            throw new InvalidBMIException();
+        if(height > 3.0 || height < 0.2 || weight <= 1.5 || weight > 700) {
+            throw new HealthBudException(
+                    "Weight should be between 1.5kg and 700kg and height should be between 0.2m and 3.0m.");
         }
 
         return new BMICommand(input, weight, height);

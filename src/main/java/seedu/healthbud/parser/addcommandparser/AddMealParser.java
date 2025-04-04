@@ -5,6 +5,7 @@ import seedu.healthbud.command.singlelog.AddMealCommand;
 import seedu.healthbud.exception.InvalidDateFormatException;
 import seedu.healthbud.exception.InvalidMealException;
 import seedu.healthbud.parser.DateParser;
+import seedu.healthbud.parser.TimeParser;
 import seedu.healthbud.parser.ParserParameters;
 
 import java.util.Arrays;
@@ -57,7 +58,8 @@ public class AddMealParser {
         }
 
         String formattedDate = DateParser.formatDate(param.get("d"));
+        String formattedTime = TimeParser.formatTime(param.get("t"));
 
-        return new AddMealCommand(mealLogs, name, param.get("cal"), formattedDate, param.get("t"));
+        return new AddMealCommand(mealLogs, name, param.get("cal"), formattedDate, formattedTime);
     }
 }
