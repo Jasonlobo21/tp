@@ -24,6 +24,17 @@ public class ViewGoalsParser {
      */
     public static void parse(String input){
         assert input != null : "Input should not be null";
+        String[] parts = input.trim().split(" ");
+
+        if (parts.length < 2) {
+            Ui.printUnknownCommand();
+            return;
+        }
+
+        if (!parts[1].equals("goals")) {
+            Ui.printUnknownCommand();
+            return;
+        }
         Ui.printMessage("Welcome to goal setting! Here are your current goals: \n"
                 + Goals.getInstance().toString());
         Ui.printMessage("What goal would you like to add today?\n");
