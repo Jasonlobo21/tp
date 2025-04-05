@@ -170,7 +170,7 @@ Example of usage: `add goal /w 1500 /cal 2000 /kg 70`
 Goal has been updated:
 Daily Water Goal: 1500 ml
 Daily Calorie Goal: 2000 cal
-Weight Goal: 70 kg
+Weight Goal: 70 kg 
 ``` 
 
 ### View goals
