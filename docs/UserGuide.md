@@ -189,7 +189,19 @@ Example of usage: `view goals`
 
     What goal would you like to add today?
 ``` 
+### Track goals
+Track personal fitness by giving you a summary of your status on the given date
 
+Format: `track goals /d <date>`
+
+Example of usage: `track goals /d 02/02/2025`
+``` 
+    Here is your goal progress for 2 Feb 2025: 
+
+    Total water consumed: 4000ml
+    Total calories consumed: 2000cal
+
+```
 ### Sum
 Sum up the total calories/water for the day
 
