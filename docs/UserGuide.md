@@ -65,12 +65,12 @@ Here are the commands you can use:
  8. add pb <exercise> /w <weight_in_kg> /d <date> - Record a personal best
  9. sum <cal|vol> /d <date> - Sum up the total calories/water for the day
  10. clear <pb|meal|workout|water> - Clear the respective log
- 11. view /m <logtype> /d <date>, at least one must be provided. OR view /m all
- 12. add cardio <exercise> /s <speed> /i <incline> /t <duration> /d <date> - Add a cardio log
- 13. add goals - to enter goal setting mode
- 13.1  /w <waterGoals /c <calorieGoals> /m <weightGoals> - to edit personal goals
- 14. status change <cutting/bulking> - Update your cutting/bulking status.
- 15. status report - View your current cutting/bulking progress
+ 11. add cardio <exercise> /s <speed> /i <incline> /t <duration> /d <date> - Add a cardio log
+ 13. view goals - to view all goals
+ 14  add goal /w <waterGoals /cal <calorieGoals> /kg <weightGoals> - to edit personal goals
+ 15. track goal /d <date> - to track personal goals
+ 16. status report - View your current cutting/bulking progress
+ 17. search <logType> /d <DD/MM/YYYY> OR search <logType> /k <keyword> - Search for logs
 ``` 
 
 ### Bye
@@ -161,36 +161,46 @@ Example of usage: `add cardio run /s 8 /i 5 /t 30 /d 02/02/2025`
  Now you have 1 cardio logs in the list.
 ``` 
 ### Add goals
-Enter goal setting mode
+Updates your list of Goals, not necessary for all parameters to be inputted at once!
 
-Format: `add goal`
+Format: `add goal /w <waterGoals> | /cal <calorieGoals> | /kg <weightGoals>`
 
-Example of usage: `add goal`
+Example of usage: `add goal /w 1500 /cal 2000 /kg 70`
 ``` 
-Welcome to goal setting! Here are your current goals: 
-Daily Water Goal: 1500 ml
-Daily Calorie Goal: Not set yet
-Weight Goal: Not set yet
-
-What goal would you like to add today?
-
 Goal has been updated:
 Daily Water Goal: 1500 ml
-Daily Calorie Goal: Not set yet
-Weight Goal: Not set yet
+Daily Calorie Goal: 2000 cal
+Weight Goal: 70 kg 
 ``` 
 
-### Edit goals
+### View goals
 Edit personal fitness goals
 
-Format: `/w <waterGoals> /c <calorieGoals> /m <weightGoals>`
+Format: `view goals`
 
-Example of usage: `/w 3000 /c 2500 /m 70`
+Example of usage: `view goals`
 
 ``` 
-adasdad
-``` 
+    Welcome to goal setting! Here are your current goals: 
+    Daily Water Goal: Not set yet
+    Daily Calorie Goal: Not set yet
+    Weight Goal: Not set yet
 
+    What goal would you like to add today?
+``` 
+### Track goals
+Track personal fitness by giving you a summary of your status on the given date
+
+Format: `track goals /d <date>`
+
+Example of usage: `track goals /d 02/02/2025`
+``` 
+    Here is your goal progress for 2 Feb 2025: 
+
+    Total water consumed: 4000ml
+    Total calories consumed: 2000cal
+
+```
 ### Sum
 Sum up the total calories/water for the day
 
@@ -248,22 +258,23 @@ Showing logs containing keyword: bench
 ``` 
 
 ## Command Summary
-| Command      |                                                          Format, Example                                                          |
-|--------------|:---------------------------------------------------------------------------------------------------------------------------------:|
-| ```help```        |                                                               ```help```                                                                |
-| ```bye```         |                                                               ``` bye```                                                                |
-| ```reccommend```   |                                        recommend [muscle_group] <br/> e.g ```recommend biceps```                                        |
-| ```bmi```          |                                 bmi /w [weight_in_kg] /h [height_in_m] <br/> e.g ```bmi /w 75 /h 1.8```                                 |
-| ```add workout```  | add workout [exercise] /w [weight in kg] /r [reps] /s [sets] /d [date] <br/> e.g ```add workout bench /w 100 /r 8 /s 3 /d 02/02/2025``` |
-| ```add meal```     |      add meal [meal_name] /cal [calories] /d [date] /t [time] <br/> e.g ```add meal chicken rice /cal 200 /d 02/02/2025 /t 1700```      |
-| ```add water```    |                  add water /ml [volume] /d [date] /t [time]  <br/> e.g ```add water /ml 1000 /d 02/02/2025 /t 1700```                   |
-| ```add pb```       |                     add pb [exercise] /w [weight_in_kg] /d [date] <br/> e.g ```add pb bench /w 120 /d 02/02/2025```                     |
-| ```add cardio```   |   add cardio [exercise>] /s [speed] /i [incline] /t [duration] /d [date] <br/> e.g ```add cardio run /s 8 /i 5 /t 30 /d 02/02/2025```   |
-| ```add goal```     |                                                             ```add goal```                                                              |
-| ```add goal```     |               add goal /w [waterGoals] /c [calorieGoals] /m [weightGoals] <br/> e.g ```add goal /w 2000 /c 3000 /m 70```                |
-| ```sum```          |                                      sum [cal/vol] /d [date] <br/> e.g ```sum cal /d 02/02/2025```                                      |
-| ```clear```        |                                      clear [pb\|meal\|workout\|water] <br> e.g., ```clear meal```                                       |
+| Command             |                                                             Format, Example                                                             |
+|---------------------|:---------------------------------------------------------------------------------------------------------------------------------------:|
+| ```help```          |                                                               ```help```                                                                |
+| ```bye```           |                                                               ``` bye```                                                                |
+| ```reccommend```    |                                        recommend [muscle_group] <br/> e.g ```recommend biceps```                                        |
+| ```bmi```           |                                 bmi /w [weight_in_kg] /h [height_in_m] <br/> e.g ```bmi /w 75 /h 1.8```                                 |
+| ```add workout```   | add workout [exercise] /w [weight in kg] /r [reps] /s [sets] /d [date] <br/> e.g ```add workout bench /w 100 /r 8 /s 3 /d 02/02/2025``` |
+| ```add meal```      |      add meal [meal_name] /cal [calories] /d [date] /t [time] <br/> e.g ```add meal chicken rice /cal 200 /d 02/02/2025 /t 1700```      |
+| ```add water```     |                  add water /ml [volume] /d [date] /t [time]  <br/> e.g ```add water /ml 1000 /d 02/02/2025 /t 1700```                   |
+| ```add pb```        |                     add pb [exercise] /w [weight_in_kg] /d [date] <br/> e.g ```add pb bench /w 120 /d 02/02/2025```                     |
+| ```add cardio```    |   add cardio [exercise>] /s [speed] /i [incline] /t [duration] /d [date] <br/> e.g ```add cardio run /s 8 /i 5 /t 30 /d 02/02/2025```   |
+| ```view goals```    |                                                  view goals <br/> e.g ```view goals```                                                  |
+| ```add goal```      |            add goal /w [waterGoals] /cal [calorieGoals] /kg [weightGoals] <br/> e.g ```add goal /w 2000 /cal 3000 /kg 70```             |
+| ```track goals```   |                                                 track goals <br/> e.g ```track goals```                                                 |
+| ```sum```           |                                      sum [cal/vol] /d [date] <br/> e.g ```sum cal /d 02/02/2025```                                      |
+| ```clear```         |                                      clear [pb\|meal\|workout\|water] <br> e.g., ```clear meal```                                       |
 | ```status change``` |                                 status change [cutting\|bulking] <br> e.g.,``` staus change bulking```                                  |
-| ```status report```      |                                      status report [date] <br> e.g.,```status report 12/13/2023```       |
-| ```search```|     search [loglist] /k [keyword]  OR search [loglist] /d [date] <br> e.g., ```search workout bench OR search meal /d 02/04/200```1     |
+| ```status report``` |                                      status report [date] <br> e.g.,```status report 12/13/2023```                                      |
+| ```search```        |     search [loglist] /k [keyword]  OR search [loglist] /d [date] <br> e.g., ```search workout bench OR search meal /d 02/04/200```1     |
 

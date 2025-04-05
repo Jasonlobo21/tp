@@ -120,7 +120,7 @@ class TrackGoalCommandTest {
         PrintStream originalOut = System.out;
         System.setOut(new PrintStream(outContent));
 
-        ViewGoalsParser.parse("view goal");
+        ViewGoalsParser.parse("view goals");
 
         System.setOut(originalOut);
         String output = outContent.toString().trim();
