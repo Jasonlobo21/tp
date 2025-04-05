@@ -91,9 +91,10 @@ public class Ui {
                 + NEW_LINE
                 + "12. view goals - to view all goals" + NEW_LINE
                 + "13  add goal /w <waterGoals /cal <calorieGoals> /kg <weightGoals> - to edit personal goals" + NEW_LINE
-                + "14. status change <cutting/bulking> - Update your cutting/bulking status." + NEW_LINE
-                + "15. status report - View your current cutting/bulking progress" + NEW_LINE
-                + "16. search <logType> /d <DD/MM/YYYY> OR search <logType> /k <keyword> - Search for logs" + NEW_LINE);
+                + "14. track goal /d <date> - to track personal goals" + NEW_LINE
+                + "15. status change <cutting/bulking> - Update your cutting/bulking status." + NEW_LINE
+                + "16. status report - View your current cutting/bulking progress" + NEW_LINE
+                + "17. search <logType> /d <DD/MM/YYYY> OR search <logType> /k <keyword> - Search for logs" + NEW_LINE);
     }
 
     /**

@@ -3,6 +3,7 @@ package seedu.healthbud.parser.addcommandparser;
 import seedu.healthbud.LogList;
 import seedu.healthbud.command.singlelog.AddGoalCommand;
 import seedu.healthbud.exception.InvalidGoalException;
+import seedu.healthbud.exception.InvalidParameterException;
 import seedu.healthbud.log.Goals;
 import seedu.healthbud.parser.ParserParameters;
 
@@ -50,6 +51,7 @@ public class AddGoalParser {
      *                              or if any of the parameters are not numeric.
      */
     public static AddGoalCommand parse(LogList goalLogs, String input) throws InvalidGoalException {
+        boolean hasValidParameters = false;
         assert input != null : "Input should not be null";
         String[] parts = input.trim().split(" ");
 
@@ -62,10 +64,34 @@ public class AddGoalParser {
 
         Map<String, String> param = ParserParameters.parseParameters(input);
 
-        if (!param.get("cal").matches("\\d+") || !param.get("w").matches("\\d+")
-                || !param.get("kg").matches("\\d+")) {
-            throw new InvalidGoalException();
+        if (param.containsKey("w")) {
+            String water = param.get("w");
+            if (!water.matches("\\d+") || Integer.parseInt(water) < 1) {
+                throw new InvalidParameterException();
+            }
+            hasValidParameters = true;
         }
-        return new AddGoalCommand(goalLogs, param.get("w"), param.get("cal"), param.get("kg"));
+
+        if (param.containsKey("cal")) {
+            String cal = param.get("cal");
+            if (!cal.matches("\\d+") || Integer.parseInt(cal) < 1) {
+                throw new InvalidParameterException();
+            }
+            hasValidParameters = true;
+        }
+
+        if (param.containsKey("kg")) {
+            String weight = param.get("kg");
+            if (!weight.matches("\\d+") || Integer.parseInt(weight) < 1) {
+                throw new InvalidParameterException();
+            }
+            hasValidParameters = true;
+        }
+
+        if (hasValidParameters) {
+            return new AddGoalCommand(goalLogs, param.get("w"), param.get("cal"), param.get("kg"));
+        } else {
+            throw new InvalidParameterException();
+        }
     }
 }
