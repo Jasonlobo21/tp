@@ -85,7 +85,7 @@ public class AddGoalParser {
             if (!water.matches("\\d+") || Integer.parseInt(water) < 0) {
                 throw new InvalidParameterException();
             }
-            hasValidParameters = true;
+            //hasValidParameters = true;
         }
 
         if (param.containsKey("cal")) {
@@ -93,7 +93,7 @@ public class AddGoalParser {
             if (!cal.matches("\\d+") || Integer.parseInt(cal) < 0 ) {
                 throw new InvalidParameterException();
             }
-            hasValidParameters = true;
+            //hasValidParameters = true;
         }
 
         if (param.containsKey("kg")) {
@@ -101,7 +101,7 @@ public class AddGoalParser {
             if (!weight.matches("\\d+") || Integer.parseInt(weight) < 0 || Integer.parseInt(weight) > 635) {
                 throw new InvalidParameterException();
             }
-            hasValidParameters = true;
+            //hasValidParameters = true;
         }
 
         if (hasValidParameters) {
