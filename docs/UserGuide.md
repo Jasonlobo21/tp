@@ -67,8 +67,9 @@ Here are the commands you can use:
  10. clear <pb|meal|workout|water> - Clear the respective log
  11. view /m <logtype> /d <date>, at least one must be provided. OR view /m all
  12. add cardio <exercise> /s <speed> /i <incline> /t <duration> /d <date> - Add a cardio log
- 13. add goals - to enter goal setting mode
- 13.1  /w <waterGoals /c <calorieGoals> /m <weightGoals> - to edit personal goals
+ 13. view goals - to view goals
+ 13.1  add goal /w <waterGoals /cal <calorieGoals> /kg <weightGoals> - to edit personal goals
+ 13.2  track goals /d <date> - to track goals
  14. status change <cutting/bulking> - Update your cutting/bulking status.
  15. status report - View your current cutting/bulking progress
 ``` 
@@ -163,32 +164,30 @@ Example of usage: `add cardio run /s 8 /i 5 /t 30 /d 02/02/2025`
 ### Add goals
 Enter goal setting mode
 
-Format: `add goal`
+Format: `add goal /w <waterGoals> /cal <calorieGoals> /kg <weightGoals>`
 
-Example of usage: `add goal`
+Example of usage: `add goal /w 1500 /cal 2000 /kg 70`
 ``` 
-Welcome to goal setting! Here are your current goals: 
-Daily Water Goal: 1500 ml
-Daily Calorie Goal: Not set yet
-Weight Goal: Not set yet
-
-What goal would you like to add today?
-
 Goal has been updated:
 Daily Water Goal: 1500 ml
-Daily Calorie Goal: Not set yet
-Weight Goal: Not set yet
+Daily Calorie Goal: 2000 cal
+Weight Goal: 70 kg
 ``` 
 
-### Edit goals
+### View goals
 Edit personal fitness goals
 
-Format: `/w <waterGoals> /c <calorieGoals> /m <weightGoals>`
+Format: `view goals`
 
-Example of usage: `/w 3000 /c 2500 /m 70`
+Example of usage: `view goals`
 
 ``` 
-adasdad
+    Welcome to goal setting! Here are your current goals: 
+    Daily Water Goal: Not set yet
+    Daily Calorie Goal: Not set yet
+    Weight Goal: Not set yet
+
+    What goal would you like to add today?
 ``` 
 
 ### Sum
