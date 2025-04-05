@@ -30,7 +30,7 @@ public class AddGoalCommand extends SingleLogCommand {
             Storage.appendLogToFile(goal);
         } else {
             goal.updateGoals(waterGoal, calorieGoal, weightGoal);
-
+            Ui.printMessage("Goal has been updated:\n" + goal.toString());
         }
     }
 }
