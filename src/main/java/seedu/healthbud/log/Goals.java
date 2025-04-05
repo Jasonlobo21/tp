@@ -143,18 +143,18 @@ public class Goals extends Log {
     public String toString() {
         Goals goal = Goals.getInstance();
         String finalString;
-        if (goal.getDailyWaterGoal().equals("0")) {
+        if (goal.getDailyWaterGoal().matches("0+")) {
             finalString = "    Daily Water Goal: Not set yet\n";
         } else {
             finalString = "    Daily Water Goal: " + goal.getDailyWaterGoal() + " ml\n";
         }
 
-        if (goal.getDailyCalorieGoal().equals("0")) {
+        if (goal.getDailyCalorieGoal().matches("0+")) {
             finalString += "    Daily Calorie Goal: Not set yet\n";
         } else {
             finalString += "    Daily Calorie Goal: " + goal.getDailyCalorieGoal() + " cal\n";
         }
-        if (goal.getWeightGoal().equals("0")) {
+        if (goal.getWeightGoal().matches("0+")) {
             finalString += "    Weight Goal: Not set yet\n";
         } else {
             finalString += "    Weight Goal: " + goal.getWeightGoal() + " kg\n";
