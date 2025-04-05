@@ -90,7 +90,7 @@ public class Ui {
                 + "11. add cardio <exercise> /s <speed> /i <incline> /t <duration> /d <DD/MM/YYYY> - Add a cardio log"
                 + NEW_LINE
                 + "12. view goals - to view all goals" + NEW_LINE
-                + "13  add goal /w <waterGoals /c <calorieGoals> /m <weightGoals> - to edit personal goals" + NEW_LINE
+                + "13  add goal /w <waterGoals /cal <calorieGoals> /kg <weightGoals> - to edit personal goals" + NEW_LINE
                 + "14. status change <cutting/bulking> - Update your cutting/bulking status." + NEW_LINE
                 + "15. status report - View your current cutting/bulking progress" + NEW_LINE
                 + "16. search <logType> /d <DD/MM/YYYY> OR search <logType> /k <keyword> - Search for logs" + NEW_LINE);
