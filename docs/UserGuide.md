@@ -65,13 +65,12 @@ Here are the commands you can use:
  8. add pb <exercise> /w <weight_in_kg> /d <date> - Record a personal best
  9. sum <cal|vol> /d <date> - Sum up the total calories/water for the day
  10. clear <pb|meal|workout|water> - Clear the respective log
- 11. view /m <logtype> /d <date>, at least one must be provided. OR view /m all
- 12. add cardio <exercise> /s <speed> /i <incline> /t <duration> /d <date> - Add a cardio log
- 13. view goals - to view goals
- 13.1  add goal /w <waterGoals /cal <calorieGoals> /kg <weightGoals> - to edit personal goals
- 13.2  track goals /d <date> - to track goals
- 14. status change <cutting/bulking> - Update your cutting/bulking status.
- 15. status report - View your current cutting/bulking progress
+ 11. add cardio <exercise> /s <speed> /i <incline> /t <duration> /d <date> - Add a cardio log
+ 13. view goals - to view all goals
+ 14  add goal /w <waterGoals /cal <calorieGoals> /kg <weightGoals> - to edit personal goals
+ 15. track goal /d <date> - to track personal goals
+ 16. status report - View your current cutting/bulking progress
+ 17. search <logType> /d <DD/MM/YYYY> OR search <logType> /k <keyword> - Search for logs
 ``` 
 
 ### Bye
