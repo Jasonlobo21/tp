@@ -53,7 +53,7 @@ public class AddGoalParser {
         assert input != null : "Input should not be null";
         String[] parts = input.trim().split(" ");
 
-        if (parts.length <=  2) {
+        if (parts.length <= 3) {
             throw new InvalidGoalException();
         }
 

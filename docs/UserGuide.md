@@ -164,7 +164,7 @@ Example of usage: `add cardio run /s 8 /i 5 /t 30 /d 02/02/2025`
 ### Add goals
 Enter goal setting mode
 
-Format: `add goal /w <waterGoals> /cal <calorieGoals> /kg <weightGoals>`
+Format: `add goal /w <waterGoals> | /cal <calorieGoals> | /kg <weightGoals>`
 
 Example of usage: `add goal /w 1500 /cal 2000 /kg 70`
 ``` 
