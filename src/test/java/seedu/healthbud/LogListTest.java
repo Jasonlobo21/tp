@@ -93,13 +93,13 @@ class LogListTest {
     @Test
     void testGetWaterSum() throws InvalidDateFormatException {
         LogList logList = new LogList();
-        Water water1 = new Water("500", "12-04-2025", "7:00 AM");
-        Water water2 = new Water("1000", "12-04-2025", "12:00 PM");
+        String formattedDate = DateParser.formatDate("12-04-2025");
+        Water water1 = new Water("500", formattedDate, "7:00 AM");
+        Water water2 = new Water("1000", formattedDate, "12:00 PM");
 
         logList.addLog(water1);
         logList.addLog(water2);
 
-        String formattedDate = DateParser.formatDate("12-04-2025");
         assertEquals(1500, logList.getWaterSum(formattedDate));
     }
 

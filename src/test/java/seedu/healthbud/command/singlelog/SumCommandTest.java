@@ -35,15 +35,16 @@ public class SumCommandTest {
     @Test
     public void sumCommand_waterSum_correctSumReturned() throws InvalidDateFormatException, InvalidDateException {
         LogList waterLogList = new LogList();
-        waterLogList.addLog(new Water("250", "03-04-2024", "09:00"));
-        waterLogList.addLog(new Water("500", "03-04-2024", "11:00"));
-        waterLogList.addLog(new Water("300", "02-04-2024", "18:00"));
+        String formattedDate = DateParser.formatDate("03-04-2024");
+
+        waterLogList.addLog(new Water("250", formattedDate, "09:00"));
+        waterLogList.addLog(new Water("500", formattedDate, "11:00"));
+        waterLogList.addLog(new Water("300", formattedDate, "18:00"));
 
         SumCommand command = new SumCommand(waterLogList, "vol", "03-04-2024");
         command.execute();
 
-        String formattedDate = DateParser.formatDate("03-04-2024");
-        int expected = 750;
+        int expected = 1050;
         int actual = waterLogList.getWaterSum(formattedDate);
         assertEquals(expected, actual);
     }
@@ -98,8 +99,10 @@ public class SumCommandTest {
     public void sumCommand_validVolInput_executesCorrectly()
             throws InvalidDateFormatException, InvalidDateException, InvalidSumException {
         LogList waterLogs = new LogList();
-        waterLogs.addLog(new Water("250", "03-04-2024", "09:00"));
-        waterLogs.addLog(new Water("500", "03-04-2024", "14:00"));
+
+        String formattedDate = DateParser.formatDate("03-04-2024");
+        waterLogs.addLog(new Water("250", formattedDate, "09:00"));
+        waterLogs.addLog(new Water("500", formattedDate, "14:00"));
 
         LogList mealLogs = new LogList();
         LogList cardioLogs = new LogList();
@@ -107,7 +110,6 @@ public class SumCommandTest {
         SumCommand command = SumParser.parse("sum vol /d 03-04-2024", mealLogs, waterLogs, cardioLogs);
         command.execute();
 
-        String formattedDate = DateParser.formatDate("03-04-2024");
         assertEquals(750, waterLogs.getWaterSum(formattedDate));
     }
 

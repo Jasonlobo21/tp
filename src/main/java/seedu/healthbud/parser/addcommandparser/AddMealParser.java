@@ -64,7 +64,7 @@ public class AddMealParser {
             throw new HealthBudException("Calorie count must be between 0 and 10000.");
         }
 
-        String TrimmedCal = param.get("cal").replaceFirst("^0+(?!$)", "");
+        String TrimmedCal = param.get("cal").replaceFirst("^0+(?![.$])", "");
 
         String formattedDate = DateParser.formatDate(param.get("d"));
         String formattedTime = TimeParser.formatTime(param.get("t"));
