@@ -1,0 +1,72 @@
+@startuml CommandClassDiagram
+
+skinparam classAttributeIconSize 0
+hide circle
+
+interface Command <<interface>>{
+    + {abstract} execute(): void
+}
+
+abstract class InputCommand{
+    - input: String
+    + InputCommand(input: String)
+    + {abstract} execute(): void
+}
+
+abstract class MultiLogCommand {
+    - goalLogs: LogList
+    - pbLogs: LogList
+    - mealLogs: LogList
+    - workoutLogs: LogList
+    - waterLogs: LogList
+    - cardioLogs: LogList
+    - input: String
+    + MultiLogCommand(goalLogs, pbLogs, mealLogs, workoutLogs, waterLogs, cardioLogs, input)
+    + {abstract} execute(): void
+}
+
+abstract class SingleLogCommand {
+    - logList: LogList
+    + SingleLogCommand(logList: LogList)
+    + {abstract} execute(): void
+}
+
+class TrackGoalCommand {
+    - date: String
+    + TrackGoalCommand(date, goalLogs, pbLogs, mealLogs, workoutLogs, waterLogs, cardioLogs)
+    + execute(): void
+}
+
+class StatusCommand {
+    - currentStatus: String {static}
+    - message: String
+    + StatusCommand(goalLogs, pbLogs, mealLogs, workoutLogs, waterLogs, cardioLogs, input, message)
+    + execute(): void
+}
+
+class RecommendCommand {
+    - list: String
+    + RecommendCommand(list: String)
+    + getMessage(): String
+    + execute(): void
+}
+
+class BMICommand {
+    - weight: double
+    - height: double
+    + BMICommand(input: String, weight: double, height: double)
+    + execute(): void
+}
+
+' Relationships
+Command <|.. InputCommand
+Command <|.. MultiLogCommand
+Command <|.. SingleLogCommand
+
+MultiLogCommand <|-- TrackGoalCommand
+MultiLogCommand <|-- StatusCommand
+
+InputCommand <|-- RecommendCommand
+InputCommand <|-- BMICommand
+
+@enduml
