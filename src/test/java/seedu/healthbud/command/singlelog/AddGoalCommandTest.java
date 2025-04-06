@@ -157,14 +157,14 @@ class AddGoalCommandTest {
     }
 
     @Test
-    public void addGoal_fourParts_withZeroParam_expectInvalidParameterException() {
+    public void addGoal_fourPartsWithZeroParam_expectInvalidParameterException() {
         String input = "add goal /w 0";
         Goals.getInstance().updateGoals("1500", "2000", "70"); // default values
         assertThrows(InvalidParameterException.class, () -> AddGoalParser.parse(goalLogs, input));
     }
 
     @Test
-    public void addGoal_fourParts_withNonZeroValue_expectSuccess() {
+    public void addGoal_fourPartsWithNonZeroValue_expectSuccess() {
         String input = "add goal /w 2000";
         Goals goals = Goals.getInstance();
         goals.updateGoals("2000", "1500", "65");
@@ -176,14 +176,14 @@ class AddGoalCommandTest {
     }
 
     @Test
-    public void addGoal_sixParts_withZeroCalorie_expectInvalidParameterException() {
+    public void addGoal_sixPartsWithZeroCalorie_expectInvalidParameterException() {
         String input = "add goal /w 2000 /cal 0";
         Goals.getInstance().updateGoals("1500", "2000", "70");
         assertThrows(InvalidParameterException.class, () -> AddGoalParser.parse(goalLogs, input));
     }
 
     @Test
-    public void addGoal_sixParts_valid_expectSuccess() {
+    public void addGoal_sixPartsValid_expectSuccess() {
         String input = "add goal /w 1800 /cal 1500";
         Goals goals = Goals.getInstance();
         goals.updateGoals("2000", "1500", "65");
@@ -196,7 +196,7 @@ class AddGoalCommandTest {
     }
 
     @Test
-    public void addGoal_eightParts_withZeroWeight_expectInvalidParameterException() {
+    public void addGoal_eightPartsWithZeroWeight_expectInvalidParameterException() {
         String input = "add goal /w 1500 /cal 1200 /kg 0";
         Goals.getInstance().updateGoals("1500", "2000", "70");
         assertThrows(InvalidParameterException.class, () -> AddGoalParser.parse(goalLogs, input));
