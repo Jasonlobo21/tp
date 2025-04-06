@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import seedu.healthbud.LogList;
 import seedu.healthbud.command.singlelog.AddMealCommand;
 import seedu.healthbud.command.singlelog.AddWaterCommand;
-import seedu.healthbud.exception.HealthBudException;
+//import seedu.healthbud.exception.HealthBudException;
 import seedu.healthbud.exception.InvalidDateFormatException;
 import seedu.healthbud.exception.InvalidTrackException;
 import seedu.healthbud.parser.TrackGoalParser;
@@ -16,7 +16,7 @@ import java.io.PrintStream;
 import static seedu.healthbud.HealthBud.goalLogs;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+//import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 class TrackGoalCommandTest {
@@ -38,7 +38,7 @@ class TrackGoalCommandTest {
         LogList meal = new LogList();
         LogList water = new LogList();
 
-        new AddMealCommand(meal,"Lunch", "300", "01/04/2024", "13:00").execute();
+        new AddMealCommand(meal, "Lunch", "300", "01/04/2024", "13:00").execute();
         new AddWaterCommand(water, "500", "01/04/2024", "13:10").execute();
 
         TrackGoalCommand command = new TrackGoalCommand("01/04/2024", empty, empty, meal, empty, water, empty);
@@ -55,8 +55,8 @@ class TrackGoalCommandTest {
         LogList meal = new LogList();
         LogList water = new LogList();
 
-        new AddMealCommand(meal,"Lunch", "300", "01/04/2024", "13:00").execute();
-        new AddWaterCommand(water,"500", "01/04/2024", "13:10").execute();
+        new AddMealCommand(meal, "Lunch", "300", "01/04/2024", "13:00").execute();
+        new AddWaterCommand(water, "500", "01/04/2024", "13:10").execute();
 
         TrackGoalCommand command = TrackGoalParser.parse(input, empty, empty, meal, empty, water, empty);
         String output = getCommandOutput(command);
@@ -111,6 +111,7 @@ class TrackGoalCommandTest {
         assertThrows(AssertionError.class, () ->
                 new TrackGoalCommand("   ", empty, empty, empty, empty, empty, empty));
     }
+
     @Test
     void trackGoalConstructor_nullDate_throwsAssertionError() {
         LogList empty = new LogList();
