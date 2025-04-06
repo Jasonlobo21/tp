@@ -15,7 +15,6 @@ import seedu.healthbud.exception.InvalidDateFormatException;
 import seedu.healthbud.exception.InvalidPersonalBestException;
 import seedu.healthbud.exception.InvalidMLException;
 import seedu.healthbud.exception.InvalidCardioException;
-import seedu.healthbud.exception.HealthBudException;
 
 import seedu.healthbud.log.Meal;
 import seedu.healthbud.parser.addcommandparser.AddMealParser;
