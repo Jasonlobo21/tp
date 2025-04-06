@@ -318,4 +318,5 @@ public class AddWorkoutCommandTest {
         assertEquals("0.1", workout.getWeight());
     }
 
+
 }
