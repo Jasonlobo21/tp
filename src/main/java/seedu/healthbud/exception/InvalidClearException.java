@@ -8,6 +8,6 @@ public class InvalidClearException extends RuntimeException {
      * Constructs an InvalidClearException with a default error message.
      */
     public InvalidClearException() {
-        super("Invalid clear command - clear <pb|meal|workout|water>");
+        super("Invalid clear command (e.g. clear <pb|meal|workout|water|cardio>)");
     }
 }

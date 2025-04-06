@@ -8,7 +8,7 @@ public class InvalidListException extends Exception {
      * Constructs an InvalidListException with a default error message.
      */
     public InvalidListException() {
-        super("Invalid list command (e.g. list <pb/meal/workout/water/cardio>)");
+        super("Invalid list command (e.g. list <pb|meal|workout|water|cardio>)");
 
     }
 }

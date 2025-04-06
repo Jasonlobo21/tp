@@ -26,7 +26,7 @@ public class Ui {
     /**
      * Prints the HealthBud ASCII art to the user.
      */
-    public static void printHealthBuds() {  
+    public static void printHealthBuds() {
         System.out.println("""
                 ⠀⠀⠀⠀⠀⠀⠀⣀⣴⣶⣶⣶⡦⠤⣀⡀⠀⠀⠀⠀⠀⣀⣤⣤⣀⡀⠀⠀⠀⠀⠀⣀⣤⣴⡶⣶⣶⡦⣄⡀⠀⠀⠀⠀⠀⠀⠀
                 ⠀⠀⠀⠀⣀⣴⡾⢛⣡⣿⣤⡄⡕⡇⠹⡇⠀⠀⠀⠀⣾⣿⠿⠻⣿⣿⡄⠀⠀⠀⢸⠻⠸⠹⠁⣤⣿⣦⡙⠿⣦⣄⡀⠀⠀⠀⠀
