@@ -187,7 +187,7 @@ Format: `view goals`
 Example of usage: `view goals`
 
 ``` 
-    Welcome to goal setting! Here are your current goals: 
+    Here are your current goals: 
     Daily Water Goal: Not set yet
     Daily Calorie Goal: Not set yet
     Weight Goal: Not set yet
