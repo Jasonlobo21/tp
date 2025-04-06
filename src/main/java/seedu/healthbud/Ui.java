@@ -48,8 +48,7 @@ public class Ui {
                 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠛⠿⣦⣤⣤⣦⣤⣴⡾⠟⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
                 """);
     }
-
-
+    
     /**
      * Prints the greeting message to the user.
      * <p>
