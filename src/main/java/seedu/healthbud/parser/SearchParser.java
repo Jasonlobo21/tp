@@ -32,7 +32,7 @@ public class SearchParser {
         assert input != null : "Input should not be null";
 
 
-        String[] parts = input.split(" ");
+        String[] parts = input.split("\\s+");
         if (parts.length != 4) {
             throw new InvalidSearchException();
         }

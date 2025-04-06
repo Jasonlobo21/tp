@@ -28,7 +28,7 @@ public class DeleteParser {
 
         assert input != null : "Input should not be null";
 
-        String[] parts = input.trim().split(" ");
+        String[] parts = input.trim().split("\\s+");
         if (parts.length != 3) {
             throw new InvalidDeleteException();
         }

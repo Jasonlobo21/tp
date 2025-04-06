@@ -2,6 +2,7 @@ package seedu.healthbud.parser.addcommandparser;
 
 import seedu.healthbud.LogList;
 import seedu.healthbud.command.singlelog.AddWaterCommand;
+import seedu.healthbud.exception.HealthBudException;
 import seedu.healthbud.exception.InvalidDateException;
 import seedu.healthbud.exception.InvalidDateFormatException;
 import seedu.healthbud.exception.InvalidWaterException;
@@ -30,7 +31,7 @@ public class AddWaterParser {
      * @throws InvalidDateFormatException if the date provided cannot be parsed.
      */
     public static AddWaterCommand parse(LogList waterLogs, String input)
-            throws InvalidWaterException, InvalidDateException, InvalidDateFormatException {
+            throws InvalidWaterException, InvalidDateException, InvalidDateFormatException, HealthBudException {
 
         assert input != null : "Input should not be null";
 
@@ -53,13 +54,20 @@ public class AddWaterParser {
             throw new InvalidWaterException();
         }
 
-        if (!param.get("ml").matches("\\d+")) {
+        if (!param.get("ml").matches("^-?\\d+(\\.\\d+)?$")) {
             throw new InvalidWaterException();
         }
+
+        double ml = Double.parseDouble(param.get("ml"));
+        if (ml <= 0 || ml > 10000) {
+            throw new HealthBudException("Water volume must be between 0 and 10000 ml.");
+        }
+
+        String TrimmedMl = param.get("ml").replaceFirst("^0+(?!$)", "");
 
         String formattedDate = DateParser.formatDate(param.get("d"));
         String formattedTime = TimeParser.formatTime(param.get("t"));
 
-        return new AddWaterCommand(waterLogs, param.get("ml"), formattedDate, formattedTime);
+        return new AddWaterCommand(waterLogs, TrimmedMl, formattedDate, formattedTime);
     }
 }

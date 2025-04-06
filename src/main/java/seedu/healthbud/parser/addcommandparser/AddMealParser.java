@@ -2,6 +2,7 @@ package seedu.healthbud.parser.addcommandparser;
 
 import seedu.healthbud.LogList;
 import seedu.healthbud.command.singlelog.AddMealCommand;
+import seedu.healthbud.exception.HealthBudException;
 import seedu.healthbud.exception.InvalidDateException;
 import seedu.healthbud.exception.InvalidDateFormatException;
 import seedu.healthbud.exception.InvalidMealException;
@@ -32,7 +33,7 @@ public class AddMealParser {
      */
     //@@author Ahmish15
     public static AddMealCommand parse(LogList mealLogs, String input)
-            throws InvalidMealException, InvalidDateException, InvalidDateFormatException {
+            throws InvalidMealException, InvalidDateException, InvalidDateFormatException, HealthBudException {
 
         assert input != null : "Input should not be null";
         if (!input.contains("/cal ") || !input.contains("/d ") || !input.contains("/t ")) {
@@ -58,9 +59,16 @@ public class AddMealParser {
             throw new InvalidMealException();
         }
 
+        int cal = Integer.parseInt(param.get("i"));
+        if (cal < 0 || cal > 10000) {
+            throw new HealthBudException("Calorie count must be between 0 and 10000.");
+        }
+
+        String TrimmedCal = param.get("cal").replaceFirst("^0+(?!$)", "");
+
         String formattedDate = DateParser.formatDate(param.get("d"));
         String formattedTime = TimeParser.formatTime(param.get("t"));
 
-        return new AddMealCommand(mealLogs, name, param.get("cal"), formattedDate, formattedTime);
+        return new AddMealCommand(mealLogs, name, TrimmedCal, formattedDate, formattedTime);
     }
 }

@@ -24,21 +24,7 @@ public class DateParser {
             "dd/MM/yy",         // e.g., 12/11/25 -> 12 Nov 2025 (due to pivot date)
             "dd/MM/yyyy",       // e.g., 25/12/2023
             "dd-MM-yy",         // e.g., 12-11-23 -> 12 Nov 2023 (due to pivot date)
-            "dd-MM-yyyy",       // e.g., 25-12-2023
-            "dd MM yy",        // e.g., 25 12 23
-            "dd MM yyyy",      // e.g., 25 12 2023
-            "ddMMyy",       // e.g., 25 Nov 23
-            "ddMMyyyy",     // e.g., 25112023
-            "dd MMM yy",       // e.g., 25 Dec 23
-            "dd MMM yyyy",     // e.g., 25 Dec 2023
-            "dd MMMM yy",      // e.g., 25 December 23
-            "dd MMMM yyyy",    // e.g., 25 December 2023
-            "MMM dd, yyyy",     // e.g., Dec 25, 2023
-            "MMMM dd, yyyy",    // e.g., December 25, 2023
-            "MMM dd yyyy",
-            "MMM dd, yy"        // e.g., Dec 25, 23
-
-
+            "dd-MM-yyyy"        // e.g., 25-12-2023
     );
 
     /**

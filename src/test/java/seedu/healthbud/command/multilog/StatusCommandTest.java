@@ -39,8 +39,7 @@ class StatusCommandTest {
 
     @Test
     void statusChange_validBulking_expectSuccess() throws InvalidStatusException ,
-            InvalidDateFormatException, InvalidDateException
-    {
+            InvalidDateFormatException, InvalidDateException {
         LogList empty = new LogList();
         String input = "status change bulking";
         StatusCommand command = StatusParser.parse(input, empty, empty, empty, empty, empty, empty);

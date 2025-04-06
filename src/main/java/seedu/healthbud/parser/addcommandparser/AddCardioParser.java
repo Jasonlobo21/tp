@@ -36,11 +36,6 @@ public class AddCardioParser {
 
         assert input != null : "Input should not be null";
 
-        String[] parts = input.trim().split(" ");
-        if (parts.length < 2) {
-            throw new InvalidCardioException();
-        }
-
         if (!input.contains("/s ") || !input.contains("/i ") || !input.contains("/t ") || !input.contains("/d ")) {
             throw new InvalidCardioException();
         }
@@ -68,13 +63,13 @@ public class AddCardioParser {
         }
 
         if (!param.get("s").matches("^-?\\d+(\\.\\d+)?$") ||
-                !param.get("i").matches("^-?\\d+$") ||
-                !param.get("t").matches("^-?\\d+$")) {
+                !param.get("i").matches("^-?\\d+(\\.\\d+)?$") ||
+                !param.get("t").matches("^-?\\d+(\\.\\d+)?$")) {
             throw new InvalidCardioException();
         }
 
-        int time = Integer.parseInt(param.get("t"));
-        int incline = Integer.parseInt(param.get("i"));
+        double time = Double.parseDouble(param.get("t"));
+        double incline = Double.parseDouble(param.get("i"));
         double speed = Double.parseDouble(param.get("s"));
 
         if (time <= 0 || time > 1440) {
@@ -87,10 +82,13 @@ public class AddCardioParser {
             throw new HealthBudException("Speed should be between 1 and 50.");
         }
 
+        String TrimmedIncline = param.get("i").replaceFirst("^0+(?!$)", "");
+        String TrimmedSpeed = param.get("s").replaceFirst("^0+(?!$)", "");
+
         String formattedDate = DateParser.formatDate(param.get("d"));
 
         return new AddCardioCommand(cardioLogs, name,
-                param.get("s"), param.get("i"), param.get("t"),
+                TrimmedSpeed, TrimmedIncline, param.get("t"),
                 formattedDate);
     }
 }
