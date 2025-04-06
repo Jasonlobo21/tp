@@ -11,7 +11,7 @@ This application was developed as part of a university software engineering modu
 
 ### Architecture
 
-![img.png](img.png)
+![img.png](images/img.png)
 
 The Architecture Diagram given above explains the high-level design of the HealthBud.
 
@@ -40,8 +40,6 @@ The bulk of the CLI's work id done by the following components:
 - The UI component is responsible for user interactions. It handles displaying messages, prompts, and error messages to the user. 
 
 
-
-
 ### Parser
 
 
@@ -51,7 +49,7 @@ The Parser interface uses a series of classes to implement the various commands.
 `//TODO: include command class diagram here`
 
 ### LogList
-![LogList_Class_Diagram](images/LogListCD.png)
+<img src="images/LogListCD.png" alt="LogList_Class_Diagram" width="1244">
 
 The LogList class manages a list of logs, each representing a fitness-related entry such as meals, workouts, water 
 intake, cardio sessions, personal bests, or goals. It maintains a List<Log> and provides methods to add, delete, update,
@@ -198,7 +196,7 @@ The recommend <muscle_group> command provides users with 3 curated workout sugge
 - External file storage for recommendations: Overhead for static data; current implementation is simpler and faster.
 
 ### Sequence Diagrams
-![Recommend_Sequence_Diagram](Images/RecommendSD.png)
+![RecommendSD.png](images/RecommendSD.png)
 
 Diagram Explanation <br>
 
