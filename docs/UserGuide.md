@@ -27,6 +27,7 @@ HealthBud!
 
 <img src="images/CS2113TpLogo.png.jpg" alt="CS2113TpLogo" width="250"/>
 
+
 6. Type the command in the command terminal and press Enter to execute it.
 
 
