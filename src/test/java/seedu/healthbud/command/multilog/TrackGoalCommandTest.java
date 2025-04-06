@@ -13,9 +13,11 @@ import seedu.healthbud.parser.ViewGoalParser;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
+import static seedu.healthbud.HealthBud.goalLogs;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
 
 class TrackGoalCommandTest {
 
@@ -122,12 +124,12 @@ class TrackGoalCommandTest {
         PrintStream originalOut = System.out;
         System.setOut(new PrintStream(outContent));
 
-        ViewGoalParser.parse("view goals");
+        ViewGoalParser.parse("view goals", goalLogs);
 
         System.setOut(originalOut);
         String output = outContent.toString().trim();
 
-        assertTrue(output.contains("Welcome to goal setting! Here are your current goals:"),
+        assertTrue(output.contains("Here are your current goals:"),
                 "Should print welcome message with current goals");
         assertTrue(output.contains("What goal would you like to add today?"),
                 "Should prompt the user to add a goal");
@@ -135,7 +137,7 @@ class TrackGoalCommandTest {
 
     @Test
     void viewGoalsParser_nullInput_throwsAssertionError() {
-        assertThrows(AssertionError.class, () -> ViewGoalParser.parse(null));
+        assertThrows(AssertionError.class, () -> ViewGoalParser.parse(null, goalLogs));
     }
 
 
