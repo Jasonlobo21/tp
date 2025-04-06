@@ -164,6 +164,54 @@ class AddCardioCommandTest {
         assertThrows(AssertionError.class, () -> AddCardioParser.parse(logs, null));
     }
 
+    @Test
+    void cardioLog_whitespaceOnlyName_throwsInvalidCardioException() {
+        String input = "add cardio     /s 8 /i 2 /t 30 /d 25-12-2023";
+        LogList logs = new LogList();
+        assertThrows(InvalidCardioException.class, () -> AddCardioParser.parse(logs, input));
+    }
+
+    @Test
+    void cardioLog_timeExceedsMax_throwsHealthBudException() {
+        String input = "add cardio Run /s 8.5 /i 2 /t 1500 /d 25-12-2023";
+        LogList logs = new LogList();
+        assertThrows(HealthBudException.class, () -> AddCardioParser.parse(logs, input));
+    }
+
+    @Test
+    void cardioLog_negativeIncline_throwsHealthBudException() {
+        String input = "add cardio Run /s 8.5 /i -5 /t 30 /d 25-12-2023";
+        LogList logs = new LogList();
+        assertThrows(HealthBudException.class, () -> AddCardioParser.parse(logs, input));
+    }
+
+    @Test
+    void cardioLog_zeroSpeed_throwsHealthBudException() {
+        String input = "add cardio Jogging /s 0 /i 5 /t 30 /d 25-12-2023";
+        LogList logs = new LogList();
+        assertThrows(HealthBudException.class, () -> AddCardioParser.parse(logs, input));
+    }
+
+    @Test
+    void cardioLog_speedExceedsMax_throwsHealthBudException() {
+        String input = "add cardio Jogging /s 51 /i 5 /t 30 /d 25-12-2023";
+        LogList logs = new LogList();
+        assertThrows(HealthBudException.class, () -> AddCardioParser.parse(logs, input));
+    }
+
+    @Test
+    void cardioLog_paramKeysWrongCase_throwsInvalidCardioException() {
+        String input = "add cardio Run /S 8.5 /I 2 /T 30 /D 25-12-2023";
+        LogList logs = new LogList();
+        assertThrows(InvalidCardioException.class, () -> AddCardioParser.parse(logs, input));
+    }
+
+    @Test
+    void cardioLog_missingDatePrefixOnly_throwsInvalidCardioException() {
+        String input = "add cardio Run /s 8.5 /i 2 /t 30";
+        LogList logs = new LogList();
+        assertThrows(InvalidCardioException.class, () -> AddCardioParser.parse(logs, input));
+    }
 
 }
 

@@ -1,4 +1,3 @@
-/*
 package seedu.healthbud.command.singlelog;
 
 import org.junit.jupiter.api.Test;
@@ -9,6 +8,7 @@ import seedu.healthbud.exception.InvalidSumException;
 import seedu.healthbud.log.Meal;
 import seedu.healthbud.log.Cardio;
 import seedu.healthbud.log.Water;
+import seedu.healthbud.parser.DateParser;
 import seedu.healthbud.parser.SumParser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -26,8 +26,9 @@ public class SumCommandTest {
         SumCommand command = new SumCommand(mealLogList, "cal", "03-04-2024");
         command.execute();
 
+        String formattedDate = DateParser.formatDate("03-04-2024");
         int expected = 450;
-        int actual = mealLogList.getCaloriesSum("03-04-2024");
+        int actual = mealLogList.getCaloriesSum(formattedDate);
         assertEquals(expected, actual);
     }
 
@@ -41,8 +42,9 @@ public class SumCommandTest {
         SumCommand command = new SumCommand(waterLogList, "vol", "03-04-2024");
         command.execute();
 
+        String formattedDate = DateParser.formatDate("03-04-2024");
         int expected = 750;
-        int actual = waterLogList.getWaterSum("03-04-2024");
+        int actual = waterLogList.getWaterSum(formattedDate);
         assertEquals(expected, actual);
     }
 
@@ -56,8 +58,9 @@ public class SumCommandTest {
         SumCommand command = new SumCommand(cardioLogList, "cardio", "03-04-2024");
         command.execute();
 
+        String formattedDate = DateParser.formatDate("03-04-2024");
         int expected = 2400;
-        int actual = cardioLogList.getCardioSum("03-04-2024");
+        int actual = cardioLogList.getCardioSum(formattedDate);
         assertEquals(expected, actual);
     }
 
@@ -68,8 +71,9 @@ public class SumCommandTest {
         SumCommand command = new SumCommand(mealLogList, "cal", "03-04-2024");
         command.execute();
 
+        String formattedDate = DateParser.formatDate("03-04-2024");
         int expected = 0;
-        int actual = mealLogList.getCaloriesSum("03-04-2024");
+        int actual = mealLogList.getCaloriesSum(formattedDate);
         assertEquals(expected, actual);
     }
 
@@ -86,7 +90,8 @@ public class SumCommandTest {
         SumCommand command = SumParser.parse("sum cal /d 03-04-2024", mealLogs, waterLogs, cardioLogs);
         command.execute();
 
-        assertEquals(700, mealLogs.getCaloriesSum("03-04-2024"));
+        String formattedDate = DateParser.formatDate("03-04-2024");
+        assertEquals(700, mealLogs.getCaloriesSum(formattedDate));
     }
 
     @Test
@@ -102,8 +107,8 @@ public class SumCommandTest {
         SumCommand command = SumParser.parse("sum vol /d 03-04-2024", mealLogs, waterLogs, cardioLogs);
         command.execute();
 
-        int expected = 750;
-        assertEquals(expected, waterLogs.getWaterSum("03-04-2024"));
+        String formattedDate = DateParser.formatDate("03-04-2024");
+        assertEquals(750, waterLogs.getWaterSum(formattedDate));
     }
 
     @Test
@@ -118,7 +123,8 @@ public class SumCommandTest {
         SumCommand command = SumParser.parse("sum cardio /d 03-04-2024", mealLogs, waterLogs, cardioLogs);
         command.execute();
 
-        assertEquals(2000, cardioLogs.getCardioSum("03-04-2024"));
+        String formattedDate = DateParser.formatDate("03-04-2024");
+        assertEquals(2000, cardioLogs.getCardioSum(formattedDate));
     }
 
     @Test
@@ -176,4 +182,3 @@ public class SumCommandTest {
                 SumParser.parse(input, mealLogs, waterLogs, cardioLogs));
     }
 }
-*/
