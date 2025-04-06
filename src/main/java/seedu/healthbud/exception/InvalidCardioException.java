@@ -10,6 +10,6 @@ public class InvalidCardioException extends RuntimeException {
      */
     public InvalidCardioException() {
         super("Invalid cardio log command (e.g. add cardio <exercise> /s <speed> /i " +
-                "<incline> /t <duration_in_mins> /d <date>)");
+                "<incline> /t <duration_in_mins> /d <DD/MM/YYYY>)");
     }
 }

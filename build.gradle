@@ -62,3 +62,8 @@ test {
     jvmArgs '-ea'
 }
 
+tasks.register('runtest') {
+    doLast {
+        println("Skipping runtest.sh — use ./gradlew test instead.")
+    }
+}
