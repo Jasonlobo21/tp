@@ -69,12 +69,7 @@ public class Ui {
      * </p>
      */
     public static void printGreeting() {
-        String encoding = System.getProperty("file.encoding");
-        if (encoding != null && encoding.equalsIgnoreCase("UTF-8")) {
-            printHealthBuds(); // 6 pack logo muscle man
-        } else {
-            printAsciiLogo();  // safety net incase user doesnt have unicode
-        }
+        printAsciiLogo();
         printMessage("Hello! I'm HealthBud" + NEW_LINE + "What can I do for you?");
     }
 
@@ -109,7 +104,7 @@ public class Ui {
                 + "12. view goals - to view all goals" + NEW_LINE
                 + "13  add goal /w <waterGoals /cal <calorieGoals> /kg <weightGoals> - to edit your personal goals"
                 + NEW_LINE
-                + "14. track goal /d <date> - to track personal goals" + NEW_LINE
+                + "14. track goal /d <DD/MM/YYYY> - to track personal goals" + NEW_LINE
                 + "15. status change <cutting/bulking> - Update your cutting/bulking status." + NEW_LINE
                 + "16. status report - View your current cutting/bulking progress" + NEW_LINE
                 + "17. search <logType> /d <DD/MM/YYYY> OR search <logType> /k <keyword> - Search for logs" + NEW_LINE
