@@ -2,6 +2,7 @@ package seedu.healthbud.command.singlelog;
 
 import seedu.healthbud.LogList;
 import seedu.healthbud.command.SingleLogCommand;
+import seedu.healthbud.exception.InvalidDateFormatException;
 
 /**
  * SumCommand is responsible for calculating the sum for a particular log type on a given date.
@@ -34,7 +35,7 @@ public class SumCommand extends SingleLogCommand {
      * if "cardio", the total cardio sum.
      */
     @Override
-    public void execute(){
+    public void execute() throws InvalidDateFormatException {
         switch (type) {
         case "cal":
             logList.getCaloriesSum(date);

@@ -1,6 +1,8 @@
 package seedu.healthbud;
 
 import seedu.healthbud.exception.HealthBudException;
+import seedu.healthbud.exception.InvalidDateException;
+import seedu.healthbud.exception.InvalidDateFormatException;
 import seedu.healthbud.log.Cardio;
 import seedu.healthbud.log.Log;
 import seedu.healthbud.log.Meal;
@@ -9,6 +11,8 @@ import seedu.healthbud.log.Water;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import seedu.healthbud.parser.DateParser;
 import seedu.healthbud.storage.Storage;
 
 /**
@@ -172,12 +176,12 @@ public class LogList {
      * @param date the date to sum calories for; must not be null
      * @return the total calories consumed
      */
-    public int getCaloriesSum(String date) {
+    public int getCaloriesSum(String date) throws InvalidDateFormatException, InvalidDateException {
         assert date != null : "Date should not be null";
         int totalCalories = 0;
-        for (int i = 0; i < logs.size(); i++) {
-            Meal meal = (Meal) logs.get(i);
-            if (meal.getDate().equals(date)) {
+        for (Log log : logs) {
+            if (log instanceof Meal && DateParser.formatDate(log.getDate()).equals(date)) {
+                Meal meal = (Meal) log;
                 totalCalories += Integer.parseInt(meal.getCalories());
             }
         }
@@ -191,18 +195,17 @@ public class LogList {
      * @param date the date to sum calories for; must not be null
      * @return the total calories burned
      */
-    public int getCardioSum(String date){
+    public int getCardioSum(String date) throws InvalidDateFormatException, InvalidDateException {
         assert date != null : "Date should not be null";
         int totalCardio = 0;
-        for (int i = 0; i < logs.size(); i++) {
-            Cardio cardio = (Cardio) logs.get(i);
-            if(cardio.getDate().equals(date)){
+        for (Log log : logs) {
+            if (log instanceof Cardio && DateParser.formatDate(log.getDate()).equals(date)) {
+                Cardio cardio = (Cardio) log;
                 int speed = Integer.parseInt(cardio.getSpeed());
                 int duration = Integer.parseInt(cardio.getDuration());
                 int incline = Integer.parseInt(cardio.getIncline());
 
-                // general formula that i got from chat idk it might be anyhow de - kin
-                // Calories = (Speed * 2) + (Incline * 5) * (Duration / 60.0) * 100
+                // Calories = ((speed * 2) + (incline * 5)) * (duration / 60.0) * 100
                 totalCardio += (int) (((speed * 2) + (incline * 5)) * (duration / 60.0) * 100);
             }
         }
@@ -216,12 +219,12 @@ public class LogList {
      * @param date the date to sum water volume for; must not be null
      * @return the total water consumed in milliliters
      */
-    public int getWaterSum(String date) {
+    public int getWaterSum(String date) throws InvalidDateFormatException, InvalidDateException {
         assert date != null : "Date should not be null";
         int totalWater = 0;
-        for (int i = 0; i < logs.size(); i++) {
-            Water water = (Water) logs.get(i);
-            if (logs.get(i).getDate().equals(date)) {
+        for (Log log : logs) {
+            if (log instanceof Water && DateParser.formatDate(log.getDate()).equals(date)) {
+                Water water = (Water) log;
                 totalWater += Integer.parseInt(water.getAmount());
             }
         }

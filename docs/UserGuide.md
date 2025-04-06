@@ -14,7 +14,7 @@ HealthBud!
 1. Ensure you have Java 17 or above installed in your Computer. You can download the latest version of Java from here.
 
 
-2. Download the latest .jar file from here.
+2. Download the latest .jar file from [here](https://github.com/AY2425S2-CS2113-W13-4/tp/releases).
 
 
 3. Copy the file to the folder you want to use as the home folder for HealthBud.
