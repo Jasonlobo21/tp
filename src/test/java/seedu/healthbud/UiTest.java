@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 class UiTest {
 
     @Test
-    void testPrintMessage() {
+    void testPrintMessage() { 
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
         String message = "Test message";
