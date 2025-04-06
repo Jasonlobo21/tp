@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * DateParser provides utility methods for parsing and formatting date strings.
@@ -77,6 +78,21 @@ public class DateParser {
             throw new InvalidDateFormatException(); // valid date but wrong format
         } else {
             throw new InvalidDateException(); // gibberish or date past 30th April 2025
+        }
+    }
+
+    public static boolean isValidFormattedDate(String dateStr) {
+        if (dateStr == null || dateStr.trim().isEmpty()) {
+            return false;
+        }
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy", Locale.ENGLISH);
+        sdf.setLenient(false); // prevents accepting fake dates like 35 Jan 2022
+        try {
+            sdf.parse(dateStr);
+            return true;
+        } catch (ParseException e) {
+            return false;
         }
     }
 }
