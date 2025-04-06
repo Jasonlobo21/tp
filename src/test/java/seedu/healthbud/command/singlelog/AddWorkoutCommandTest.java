@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 import seedu.healthbud.LogList;
+import seedu.healthbud.exception.HealthBudException;
 import seedu.healthbud.exception.InvalidWorkoutException;
 import seedu.healthbud.log.Workout;
 import seedu.healthbud.parser.addcommandparser.AddWorkoutParser;
@@ -220,6 +221,101 @@ public class AddWorkoutCommandTest {
                 new Workout("squats", "10", "3", "25-12-2023", null)
         );
     }
+    @Test
+    void workoutLog_missingOneParameterKey_throwsException() {
+        LogList workoutLogs = new LogList();
+        String input = "add workout squats /r 10 /s 3 /d 25-12-2023";
 
+        assertThrows(InvalidWorkoutException.class, () ->
+                AddWorkoutParser.parse(workoutLogs, input));
+    }
+
+    @Test
+    void workoutLog_extraParameterKey_throwsException() {
+        LogList workoutLogs = new LogList();
+        String input = "add workout squats /r 10 /s 3 /d 25-12-2023 /w 50 /x 999";
+
+        assertThrows(InvalidWorkoutException.class, () ->
+                AddWorkoutParser.parse(workoutLogs, input));
+    }
+
+    @Test
+    void workoutLog_allParamsPresentButNameMissing_throwsException() {
+        LogList workoutLogs = new LogList();
+        String input = "add workout /r 10 /s 3 /d 25-12-2023 /w 50";
+
+        assertThrows(InvalidWorkoutException.class, () ->
+                AddWorkoutParser.parse(workoutLogs, input));
+    }
+
+    @Test
+    void workoutLog_repsTooLow_throwsHealthBudException() {
+        LogList workoutLogs = new LogList();
+        String input = "add workout squats /r 0 /s 3 /d 25-12-2023 /w 50";
+
+        assertThrows(HealthBudException.class, () ->
+                AddWorkoutParser.parse(workoutLogs, input));
+    }
+
+    @Test
+    void workoutLog_repsTooHigh_throwsHealthBudException() {
+        LogList workoutLogs = new LogList();
+        String input = "add workout squats /r 101 /s 3 /d 25-12-2023 /w 50";
+
+        assertThrows(HealthBudException.class, () ->
+                AddWorkoutParser.parse(workoutLogs, input));
+    }
+
+    @Test
+    void workoutLog_setsTooLow_throwsHealthBudException() {
+        LogList workoutLogs = new LogList();
+        String input = "add workout squats /r 10 /s 0 /d 25-12-2023 /w 50";
+
+        assertThrows(HealthBudException.class, () ->
+                AddWorkoutParser.parse(workoutLogs, input));
+    }
+
+    @Test
+    void workoutLog_setsTooHigh_throwsHealthBudException() {
+        LogList workoutLogs = new LogList();
+        String input = "add workout squats /r 10 /s 101 /d 25-12-2023 /w 50";
+
+        assertThrows(HealthBudException.class, () ->
+                AddWorkoutParser.parse(workoutLogs, input));
+    }
+
+    @Test
+    void workoutLog_weightTooLow_throwsHealthBudException() {
+        LogList workoutLogs = new LogList();
+        String input = "add workout squats /r 10 /s 3 /d 25-12-2023 /w 0";
+
+        assertThrows(HealthBudException.class, () ->
+                AddWorkoutParser.parse(workoutLogs, input));
+    }
+
+    @Test
+    void workoutLog_weightTooHigh_throwsHealthBudException() {
+        LogList workoutLogs = new LogList();
+        String input = "add workout squats /r 10 /s 3 /d 25-12-2023 /w 1001";
+
+        assertThrows(HealthBudException.class, () ->
+                AddWorkoutParser.parse(workoutLogs, input));
+    }
+
+    @Test
+    void workoutLog_validEdgeBoundaries_expectSuccess() throws Exception {
+        LogList workoutLogs = new LogList();
+        String input = "add workout squats /r 1 /s 1 /d 25-12-2023 /w 0.1";
+
+        AddWorkoutCommand command = AddWorkoutParser.parse(workoutLogs, input);
+        command.execute();
+
+        Workout workout = (Workout) workoutLogs.getLog(0);
+        assertEquals("squats", workout.getName());
+        assertEquals("1", workout.getReps());
+        assertEquals("1", workout.getSets());
+        assertEquals("25 Dec 2023", workout.getDate());
+        assertEquals("0.1", workout.getWeight());
+    }
 
 }

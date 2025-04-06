@@ -1,4 +1,3 @@
-/*
 package seedu.healthbud;
 
 import org.junit.jupiter.api.Test;
@@ -7,6 +6,7 @@ import seedu.healthbud.log.Cardio;
 import seedu.healthbud.log.Meal;
 import seedu.healthbud.log.Water;
 import seedu.healthbud.exception.HealthBudException;
+import seedu.healthbud.parser.DateParser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -73,7 +73,8 @@ class LogListTest {
         logList.addLog(meal1);
         logList.addLog(meal2);
 
-        assertEquals(800, logList.getCaloriesSum("12-04-2025"));
+        String formattedDate = DateParser.formatDate("12-04-2025");
+        assertEquals(800, logList.getCaloriesSum(formattedDate));
     }
 
     @Test
@@ -85,7 +86,8 @@ class LogListTest {
         logList.addLog(cardio1);
         logList.addLog(cardio2);
 
-        assertEquals(3333, logList.getCardioSum("12-04-2025"));
+        String formattedDate = DateParser.formatDate("12-04-2025");
+        assertEquals(3333, logList.getCardioSum(formattedDate));
     }
 
     @Test
@@ -97,7 +99,8 @@ class LogListTest {
         logList.addLog(water1);
         logList.addLog(water2);
 
-        assertEquals(1500, logList.getWaterSum("12-04-2025"));
+        String formattedDate = DateParser.formatDate("12-04-2025");
+        assertEquals(1500, logList.getWaterSum(formattedDate));
     }
 
     @Test
@@ -174,4 +177,3 @@ class LogListTest {
         assertTrue(logList.isEmpty());
     }
 }
-*/
