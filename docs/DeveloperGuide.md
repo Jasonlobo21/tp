@@ -48,7 +48,20 @@ The bulk of the CLI's work id done by the following components:
 The Parser interface uses a series of classes to implement the various commands.
 
 ### Command
-`//TODO: include command class diagram here`
+![CommandClassDiagram.png](images/CommandClassDiagram.png)
+
+The Command interface defines the core execute() operation that all concrete commands must implement. 
+Three abstract base classes (InputCommand, MultiLogCommand, and SingleLogCommand) implements this interface for different operational contexts:
+- InputCommand handles simple commands requiring only user input (BMI calculations, recommendations)
+- MultiLogCommand manages complex operations across multiple log types (goal tracking, status reports)
+- SingleLogCommand processes actions targeting a specific log type
+
+Key Characteristics:
+- The abstract base classes enforce consistent parameter passing through their constructors
+- Concrete commands like TrackGoalCommand and StatusCommand leverage multiple log types for cross-functional operations
+- Input-focused commands (BMICommand, RecommendCommand) demonstrate minimal dependencies
+- The hierarchy enables polymorphic command execution while maintaining strong type safety
+
 
 ### LogList
 ![LogList_Class_Diagram](images/LogListCD.png)
@@ -269,64 +282,6 @@ The command calculates the user's Body Mass Index (BMI) based on the provided we
 Diagram Explanation <br>
 
 The user inputs a BMI command with weight and height. HealthBud delegates parsing to BMIParser, which validates data and returns a BMICommand. The command calculates BMI and displays the result.
-   
-
-
-
-## AddWorkoutCommand
-### 1. Feature overview
-Tracks strength training exercises in HealthBud by recording:
-1. Exercise name
-2. Weight (kg)
-3. Repetitions
-4. Sets
-5. Date
-
-Command Format:
-`add workout [name] /w [weight] /r [reps] /s [sets] /d [date]`
-
-### 2. Implementation details
-1. Command Parsing:
-- GeneralParser identifies the command and delegates to AddWorkoutParser.
-- Parameters (/w, /r, /s, /d) are validated:
-  - Weight, reps, and sets must be positive numbers.
-  - Date must follow a valid format.
-  - Exercise name is extracted before the first parameter marker.
-2. Execution:
-- Creates an immutable Workout object with validated data.
-- Adds the record to the workout log list.
-- Throws descriptive errors for invalid input.
-
-### 3. Why this design
-1. Modularity:
-- Uses the Command Pattern to separate parsing and execution.
-- Easy to extend/modify without impacting other components
-2. User Experience:
-- Marker-based parameters (/w, /r, etc.) allow flexible input order.
-- Strict validation ensures data integrity while accommodating variations.
-3. Reliability:
-- Immutable Workout objects prevent accidental modification.
-- Thread-safe design for future scalability.
-4. Validation:
-- Fail-fast approach with multiple checks (type, format, range).
-- Prevents invalid state changes.
-- 
-### 4. Alternatives considered
-1. Positional Arguments:
-- Rejected: Less intuitive and more error-prone than marker-based input.
-2. Unified Log Class:
-- Rejected: Would require runtime type checks and reduce type safety.
-- Current specialized classes provide better compile-time validation.
-
-### 5. Sequence Diagrams
-![AddWorkoutSD.png](images/AddWorkoutSD.png)
-
-### 6. Future Improvements
-The weight tracking functionality will be enhanced to support more advanced strength training scenarios.
-This will include the ability to record varying weights within a single workout session, such as pyramid sets or drop sets, through an expanded command syntax.
-
-
-
 
 ## Goals
 ### 1. Feature Overview
