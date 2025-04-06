@@ -24,7 +24,7 @@ public class Ui {
     }
 
     /**
-     * Prints the HealthBud ASCII art to the user.
+     * Prints the HealthBud Unicode art to the user.
      */
     public static void printHealthBuds() {
         System.out.println("""
@@ -50,13 +50,31 @@ public class Ui {
     }
 
     /**
+     * Prints the HealthBud ASCII art to the user.
+     */
+    public static void printAsciiLogo() {
+        System.out.println("""
+                 _   _            _ _   _     ____            _     
+                | | | | ___  __ _| | |_| |__ | __ ) _   _  __| |___ 
+                | |_| |/ _ \\/ _` | | __| '_ \\|  _ \\| | | |/ _` / __|
+                |  _  |  __/ (_| | | |_| | | | |_) | |_| | (_| \\__ \\
+                |_| |_|\\___|\\__,_|_|\\__|_| |_|____/ \\__,_|\\__,_|___/
+                """);
+    }
+
+    /**
      * Prints the greeting message to the user.
      * <p>
      * This method displays the HealthBud ASCII art followed by a greeting message.
      * </p>
      */
     public static void printGreeting() {
-        printHealthBuds();
+        String encoding = System.getProperty("file.encoding");
+        if (encoding != null && encoding.equalsIgnoreCase("UTF-8")) {
+            printHealthBuds(); // 6 pack logo muscle man
+        } else {
+            printAsciiLogo();  // safety net incase user doesnt have unicode
+        }
         printMessage("Hello! I'm HealthBud" + NEW_LINE + "What can I do for you?");
     }
 
