@@ -293,5 +293,5 @@ Got it, here are your logs:
 | ```clear```         |                                      clear [pb\|meal\|workout\|water] <br> e.g., ```clear meal```                                       |
 | ```status change``` |                                 status change [cutting\|bulking] <br> e.g.,``` staus change bulking```                                  |
 | ```status report``` |                                      status report [date] <br> e.g.,```status report 12/13/2025```                                      |
-| ```search```        |     search [loglist] /k [keyword]  OR search [loglist] /d [date] <br> e.g., ```search workout bench OR search meal /d 02/04/2025```     |
+| ```search```        |   search [loglist] /k [keyword]  OR search [loglist] /d [date] <br> e.g., ```search workout /k bench OR search meal /d 02/04/2025```    |
 | ```list```          |                                                   list [loglist] e.g., ```list pb```                                                    |
