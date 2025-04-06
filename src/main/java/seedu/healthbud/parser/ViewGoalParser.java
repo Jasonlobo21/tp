@@ -3,7 +3,6 @@ package seedu.healthbud.parser;
 import seedu.healthbud.LogList;
 import seedu.healthbud.command.singlelog.ViewGoalCommand;
 import seedu.healthbud.Ui;
-import seedu.healthbud.exception.HealthBudException;
 import seedu.healthbud.log.Goals;
 import seedu.healthbud.exception.InvalidViewException;
 
