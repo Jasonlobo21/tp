@@ -99,7 +99,7 @@ public class Ui {
                 + "8. add pb <exercise> /w <weight_in_kg> /d <DD/MM/YYYY> - Record a personal best" + NEW_LINE
                 + "9. sum <cal|vol> /d <DD/MM/YYYY> - Sum up the total calories/water for the day" + NEW_LINE
                 + "10. clear <pb|meal|workout|water> - Clear the respective log" + NEW_LINE
-                + "11. add cardio <exercise> /s <speed> /i <incline> /t <duration> /d <DD/MM/YYYY> - Add a cardio log"
+                + "11. add cardio <exercise> /s <speed> /i <incline> /t <duration_in_min> /d <DD/MM/YYYY> - Add a cardio log"
                 + NEW_LINE
                 + "12. view goals - to view all goals" + NEW_LINE
                 + "13  add goal /w <waterGoals /cal <calorieGoals> /kg <weightGoals> - to edit your personal goals"
