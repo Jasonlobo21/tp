@@ -15,6 +15,10 @@ alt valid input
     activate ":RecommendCommand"
 
     ":RecommendCommand" -> ":RecommendCommand": execute()
+    activate ":RecommendCommand"
+    ":RecommendCommand" --> ":RecommendCommand" : return
+    deactivate ":RecommendCommand"
+
     ":RecommendCommand" -> ":Ui": printMessage(list)
     activate ":Ui"
     ":Ui" --> ":RecommendCommand": display message
@@ -24,7 +28,6 @@ alt valid input
     deactivate ":RecommendCommand"
 
     ":RecommendParser" --> User: success message
-    deactivate ":RecommendParser"
 
 else invalid input
     ":RecommendParser" -> ":ExceptionHandler": throw exception
@@ -37,4 +40,3 @@ else invalid input
 end
 
 @enduml
-

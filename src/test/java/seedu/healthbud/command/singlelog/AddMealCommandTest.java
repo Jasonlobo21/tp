@@ -2,19 +2,21 @@ package seedu.healthbud.command.singlelog;
 
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import seedu.healthbud.LogList;
+import seedu.healthbud.exception.HealthBudException;
 import seedu.healthbud.exception.InvalidMealException;
+
 import seedu.healthbud.exception.InvalidDateFormatException;
 import seedu.healthbud.exception.InvalidPersonalBestException;
 import seedu.healthbud.exception.InvalidMLException;
 import seedu.healthbud.exception.InvalidCardioException;
 import seedu.healthbud.exception.HealthBudException;
 
-import seedu.healthbud.log.Meal;
-import seedu.healthbud.parser.addcommandparser.AddMealParser;
+
 
 class AddMealCommandTest {
 
@@ -132,4 +134,62 @@ class AddMealCommandTest {
         String input = "add meal    /cal 550 /d 12-01-2025 /t 9pm";
         assertThrows(InvalidMealException.class, () -> AddMealParser.parse(mealLogs, input));
     }
+
+    @Test
+    void mealLog_validInput_expectSuccess() throws Exception {
+        LogList mealLogs = new LogList();
+        String input = "add meal chicken rice /cal 0550 /d 12-01-2025 /t 2100";
+
+        AddMealCommand command = AddMealParser.parse(mealLogs, input);
+        command.execute();
+
+        Meal meal = (Meal) mealLogs.getLog(0);
+        assertEquals("chicken rice", meal.getName());
+        assertEquals("550", meal.getCalories()); // leading zero removed
+        assertEquals("12 Jan 2025", meal.getDate());
+        assertEquals("9:00pm", meal.getTime());
+    }
+
+    @Test
+    void mealLog_caloriesExceedLimit_expectHealthBudException() {
+        LogList mealLogs = new LogList();
+        String input = "add meal burger /cal 15000 /d 12-01-2025 /t 9pm";
+        assertThrows(HealthBudException.class, () -> AddMealParser.parse(mealLogs, input));
+    }
+
+    @Test
+    void mealLog_caloriesNegative_expectHealthBudException() {
+        LogList mealLogs = new LogList();
+        String input = "add meal fries /cal -100 /d 12-01-2025 /t 9pm";
+        assertThrows(InvalidMealException.class, () -> AddMealParser.parse(mealLogs, input));
+    }
+
+    @Test
+    void mealLog_missingTimeParam_expectInvalidMealException() {
+        LogList mealLogs = new LogList();
+        String input = "add meal salad /cal 150 /d 12-01-2025";
+        assertThrows(InvalidMealException.class, () -> AddMealParser.parse(mealLogs, input));
+    }
+
+    @Test
+    void mealLog_typoInParameterKey_expectInvalidMealException() {
+        LogList mealLogs = new LogList();
+        String input = "add meal sandwich /cals 200 /d 12-01-2025 /t 8am";
+        assertThrows(InvalidMealException.class, () -> AddMealParser.parse(mealLogs, input));
+    }
+
+    @Test
+    void mealLog_whitespaceOnlyName_expectInvalidMealException() {
+        LogList mealLogs = new LogList();
+        String input = "add meal    /cal 500 /d 01-01-2025 /t 8am";
+        assertThrows(InvalidMealException.class, () -> AddMealParser.parse(mealLogs, input));
+    }
+
+    @Test
+    void mealLog_invalidTimeFormat_expectHealthBudException() {
+        LogList mealLogs = new LogList();
+        String input = "add meal oats /cal 300 /d 12-01-2025 /t badtime";
+        assertThrows(InvalidTimeException.class, () -> AddMealParser.parse(mealLogs, input));
+    }
+
 }
