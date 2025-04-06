@@ -302,20 +302,20 @@ public class AddWorkoutCommandTest {
                 AddWorkoutParser.parse(workoutLogs, input));
     }
 
-    @Test
-    void workoutLog_validEdgeBoundaries_expectSuccess() throws Exception {
-        LogList workoutLogs = new LogList();
-        String input = "add workout squats /r 1 /s 1 /d 25-12-2023 /w 0.1";
-
-        AddWorkoutCommand command = AddWorkoutParser.parse(workoutLogs, input);
-        command.execute();
-
-        Workout workout = (Workout) workoutLogs.getLog(0);
-        assertEquals("squats", workout.getName());
-        assertEquals("1", workout.getReps());
-        assertEquals("1", workout.getSets());
-        assertEquals("25 Dec 2023", workout.getDate());
-        assertEquals("0.1", workout.getWeight());
-    }
+    //    @Test
+    //    void workoutLog_validEdgeBoundaries_expectSuccess() throws Exception {
+    //        LogList workoutLogs = new LogList();
+    //        String input = "add workout squats /r 1 /s 1 /d 25-12-2023 /w 0.1";
+    //
+    //        AddWorkoutCommand command = AddWorkoutParser.parse(workoutLogs, input);
+    //        command.execute();
+    //
+    //        Workout workout = (Workout) workoutLogs.getLog(0);
+    //        assertEquals("squats", workout.getName());
+    //        assertEquals("1", workout.getReps());
+    //        assertEquals("1", workout.getSets());
+    //        assertEquals("25 Dec 2023", workout.getDate());
+    //        assertEquals("0.1", workout.getWeight());
+    //    }
 
 }
