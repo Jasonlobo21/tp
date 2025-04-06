@@ -293,7 +293,7 @@ Now you have 6 logs in the list.
 |---------------------|:---------------------------------------------------------------------------------------------------------------------------------------:|
 | ```help```          |                                                               ```help```                                                                |
 | ```bye```           |                                                               ``` bye```                                                                |
-| ```reccommend```    |                                        recommend [muscle_group] <br/> e.g ```recommend biceps```                                        |
+| ```recommend```     |                                        recommend [muscle_group] <br/> e.g ```recommend biceps```                                        |
 | ```bmi```           |                                 bmi /w [weight_in_kg] /h [height_in_m] <br/> e.g ```bmi /w 75 /h 1.8```                                 |
 | ```add workout```   | add workout [exercise] /w [weight in kg] /r [reps] /s [sets] /d [date] <br/> e.g ```add workout bench /w 100 /r 8 /s 3 /d 02/02/2025``` |
 | ```add meal```      |      add meal [meal_name] /cal [calories] /d [date] /t [time] <br/> e.g ```add meal chicken rice /cal 200 /d 02/02/2025 /t 1700```      |
