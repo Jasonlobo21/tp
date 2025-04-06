@@ -1,6 +1,5 @@
 package seedu.healthbud.command.singlelog;
 
-import seedu.healthbud.Ui;
 import seedu.healthbud.command.SingleLogCommand;
 import seedu.healthbud.log.Goals;
 import seedu.healthbud.LogList;
