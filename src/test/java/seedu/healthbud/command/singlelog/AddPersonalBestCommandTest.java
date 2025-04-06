@@ -3,7 +3,6 @@ package seedu.healthbud.command.singlelog;
 import org.junit.jupiter.api.Test;
 import seedu.healthbud.LogList;
 import seedu.healthbud.exception.InvalidDateException;
-import seedu.healthbud.exception.InvalidDateFormatException;
 import seedu.healthbud.exception.InvalidPersonalBestException;
 import seedu.healthbud.log.PersonalBest;
 import seedu.healthbud.parser.addcommandparser.AddPersonalBestParser;

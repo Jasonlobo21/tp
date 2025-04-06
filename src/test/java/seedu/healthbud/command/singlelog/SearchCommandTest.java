@@ -99,7 +99,7 @@ public class SearchCommandTest {
 
     @Test
     void parse_validDateInput_returnsSearchCommand() throws InvalidSearchException,
-            InvalidDateFormatException , InvalidDateException {
+            InvalidDateFormatException, InvalidDateException {
         LogList mealLogs = new LogList();
         LogList workoutLogs = new LogList();
         LogList waterLogs = new LogList();
@@ -224,7 +224,7 @@ public class SearchCommandTest {
 
     @Test
     void parse_validDateInputForPB_returnsSearchCommand() throws InvalidSearchException, InvalidDateFormatException
-    , InvalidDateException {
+            , InvalidDateException {
         LogList mealLogs = new LogList();
         LogList workoutLogs = new LogList();
         LogList waterLogs = new LogList();
@@ -238,7 +238,7 @@ public class SearchCommandTest {
 
     @Test
     void parse_validDateInputForCardio_returnsSearchCommand()
-            throws InvalidSearchException, InvalidDateFormatException , InvalidDateException {
+            throws InvalidSearchException, InvalidDateFormatException, InvalidDateException {
         LogList mealLogs = new LogList();
         LogList workoutLogs = new LogList();
         LogList waterLogs = new LogList();
