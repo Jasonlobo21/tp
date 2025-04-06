@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 import seedu.healthbud.LogList;
 import seedu.healthbud.command.singlelog.AddMealCommand;
 import seedu.healthbud.command.singlelog.AddWaterCommand;
-import seedu.healthbud.command.singlelog.ViewGoalCommand;
 import seedu.healthbud.exception.InvalidDateFormatException;
 import seedu.healthbud.exception.InvalidTrackException;
 import seedu.healthbud.parser.TrackGoalParser;
