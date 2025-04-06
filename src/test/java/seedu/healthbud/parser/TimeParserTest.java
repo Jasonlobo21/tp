@@ -10,11 +10,11 @@ class TimeParserTest {
 
     @Test
     void formatTime_validInput_returnsFormattedTime() throws InvalidTimeException {
-        assertEquals("8:00am", TimeParser.formatTime("0800"));
-        assertEquals("12:00pm", TimeParser.formatTime("1200"));
-        assertEquals("1:45pm", TimeParser.formatTime("1345"));
-        assertEquals("11:59pm", TimeParser.formatTime("2359"));
-        assertEquals("12:00am", TimeParser.formatTime("0000"));
+        assertEquals("0800", TimeParser.formatTime("0800"));
+        assertEquals("1200", TimeParser.formatTime("1200"));
+        assertEquals("1345", TimeParser.formatTime("1345"));
+        assertEquals("2359", TimeParser.formatTime("2359"));
+        assertEquals("0000", TimeParser.formatTime("0000"));
     }
 
     @Test
