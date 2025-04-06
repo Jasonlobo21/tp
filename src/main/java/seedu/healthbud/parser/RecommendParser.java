@@ -14,7 +14,8 @@ public class RecommendParser {
     
     public static RecommendCommand parse(String input) throws InvalidRecommendException {
         assert input != null : "Input should not be null";
-        String[] parts = input.trim().split(" ");
+
+        String[] parts = input.trim().split("\\s+");
         if (parts.length != 2) {
             throw new InvalidRecommendException();
         }

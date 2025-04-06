@@ -2,6 +2,7 @@ package seedu.healthbud.command.singlelog;
 
 import org.junit.jupiter.api.Test;
 import seedu.healthbud.LogList;
+import seedu.healthbud.exception.HealthBudException;
 import seedu.healthbud.exception.InvalidWaterException;
 import seedu.healthbud.exception.InvalidDateFormatException;
 import seedu.healthbud.log.Water;
@@ -14,7 +15,7 @@ class AddWaterCommandTest {
 
     @Test
     void addWater_correctInput_expectSuccess()
-            throws InvalidDateFormatException, InvalidWaterException {
+            throws InvalidDateFormatException, InvalidWaterException, HealthBudException {
 
         LogList waterLogs = new LogList();
         String input = "add water /ml 1000 /d 12-04-2002 /t 1200";

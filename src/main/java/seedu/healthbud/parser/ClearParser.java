@@ -27,7 +27,7 @@ public class ClearParser {
                                     InvalidClearException {
         assert input != null : "Input should not be null";
 
-        String[] parts = input.trim().split(" ");
+        String[] parts = input.trim().split("\\s+");
         if (parts.length != 2) {
             throw new InvalidClearException();
         }

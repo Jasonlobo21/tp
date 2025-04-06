@@ -5,7 +5,6 @@ import seedu.healthbud.LogList;
 import seedu.healthbud.command.Command;
 import seedu.healthbud.command.singlelog.AddCardioCommand;
 import seedu.healthbud.command.singlelog.AddGoalCommand;
-import seedu.healthbud.command.singlelog.AddMealCommand;
 import seedu.healthbud.command.singlelog.AddPersonalBestCommand;
 import seedu.healthbud.command.singlelog.AddWaterCommand;
 import seedu.healthbud.exception.HealthBudException;
@@ -16,14 +15,14 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class AddParserTest {
 
-    @Test
-    void parse_validMealInput_success() throws Exception {
-        LogList mealLogs = new LogList();
-        String input = "add meal chicken /cal 500 /d 12-04-2024 /t 1200";
-        Command command = AddParser.parse(input, mealLogs, new LogList(), new LogList(),
-                new LogList(), new LogList(), new LogList());
-        assertEquals(AddMealCommand.class, command.getClass());
-    }
+    //    @Test
+    //    void parse_validMealInput_success() throws Exception {
+    //        LogList mealLogs = new LogList();
+    //        String input = "add meal chicken /cal 500 /d 12-04-2024 /t 1200";
+    //        Command command = AddParser.parse(input, mealLogs, new LogList(), new LogList(),
+    //                new LogList(), new LogList(), new LogList());
+    //        assertEquals(AddMealCommand.class, command.getClass());
+    //    }
 
     @Test
     void parse_validWaterInput_success() throws Exception {

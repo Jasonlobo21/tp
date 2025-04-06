@@ -62,23 +62,27 @@ public class AddWorkoutParser {
             throw new InvalidWorkoutException();
         }
 
-        int reps = Integer.parseInt(param.get("r"));
-        int sets = Integer.parseInt(param.get("s"));
+        int rep = Integer.parseInt(param.get("r"));
+        int set = Integer.parseInt(param.get("s"));
         Double weight = Double.parseDouble(param.get("w"));
 
-        if (reps <= 0 || reps > 100) {
+        if (rep <= 0 || rep > 100) {
             throw new HealthBudException("Reps should be a positive integer between 1 and 100.");
         }
-        if (sets <= 0 || sets > 100) {
+        if (set <= 0 || set > 100) {
             throw new HealthBudException("Sets should be a positive integer between 1 and 100.");
         }
         if (weight <= 0 || weight > 1000) {
             throw new HealthBudException("Weight should be greater than 0 and less than 1000kg.");
         }
 
+        String TrimmedRep = param.get("r").replaceFirst("^0+(?!$)", "");
+        String TrimmedSet = param.get("s").replaceFirst("^0+(?!$)", "");
+        String TrimmedWeight = param.get("w").replaceFirst("^0+(?!$)", "");
+
         String formattedDate = DateParser.formatDate(param.get("d"));
 
-        return new AddWorkoutCommand(workoutLogs, name, param.get("r"), param.get("s"),
-                formattedDate, param.get("w"));
+        return new AddWorkoutCommand(workoutLogs, name, TrimmedRep, TrimmedSet,
+                formattedDate, TrimmedWeight);
     }
 }

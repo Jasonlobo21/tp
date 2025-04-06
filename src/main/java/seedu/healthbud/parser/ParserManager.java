@@ -29,7 +29,7 @@ public class ParserManager {
                                       LogList waterLogs, LogList cardioLogs, String input) {
 
         assert input != null : "Input should not be null";
-        String function = input.split(" ")[0];
+        String function = input.split("\\s+")[0];
 
         try {
             Command command;
