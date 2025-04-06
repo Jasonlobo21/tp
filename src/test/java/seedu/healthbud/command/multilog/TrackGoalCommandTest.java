@@ -119,22 +119,22 @@ class TrackGoalCommandTest {
                 new TrackGoalCommand(null, empty, empty, empty, empty, empty, empty));
     }
 
-//    @Test
-//    void viewGoalsParser_validInput_printsGoalMessage() throws HealthBudException {
-//        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-//        PrintStream originalOut = System.out;
-//        System.setOut(new PrintStream(outContent));
-//
-//        ViewGoalParser.parse("view goals", goalLogs);
-//
-//        System.setOut(originalOut);
-//        String output = outContent.toString().trim();
-//
-//        assertTrue(output.contains("Here are your current goals:"),
-//                "Should print welcome message with current goals");
-//        assertTrue(output.contains("What goal would you like to add today?"),
-//                "Should prompt the user to add a goal");
-//    }
+    //    @Test
+    //    void viewGoalsParser_validInput_printsGoalMessage() throws HealthBudException {
+    //        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+    //        PrintStream originalOut = System.out;
+    //        System.setOut(new PrintStream(outContent));
+    //
+    //        ViewGoalParser.parse("view goals", goalLogs);
+    //
+    //        System.setOut(originalOut);
+    //        String output = outContent.toString().trim();
+    //
+    //        assertTrue(output.contains("Here are your current goals:"),
+    //                "Should print welcome message with current goals");
+    //        assertTrue(output.contains("What goal would you like to add today?"),
+    //                "Should prompt the user to add a goal");
+    //    }
 
     @Test
     void viewGoalsParser_nullInput_throwsAssertionError() {
