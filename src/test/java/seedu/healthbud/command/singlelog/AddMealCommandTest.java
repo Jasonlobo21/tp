@@ -145,7 +145,7 @@ class AddMealCommandTest {
         assertEquals("chicken rice", meal.getName());
         assertEquals("550", meal.getCalories()); // leading zero removed
         assertEquals("12 Jan 2025", meal.getDate());
-        assertEquals("9:00pm", meal.getTime());
+        assertEquals("2100", meal.getTime());
     }
 
     @Test
