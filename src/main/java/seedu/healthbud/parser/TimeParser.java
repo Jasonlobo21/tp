@@ -24,7 +24,7 @@ public class TimeParser {
             throw new InvalidTimeException();
         }
 
-        SimpleDateFormat outputSdf = new SimpleDateFormat(OUTPUT_FORMAT);
-        return outputSdf.format(date).toLowerCase();
+
+        return inputTime;
     }
 }

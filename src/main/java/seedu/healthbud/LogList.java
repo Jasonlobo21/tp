@@ -219,12 +219,13 @@ public class LogList {
      * @param date the date to sum water volume for; must not be null
      * @return the total water consumed in milliliters
      */
-    public int getWaterSum(String date) throws InvalidDateFormatException, InvalidDateException {
+    public int getWaterSum(String date) throws InvalidDateException {
         assert date != null : "Date should not be null";
+
         int totalWater = 0;
-        for (Log log : logs) {
-            if (log instanceof Water && DateParser.formatDate(log.getDate()).equals(date)) {
-                Water water = (Water) log;
+        for (int i = 0; i < logs.size(); i++) {
+            if (logs.get(i).getDate().equals(date)) {
+                Water water = (Water) logs.get(i);
                 totalWater += Integer.parseInt(water.getAmount());
             }
         }

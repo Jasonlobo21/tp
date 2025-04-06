@@ -64,11 +64,11 @@ public class AddPersonalBestParser {
             throw new HealthBudException("Weight should be greater than 0 and less than 1000kg.");
         }
 
-        String TrimmedWeight = param.get("w").replaceFirst("^0+(?!$)", "");
+        String trimmedWeight = param.get("w").replaceFirst("^0+(?![.$])", "");
 
         String formattedDate = DateParser.formatDate(param.get("d"));
 
-        return new AddPersonalBestCommand(pbLogs, name, TrimmedWeight, formattedDate);
+        return new AddPersonalBestCommand(pbLogs, name, trimmedWeight, formattedDate);
     }
 }
 

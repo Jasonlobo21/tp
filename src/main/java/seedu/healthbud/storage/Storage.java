@@ -8,6 +8,7 @@ import seedu.healthbud.log.Log;
 import seedu.healthbud.log.PersonalBest;
 import seedu.healthbud.log.Cardio;
 import seedu.healthbud.log.Goals;
+import seedu.healthbud.parser.DateParser;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -93,30 +94,15 @@ public class Storage {
 
         switch (type) {
         case "M":
-            if (parts.length != 5) {
-                throw new IllegalArgumentException("Invalid meal format");
-            }
-            return new Meal(parts[1], parts[2], parts[3], parts[4]);
+            return parseStringToMealLog(line);
         case "WO":
-            if (parts.length != 6) {
-                throw new IllegalArgumentException("Invalid workout format");
-            }
-            return new Workout(parts[1], parts[2], parts[3], parts[4], parts[5]);
+            return parseStringToWorkoutLog(line);
         case "WA":
-            if (parts.length != 4) {
-                throw new IllegalArgumentException("Invalid water format");
-            }
-            return new Water(parts[1], parts[2], parts[3]);
+            return parseStringToWaterLog(line);
         case "P":
-            if (parts.length != 4) {
-                throw new IllegalArgumentException("Invalid pb format");
-            }
-            return new PersonalBest(parts[1], parts[2], parts[3]);
+            return parseStringToPersonalBestLog(line);
         case "C":
-            if (parts.length != 6) {
-                throw new IllegalArgumentException("Invalid cardio format");
-            }
-            return new Cardio(parts[1], parts[2], parts[3], parts[4], parts[5]);
+            return parseStringToCardioLog(line);
         case "G":
             if (parts.length != 4) {
                 throw new IllegalArgumentException("Invalid goal format");
@@ -194,4 +180,168 @@ public class Storage {
             throw new IllegalArgumentException("Unknown log type");
         }
     }
+
+    public static Log parseStringToMealLog(String line) {
+        String[] parts = line.split(" \\| ");
+        if (parts.length != 5) {
+            throw new IllegalArgumentException("Invalid meal format");
+        }
+
+        //assuming the format is "M | name | calories | date | time"
+        if(parts[1].isEmpty() || parts[2].isEmpty() || parts[3].isEmpty() || parts[4].isEmpty()) {
+            throw new IllegalArgumentException("Invalid meal format");
+        }
+
+        int cal = Integer.parseInt(parts[2]);
+        if (!parts[2].matches("\\d+") || cal < 0 || cal > 10000) {
+            throw new IllegalArgumentException("Invalid calorie format");
+        }
+
+        if (!DateParser.isValidFormattedDate(parts[3])) {
+            throw new IllegalArgumentException("Invalid date format");
+        }
+
+        if (!parts[4].matches("\\d{4}")) {
+            throw new IllegalArgumentException("Invalid time format");
+        }
+
+        String trimmedCalories = parts[2].replaceFirst("^0+(?![.$])", "");
+
+        return new Meal(parts[1], trimmedCalories, parts[3], parts[4]);
+    }
+
+    public static Log parseStringToWorkoutLog(String line) {
+        String[] parts = line.split(" \\| ");
+        if (parts.length != 6) {
+            throw new IllegalArgumentException("Invalid workout format");
+        }
+
+        //assuming the format is "WO | name | reps | sets | date | weight"
+        if(parts[1].isEmpty() || parts[2].isEmpty() || parts[3].isEmpty() || parts[4].isEmpty() || parts[5].isEmpty()) {
+            throw new IllegalArgumentException("Invalid workout format");
+        }
+
+        if (!parts[2].matches("\\d+") || parts[2].equals("0")) {
+            throw new IllegalArgumentException("Invalid reps format");
+        }
+
+        if (!parts[3].matches("\\d+") || parts[3].equals("0")) {
+            throw new IllegalArgumentException("Invalid sets format");
+        }
+
+        if (!DateParser.isValidFormattedDate(parts[4])) {
+            throw new IllegalArgumentException("Invalid date format");
+        }
+
+        if (!parts[5].matches("\\d+") || parts[5].equals("0")) {
+            throw new IllegalArgumentException("Invalid weight format");
+        }
+        String trimmedReps = parts[2].replaceFirst("^0+(?![.$])", "");
+        String trimmedSets = parts[3].replaceFirst("^0+(?![.$])", "");
+        String trimmedWeight = parts[5].replaceFirst("^0+(?![.$])", "");
+
+        return new Workout(parts[1], trimmedReps, parts[3], trimmedSets, trimmedWeight);
+    }
+
+    public static Log parseStringToCardioLog(String line) {
+        String[] parts = line.split(" \\| ");
+        if (parts.length != 6) {
+            throw new IllegalArgumentException("Invalid cardio format");
+        }
+
+        //assuming the format is "C | name | duration | incline | speed | date"
+
+        if(parts[1].isEmpty() || parts[2].isEmpty() || parts[3].isEmpty() || parts[4].isEmpty() || parts[5].isEmpty()) {
+            throw new IllegalArgumentException("Invalid cardio format");
+        }
+
+        if (!parts[2].matches("^-?\\d+(\\.\\d+)?$") ||
+                !parts[3].matches("^-?\\d+(\\.\\d+)?$") ||
+                !parts[4].matches("^-?\\d+(\\.\\d+)?$")) {
+            throw new IllegalArgumentException("Invalid duration format");
+        }
+        double time = Double.parseDouble(parts[2]);
+        double incline = Double.parseDouble(parts[3]);
+        double speed = Double.parseDouble(parts[4]);
+
+        if (time <= 0 || time > 1440) {
+            throw new IllegalArgumentException("Invalid duration format");
+        }
+
+        if (incline < 0 || incline > 100) {
+            throw new IllegalArgumentException("Invalid incline format");
+        }
+
+        if (speed <= 0 || speed > 50) {
+            throw new IllegalArgumentException("Invalid speed format");
+        }
+
+        String trimmedDuration = parts[2].replaceFirst("^0+(?![.$])", "");
+        String trimmedIncline = parts[3].replaceFirst("^0+(?![.$])", "");
+        String trimmedSpeed = parts[4].replaceFirst("^0+(?![.$])", "");
+
+        if (!DateParser.isValidFormattedDate(parts[5])) {
+            throw new IllegalArgumentException("Invalid date format");
+        }
+
+        return new Cardio(parts[1], parts[2], trimmedDuration, trimmedIncline, trimmedSpeed);
+    }
+
+    public static Log parseStringToWaterLog(String line) {
+        String[] parts = line.split(" \\| ");
+        if (parts.length != 4) {
+            throw new IllegalArgumentException("Invalid water format");
+        }
+
+        //assuming the format is "WA | amount | date | time"
+        if(parts[1].isEmpty() || parts[2].isEmpty() || parts[3].isEmpty()) {
+            throw new IllegalArgumentException("Invalid water format");
+        }
+
+        double ml = Double.parseDouble(parts[1]);
+
+        if (!parts[1].matches("\\d+") || ml < 0 || ml > 10000) {
+            throw new IllegalArgumentException("Invalid amount format");
+        }
+
+        if (!DateParser.isValidFormattedDate(parts[2])) {
+            throw new IllegalArgumentException("Invalid date format");
+        }
+
+        if (!parts[3].matches("\\d{4}")) {
+            throw new IllegalArgumentException("Invalid time format");
+        }
+
+        String trimmedAmount = parts[1].replaceFirst("^0+(?![.$])", "");
+
+        return new Water(trimmedAmount, parts[2], parts[3]);
+    }
+
+    public static Log parseStringToPersonalBestLog(String line) {
+        String[] parts = line.split(" \\| ");
+        if (parts.length != 4) {
+            throw new IllegalArgumentException("Invalid personal best format");
+        }
+
+        //assuming the format is "P | exercise | weight | date"
+        if(parts[1].isEmpty() || parts[2].isEmpty() || parts[3].isEmpty()) {
+            throw new IllegalArgumentException("Invalid personal best format");
+        }
+
+        double weight = Double.parseDouble(parts[2]);
+
+        if (!parts[2].matches("\\d+") || weight <= 0 || weight > 10000) {
+            throw new IllegalArgumentException("Invalid weight format");
+        }
+
+        if (!DateParser.isValidFormattedDate(parts[3])) {
+            throw new IllegalArgumentException("Invalid date format");
+        }
+
+        String trimmedWeight = parts[2].replaceFirst("^0+(?![.$])", "");
+
+        return new PersonalBest(parts[1], trimmedWeight, parts[3]);
+    }
+
+    //public static Log parseStringToGoalLog(String line) {}
 }
