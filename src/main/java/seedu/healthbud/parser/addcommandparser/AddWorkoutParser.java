@@ -76,13 +76,13 @@ public class AddWorkoutParser {
             throw new HealthBudException("Weight should be greater than 0 and less than 1000kg.");
         }
 
-        String TrimmedRep = param.get("r").replaceFirst("^0+(?![.$])", "");
-        String TrimmedSet = param.get("s").replaceFirst("^0+(?![.$])", "");
-        String TrimmedWeight = param.get("w").replaceFirst("^0+(?![.$])", "");
+        String trimmedRep = param.get("r").replaceFirst("^0+(?![.$])", "");
+        String trimmedSet = param.get("s").replaceFirst("^0+(?![.$])", "");
+        String trimmedWeight = param.get("w").replaceFirst("^0+(?![.$])", "");
 
         String formattedDate = DateParser.formatDate(param.get("d"));
 
-        return new AddWorkoutCommand(workoutLogs, name, TrimmedRep, TrimmedSet,
-                formattedDate, TrimmedWeight);
+        return new AddWorkoutCommand(workoutLogs, name, trimmedRep, trimmedSet,
+                formattedDate, trimmedWeight);
     }
 }

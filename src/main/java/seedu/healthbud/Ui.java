@@ -53,13 +53,11 @@ public class Ui {
      * Prints the HealthBud ASCII art to the user.
      */
     public static void printAsciiLogo() {
-        System.out.println("""
-                 _   _            _ _   _     ____            _     
-                | | | | ___  __ _| | |_| |__ | __ ) _   _  __| |___ 
-                | |_| |/ _ \\/ _` | | __| '_ \\|  _ \\| | | |/ _` / __|
-                |  _  |  __/ (_| | | |_| | | | |_) | |_| | (_| \\__ \\
-                |_| |_|\\___|\\__,_|_|\\__|_| |_|____/ \\__,_|\\__,_|___/
-                """);
+        System.out.println(" _   _            _ _   _     ____            _");
+        System.out.println("| | | | ___  __ _| | |_| |__ | __ ) _   _  __| |___");
+        System.out.println("| |_| |/ _ \\/ _` | | __| '_ \\|  _ \\| | | |/ _` / __|");
+        System.out.println("|  _  |  __/ (_| | | |_| | | | |_) | |_| | (_| \\__ \\");
+        System.out.println("|_| |_|\\___|\\__,_|_|\\__|_| |_|____/ \\__,_|\\__,_|___/");
     }
 
     /**
@@ -70,7 +68,7 @@ public class Ui {
      */
     public static void printGreeting() {
         printAsciiLogo();
-        printMessage("Hello! I'm HealthBud" + NEW_LINE + "What can I do for you?");
+        printMessage(NEW_LINE + "Hello! I'm HealthBud" + NEW_LINE + "What can I do for you?");
     }
 
     /**
@@ -99,7 +97,8 @@ public class Ui {
                 + "8. add pb <exercise> /w <weight_in_kg> /d <DD/MM/YYYY> - Record a personal best" + NEW_LINE
                 + "9. sum <cal|vol> /d <DD/MM/YYYY> - Sum up the total calories/water for the day" + NEW_LINE
                 + "10. clear <pb|meal|workout|water> - Clear the respective log" + NEW_LINE
-                + "11. add cardio <exercise> /s <speed> /i <incline> /t <duration_in_min> /d <DD/MM/YYYY> - Add a cardio log"
+                + "11. add cardio <exercise> /s <speed> /i <incline> /t <duration_in_min> /d <DD/MM/YYYY> "
+                + "- Add a cardio log"
                 + NEW_LINE
                 + "12. view goals - to view all goals" + NEW_LINE
                 + "13  add goal /w <waterGoals /cal <calorieGoals> /kg <weightGoals> - to edit your personal goals"

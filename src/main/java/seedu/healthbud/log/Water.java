@@ -67,7 +67,7 @@ public class Water extends Log {
      */
     @Override
     public String toString() {
-        return String.format("%s of water on (%s) at %s", toGlass(amount), getDate(), time);
+        return String.format("%s (%sml) of water on (%s) at %s", toGlass(amount),amount, getDate(), time);
     }
 
 }
