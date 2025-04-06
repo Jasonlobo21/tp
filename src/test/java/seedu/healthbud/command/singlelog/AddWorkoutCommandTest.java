@@ -315,7 +315,7 @@ public class AddWorkoutCommandTest {
         assertEquals("1", workout.getReps());
         assertEquals("1", workout.getSets());
         assertEquals("25 Dec 2023", workout.getDate());
-        assertEquals(".1", workout.getWeight());
+        assertEquals("0.1", workout.getWeight());
     }
 
 }
