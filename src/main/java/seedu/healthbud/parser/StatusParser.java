@@ -33,18 +33,20 @@ public class StatusParser {
 
         assert input != null : "Input should not be null";
 
-        String[] parts = input.trim().split(" ");
+        String[] parts = input.trim().split("\\s+");
+
         if (parts.length < 3) {
             throw new InvalidStatusException();
         }
 
         String action = parts[1].toLowerCase();
-        String arg = DateParser.formatDate(parts[2]);
+        String arg = parts[2];
 
         String message;
 
         switch (action) {
         case "change":
+            arg = arg.toLowerCase();
             if (!arg.equals("cutting") && !arg.equals("bulking")) {
                 throw new InvalidStatusException();
             }
@@ -53,6 +55,7 @@ public class StatusParser {
             break;
 
         case "report":
+            arg = DateParser.formatDate(arg);
             int caloriesEaten = mealLogs.getCaloriesSum(arg);
             int caloriesBurned = cardioLogs.getCardioSum(arg);
             int netCalories = caloriesEaten - caloriesBurned;
