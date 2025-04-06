@@ -203,7 +203,7 @@ class AddGoalCommandTest {
     }
 
     @Test
-    public void addGoal_eightParts_allValid_expectSuccess() {
+    public void addGoal_eightPartsAllValid_expectSuccess() {
         String input = "add goal /w 2500 /cal 2200 /kg 68";
         Goals goals = Goals.getInstance();
 
