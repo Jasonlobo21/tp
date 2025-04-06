@@ -2,6 +2,8 @@ package seedu.healthbud.parser;
 
 import seedu.healthbud.LogList;
 import seedu.healthbud.command.multilog.StatusCommand;
+import seedu.healthbud.exception.InvalidDateException;
+import seedu.healthbud.exception.InvalidDateFormatException;
 import seedu.healthbud.exception.InvalidStatusException;
 
 /**
@@ -27,7 +29,7 @@ public class StatusParser {
      */
     public static StatusCommand parse(String input, LogList goalLogs, LogList pbLogs, LogList mealLogs,
                                       LogList workoutLogs, LogList waterLogs, LogList cardioLogs)
-            throws InvalidStatusException {
+            throws InvalidStatusException, InvalidDateException, InvalidDateFormatException {
 
         assert input != null : "Input should not be null";
 
@@ -37,7 +39,7 @@ public class StatusParser {
         }
 
         String action = parts[1].toLowerCase();
-        String arg = parts[2].toLowerCase();
+        String arg = DateParser.formatDate(parts[2]);
 
         String message;
 

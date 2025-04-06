@@ -67,7 +67,7 @@ public class ParserManager {
                 command = SearchParser.parse(input, mealLogs, workoutLogs, waterLogs, pbLogs, cardioLogs);
                 break;
             case "view":
-                ViewGoalsParser.parse(input);
+                ViewGoalParser.parse(input);
                 return true;
             case "track":
                 command = TrackGoalParser.parse(input, goalLogs, pbLogs, mealLogs, workoutLogs, waterLogs, cardioLogs);

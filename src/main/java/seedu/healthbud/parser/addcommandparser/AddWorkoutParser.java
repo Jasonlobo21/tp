@@ -3,6 +3,7 @@ package seedu.healthbud.parser.addcommandparser;
 import seedu.healthbud.LogList;
 import seedu.healthbud.command.singlelog.AddWorkoutCommand;
 import seedu.healthbud.exception.HealthBudException;
+import seedu.healthbud.exception.InvalidDateException;
 import seedu.healthbud.exception.InvalidDateFormatException;
 import seedu.healthbud.exception.InvalidWorkoutException;
 import seedu.healthbud.parser.DateParser;
@@ -30,7 +31,7 @@ public class AddWorkoutParser {
      */
     //@@author Ahmish15
     public static AddWorkoutCommand parse(LogList workoutLogs, String input)
-            throws InvalidWorkoutException, InvalidDateFormatException, HealthBudException {
+            throws InvalidWorkoutException, InvalidDateException, InvalidDateFormatException, HealthBudException {
 
         assert input != null : "Input should not be null";
 

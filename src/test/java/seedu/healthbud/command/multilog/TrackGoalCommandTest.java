@@ -6,7 +6,7 @@ import seedu.healthbud.command.singlelog.AddMealCommand;
 import seedu.healthbud.command.singlelog.AddWaterCommand;
 import seedu.healthbud.exception.InvalidTrackException;
 import seedu.healthbud.parser.TrackGoalParser;
-import seedu.healthbud.parser.ViewGoalsParser;
+import seedu.healthbud.parser.ViewGoalParser;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -120,7 +120,7 @@ class TrackGoalCommandTest {
         PrintStream originalOut = System.out;
         System.setOut(new PrintStream(outContent));
 
-        ViewGoalsParser.parse("view goals");
+        ViewGoalParser.parse("view goals");
 
         System.setOut(originalOut);
         String output = outContent.toString().trim();
@@ -133,7 +133,7 @@ class TrackGoalCommandTest {
 
     @Test
     void viewGoalsParser_nullInput_throwsAssertionError() {
-        assertThrows(AssertionError.class, () -> ViewGoalsParser.parse(null));
+        assertThrows(AssertionError.class, () -> ViewGoalParser.parse(null));
     }
 
 

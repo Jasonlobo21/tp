@@ -5,6 +5,7 @@ import seedu.healthbud.command.Command;
 import seedu.healthbud.exception.HealthBudException;
 import seedu.healthbud.exception.InvalidAddLogException;
 import seedu.healthbud.exception.InvalidCardioException;
+import seedu.healthbud.exception.InvalidDateException;
 import seedu.healthbud.exception.InvalidDateFormatException;
 import seedu.healthbud.exception.InvalidGoalException;
 import seedu.healthbud.exception.InvalidMealException;
@@ -42,7 +43,7 @@ public class AddParser {
                                 LogList pbLogs, LogList workoutLogs, LogList goalLogs) throws
             InvalidAddLogException, InvalidCardioException, InvalidMealException,
             InvalidPersonalBestException, InvalidWaterException, InvalidWorkoutException,
-            InvalidDateFormatException, InvalidGoalException, HealthBudException {
+            InvalidDateFormatException, InvalidGoalException, InvalidDateException, HealthBudException {
 
         assert input != null : "Input should not be null";
 

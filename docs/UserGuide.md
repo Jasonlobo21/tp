@@ -72,6 +72,7 @@ Here are the commands you can use:
  15. track goal /d <date> - to track personal goals
  16. status report - View your current cutting/bulking progress
  17. search <logType> /d <DD/MM/YYYY> OR search <logType> /k <keyword> - Search for logs
+ 18. list <logType> - List all logs for that specific log type
 ``` 
 
 ### Bye
