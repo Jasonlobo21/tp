@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import seedu.healthbud.LogList;
 import seedu.healthbud.command.singlelog.AddMealCommand;
 import seedu.healthbud.command.singlelog.AddWaterCommand;
+import seedu.healthbud.exception.HealthBudException;
 import seedu.healthbud.exception.InvalidDateFormatException;
 import seedu.healthbud.exception.InvalidTrackException;
 import seedu.healthbud.parser.TrackGoalParser;
@@ -116,7 +117,7 @@ class TrackGoalCommandTest {
     }
 
     @Test
-    void viewGoalsParser_validInput_printsGoalMessage() {
+    void viewGoalsParser_validInput_printsGoalMessage() throws HealthBudException {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
         System.setOut(new PrintStream(outContent));

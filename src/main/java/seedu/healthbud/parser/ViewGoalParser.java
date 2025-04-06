@@ -1,6 +1,7 @@
 package seedu.healthbud.parser;
 
 import seedu.healthbud.Ui;
+import seedu.healthbud.exception.HealthBudException;
 import seedu.healthbud.log.Goals;
 
 /**
@@ -22,19 +23,14 @@ public class ViewGoalParser {
      *
      * @param input the input string; must not be null.
      */
-    public static void parse(String input){
+    public static void parse(String input) throws HealthBudException {
         assert input != null : "Input should not be null";
-        String[] parts = input.trim().split(" ");
+        String[] parts = input.trim().split("\\s+");
 
-        if (parts.length < 2) {
-            Ui.printUnknownCommand();
-            return;
+        if (parts.length < 2 || !parts[1].equals("goals")) {
+            throw new HealthBudException("Invalid input format. Did u mean view goals.");
         }
 
-        if (!parts[1].equals("goals")) {
-            Ui.printUnknownCommand();
-            return;
-        }
         Ui.printMessage("Welcome to goal setting! Here are your current goals: \n"
                 + Goals.getInstance().toString());
         Ui.printMessage("What goal would you like to add today?\n");
