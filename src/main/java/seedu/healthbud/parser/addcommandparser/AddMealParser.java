@@ -2,6 +2,7 @@ package seedu.healthbud.parser.addcommandparser;
 
 import seedu.healthbud.LogList;
 import seedu.healthbud.command.singlelog.AddMealCommand;
+import seedu.healthbud.exception.HealthBudException;
 import seedu.healthbud.exception.InvalidDateException;
 import seedu.healthbud.exception.InvalidDateFormatException;
 import seedu.healthbud.exception.InvalidMealException;

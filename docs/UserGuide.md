@@ -292,6 +292,6 @@ Got it, here are your logs:
 | ```sum```           |                                      sum [cal/vol] /d [date] <br/> e.g ```sum cal /d 02/02/2025```                                      |
 | ```clear```         |                                      clear [pb\|meal\|workout\|water] <br> e.g., ```clear meal```                                       |
 | ```status change``` |                                 status change [cutting\|bulking] <br> e.g.,``` staus change bulking```                                  |
-| ```status report``` |                                      status report [date] <br> e.g.,```status report 12/13/2023```                                      |
-| ```search```        |     search [loglist] /k [keyword]  OR search [loglist] /d [date] <br> e.g., ```search workout bench OR search meal /d 02/04/200```      |
+| ```status report``` |                                      status report [date] <br> e.g.,```status report 12/13/2025```                                      |
+| ```search```        |     search [loglist] /k [keyword]  OR search [loglist] /d [date] <br> e.g., ```search workout bench OR search meal /d 02/04/2025```     |
 | ```list```          |                                                   list [loglist] e.g., ```list pb```                                                    |
