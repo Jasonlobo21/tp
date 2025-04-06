@@ -77,7 +77,6 @@ public class StatusParser {
         default:
             throw new InvalidStatusException();
         }
-
         return new StatusCommand(goalLogs, pbLogs, mealLogs, workoutLogs, waterLogs, cardioLogs, input, message);
     }
 }
