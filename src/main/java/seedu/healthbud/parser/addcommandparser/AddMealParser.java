@@ -59,7 +59,7 @@ public class AddMealParser {
             throw new InvalidMealException();
         }
 
-        int cal = Integer.parseInt(param.get("i"));
+        int cal = Integer.parseInt(param.get("cal"));
         if (cal < 0 || cal > 10000) {
             throw new HealthBudException("Calorie count must be between 0 and 10000.");
         }

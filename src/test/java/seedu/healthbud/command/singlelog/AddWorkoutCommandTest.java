@@ -150,7 +150,7 @@ public class AddWorkoutCommandTest {
     }
 
     @Test
-    void parse_whitespaceOnlyName_throwsException() {
+    void parse_whiteSpaceOnlyName_throwsException() {
         LogList workoutLogs = new LogList();
         String input = "add workout    /r 10 /s 3 /d 25-12-2023 /w 50";
 
@@ -159,7 +159,7 @@ public class AddWorkoutCommandTest {
     }
 
     @Test
-    void parse_whitespaceOnlyReps_throwsException() {
+    void parse_whiteSpaceOnlyReps_throwsException() {
         LogList workoutLogs = new LogList();
         String input = "add workout squats /r    /s 3 /d 25-12-2023 /w 50";
 
@@ -168,7 +168,7 @@ public class AddWorkoutCommandTest {
     }
 
     @Test
-    void parse_whitespaceOnlySets_throwsException() {
+    void parse_whiteSpaceOnlySets_throwsException() {
         LogList workoutLogs = new LogList();
         String input = "add workout squats /r 10 /s    /d 25-12-2023 /w 50";
 
@@ -315,7 +315,7 @@ public class AddWorkoutCommandTest {
         assertEquals("1", workout.getReps());
         assertEquals("1", workout.getSets());
         assertEquals("25 Dec 2023", workout.getDate());
-        assertEquals("0.1", workout.getWeight());
+        assertEquals(".1", workout.getWeight());
     }
 
 }
