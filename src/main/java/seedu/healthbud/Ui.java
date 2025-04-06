@@ -95,7 +95,8 @@ public class Ui {
                 + "15. status change <cutting/bulking> - Update your cutting/bulking status." + NEW_LINE
                 + "16. status report - View your current cutting/bulking progress" + NEW_LINE
                 + "17. search <logType> /d <DD/MM/YYYY> OR search <logType> /k <keyword> - Search for logs" + NEW_LINE
-                + "18. list <logType> - List all logs for that specific log type");
+                + "18. list <logType> - List all logs for that specific log type"
+                + "19. delete <logType> <index> - Delete specific index in the log");
     }
 
     /**

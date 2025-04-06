@@ -73,6 +73,7 @@ Here are the commands you can use:
  16. status report - View your current cutting/bulking progress
  17. search <logType> /d <DD/MM/YYYY> OR search <logType> /k <keyword> - Search for logs
  18. list <logType> - List all logs for that specific log type
+ 19. delete <logType> <index> - Delete specific index in the log
 ``` 
 
 ### Bye
@@ -128,6 +129,7 @@ Example of usage: `add meal chicken rice /cal 200 /d 02/02/2025 /t 1700`
   chicken rice (200 cal) on: 02 Feb 2025 at: 1700
  Now you have 1 meal logs in the list.
 ``` 
+
 ### Add water
 Adds a water log
 
@@ -265,13 +267,25 @@ Showing logs containing keyword: bench
 ### List
 List a specific log
 
-Format: `list <pb/meal/workout/water/cardio>`
+Format: `list <logType>`
 
 Example of usage: `list pb`
 ```
 Got it, here are your logs:
 1.  bench 80 kg on (21 Mar 2025)
 2.  squat 140 kg on (21 Mar 2025)
+```
+
+### Delete
+Delete specific index in the log
+
+Format: `delete <logType> <index>`
+
+Example of usage: `delete pb 2`
+```
+Noted. I've removed this log:
+bench 80 kg on (21 Mar 2025)
+Now you have 6 logs in the list.
 ```
 
 ## Command Summary
@@ -293,5 +307,6 @@ Got it, here are your logs:
 | ```clear```         |                                      clear [pb\|meal\|workout\|water] <br> e.g., ```clear meal```                                       |
 | ```status change``` |                                 status change [cutting\|bulking] <br> e.g.,``` staus change bulking```                                  |
 | ```status report``` |                                      status report [date] <br> e.g.,```status report 12/13/2025```                                      |
-| ```search```        |   search [loglist] /k [keyword]  OR search [loglist] /d [date] <br> e.g., ```search workout /k bench OR search meal /d 02/04/2025```    |
-| ```list```          |                                                   list [loglist] e.g., ```list pb```                                                    |
+| ```search```        |   search [logType] /k [keyword]  OR search [logType] /d [date] <br> e.g., ```search workout /k bench OR search meal /d 02/04/2025```    |
+| ```list```          |                                                   list [logType] e.g., ```list pb```                                                    |
+| ```delete```        |                                            delete [logType] [index] e.g., ```delete pb 2```                                             |
