@@ -4,9 +4,10 @@ import org.junit.jupiter.api.Test;
 import seedu.healthbud.LogList;
 import seedu.healthbud.command.singlelog.AddMealCommand;
 import seedu.healthbud.command.singlelog.AddWaterCommand;
+import seedu.healthbud.exception.InvalidDateFormatException;
 import seedu.healthbud.exception.InvalidTrackException;
 import seedu.healthbud.parser.TrackGoalParser;
-import seedu.healthbud.parser.ViewGoalsParser;
+import seedu.healthbud.parser.ViewGoalParser;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -17,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class TrackGoalCommandTest {
 
-    private String getCommandOutput(TrackGoalCommand command) {
+    private String getCommandOutput(TrackGoalCommand command) throws InvalidDateFormatException {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
         System.setOut(new PrintStream(outContent));
@@ -120,7 +121,7 @@ class TrackGoalCommandTest {
         PrintStream originalOut = System.out;
         System.setOut(new PrintStream(outContent));
 
-        ViewGoalsParser.parse("view goals");
+        ViewGoalParser.parse("view goals");
 
         System.setOut(originalOut);
         String output = outContent.toString().trim();
@@ -133,7 +134,7 @@ class TrackGoalCommandTest {
 
     @Test
     void viewGoalsParser_nullInput_throwsAssertionError() {
-        assertThrows(AssertionError.class, () -> ViewGoalsParser.parse(null));
+        assertThrows(AssertionError.class, () -> ViewGoalParser.parse(null));
     }
 
 

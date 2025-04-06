@@ -2,6 +2,7 @@ package seedu.healthbud.parser.addcommandparser;
 
 import seedu.healthbud.LogList;
 import seedu.healthbud.command.singlelog.AddPersonalBestCommand;
+import seedu.healthbud.exception.InvalidDateException;
 import seedu.healthbud.exception.InvalidDateFormatException;
 import seedu.healthbud.exception.InvalidPersonalBestException;
 import seedu.healthbud.exception.HealthBudException;
@@ -29,7 +30,7 @@ public class AddPersonalBestParser {
      * @throws InvalidDateFormatException if the provided date cannot be parsed.
      */
     public static AddPersonalBestCommand parse(LogList pbLogs, String input)
-            throws InvalidPersonalBestException, InvalidDateFormatException, HealthBudException {
+            throws InvalidPersonalBestException, InvalidDateFormatException, InvalidDateException, HealthBudException {
 
         assert input != null : "Input should not be null";
 

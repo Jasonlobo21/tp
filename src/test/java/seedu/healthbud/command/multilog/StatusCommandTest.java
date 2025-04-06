@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 import seedu.healthbud.LogList;
 import seedu.healthbud.command.singlelog.AddMealCommand;
 import seedu.healthbud.command.singlelog.AddCardioCommand;
+import seedu.healthbud.exception.InvalidDateException;
+import seedu.healthbud.exception.InvalidDateFormatException;
 import seedu.healthbud.exception.InvalidStatusException;
 import seedu.healthbud.parser.StatusParser;
 
@@ -27,7 +29,8 @@ class StatusCommandTest {
     }
 
     @Test
-    void statusChange_validCutting_expectSuccess() throws InvalidStatusException {
+    void statusChange_validCutting_expectSuccess() throws InvalidStatusException,
+            InvalidDateFormatException, InvalidDateException {
         LogList empty = new LogList();
         String input = "status change cutting";
         StatusCommand command = StatusParser.parse(input, empty, empty, empty, empty, empty, empty);
@@ -35,7 +38,9 @@ class StatusCommandTest {
     }
 
     @Test
-    void statusChange_validBulking_expectSuccess() throws InvalidStatusException {
+    void statusChange_validBulking_expectSuccess() throws InvalidStatusException ,
+            InvalidDateFormatException, InvalidDateException
+    {
         LogList empty = new LogList();
         String input = "status change bulking";
         StatusCommand command = StatusParser.parse(input, empty, empty, empty, empty, empty, empty);
@@ -59,7 +64,8 @@ class StatusCommandTest {
     }
 
     @Test
-    void statusReport_bulkingNotOnTrack_expectMessage() throws InvalidStatusException {
+    void statusReport_bulkingNotOnTrack_expectMessage() throws InvalidStatusException ,
+            InvalidDateFormatException, InvalidDateException{
         LogList empty = new LogList();
         LogList meal = new LogList();
         LogList cardio = new LogList();
@@ -67,29 +73,30 @@ class StatusCommandTest {
         StatusParser.parse("status change bulking", empty, empty, meal, empty, empty, cardio);
 
         new AddMealCommand(meal, "Lunch", "300",
-                "2024-04-01", "12:00").execute();
+                "01-01-2024", "1600").execute();
         new AddCardioCommand(cardio, "Stairs", "4",
-                "1", "30", "2024-04-01").execute();
+                "1", "30", "01-01-2024").execute();
 
-        StatusCommand command = StatusParser.parse("status report 2024-04-01", empty,
+        StatusCommand command = StatusParser.parse("status report 01-01-2024", empty,
                 empty, meal, empty, empty, cardio);
         String expected = "Current Status: bulking\nYour intake does not align with your goal. Net calories: -350";
         assertEquals(expected, getCommandOutput(command));
     }
 
     @Test
-    void statusReport_bulkingOnTrack_expectSuccess() throws InvalidStatusException {
+    void statusReport_bulkingOnTrack_expectSuccess() throws InvalidStatusException,
+            InvalidDateFormatException, InvalidDateException{
         LogList empty = new LogList();
         LogList meal = new LogList();
         LogList cardio = new LogList();
 
         StatusParser.parse("status change bulking", empty, empty, meal, empty, empty, cardio);
 
-        new AddMealCommand(meal, "Lunch", "300", "2024-04-01", "12:00").execute();
+        new AddMealCommand(meal, "Lunch", "300", "01-01-2024", "1600").execute();
         new AddCardioCommand(cardio, "Jog", "1", "0",
-                "30", "2024-04-01").execute();
+                "30", "01-01-2024").execute();
 
-        StatusCommand command = StatusParser.parse("status report 2024-04-01", empty, empty, meal,
+        StatusCommand command = StatusParser.parse("status report 01-01-2024", empty, empty, meal,
                 empty, empty, cardio);
         String expected = "Current Status: bulking\nYou are on track for bulking! Net calories: 200";
         assertEquals(expected, getCommandOutput(command));
@@ -97,36 +104,38 @@ class StatusCommandTest {
 
 
     @Test
-    void statusReport_cuttingNotOnTrack_expectMessage() throws InvalidStatusException {
+    void statusReport_cuttingNotOnTrack_expectMessage() throws InvalidStatusException,
+            InvalidDateFormatException, InvalidDateException{
         LogList empty = new LogList();
         LogList meal = new LogList();
         LogList cardio = new LogList();
 
         StatusParser.parse("status change cutting", empty, empty, meal, empty, empty, cardio);
 
-        new AddMealCommand(meal,"Dinner", "300", "2024-04-01", "18:00").execute();
+        new AddMealCommand(meal,"Dinner", "300", "01-01-2024", "1600").execute();
         new AddCardioCommand(cardio, "Jog", "1", "0",
-                "30", "2024-04-01").execute();
+                "30", "01-01-2024").execute();
 
-        StatusCommand command = StatusParser.parse("status report 2024-04-01", empty, empty,
+        StatusCommand command = StatusParser.parse("status report 01-01-2024", empty, empty,
                 meal, empty, empty, cardio);
         String expected = "Current Status: cutting\nYour intake does not align with your goal. Net calories: 200";
         assertEquals(expected, getCommandOutput(command));
     }
 
     @Test
-    void statusReport_cuttingOnTrack_expectSuccess() throws InvalidStatusException {
+    void statusReport_cuttingOnTrack_expectSuccess() throws InvalidStatusException ,
+            InvalidDateFormatException, InvalidDateException{
         LogList empty = new LogList();
         LogList meal = new LogList();
         LogList cardio = new LogList();
 
         StatusParser.parse("status change cutting", empty, empty, meal, empty, empty, cardio);
 
-        new AddMealCommand(meal, "Oats", "200", "2024-04-01", "08:00").execute();
+        new AddMealCommand(meal, "Oats", "200", "01-01-2024", "1600").execute();
         new AddCardioCommand(cardio, "HIIT", "3", "0",
-                "30", "2024-04-01").execute();
+                "30", "01-01-2024").execute();
 
-        StatusCommand command = StatusParser.parse("status report 2024-04-01", empty, empty,
+        StatusCommand command = StatusParser.parse("status report 01-01-2024", empty, empty,
                 meal, empty, empty, cardio);
         String expected = "Current Status: cutting\nYou are on track for cutting! Net calories: -100";
         assertEquals(expected, getCommandOutput(command));

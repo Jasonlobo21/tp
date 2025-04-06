@@ -2,7 +2,7 @@ package seedu.healthbud.command.singlelog;
 
 import org.junit.jupiter.api.Test;
 import seedu.healthbud.LogList;
-import seedu.healthbud.exception.InvalidDateFormatException;
+import seedu.healthbud.exception.InvalidDateException;
 import seedu.healthbud.exception.InvalidPersonalBestException;
 import seedu.healthbud.log.PersonalBest;
 import seedu.healthbud.parser.addcommandparser.AddPersonalBestParser;
@@ -56,7 +56,7 @@ class AddPersonalBestCommandTest {
         LogList pbLogs = new LogList();
         String input = "add pb squat /w 90 /d wrong-date";
 
-        assertThrows(InvalidDateFormatException.class, () -> AddPersonalBestParser.parse(pbLogs, input));
+        assertThrows(InvalidDateException.class, () -> AddPersonalBestParser.parse(pbLogs, input));
     }
 
 

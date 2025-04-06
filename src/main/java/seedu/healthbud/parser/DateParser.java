@@ -1,5 +1,6 @@
 package seedu.healthbud.parser;
 
+import seedu.healthbud.exception.InvalidDateException;
 import seedu.healthbud.exception.InvalidDateFormatException;
 
 import java.text.ParseException;
@@ -47,30 +48,47 @@ public class DateParser {
      * @return the formatted date string.
      * @throws InvalidDateFormatException if the input date cannot be parsed using any supported format.
      */
-    public static String formatDate(String inputDate) throws InvalidDateFormatException {
+    public static String formatDate(String inputDate) throws InvalidDateFormatException, InvalidDateException {
         assert inputDate != null : "Input date should not be null";
 
         if (inputDate == null || inputDate.trim().isEmpty()) {
-            throw new InvalidDateFormatException();
+            throw new InvalidDateException();
         }
+
+        Date maxAllowedDate;
+        try {
+            maxAllowedDate = new SimpleDateFormat("dd MMM yyyy").parse("30 Apr 2025");
+        } catch (ParseException e) {
+            throw new InvalidDateException(); // Should never happen
+        }
+
+        boolean looksLikeDate = inputDate.matches(".*\\d{1,2}.*[\\-/ _.,].*\\d{1,2}.*");
 
         for (String format : INPUT_FORMATS) {
             try {
                 SimpleDateFormat sdf = new SimpleDateFormat(format);
-                sdf.setLenient(false); // Strict parsing
+                sdf.setLenient(false);
 
-                // If using a two-digit year format, explicitly set the two-digit year start to 2000.
                 if (format.contains("yy") && !format.contains("yyyy")) {
                     sdf.set2DigitYearStart(new SimpleDateFormat("yyyy").parse("2000"));
                 }
-                Date date = sdf.parse(inputDate);
 
-                SimpleDateFormat outputSdf = new SimpleDateFormat(OUTPUT_FORMAT);
-                return outputSdf.format(date);
+                Date parsedDate = sdf.parse(inputDate);
+
+                if (parsedDate.after(maxAllowedDate)) {
+                    throw new InvalidDateException();
+                }
+
+                return new SimpleDateFormat(OUTPUT_FORMAT).format(parsedDate);
+
             } catch (ParseException e) {
-                // Try next format
+                // ignore and try next
             }
         }
-        throw new InvalidDateFormatException();
+        if (looksLikeDate) {
+            throw new InvalidDateFormatException(); // valid date but wrong format
+        } else {
+            throw new InvalidDateException(); // gibberish or date past 30th April 2025
+        }
     }
 }

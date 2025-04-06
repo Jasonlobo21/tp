@@ -22,7 +22,7 @@ public class TrackGoalCommand extends MultiLogCommand {
     }
 
     @Override
-    public void execute(){
+    public void execute() throws InvalidDateFormatException {
         Ui.printMessage("Here is your goal progress for " + date + ": \n");
         waterLogs.getWaterSum(date);
         mealLogs.getCaloriesSum(date);

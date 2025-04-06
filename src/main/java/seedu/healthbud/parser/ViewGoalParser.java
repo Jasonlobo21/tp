@@ -13,7 +13,7 @@ import seedu.healthbud.log.Goals;
  *
  * Note: The input parameter is currently not used for any parsing.
  */
-public class ViewGoalsParser {
+public class ViewGoalParser {
 
     Goals goal = Goals.getInstance();
 

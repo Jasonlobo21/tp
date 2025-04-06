@@ -2,6 +2,7 @@ package seedu.healthbud.parser.addcommandparser;
 
 import seedu.healthbud.LogList;
 import seedu.healthbud.command.singlelog.AddMealCommand;
+import seedu.healthbud.exception.InvalidDateException;
 import seedu.healthbud.exception.InvalidDateFormatException;
 import seedu.healthbud.exception.InvalidMealException;
 import seedu.healthbud.parser.DateParser;
@@ -31,7 +32,7 @@ public class AddMealParser {
      */
     //@@author Ahmish15
     public static AddMealCommand parse(LogList mealLogs, String input)
-            throws InvalidMealException, InvalidDateFormatException {
+            throws InvalidMealException, InvalidDateException, InvalidDateFormatException {
 
         assert input != null : "Input should not be null";
         if (!input.contains("/cal ") || !input.contains("/d ") || !input.contains("/t ")) {

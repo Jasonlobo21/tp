@@ -9,6 +9,6 @@ public class InvalidAddLogException extends Exception {
      * Constructs an InvalidAddLogException with a default error message.
      */
     public InvalidAddLogException() {
-        super("Invalid log command (e.g. add pb/meal/workout/water/goal)");
+        super("Invalid log command (e.g. add <pb|meal|workout|water|cardio|goal>)");
     }
 }

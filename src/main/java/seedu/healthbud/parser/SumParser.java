@@ -2,6 +2,7 @@ package seedu.healthbud.parser;
 
 import seedu.healthbud.LogList;
 import seedu.healthbud.command.singlelog.SumCommand;
+import seedu.healthbud.exception.InvalidDateException;
 import seedu.healthbud.exception.InvalidDateFormatException;
 import seedu.healthbud.exception.InvalidSumException;
 
@@ -23,7 +24,7 @@ public class SumParser {
      * @throws InvalidDateFormatException if the date format is invalid.
      */
     public static SumCommand parse(String input, LogList mealLogs, LogList waterLogs, LogList cardioLogs) throws
-            InvalidSumException, InvalidDateFormatException {
+            InvalidSumException, InvalidDateException, InvalidDateFormatException {
 
         assert input != null : "Input should not be null";
         String[] parts = input.trim().split(" ");

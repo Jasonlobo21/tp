@@ -14,6 +14,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.healthbud.LogList;
+import seedu.healthbud.exception.InvalidDateException;
 import seedu.healthbud.log.Meal;
 import seedu.healthbud.exception.InvalidDateFormatException;
 import seedu.healthbud.exception.InvalidSearchException;
@@ -97,14 +98,15 @@ public class SearchCommandTest {
     }
 
     @Test
-    void parse_validDateInput_returnsSearchCommand() throws InvalidSearchException, InvalidDateFormatException {
+    void parse_validDateInput_returnsSearchCommand() throws InvalidSearchException,
+            InvalidDateFormatException, InvalidDateException {
         LogList mealLogs = new LogList();
         LogList workoutLogs = new LogList();
         LogList waterLogs = new LogList();
         LogList pbLogs = new LogList();
         LogList cardioLogs = new LogList();
 
-        String input = "search meal /d 12/12/2025";
+        String input = "search meal /d 12/12/2024";
         SearchCommand command = SearchParser.parse(input, mealLogs, workoutLogs, waterLogs, pbLogs, cardioLogs);
         assertNotNull(command, "Command should not be null for valid date input.");
     }
@@ -221,28 +223,29 @@ public class SearchCommandTest {
     }
 
     @Test
-    void parse_validDateInputForPB_returnsSearchCommand() throws InvalidSearchException, InvalidDateFormatException {
+    void parse_validDateInputForPB_returnsSearchCommand() throws InvalidSearchException, InvalidDateFormatException
+            , InvalidDateException {
         LogList mealLogs = new LogList();
         LogList workoutLogs = new LogList();
         LogList waterLogs = new LogList();
         LogList pbLogs = new LogList();
         LogList cardioLogs = new LogList();
 
-        String input = "search pb /d 15/08/2025";
+        String input = "search pb /d 15/08/2024";
         SearchCommand command = SearchParser.parse(input, mealLogs, workoutLogs, waterLogs, pbLogs, cardioLogs);
         assertNotNull(command, "Command should not be null for valid pb date search.");
     }
 
     @Test
     void parse_validDateInputForCardio_returnsSearchCommand()
-            throws InvalidSearchException, InvalidDateFormatException {
+            throws InvalidSearchException, InvalidDateFormatException, InvalidDateException {
         LogList mealLogs = new LogList();
         LogList workoutLogs = new LogList();
         LogList waterLogs = new LogList();
         LogList pbLogs = new LogList();
         LogList cardioLogs = new LogList();
 
-        String input = "search cardio /d 20/11/2025";
+        String input = "search cardio /d 20/11/2024";
         SearchCommand command = SearchParser.parse(input, mealLogs, workoutLogs, waterLogs, pbLogs, cardioLogs);
         assertNotNull(command, "Command should not be null for valid cardio date search.");
     }

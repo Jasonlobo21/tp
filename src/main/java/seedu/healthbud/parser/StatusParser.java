@@ -2,6 +2,8 @@ package seedu.healthbud.parser;
 
 import seedu.healthbud.LogList;
 import seedu.healthbud.command.multilog.StatusCommand;
+import seedu.healthbud.exception.InvalidDateException;
+import seedu.healthbud.exception.InvalidDateFormatException;
 import seedu.healthbud.exception.InvalidStatusException;
 
 /**
@@ -27,22 +29,24 @@ public class StatusParser {
      */
     public static StatusCommand parse(String input, LogList goalLogs, LogList pbLogs, LogList mealLogs,
                                       LogList workoutLogs, LogList waterLogs, LogList cardioLogs)
-            throws InvalidStatusException {
+            throws InvalidStatusException, InvalidDateException, InvalidDateFormatException {
 
         assert input != null : "Input should not be null";
 
-        String[] parts = input.trim().split(" ");
+        String[] parts = input.trim().split("\\s+");
+
         if (parts.length < 3) {
             throw new InvalidStatusException();
         }
 
         String action = parts[1].toLowerCase();
-        String arg = parts[2].toLowerCase();
+        String arg = parts[2];
 
         String message;
 
         switch (action) {
         case "change":
+            arg = arg.toLowerCase();
             if (!arg.equals("cutting") && !arg.equals("bulking")) {
                 throw new InvalidStatusException();
             }
@@ -51,6 +55,7 @@ public class StatusParser {
             break;
 
         case "report":
+            arg = DateParser.formatDate(arg);
             int caloriesEaten = mealLogs.getCaloriesSum(arg);
             int caloriesBurned = cardioLogs.getCardioSum(arg);
             int netCalories = caloriesEaten - caloriesBurned;
@@ -72,7 +77,6 @@ public class StatusParser {
         default:
             throw new InvalidStatusException();
         }
-
         return new StatusCommand(goalLogs, pbLogs, mealLogs, workoutLogs, waterLogs, cardioLogs, input, message);
     }
 }

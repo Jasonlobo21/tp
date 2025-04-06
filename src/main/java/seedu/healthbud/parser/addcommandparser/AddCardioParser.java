@@ -4,6 +4,7 @@ import seedu.healthbud.LogList;
 import seedu.healthbud.command.singlelog.AddCardioCommand;
 import seedu.healthbud.exception.HealthBudException;
 import seedu.healthbud.exception.InvalidCardioException;
+import seedu.healthbud.exception.InvalidDateException;
 import seedu.healthbud.exception.InvalidDateFormatException;
 import seedu.healthbud.parser.DateParser;
 import seedu.healthbud.parser.ParserParameters;
@@ -31,7 +32,7 @@ public class AddCardioParser {
      * @throws InvalidDateFormatException if the provided date cannot be parsed.
      */
     public static AddCardioCommand parse(LogList cardioLogs, String input)
-            throws InvalidCardioException, InvalidDateFormatException, HealthBudException {
+            throws InvalidCardioException, InvalidDateException, InvalidDateFormatException, HealthBudException {
 
         assert input != null : "Input should not be null";
 

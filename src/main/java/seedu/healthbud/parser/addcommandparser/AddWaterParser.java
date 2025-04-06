@@ -2,6 +2,7 @@ package seedu.healthbud.parser.addcommandparser;
 
 import seedu.healthbud.LogList;
 import seedu.healthbud.command.singlelog.AddWaterCommand;
+import seedu.healthbud.exception.InvalidDateException;
 import seedu.healthbud.exception.InvalidDateFormatException;
 import seedu.healthbud.exception.InvalidWaterException;
 import seedu.healthbud.parser.DateParser;
@@ -29,7 +30,7 @@ public class AddWaterParser {
      * @throws InvalidDateFormatException if the date provided cannot be parsed.
      */
     public static AddWaterCommand parse(LogList waterLogs, String input)
-            throws InvalidWaterException, InvalidDateFormatException {
+            throws InvalidWaterException, InvalidDateException, InvalidDateFormatException {
 
         assert input != null : "Input should not be null";
 

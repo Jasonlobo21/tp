@@ -1,6 +1,7 @@
 package seedu.healthbud.parser;
 
 import org.junit.jupiter.api.Test;
+import seedu.healthbud.exception.InvalidDateException;
 import seedu.healthbud.exception.InvalidDateFormatException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -25,7 +26,7 @@ class DateParserTest {
 
     @Test
     void formatDate_emptyInput_expectException() {
-        assertThrows(InvalidDateFormatException.class, () ->
+        assertThrows(InvalidDateException.class, () ->
                 DateParser.formatDate(""));
     }
 

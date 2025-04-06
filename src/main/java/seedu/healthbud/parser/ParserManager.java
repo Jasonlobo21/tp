@@ -35,11 +35,19 @@ public class ParserManager {
             Command command;
             switch (function) {
             case "bye":
+                if (!input.trim().equals("bye")) {
+                    Ui.printUnknownCommand();
+                    return true;
+                }
                 return Ui.printGoodbye();
             case "add":
                 command = AddParser.parse(input, mealLogs, waterLogs, cardioLogs, pbLogs, workoutLogs, goalLogs);
                 break;
             case "help":
+                if (!input.trim().equals("help")) {
+                    Ui.printUnknownCommand();
+                    return true;
+                }
                 Ui.printHelp();
                 return true;
             case "list":
@@ -67,7 +75,7 @@ public class ParserManager {
                 command = SearchParser.parse(input, mealLogs, workoutLogs, waterLogs, pbLogs, cardioLogs);
                 break;
             case "view":
-                ViewGoalsParser.parse(input);
+                ViewGoalParser.parse(input);
                 return true;
             case "track":
                 command = TrackGoalParser.parse(input, goalLogs, pbLogs, mealLogs, workoutLogs, waterLogs, cardioLogs);

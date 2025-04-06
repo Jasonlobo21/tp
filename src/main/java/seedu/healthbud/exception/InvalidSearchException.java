@@ -9,6 +9,6 @@ public class InvalidSearchException extends RuntimeException {
      * Constructs an InvalidSearchException with a default error message.
      */
     public InvalidSearchException() {
-        super("Invalid search command - Try search <logType> /d <date> OR search <logType> /k <keyword>");
+        super("Invalid search command (e.g. search <logType> /d <date> OR search <logType> /k <keyword>)");
     }
 }
