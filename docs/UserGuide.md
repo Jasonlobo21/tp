@@ -20,7 +20,7 @@ HealthBud!
 3. Copy the file to the folder you want to use as the home folder for HealthBud.
 
 
-4. Open a command terminal, cd into the folder you put the jar file in, and use the java -jar HealthBud.jar command to run the application.
+4. Open a command terminal, cd into the folder you put the jar file in, and use the `java -jar tp.jar` command to run the application.
 
 
 5. Your command terminal should show the following:
