@@ -107,6 +107,7 @@ public class LogList {
         if (logs.isEmpty()) {
             Ui.printMessage(" No logs available.");
         } else {
+            Ui.printMessage(" Got it, here are your logs: ");
             for (int i = 0; i < logs.size(); i++) {
                 Ui.printListedFormat(this, i);
             }

@@ -25,7 +25,7 @@ HealthBud!
 
 5. Your command terminal should show the following:
 
-//insert healthbud starting page
+<img src="images/CS2113TpLogo.png.jpg" alt="CS2113TpLogo" width="250"/>
 
 6. Type the command in the command terminal and press Enter to execute it.
 
@@ -38,7 +38,7 @@ HealthBud!
 - `list workout`: Lists all workout logs.
 
 
-- `delete water` 1: Deletes the water log with index 1.
+- `delete water 1`: Deletes the water log with index 1.
 
 
 - `bye`: Exits the app.
@@ -149,6 +149,7 @@ Example of usage: `add pb bench /w 120 /d 02/02/2025`
    bench 120 kg on (02 Feb 2025)
  Now you have 1 pb logs in the list.
 ``` 
+
 ### Add Cardio
 Add a cardio log
 
@@ -160,6 +161,7 @@ Example of usage: `add cardio run /s 8 /i 5 /t 30 /d 02/02/2025`
   run (speed: 8, incline: 5, duration: 30 mins) on 02 Feb 2025
  Now you have 1 cardio logs in the list.
 ``` 
+
 ### Add goals
 Updates your list of Goals, not necessary for all parameters to be inputted at once!
 
@@ -188,6 +190,7 @@ Example of usage: `view goals`
 
     What goal would you like to add today?
 ``` 
+
 ### Track goals
 Track personal fitness by giving you a summary of your status on the given date
 
@@ -199,8 +202,8 @@ Example of usage: `track goals /d 02/02/2025`
 
     Total water consumed: 4000ml
     Total calories consumed: 2000cal
-
 ```
+
 ### Sum
 Sum up the total calories/water for the day
 
@@ -244,7 +247,7 @@ Current Status: bulking
 Your intake does not align with your goal. Net calories: 500
 ``` 
 
-### Search Keywords/date
+### Search Keywords / Date
 Search for logs by keywords or date
 
 Format: `search <loglist> /k <keyword>` OR `search <loglist> /d <date>`
@@ -256,6 +259,18 @@ Showing logs containing keyword: bench
 3. bench press (4 sets of 65 kg for 9 reps) on 31 Dec 2023
 5. bench press (4 sets of 69 kg for 4 reps) on 10 Jan 2024
 ``` 
+
+### List
+List a specific log
+
+Format: `list <pb/meal/workout/water/cardio>`
+
+Example of usage: `list pb`
+```
+Got it, here are your logs:
+1.  bench 80 kg on (21 Mar 2025)
+2.  squat 140 kg on (21 Mar 2025)
+```
 
 ## Command Summary
 | Command             |                                                             Format, Example                                                             |
@@ -276,5 +291,5 @@ Showing logs containing keyword: bench
 | ```clear```         |                                      clear [pb\|meal\|workout\|water] <br> e.g., ```clear meal```                                       |
 | ```status change``` |                                 status change [cutting\|bulking] <br> e.g.,``` staus change bulking```                                  |
 | ```status report``` |                                      status report [date] <br> e.g.,```status report 12/13/2023```                                      |
-| ```search```        |     search [loglist] /k [keyword]  OR search [loglist] /d [date] <br> e.g., ```search workout bench OR search meal /d 02/04/200```1     |
-
+| ```search```        |     search [loglist] /k [keyword]  OR search [loglist] /d [date] <br> e.g., ```search workout bench OR search meal /d 02/04/200```      |
+| ```list```          |                                                   list [loglist] e.g., ```list pb```                                                    |
