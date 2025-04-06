@@ -36,9 +36,6 @@ public class ViewGoalParser {
         }
 
         if (parts[1].equals("goals")||parts[1].equals("goal")) {
-            Ui.printMessage("Here are your current goals: \n"
-                    + Goals.getInstance().toString());
-            Ui.printMessage("What goal would you like to add today?\n");
             return new ViewGoalCommand(goalLogs);
         }
         throw new InvalidViewException();
