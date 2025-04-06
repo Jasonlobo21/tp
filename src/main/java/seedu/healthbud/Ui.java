@@ -23,9 +23,9 @@ public class Ui {
         System.out.println("    " + message);
     }
 
-    /**
-     * Prints the HealthBud ASCII art to the user.
-     */
+    //    /**
+    //     * Prints the HealthBud ASCII art to the user.
+    //     */
     //    public static void printHealthBuds() {
     //        System.out.println(" _   _            _ _   _     ____            _");
     //        System.out.println("| | | | ___  __ _| | |_| |__ | __ ) _   _  __| |___");
