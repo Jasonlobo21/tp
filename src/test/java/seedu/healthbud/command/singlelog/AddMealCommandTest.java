@@ -2,20 +2,23 @@ package seedu.healthbud.command.singlelog;
 
 import org.junit.jupiter.api.Test;
 
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import seedu.healthbud.LogList;
 import seedu.healthbud.exception.HealthBudException;
 import seedu.healthbud.exception.InvalidMealException;
 
+import seedu.healthbud.exception.InvalidTimeException;
 import seedu.healthbud.exception.InvalidDateFormatException;
 import seedu.healthbud.exception.InvalidPersonalBestException;
 import seedu.healthbud.exception.InvalidMLException;
 import seedu.healthbud.exception.InvalidCardioException;
 import seedu.healthbud.exception.HealthBudException;
 
+import seedu.healthbud.log.Meal;
+import seedu.healthbud.parser.addcommandparser.AddMealParser;
 
 
 class AddMealCommandTest {
@@ -147,7 +150,8 @@ class AddMealCommandTest {
         assertEquals("chicken rice", meal.getName());
         assertEquals("550", meal.getCalories()); // leading zero removed
         assertEquals("12 Jan 2025", meal.getDate());
-        assertEquals("9:00pm", meal.getTime());
+        assertEquals("2100", meal.getTime());
+
     }
 
     @Test
