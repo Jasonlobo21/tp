@@ -4,10 +4,12 @@ import org.junit.jupiter.api.Test;
 import seedu.healthbud.LogList;
 import seedu.healthbud.command.Command;
 import seedu.healthbud.command.singlelog.AddCardioCommand;
+import seedu.healthbud.command.singlelog.AddGoalCommand;
 import seedu.healthbud.command.singlelog.AddPersonalBestCommand;
 import seedu.healthbud.command.singlelog.AddWaterCommand;
 import seedu.healthbud.exception.HealthBudException;
 import seedu.healthbud.exception.InvalidAddLogException;
+import seedu.healthbud.exception.InvalidGoalException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -43,7 +45,6 @@ class AddParserTest {
 
     @Test
     void parse_validWorkoutInput_success() {
-        LogList workoutLogs = new LogList();
         String input = "add workout pushup /w 0 /r 10 /s 3 /d 12-04-2024";
         assertThrows(HealthBudException.class, () ->
                 AddParser.parse(input, new LogList(), new LogList(), new LogList(),
@@ -71,5 +72,32 @@ class AddParserTest {
         assertThrows(AssertionError.class, () ->
                 AddParser.parse(null, new LogList(), new LogList(), new LogList(),
                         new LogList(), new LogList(), new LogList()));
+    }
+
+    @Test
+    void parse_validGoalInput_success() throws Exception {
+        LogList goalLogs = new LogList();
+        String input = "add goal /ml 200 /cal 1800 /kg 70";
+        Command command = AddParser.parse(input, new LogList(), new LogList(), new LogList(),
+                new LogList(), new LogList(), goalLogs);
+        assertEquals(AddGoalCommand.class, command.getClass());
+    }
+
+    @Test
+    void parse_partialGoalInput_success() throws Exception {
+        LogList goalLogs = new LogList();
+        String input = "add goal /kg 65";
+        Command command = AddParser.parse(input, new LogList(), new LogList(), new LogList(),
+                new LogList(), new LogList(), goalLogs);
+        assertEquals(AddGoalCommand.class, command.getClass());
+    }
+
+    @Test
+    void parse_invalidGoalParameter_throwsInvalidGoalException() {
+        LogList goalLogs = new LogList();
+        String input = "add goal /ml 200 /w 70";
+        assertThrows(InvalidGoalException.class, () ->
+                AddParser.parse(input, new LogList(), new LogList(), new LogList(),
+                        new LogList(), new LogList(), goalLogs));
     }
 }
