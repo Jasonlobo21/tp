@@ -66,8 +66,8 @@ public class Ui {
                 + "4. bmi /w <weight_in_kg> /h <height_in_m> - Calculate your BMI" + NEW_LINE
                 + "5. add workout <exercise> /w <weight in kg> /r <reps> /s <sets> /d <DD/MM/YYYY> " +
                 "- Add a workout log" + NEW_LINE
-                + "6. add meal <meal_name> /cal <calories> /d <DD/MM/YYYY> /t <time> - Add a meal log" + NEW_LINE
-                + "7. add water /ml <volume> /d <DD/MM/YYYY> /t <time> - Add a water log" + NEW_LINE
+                + "6. add meal <meal_name> /cal <calories> /d <DD/MM/YYYY> /t <HHmm> - Add a meal log" + NEW_LINE
+                + "7. add water /ml <volume> /d <DD/MM/YYYY> /t <HHmm> - Add a water log" + NEW_LINE
                 + "8. add pb <exercise> /w <weight_in_kg> /d <DD/MM/YYYY> - Record a personal best" + NEW_LINE
                 + "9. add cardio <exercise> /s <speed> /i <incline> /t <duration_in_min> /d <DD/MM/YYYY> "
                 + "- Add a cardio log" + NEW_LINE

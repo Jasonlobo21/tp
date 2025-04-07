@@ -1,4 +1,6 @@
 @startuml
+skinparam classAttributeIconSize 0
+hide circle
 title HealthBud UI Class Diagram
 skinparam defaultFontSize 14
 skinparam arrowThickness 1

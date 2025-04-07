@@ -66,8 +66,8 @@ public class AddWorkoutParser {
         int set = Integer.parseInt(param.get("s"));
         Double weight = Double.parseDouble(param.get("w"));
 
-        if (rep <= 0 || rep > 100) {
-            throw new HealthBudException("Reps should be a positive integer between 1 and 100.");
+        if (rep <= 0 || rep > 1000) {
+            throw new HealthBudException("Reps should be a positive integer between 1 and 1000.");
         }
         if (set <= 0 || set > 100) {
             throw new HealthBudException("Sets should be a positive integer between 1 and 100.");

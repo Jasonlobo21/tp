@@ -25,7 +25,7 @@ class AddMealCommandTest {
     @Test
     void mealLog_missingName_expectThrowsInvalidMealException() {
         LogList mealLogs = new LogList();
-        String input = "add meal /cal 550 /d 12-01-2025 /t 9pm";
+        String input = "add meal /cal 550 /d 12-01-2025 /t 2100";
 
         assertThrows(InvalidMealException.class, () -> AddMealParser.parse(mealLogs, input));
     }
@@ -33,7 +33,7 @@ class AddMealCommandTest {
     @Test
     void mealLog_missingCaloriesParameter_expectThrowsInvalidMealException() {
         LogList mealLogs = new LogList();
-        String input = "add meal chicken rice /d 12-01-2025 /t 9pm";
+        String input = "add meal chicken rice /d 12-01-2025 /t 2100";
 
         assertThrows(InvalidMealException.class, () -> AddMealParser.parse(mealLogs, input));
     }
@@ -41,7 +41,7 @@ class AddMealCommandTest {
     @Test
     void mealLog_nonNumericCalories_expectThrowsInvalidMealException() {
         LogList mealLogs = new LogList();
-        String input = "add meal chicken rice /cal high /d 12-01-2025 /t 9pm";
+        String input = "add meal chicken rice /cal high /d 12-01-2025 /t 2100";
 
         assertThrows(InvalidMealException.class, () -> AddMealParser.parse(mealLogs, input));
     }
@@ -84,21 +84,21 @@ class AddMealCommandTest {
     @Test
     void mealLog_extraParameterKey_expectThrowsInvalidMealException() {
         LogList mealLogs = new LogList();
-        String input = "add meal chicken rice /cal 550 /d 12-01-2025 /t 9pm /x extra";
+        String input = "add meal chicken rice /cal 550 /d 12-01-2025 /t 2100 /x extra";
         assertThrows(InvalidMealException.class, () -> AddMealParser.parse(mealLogs, input));
     }
 
     @Test
     void mealLog_missingCalorieKey_expectThrowsInvalidMealException() {
         LogList mealLogs = new LogList();
-        String input = "add meal chicken rice /d 12-01-2025 /t 9pm";
+        String input = "add meal chicken rice /d 12-01-2025 /t 2100";
         assertThrows(InvalidMealException.class, () -> AddMealParser.parse(mealLogs, input));
     }
 
     @Test
     void mealLog_missingDateKey_expectThrowsInvalidMealException() {
         LogList mealLogs = new LogList();
-        String input = "add meal chicken rice /cal 550 /t 9pm";
+        String input = "add meal chicken rice /cal 550 /t 2100";
         assertThrows(InvalidMealException.class, () -> AddMealParser.parse(mealLogs, input));
     }
 
@@ -112,14 +112,14 @@ class AddMealCommandTest {
     @Test
     void mealLog_emptyCalorieValue_expectThrowsInvalidMealException() {
         LogList mealLogs = new LogList();
-        String input = "add meal chicken rice /cal   /d 12-01-2025 /t 9pm";
+        String input = "add meal chicken rice /cal   /d 12-01-2025 /t 2100";
         assertThrows(InvalidMealException.class, () -> AddMealParser.parse(mealLogs, input));
     }
 
     @Test
     void mealLog_emptyDateValue_expectThrowsInvalidMealException() {
         LogList mealLogs = new LogList();
-        String input = "add meal chicken rice /cal 550 /d   /t 9pm";
+        String input = "add meal chicken rice /cal 550 /d   /t 2100";
         assertThrows(InvalidMealException.class, () -> AddMealParser.parse(mealLogs, input));
     }
 
@@ -133,7 +133,7 @@ class AddMealCommandTest {
     @Test
     void mealLog_onlyWhitespaceInName_expectThrowsInvalidMealException() {
         LogList mealLogs = new LogList();
-        String input = "add meal    /cal 550 /d 12-01-2025 /t 9pm";
+        String input = "add meal    /cal 550 /d 12-01-2025 /t 2100";
         assertThrows(InvalidMealException.class, () -> AddMealParser.parse(mealLogs, input));
     }
 
@@ -156,14 +156,14 @@ class AddMealCommandTest {
     @Test
     void mealLog_caloriesExceedLimit_expectHealthBudException() {
         LogList mealLogs = new LogList();
-        String input = "add meal burger /cal 15000 /d 12-01-2025 /t 9pm";
+        String input = "add meal burger /cal 15000 /d 12-01-2025 /t 2100";
         assertThrows(HealthBudException.class, () -> AddMealParser.parse(mealLogs, input));
     }
 
     @Test
     void mealLog_caloriesNegative_expectHealthBudException() {
         LogList mealLogs = new LogList();
-        String input = "add meal fries /cal -100 /d 12-01-2025 /t 9pm";
+        String input = "add meal fries /cal -100 /d 12-01-2025 /t 2100";
         assertThrows(InvalidMealException.class, () -> AddMealParser.parse(mealLogs, input));
     }
 
@@ -177,14 +177,14 @@ class AddMealCommandTest {
     @Test
     void mealLog_typoInParameterKey_expectInvalidMealException() {
         LogList mealLogs = new LogList();
-        String input = "add meal sandwich /cals 200 /d 12-01-2025 /t 8am";
+        String input = "add meal sandwich /cals 200 /d 12-01-2025 /t 2100";
         assertThrows(InvalidMealException.class, () -> AddMealParser.parse(mealLogs, input));
     }
 
     @Test
     void mealLog_whitespaceOnlyName_expectInvalidMealException() {
         LogList mealLogs = new LogList();
-        String input = "add meal    /cal 500 /d 01-01-2025 /t 8am";
+        String input = "add meal    /cal 500 /d 01-01-2025 /t 0800";
         assertThrows(InvalidMealException.class, () -> AddMealParser.parse(mealLogs, input));
     }
 

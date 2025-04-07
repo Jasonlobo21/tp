@@ -221,11 +221,15 @@ public class Storage {
             throw new IllegalArgumentException("Invalid workout format");
         }
 
-        if (!parts[2].matches("\\d+") || parts[2].equals("0")) {
+        double weight = Double.parseDouble(parts[5]);
+        double reps = Double.parseDouble(parts[2]);
+        double sets = Double.parseDouble(parts[3]);
+
+        if (!parts[2].matches("\\d+") || parts[2].equals("0") || reps <= 0 || reps > 1000) {
             throw new IllegalArgumentException("Invalid reps format");
         }
 
-        if (!parts[3].matches("\\d+") || parts[3].equals("0")) {
+        if (!parts[3].matches("\\d+") || parts[3].equals("0") || sets <= 0 || sets > 100) {
             throw new IllegalArgumentException("Invalid sets format");
         }
 
@@ -233,7 +237,7 @@ public class Storage {
             throw new IllegalArgumentException("Invalid date format");
         }
 
-        if (!parts[5].matches("\\d+") || parts[5].equals("0")) {
+        if (!parts[5].matches("\\d+") || weight <= 0 || weight > 10000) {
             throw new IllegalArgumentException("Invalid weight format");
         }
         String trimmedReps = parts[2].replaceFirst("^0+(?![.$])", "");
