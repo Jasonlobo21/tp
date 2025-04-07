@@ -343,5 +343,40 @@ public class Storage {
         return new PersonalBest(parts[1], trimmedWeight, parts[3]);
     }
 
-    //public static Log parseStringToGoalLog(String line) {}
+    public static Log parseStringToGoalLog(String line) {
+        String[] parts = line.split(" \\| ");
+        if (parts.length != 4) {
+            throw new IllegalArgumentException("Invalid goal format");
+        }
+        //assuming the format is "G | waterGoal | calorieGoal | weightGoal"
+        if(parts[1].isEmpty() && parts[2].isEmpty() && parts[3].isEmpty()) {
+            throw new IllegalArgumentException("Invalid goal format");
+        }
+
+        double waterGoal = Double.parseDouble(parts[1]);
+        double calorieGoal = Double.parseDouble(parts[2]);
+        double weightGoal = Double.parseDouble(parts[3]);
+
+        if (!parts[1].matches("\\d+") || waterGoal <= 0 || waterGoal > 5000) {
+            throw new IllegalArgumentException("Invalid water goal format");
+        }
+
+        if (!parts[2].matches("\\d+") || calorieGoal <= 0 || calorieGoal > 20000) {
+            throw new IllegalArgumentException("Invalid calorie goal format");
+        }
+
+        if (!parts[3].matches("\\d+") || weightGoal <= 0 || weightGoal > 400) {
+            throw new IllegalArgumentException("Invalid weight goal format");
+        }
+
+        String trimmedWaterGoal = parts[1].replaceFirst("^0+(?![.$])", "");
+        String trimmedCalorieGoal = parts[2].replaceFirst("^0+(?![.$])", "");
+        String trimmedWeightGoal = parts[3].replaceFirst("^0+(?![.$])", "");
+
+        Goals goals = Goals.getInstance();
+        goals.setDailyWaterGoal(trimmedWaterGoal);
+        goals.setDailyCalorieGoal(trimmedCalorieGoal);
+        goals.setWeightGoal(trimmedWeightGoal);
+        return goals;
+    }
 }
