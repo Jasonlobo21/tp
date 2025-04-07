@@ -7,7 +7,7 @@ import seedu.healthbud.LogList;
 
 
 public class ViewGoalCommand extends SingleLogCommand {
-
+    //@@author keanneeee
     public ViewGoalCommand(LogList goalLogs) {
         super(goalLogs);
     }

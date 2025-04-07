@@ -20,7 +20,7 @@ class DateParserTest {
     @Test
     void formatDate_dateExceedsMax_expectInvalidDateException() {
         assertThrows(InvalidDateException.class, () ->
-                DateParser.formatDate("01-05-2025")); // 1 May 2025
+                DateParser.formatDate("01-05-2025"));
     }
 
     @Test
@@ -50,5 +50,33 @@ class DateParserTest {
     @Test
     void formatDate_validDateExactlyOnBoundary_expectCorrectOutput() throws Exception {
         assertEquals("30 Apr 2025", DateParser.formatDate("30-04-2025"));
+    }
+
+    @Test
+    void formatDate_blankSpacesInput_expectInvalidDateException() {
+        assertThrows(InvalidDateException.class, () ->
+                DateParser.formatDate("    "));
+    }
+
+    @Test
+    void isValidFormattedDate_validInput_expectTrue() {
+        assertEquals(true, DateParser.isValidFormattedDate("25 Dec 2023"));
+    }
+
+    @Test
+    void isValidFormattedDate_invalidDate_expectFalse() {
+        assertEquals(false, DateParser.isValidFormattedDate("32 Jan 2023"));
+    }
+
+    @Test
+    void isValidFormattedDate_gibberish_expectFalse() {
+        assertEquals(false, DateParser.isValidFormattedDate("random text"));
+    }
+
+    @Test
+    void isValidFormattedDate_emptyOrNull_expectFalse() {
+        assertEquals(false, DateParser.isValidFormattedDate(""));
+        assertEquals(false, DateParser.isValidFormattedDate("   "));
+        assertEquals(false, DateParser.isValidFormattedDate(null));
     }
 }
