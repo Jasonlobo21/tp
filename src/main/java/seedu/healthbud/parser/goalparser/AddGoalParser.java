@@ -39,24 +39,38 @@ public class AddGoalParser {
             throw new InvalidGoalException();
         }
 
-        String water = param.containsKey("ml") ? param.get("ml") : Goals.getInstance().getDailyWaterGoal();
-        String cal = param.containsKey("cal") ? param.get("cal") : Goals.getInstance().getDailyCalorieGoal();
-        String weight = param.containsKey("kg") ? param.get("kg") : Goals.getInstance().getWeightGoal();
+        String water = Goals.getInstance().getDailyWaterGoal();
+        String cal = Goals.getInstance().getDailyCalorieGoal();
+        String weight = Goals.getInstance().getWeightGoal();
 
         try {
-            int waterInt = Integer.parseInt(water);
-            int calInt = Integer.parseInt(cal);
-            int weightInt = Integer.parseInt(weight);
-
-            if (waterInt <= 0 || waterInt > 5000 || calInt <= 0 || calInt > 20000 || weightInt <= 0 || weightInt > 400){
-                throw new HealthBudException("Goal values must be within valid ranges:\n"
-                        + "- Water: 1–5000 ml\n"
-                        + "- Calories: 1–20000 cal\n"
-                        + "- Weight: 1–400 kg");
+            if (param.containsKey("ml")) {
+                String raw = param.get("ml");
+                int waterInt = Integer.parseInt(raw);
+                if (waterInt <= 0 || waterInt > 5000) {
+                    throw new HealthBudException("Water goal must be between 1 and 5000 ml.");
+                }
+                water = String.valueOf(waterInt);
             }
 
-            return new AddGoalCommand(goalLogs, String.valueOf(waterInt),
-                    String.valueOf(calInt), String.valueOf(weightInt));
+            if (param.containsKey("cal")) {
+                String raw = param.get("cal");
+                int calInt = Integer.parseInt(raw);
+                if (calInt <= 0 || calInt > 20000) {
+                    throw new HealthBudException("Calorie goal must be between 1 and 20000 cal.");
+                }
+                cal = String.valueOf(calInt);
+            }
+
+            if (param.containsKey("kg")) {
+                String raw = param.get("kg");
+                int weightInt = Integer.parseInt(raw);
+                if (weightInt <= 0 || weightInt > 400) {
+                    throw new HealthBudException("Weight goal must be between 1 and 400 kg.");
+                }
+                weight = String.valueOf(weightInt);
+            }
+            return new AddGoalCommand(goalLogs, water, cal, weight);
         } catch (NumberFormatException e) {
             throw new InvalidParameterException();
         }
