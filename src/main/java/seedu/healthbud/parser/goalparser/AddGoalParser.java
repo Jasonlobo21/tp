@@ -59,7 +59,7 @@ public class AddGoalParser {
                 String raw = param.get("ml");
                 int waterInt = Integer.parseInt(raw);
                 if (waterInt <= 0 || waterInt > 10000) {
-                    throw new HealthBudException("Water goal must be between 1 and 5000 ml.");
+                    throw new HealthBudException("Water goal must be between 1 and 10000 ml.");
                 }
                 water = String.valueOf(waterInt);
             }
@@ -77,7 +77,7 @@ public class AddGoalParser {
                 String raw = param.get("kg");
                 int weightInt = Integer.parseInt(raw);
                 if (weightInt <= 0 || weightInt > 1000) {
-                    throw new HealthBudException("Weight goal must be between 1 and 400 kg.");
+                    throw new HealthBudException("Weight goal must be between 1 and 1000 kg.");
                 }
                 weight = String.valueOf(weightInt);
             }
