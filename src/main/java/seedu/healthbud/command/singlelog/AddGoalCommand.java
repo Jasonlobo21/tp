@@ -8,11 +8,10 @@ import seedu.healthbud.storage.Storage;
 
 public class AddGoalCommand extends SingleLogCommand {
     //@@author keanneeee
+    private final Goals goal = Goals.getInstance();
     private String waterGoal ;
     private String calorieGoal;
     private String weightGoal;
-
-    Goals goal = Goals.getInstance();
 
     public AddGoalCommand(LogList goalLogs, String waterGoal,
                           String calorieGoal, String weightGoal){

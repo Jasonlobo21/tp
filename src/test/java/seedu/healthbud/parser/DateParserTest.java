@@ -4,8 +4,6 @@ import org.junit.jupiter.api.Test;
 import seedu.healthbud.exception.InvalidDateException;
 import seedu.healthbud.exception.InvalidDateFormatException;
 
-import java.text.SimpleDateFormat;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class DateParserTest {
@@ -59,7 +57,6 @@ class DateParserTest {
                 DateParser.formatDate("    "));
     }
 
-
     @Test
     void isValidFormattedDate_validInput_expectTrue() {
         assertTrue(DateParser.isValidFormattedDate("25 Dec 2023"));
@@ -81,5 +78,4 @@ class DateParserTest {
         assertFalse(DateParser.isValidFormattedDate("   "));
         assertFalse(DateParser.isValidFormattedDate(null));
     }
-
 }

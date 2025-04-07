@@ -8,8 +8,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.healthbud.HealthBud.goalLogs;
-
-import seedu.healthbud.HealthBud;
 import seedu.healthbud.LogList;
 import seedu.healthbud.exception.HealthBudException;
 import seedu.healthbud.exception.InvalidParameterException;

@@ -29,7 +29,7 @@ public class AddGoalParser {
      * @throws InvalidGoalException if the input format is invalid, parameters are missing,
      *                              or if any of the parameters are not numeric.
      */
-    public static AddGoalCommand parse(LogList goalLogs, String input) throws InvalidGoalException, HealthBudException {
+    public static AddGoalCommand parse(LogList goalLogs, String input) throws InvalidGoalException, HealthBudException{
         assert input != null : "Input should not be null";
 
         input = input.substring("add goal".length()).trim();
@@ -48,7 +48,7 @@ public class AddGoalParser {
             int calInt = Integer.parseInt(cal);
             int weightInt = Integer.parseInt(weight);
 
-            if (waterInt <= 0 || waterInt > 5000 || calInt <= 0 || calInt > 20000 || weightInt <= 0 || weightInt > 400) {
+            if (waterInt <= 0 || waterInt > 5000 || calInt <= 0 || calInt > 20000 || weightInt <= 0 || weightInt > 400){
                 throw new HealthBudException("Goal values must be within valid ranges:\n"
                         + "- Water: 1–5000 ml\n"
                         + "- Calories: 1–20000 cal\n"
