@@ -63,7 +63,7 @@ public class AddWaterParser {
             throw new HealthBudException("Water volume must be between 0 and 10000 ml.");
         }
 
-        String trimmedMl = param.get("ml").replaceFirst("^0+(?![.$])", "");
+        String trimmedMl = param.get("ml").replaceFirst("^0+(?=\\d)", "");
 
         String formattedDate = DateParser.formatDate(param.get("d"));
         String formattedTime = TimeParser.formatTime(param.get("t"));

@@ -64,7 +64,7 @@ public class AddPersonalBestParser {
             throw new HealthBudException("Weight should be greater than 0 and less than 1000kg.");
         }
 
-        String trimmedWeight = param.get("w").replaceFirst("^0+(?![.$])", "");
+        String trimmedWeight = param.get("w").replaceFirst("^0+(?=\\d)", "");
 
         String formattedDate = DateParser.formatDate(param.get("d"));
 

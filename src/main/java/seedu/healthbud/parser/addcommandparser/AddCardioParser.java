@@ -83,13 +83,14 @@ public class AddCardioParser {
             throw new HealthBudException("Speed should be between 1 and 50.");
         }
 
-        String trimmedIncline = param.get("i").replaceFirst("^0+(?![.$])", "");
-        String trimmedSpeed = param.get("s").replaceFirst("^0+(?![.$])", "");
+        String trimmedIncline = param.get("i").replaceFirst("^0+(?=\\d)", "");
+        String trimmedSpeed = param.get("s").replaceFirst("^0+(?=\\d)", "");
+        String trimmedTime = param.get("t").replaceFirst("^0+(?=\\d)", "");
 
         String formattedDate = DateParser.formatDate(param.get("d"));
 
         return new AddCardioCommand(cardioLogs, name,
-                trimmedSpeed, trimmedIncline, param.get("t"),
+                trimmedSpeed, trimmedIncline, trimmedTime,
                 formattedDate);
     }
 }

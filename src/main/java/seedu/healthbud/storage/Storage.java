@@ -280,9 +280,9 @@ public class Storage {
             throw new IllegalArgumentException("Invalid speed format");
         }
 
-        String trimmedDuration = parts[2].replaceFirst("^0+(?![.$])", "");
-        String trimmedIncline = parts[3].replaceFirst("^0+(?![.$])", "");
-        String trimmedSpeed = parts[4].replaceFirst("^0+(?![.$])", "");
+        String trimmedDuration = parts[2].replaceFirst("^0+(?=\\d)", "");
+        String trimmedIncline = parts[3].replaceFirst("^0+(?=\\d)", "");
+        String trimmedSpeed = parts[4].replaceFirst("^^0+(?=\\d)", "");
 
         if (!DateParser.isValidFormattedDate(parts[5])) {
             throw new IllegalArgumentException("Invalid date format");
@@ -304,7 +304,7 @@ public class Storage {
 
         double ml = Double.parseDouble(parts[1]);
 
-        if (!parts[1].matches("\\d+") || ml < 0 || ml > 10000) {
+        if (!parts[1].matches("\\d+") || ml <= 0 || ml > 10000) {
             throw new IllegalArgumentException("Invalid amount format");
         }
 
@@ -316,7 +316,7 @@ public class Storage {
             throw new IllegalArgumentException("Invalid time format");
         }
 
-        String trimmedAmount = parts[1].replaceFirst("^0+(?![.$])", "");
+        String trimmedAmount = parts[1].replaceFirst("^0+(?=\\d)", "");
 
         return new Water(trimmedAmount, parts[2], parts[3]);
     }
@@ -342,7 +342,7 @@ public class Storage {
             throw new IllegalArgumentException("Invalid date format");
         }
 
-        String trimmedWeight = parts[2].replaceFirst("^0+(?![.$])", "");
+        String trimmedWeight = parts[2].replaceFirst("^0+(?=\\d)", "");
 
         return new PersonalBest(parts[1], trimmedWeight, parts[3]);
     }
