@@ -232,6 +232,8 @@ Example of usage: `view goal`
 ### 13. Add goal
 Updates your list of Goals, not necessary for all parameters to be inputted at once!
 
+Goals cannot be set as 0, cleared or deleted, only updated. This is to encourage users to set goals and stick to them.
+
 Format: `add goal /ml <waterGoals> | /cal <calorieGoals> | /kg <weightGoals>`
 
 Example of usage: `add goal /ml 1500 /cal 2000 /kg 70`

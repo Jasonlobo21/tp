@@ -228,15 +228,11 @@ public class Storage {
             throw new IllegalArgumentException("Invalid workout format");
         }
 
-        double weight = Double.parseDouble(parts[5]);
-        double reps = Double.parseDouble(parts[2]);
-        double sets = Double.parseDouble(parts[3]);
-
-        if (!parts[2].matches("\\d+") || parts[2].equals("0") || reps <= 0 || reps > 1000) {
+        if (!parts[2].matches("\\d+") || parts[2].equals("0")) {
             throw new IllegalArgumentException("Invalid reps format");
         }
 
-        if (!parts[3].matches("\\d+") || parts[3].equals("0") || sets <= 0 || sets > 100) {
+        if (!parts[3].matches("\\d+") || parts[3].equals("0")) {
             throw new IllegalArgumentException("Invalid sets format");
         }
 
@@ -244,7 +240,7 @@ public class Storage {
             throw new IllegalArgumentException("Invalid date format");
         }
 
-        if (!parts[5].matches("\\d+") || weight <= 0 || weight > 10000) {
+        if (!parts[5].matches("\\d+") || parts[5].equals("0")) {
             throw new IllegalArgumentException("Invalid weight format");
         }
         String trimmedReps = parts[2].replaceFirst("^0+(?![.$])", "");
@@ -294,9 +290,9 @@ public class Storage {
             throw new IllegalArgumentException("Invalid speed format");
         }
 
-        String trimmedDuration = parts[2].replaceFirst("^0+(?=\\d)", "");
-        String trimmedIncline = parts[3].replaceFirst("^0+(?=\\d)", "");
-        String trimmedSpeed = parts[4].replaceFirst("^^0+(?=\\d)", "");
+        String trimmedDuration = parts[2].replaceFirst("^0+(?![.$])", "");
+        String trimmedIncline = parts[3].replaceFirst("^0+(?![.$])", "");
+        String trimmedSpeed = parts[4].replaceFirst("^0+(?![.$])", "");
 
         if (!DateParser.isValidFormattedDate(parts[5])) {
             throw new IllegalArgumentException("Invalid date format");
@@ -325,7 +321,7 @@ public class Storage {
 
         double ml = Double.parseDouble(parts[1]);
 
-        if (!parts[1].matches("\\d+") || ml <= 0 || ml > 10000) {
+        if (!parts[1].matches("\\d+") || ml < 0 || ml > 10000) {
             throw new IllegalArgumentException("Invalid amount format");
         }
 
@@ -337,7 +333,7 @@ public class Storage {
             throw new IllegalArgumentException("Invalid time format");
         }
 
-        String trimmedAmount = parts[1].replaceFirst("^0+(?=\\d)", "");
+        String trimmedAmount = parts[1].replaceFirst("^0+(?![.$])", "");
 
         return new Water(trimmedAmount, parts[2], parts[3]);
     }
@@ -370,7 +366,7 @@ public class Storage {
             throw new IllegalArgumentException("Invalid date format");
         }
 
-        String trimmedWeight = parts[2].replaceFirst("^0+(?=\\d)", "");
+        String trimmedWeight = parts[2].replaceFirst("^0+(?![.$])", "");
 
         return new PersonalBest(parts[1], trimmedWeight, parts[3]);
     }
@@ -396,40 +392,55 @@ public class Storage {
         String calorieGoal = parts[2].trim();
         String weightGoal = parts[3].trim();
 
+        if(waterGoal.isEmpty() || calorieGoal.isEmpty() || weightGoal.isEmpty()) {
+            throw new IllegalArgumentException("Invalid goal format");
+        }
+
         if (!waterGoal.isEmpty()) {
-            if (!waterGoal.matches("\\d+")) {
+            if (waterGoal.equals("-")) {
+                Goals.getInstance().setDailyWaterGoal(waterGoal);
+            } else if (waterGoal.matches("\\d+")) {
+                double water = Double.parseDouble(waterGoal);
+                if (water < 1 || water > 10000) {  // using 1 and 5000 per error message
+                    throw new IllegalArgumentException("Water goal must be between 1 and 10000");
+                }
+                waterGoal = waterGoal.replaceFirst("^0+(?=\\d)", "");
+                Goals.getInstance().setDailyWaterGoal(waterGoal);
+            } else {
                 throw new IllegalArgumentException("Invalid water goal format");
             }
-            double water = Double.parseDouble(waterGoal);
-            if (water < 0 || water > 10000) {
-                throw new IllegalArgumentException("Water goal must be between 1 and 5000");
-            }
-            waterGoal = waterGoal.replaceFirst("^0+(?=\\d)", "");
-            Goals.getInstance().setDailyWaterGoal(waterGoal);
         }
 
+        // Process Calorie Goal
         if (!calorieGoal.isEmpty()) {
-            if (!calorieGoal.matches("\\d+")) {
+            if (calorieGoal.equals("-")) {
+                Goals.getInstance().setDailyCalorieGoal(calorieGoal);
+            } else if (calorieGoal.matches("\\d+")) {
+                double cal = Double.parseDouble(calorieGoal);
+                if (cal < 1 || cal > 20000) {  // using 1 and 20000 per error message
+                    throw new IllegalArgumentException("Calorie goal must be between 1 and 20000");
+                }
+                calorieGoal = calorieGoal.replaceFirst("^0+(?=\\d)", "");
+                Goals.getInstance().setDailyCalorieGoal(calorieGoal);
+            } else {
                 throw new IllegalArgumentException("Invalid calorie goal format");
             }
-            double cal = Double.parseDouble(calorieGoal);
-            if (cal < 0 || cal > 20000) {
-                throw new IllegalArgumentException("Calorie goal must be between 1 and 20000");
-            }
-            calorieGoal = calorieGoal.replaceFirst("^0+(?=\\d)", "");
-            Goals.getInstance().setDailyCalorieGoal(calorieGoal);
         }
 
+        // Process Weight Goal
         if (!weightGoal.isEmpty()) {
-            if (!weightGoal.matches("\\d+")) {
+            if (weightGoal.equals("-")) {
+                Goals.getInstance().setWeightGoal(weightGoal);
+            } else if (weightGoal.matches("\\d+")) {
+                double weight = Double.parseDouble(weightGoal);
+                if (weight < 1 || weight > 1000) {  // using 1 and 400 per error message
+                    throw new IllegalArgumentException("Weight goal must be between 1 and 1000");
+                }
+                weightGoal = weightGoal.replaceFirst("^0+(?=\\d)", "");
+                Goals.getInstance().setWeightGoal(weightGoal);
+            } else {
                 throw new IllegalArgumentException("Invalid weight goal format");
             }
-            double weight = Double.parseDouble(weightGoal);
-            if (weight < 0 || weight > 1000) {
-                throw new IllegalArgumentException("Weight goal must be between 1 and 400");
-            }
-            weightGoal = weightGoal.replaceFirst("^0+(?=\\d)", "");
-            Goals.getInstance().setWeightGoal(weightGoal);
         }
 
         return Goals.getInstance();
