@@ -60,7 +60,7 @@ public class AddWaterParser {
 
         double ml = Double.parseDouble(param.get("ml"));
         if (ml <= 0 || ml > 10000) {
-            throw new HealthBudException("Water volume must be between 0 and 10000 ml.");
+            throw new HealthBudException("Water volume must be between 1 and 10000 ml.");
         }
 
         String trimmedMl = param.get("ml").replaceFirst("^0+(?=\\d)", "");
