@@ -5,6 +5,7 @@ import seedu.healthbud.exception.InvalidDateFormatException;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.text.ParsePosition;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -63,8 +64,13 @@ public class DateParser {
                     sdf.set2DigitYearStart(new SimpleDateFormat("yyyy").parse("2000"));
                 }
 
-                Date parsedDate = sdf.parse(inputDate);
+                ParsePosition pos = new ParsePosition(0);
+                Date parsedDate = sdf.parse(inputDate, pos);
 
+                if (parsedDate == null || pos.getIndex() != inputDate.length()) {
+                    // Entire input was not consumed; try the next format.
+                    continue;
+                }
                 if (parsedDate.after(maxAllowedDate)) {
                     throw new InvalidDateException();
                 }
@@ -90,7 +96,11 @@ public class DateParser {
         SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy", Locale.ENGLISH);
         sdf.setLenient(false); // prevents accepting fake dates like 35 Jan 2022
         try {
-            sdf.parse(dateStr);
+            Date parsedDate = sdf.parse(dateStr);
+            // Check if the parsed date is in the future
+            if (parsedDate.after(new Date())) {
+                return false;
+            }
             return true;
         } catch (ParseException e) {
             return false;

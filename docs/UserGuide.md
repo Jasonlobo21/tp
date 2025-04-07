@@ -28,8 +28,10 @@ HealthBud!
 
 ![CS2113](images/CS2113TpLogo.png)
 
+6. WARNING: Pressing ctrl-c will terminate the program the same way as the bye command. 
+   
 
-6. Type the command in the command terminal and press Enter to execute it.
+7. Type the command in the command terminal and press Enter to execute it.
 
 
    Some example commands you can try:
@@ -230,7 +232,7 @@ Example of usage: `view goal`
 ``` 
 
 ### 13. Add goal
-Updates your list of Goals, not necessary for all parameters to be inputted at once!
+Able to add/edit your list of Goals, not necessary for all parameters to be inputted at once!
 
 Goals cannot be set as 0, cleared or deleted, only updated. This is to encourage users to set goals and stick to them.
 
