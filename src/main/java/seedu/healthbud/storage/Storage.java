@@ -104,14 +104,7 @@ public class Storage {
         case "C":
             return parseStringToCardioLog(line);
         case "G":
-            if (parts.length != 4) {
-                throw new IllegalArgumentException("Invalid goal format");
-            }
-            Goals goals = Goals.getInstance();
-            goals.setDailyWaterGoal(parts[1]);
-            goals.setDailyCalorieGoal(parts[2]);
-            goals.setWeightGoal(parts[3]);
-            return goals;
+            return parseStringToGoalLog(line);
         default:
             throw new IllegalArgumentException("Unknown log type: " + type);
         }
@@ -181,6 +174,13 @@ public class Storage {
         }
     }
 
+    /**
+     * Parses a meal log string into a Meal object.
+     *
+     * @param line the meal log string in the format "M | name | calories | date | time"
+     * @return a Meal object representing the log
+     * @throws IllegalArgumentException if the meal format is invalid
+     */
     public static Log parseStringToMealLog(String line) {
         String[] parts = line.split(" \\| ");
         if (parts.length != 5) {
@@ -210,6 +210,13 @@ public class Storage {
         return new Meal(parts[1], trimmedCalories, parts[3], parts[4]);
     }
 
+    /**
+     * Parses a workout log string into a Workout object.
+     *
+     * @param line the workout log string in the format "WO | name | reps | sets | date | weight"
+     * @return a Workout object representing the log
+     * @throws IllegalArgumentException if the workout format is invalid
+     */
     public static Log parseStringToWorkoutLog(String line) {
         String[] parts = line.split(" \\| ");
         if (parts.length != 6) {
@@ -243,6 +250,13 @@ public class Storage {
         return new Workout(parts[1], trimmedReps, parts[3], trimmedSets, trimmedWeight);
     }
 
+    /**
+     * Parses a cardio log string into a Cardio object.
+     *
+     * @param line the cardio log string in the format "C | name | duration | incline | speed | date"
+     * @return a Cardio object representing the log
+     * @throws IllegalArgumentException if the cardio format is invalid
+     */
     public static Log parseStringToCardioLog(String line) {
         String[] parts = line.split(" \\| ");
         if (parts.length != 6) {
@@ -287,6 +301,13 @@ public class Storage {
         return new Cardio(parts[1], parts[2], trimmedDuration, trimmedIncline, trimmedSpeed);
     }
 
+    /**
+     * Parses a water log string into a Water object.
+     *
+     * @param line the water log string in the format "WA | amount | date | time"
+     * @return a Water object representing the log
+     * @throws IllegalArgumentException if the water format is invalid
+     */
     public static Log parseStringToWaterLog(String line) {
         String[] parts = line.split(" \\| ");
         if (parts.length != 4) {
@@ -317,6 +338,13 @@ public class Storage {
         return new Water(trimmedAmount, parts[2], parts[3]);
     }
 
+    /**
+     * Parses a personal best log string into a PersonalBest object.
+     *
+     * @param line the personal best log string in the format "P | exercise | weight | date"
+     * @return a PersonalBest object representing the log
+     * @throws IllegalArgumentException if the personal best format is invalid
+     */
     public static Log parseStringToPersonalBestLog(String line) {
         String[] parts = line.split(" \\| ");
         if (parts.length != 4) {
@@ -343,6 +371,15 @@ public class Storage {
         return new PersonalBest(parts[1], trimmedWeight, parts[3]);
     }
 
+    /**
+     * Parses a goal log string into a Goals object.
+     * The goal log format is "G | dailyWaterGoal | dailyCalorieGoal | weightGoal".
+     * Some fields may be empty.
+     *
+     * @param line the goal log string
+     * @return the Goals singleton instance with updated goals
+     * @throws IllegalArgumentException if the goal format is invalid
+     */
     public static Log parseStringToGoalLog(String line) {
         // it looks slightly different cause for the goals not all 3 has to be present
         // so for eg it could be storing like G | 200 |  | 65
@@ -360,10 +397,10 @@ public class Storage {
                 throw new IllegalArgumentException("Invalid water goal format");
             }
             double water = Double.parseDouble(waterGoal);
-            if (water <= 0 || water > 5000) {
+            if (water < 0 || water > 10000) {
                 throw new IllegalArgumentException("Water goal must be between 1 and 5000");
             }
-            waterGoal = waterGoal.replaceFirst("^0+(?![.$])", "");
+            waterGoal = waterGoal.replaceFirst("^0+(?=\\d)", "");
             Goals.getInstance().setDailyWaterGoal(waterGoal);
         }
 
@@ -372,10 +409,10 @@ public class Storage {
                 throw new IllegalArgumentException("Invalid calorie goal format");
             }
             double cal = Double.parseDouble(calorieGoal);
-            if (cal <= 0 || cal > 20000) {
+            if (cal < 0 || cal > 20000) {
                 throw new IllegalArgumentException("Calorie goal must be between 1 and 20000");
             }
-            calorieGoal = calorieGoal.replaceFirst("^0+(?![.$])", "");
+            calorieGoal = calorieGoal.replaceFirst("^0+(?=\\d)", "");
             Goals.getInstance().setDailyCalorieGoal(calorieGoal);
         }
 
@@ -384,10 +421,10 @@ public class Storage {
                 throw new IllegalArgumentException("Invalid weight goal format");
             }
             double weight = Double.parseDouble(weightGoal);
-            if (weight <= 0 || weight > 400) {
+            if (weight < 0 || weight > 1000) {
                 throw new IllegalArgumentException("Weight goal must be between 1 and 400");
             }
-            weightGoal = weightGoal.replaceFirst("^0+(?![.$])", "");
+            weightGoal = weightGoal.replaceFirst("^0+(?=\\d)", "");
             Goals.getInstance().setWeightGoal(weightGoal);
         }
 
