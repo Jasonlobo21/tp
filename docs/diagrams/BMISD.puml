@@ -1,7 +1,7 @@
 @startuml
 actor User
 participant ":HealthBud" as HealthBud
-participant ":GeneralParser" as GeneralParser
+participant ":ParserManager" as GeneralParser
 participant ":BMIParser" as BMIParser
 participant ":BMICommand" as BMICommand
 
