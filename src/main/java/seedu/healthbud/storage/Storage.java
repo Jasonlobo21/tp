@@ -344,39 +344,53 @@ public class Storage {
     }
 
     public static Log parseStringToGoalLog(String line) {
+        // it looks slightly different cause for the goals not all 3 has to be present
+        // so for eg it could be storing like G | 200 |  | 65
         String[] parts = line.split(" \\| ");
         if (parts.length != 4) {
             throw new IllegalArgumentException("Invalid goal format");
         }
-        //assuming the format is "G | waterGoal | calorieGoal | weightGoal"
-        if(parts[1].isEmpty() && parts[2].isEmpty() && parts[3].isEmpty()) {
-            throw new IllegalArgumentException("Invalid goal format");
+
+        String waterGoal = parts[1].trim();
+        String calorieGoal = parts[2].trim();
+        String weightGoal = parts[3].trim();
+
+        if (!waterGoal.isEmpty()) {
+            if (!waterGoal.matches("\\d+")) {
+                throw new IllegalArgumentException("Invalid water goal format");
+            }
+            double water = Double.parseDouble(waterGoal);
+            if (water <= 0 || water > 5000) {
+                throw new IllegalArgumentException("Water goal must be between 1 and 5000");
+            }
+            waterGoal = waterGoal.replaceFirst("^0+(?![.$])", "");
+            Goals.getInstance().setDailyWaterGoal(waterGoal);
         }
 
-        double waterGoal = Double.parseDouble(parts[1]);
-        double calorieGoal = Double.parseDouble(parts[2]);
-        double weightGoal = Double.parseDouble(parts[3]);
-
-        if (!parts[1].matches("\\d+") || waterGoal <= 0 || waterGoal > 5000) {
-            throw new IllegalArgumentException("Invalid water goal format");
+        if (!calorieGoal.isEmpty()) {
+            if (!calorieGoal.matches("\\d+")) {
+                throw new IllegalArgumentException("Invalid calorie goal format");
+            }
+            double cal = Double.parseDouble(calorieGoal);
+            if (cal <= 0 || cal > 20000) {
+                throw new IllegalArgumentException("Calorie goal must be between 1 and 20000");
+            }
+            calorieGoal = calorieGoal.replaceFirst("^0+(?![.$])", "");
+            Goals.getInstance().setDailyCalorieGoal(calorieGoal);
         }
 
-        if (!parts[2].matches("\\d+") || calorieGoal <= 0 || calorieGoal > 20000) {
-            throw new IllegalArgumentException("Invalid calorie goal format");
+        if (!weightGoal.isEmpty()) {
+            if (!weightGoal.matches("\\d+")) {
+                throw new IllegalArgumentException("Invalid weight goal format");
+            }
+            double weight = Double.parseDouble(weightGoal);
+            if (weight <= 0 || weight > 400) {
+                throw new IllegalArgumentException("Weight goal must be between 1 and 400");
+            }
+            weightGoal = weightGoal.replaceFirst("^0+(?![.$])", "");
+            Goals.getInstance().setWeightGoal(weightGoal);
         }
 
-        if (!parts[3].matches("\\d+") || weightGoal <= 0 || weightGoal > 400) {
-            throw new IllegalArgumentException("Invalid weight goal format");
-        }
-
-        String trimmedWaterGoal = parts[1].replaceFirst("^0+(?![.$])", "");
-        String trimmedCalorieGoal = parts[2].replaceFirst("^0+(?![.$])", "");
-        String trimmedWeightGoal = parts[3].replaceFirst("^0+(?![.$])", "");
-
-        Goals goals = Goals.getInstance();
-        goals.setDailyWaterGoal(trimmedWaterGoal);
-        goals.setDailyCalorieGoal(trimmedCalorieGoal);
-        goals.setWeightGoal(trimmedWeightGoal);
-        return goals;
+        return Goals.getInstance();
     }
 }
