@@ -55,9 +55,9 @@ class ListCommandTest {
         LogList mealLogs = new LogList();
         // Add logs to mealLogs
         AddMealCommand addMeal1 = new AddMealCommand(
-                mealLogs, "chicken rice", "550", "12 Jan 2025", "9pm");
+                mealLogs, "chicken rice", "550", "12 Jan 2025", "1900");
         AddMealCommand addMeal2 = new AddMealCommand(
-                mealLogs, "tom yum", "650", "13 Jan 2025", "8pm");
+                mealLogs, "tom yum", "650", "13 Jan 2025", "1900");
         addMeal1.execute();
         addMeal2.execute();
         assertEquals(2, mealLogs.getSize());

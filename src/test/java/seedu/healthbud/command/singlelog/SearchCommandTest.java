@@ -39,7 +39,7 @@ public class SearchCommandTest {
     @Test
     void execute_searchByDate_withMatchingLogs() {
         LogList mealLogs = new LogList();
-        Meal meal = new Meal("chicken rice", "550", "12 Dec 2025", "9pm");
+        Meal meal = new Meal("chicken rice", "550", "12 Dec 2025", "0900");
         mealLogs.addLog(meal);
 
         SearchCommand command = new SearchCommand(mealLogs, "12 Dec 2025", null);
@@ -54,7 +54,7 @@ public class SearchCommandTest {
     @Test
     void execute_searchByDate_noMatchingLogs() {
         LogList mealLogs = new LogList();
-        Meal meal = new Meal("chicken rice", "550", "13 Dec 2025", "9pm");
+        Meal meal = new Meal("chicken rice", "550", "13 Dec 2025", "0900");
         mealLogs.addLog(meal);
 
         SearchCommand command = new SearchCommand(mealLogs, "12 Dec 2025", null);
@@ -69,8 +69,8 @@ public class SearchCommandTest {
     void execute_searchByKeyword_withMatchingLogs() {
         // Prepare logs
         LogList mealLogs = new LogList();
-        Meal meal1 = new Meal("chicken salad", "400", "10 Jan 2025", "6pm");
-        Meal meal2 = new Meal("beef burger", "800", "11 Jan 2025", "8pm");
+        Meal meal1 = new Meal("chicken salad", "400", "10 Jan 2025", "0600");
+        Meal meal2 = new Meal("beef burger", "800", "11 Jan 2025", "0800");
         mealLogs.addLog(meal1);
         mealLogs.addLog(meal2);
 
@@ -86,7 +86,7 @@ public class SearchCommandTest {
     @Test
     void execute_searchByKeyword_noMatchingLogs() {
         LogList mealLogs = new LogList();
-        Meal meal = new Meal("chicken salad", "400", "10 Jan 2025", "6pm");
+        Meal meal = new Meal("chicken salad", "400", "10 Jan 2025", "0600");
         mealLogs.addLog(meal);
 
         SearchCommand command = new SearchCommand(mealLogs, null, "beef");

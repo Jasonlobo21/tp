@@ -17,7 +17,7 @@ class LogListTest {
     @Test
     void testAddLog() {
         LogList logList = new LogList();
-        Meal meal = new Meal("Lunch", "500", "12-04-2025", "12:00 PM");
+        Meal meal = new Meal("Lunch", "500", "12 Jan 2025", "1200");
 
         logList.addLog(meal);
         assertEquals(1, logList.getSize());
@@ -27,7 +27,7 @@ class LogListTest {
     @Test
     void testDeleteLog() throws HealthBudException {
         LogList logList = new LogList();
-        Meal meal = new Meal("Lunch", "500", "12-04-2025", "12:00 PM");
+        Meal meal = new Meal("Lunch", "500", "12 Jan 2025", "1200");
 
         logList.addLog(meal);
         assertEquals(1, logList.getSize());
@@ -39,7 +39,7 @@ class LogListTest {
     @Test
     void testLoadLog() {
         LogList logList = new LogList();
-        Meal meal = new Meal("Lunch", "500", "12-04-2025", "12:00 PM");
+        Meal meal = new Meal("Lunch", "500", "12 Jan 2025", "1200");
         logList.loadLog(meal);
         assertEquals(1, logList.getSize());
         assertEquals(meal, logList.getLog(0));
@@ -67,35 +67,35 @@ class LogListTest {
     @Test
     void testGetCaloriesSum() throws InvalidDateFormatException {
         LogList logList = new LogList();
-        Meal meal1 = new Meal("Breakfast", "300", "12-04-2025", "7:00 AM");
-        Meal meal2 = new Meal("Lunch", "500", "12-04-2025", "12:00 PM");
+        Meal meal1 = new Meal("Breakfast", "300", "12 Jan 2025", "0700");
+        Meal meal2 = new Meal("Lunch", "500", "12 Jan 2025", "1200");
 
         logList.addLog(meal1);
         logList.addLog(meal2);
 
-        String formattedDate = DateParser.formatDate("12-04-2025");
+        String formattedDate = DateParser.formatDate("12 Jan 2025");
         assertEquals(800, logList.getCaloriesSum(formattedDate));
     }
 
     @Test
     void testGetCardioSum() throws InvalidDateFormatException {
         LogList logList = new LogList();
-        Cardio cardio1 = new Cardio("Running", "5", "2", "30", "12-04-2025");
-        Cardio cardio2 = new Cardio("Cycling", "10", "3", "40", "12-04-2025");
+        Cardio cardio1 = new Cardio("Running", "5", "2", "30", "12 Jan 2025");
+        Cardio cardio2 = new Cardio("Cycling", "10", "3", "40", "12 Jan 2025");
 
         logList.addLog(cardio1);
         logList.addLog(cardio2);
 
-        String formattedDate = DateParser.formatDate("12-04-2025");
+        String formattedDate = DateParser.formatDate("12 Jan 2025");
         assertEquals(3333, logList.getCardioSum(formattedDate));
     }
 
     @Test
     void testGetWaterSum() throws InvalidDateFormatException {
         LogList logList = new LogList();
-        String formattedDate = DateParser.formatDate("12-04-2025");
-        Water water1 = new Water("500", formattedDate, "7:00 AM");
-        Water water2 = new Water("1000", formattedDate, "12:00 PM");
+        String formattedDate = DateParser.formatDate("12 Jan 2025");
+        Water water1 = new Water("500", formattedDate, "0700");
+        Water water2 = new Water("1000", formattedDate, "1200");
 
         logList.addLog(water1);
         logList.addLog(water2);
@@ -106,7 +106,7 @@ class LogListTest {
     @Test
     void testClearLogs() {
         LogList logList = new LogList();
-        Meal meal = new Meal("Lunch", "500", "12-04-2025", "12:00 PM");
+        Meal meal = new Meal("Lunch", "500", "12 Jan 2025", "1200");
 
         logList.addLog(meal);
         assertEquals(1, logList.getSize());
@@ -134,7 +134,7 @@ class LogListTest {
         LogList logList = new LogList();
         assertTrue(logList.isEmpty());
 
-        Meal meal = new Meal("Lunch", "500", "12-04-2025", "12:00 PM");
+        Meal meal = new Meal("Lunch", "500", "12 Jan 2025", "1200");
         logList.addLog(meal);
         assertTrue(!logList.isEmpty());
     }
@@ -142,8 +142,8 @@ class LogListTest {
     @Test
     void testFindLog() {
         LogList logList = new LogList();
-        Meal meal1 = new Meal("Breakfast", "300", "12-04-2025", "7:00 AM");
-        Meal meal2 = new Meal("Lunch", "500", "12-04-2025", "12:00 PM");
+        Meal meal1 = new Meal("Breakfast", "300", "12 Jan 2025", "0700");
+        Meal meal2 = new Meal("Lunch", "500", "12 Jan 2025", "1200");
 
         logList.addLog(meal1);
         logList.addLog(meal2);
@@ -155,7 +155,7 @@ class LogListTest {
     @Test
     void testFindLogWithNullKeyword() {
         LogList logList = new LogList();
-        Meal meal = new Meal("Lunch", "500", "12-04-2025", "12:00 PM");
+        Meal meal = new Meal("Lunch", "500", "12 Jan 2025", "1200");
         logList.addLog(meal);
 
         assertThrows(AssertionError.class, () -> logList.findLog(null));
@@ -164,7 +164,7 @@ class LogListTest {
     @Test
     void testListLogs() {
         LogList logList = new LogList();
-        Meal meal = new Meal("Lunch", "500", "12-04-2025", "12:00 PM");
+        Meal meal = new Meal("Lunch", "500", "12 Jan 2025", "1200");
         logList.addLog(meal);
         logList.listLogs();
         assertEquals(1, logList.getSize());

@@ -260,7 +260,7 @@ public class AddWorkoutCommandTest {
     @Test
     void workoutLog_repsTooHigh_throwsHealthBudException() {
         LogList workoutLogs = new LogList();
-        String input = "add workout squats /r 101 /s 3 /d 25-12-2023 /w 50";
+        String input = "add workout squats /r 1001 /s 3 /d 25-12-2023 /w 50";
 
         assertThrows(HealthBudException.class, () ->
                 AddWorkoutParser.parse(workoutLogs, input));
