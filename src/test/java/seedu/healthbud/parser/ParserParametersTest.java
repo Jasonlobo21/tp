@@ -32,11 +32,11 @@ class ParserParametersTest {
 
     @Test
     void parseParameters_mealParams_expectCorrectMapping() {
-        String input = "/cal 300 /d 2024-04-01 /t 12:00";
+        String input = "/cal 300 /d 2024-04-01 /t 1200";
         Map<String, String> params = ParserParameters.parseParameters(input);
         assertEquals("300", params.get("cal"));
         assertEquals("2024-04-01", params.get("d"));
-        assertEquals("12:00", params.get("t"));
+        assertEquals("1200", params.get("t"));
         assertEquals(3, params.size());
     }
 
@@ -51,11 +51,11 @@ class ParserParametersTest {
 
     @Test
     void parseParameters_waterParams_expectCorrectMapping() {
-        String input = "/ml 500 /d 2024-04-01 /t 10:00";
+        String input = "/ml 500 /d 2024-04-01 /t 1000";
         Map<String, String> params = ParserParameters.parseParameters(input);
         assertEquals("500", params.get("ml"));
         assertEquals("2024-04-01", params.get("d"));
-        assertEquals("10:00", params.get("t"));
+        assertEquals("1000", params.get("t"));
         assertEquals(3, params.size());
     }
 
@@ -81,10 +81,10 @@ class ParserParametersTest {
 
     @Test
     void parseParameters_outOfOrder_expectCorrectMapping() {
-        String input = "/d 2024-04-01 /t 08:00 /cal 350";
+        String input = "/d 2024-04-01 /t 0800 /cal 350";
         Map<String, String> params = ParserParameters.parseParameters(input);
         assertEquals("2024-04-01", params.get("d"));
-        assertEquals("08:00", params.get("t"));
+        assertEquals("0800", params.get("t"));
         assertEquals("350", params.get("cal"));
         assertEquals(3, params.size());
     }
@@ -106,10 +106,10 @@ class ParserParametersTest {
 
     @Test
     void parseParameters_extraSpaces_expectTrimmedValues() {
-        String input = "/ml     1000     /t     09:00  ";
+        String input = "/ml     1000     /t     0900  ";
         Map<String, String> params = ParserParameters.parseParameters(input);
         assertEquals("1000", params.get("ml"));
-        assertEquals("09:00", params.get("t"));
+        assertEquals("0900", params.get("t"));
         assertEquals(2, params.size());
     }
 

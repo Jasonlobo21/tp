@@ -66,8 +66,8 @@ public class AddWorkoutParser {
         int set = Integer.parseInt(param.get("s"));
         Double weight = Double.parseDouble(param.get("w"));
 
-        if (rep <= 0 || rep > 100) {
-            throw new HealthBudException("Reps should be a positive integer between 1 and 100.");
+        if (rep <= 0 || rep > 1000) {
+            throw new HealthBudException("Reps should be a positive integer between 1 and 1000.");
         }
         if (set <= 0 || set > 100) {
             throw new HealthBudException("Sets should be a positive integer between 1 and 100.");
@@ -76,9 +76,9 @@ public class AddWorkoutParser {
             throw new HealthBudException("Weight should be greater than 0 and less than 1000kg.");
         }
 
-        String trimmedRep = param.get("r").replaceFirst("^0+(?![.$])", "");
-        String trimmedSet = param.get("s").replaceFirst("^0+(?![.$])", "");
-        String trimmedWeight = param.get("w").replaceFirst("^0+(?![.$])", "");
+        String trimmedRep = param.get("r").replaceFirst("^0+(?=\\d)", "");
+        String trimmedSet = param.get("s").replaceFirst("^0+(?=\\d)", "");
+        String trimmedWeight = param.get("w").replaceFirst("^0+(?=\\d)", "");
 
         String formattedDate = DateParser.formatDate(param.get("d"));
 

@@ -19,14 +19,14 @@ public class SumCommandTest {
     @Test
     public void sumCommand_calorieSum_correctSumReturned() throws InvalidDateFormatException, InvalidDateException {
         LogList mealLogList = new LogList();
-        mealLogList.addLog(new Meal("Eggs", "150", "03-04-2024", "08:00"));
-        mealLogList.addLog(new Meal("Chicken", "300", "03-04-2024", "12:00"));
-        mealLogList.addLog(new Meal("Soda", "100", "02-04-2024", "15:00"));
+        mealLogList.addLog(new Meal("Eggs", "150", "12 Jan 2025", "0800"));
+        mealLogList.addLog(new Meal("Chicken", "300", "12 Jan 2025", "1200"));
+        mealLogList.addLog(new Meal("Soda", "100", "11 Jan 2025", "1500"));
 
-        SumCommand command = new SumCommand(mealLogList, "cal", "03-04-2024");
+        SumCommand command = new SumCommand(mealLogList, "cal", "12 Jan 2025");
         command.execute();
 
-        String formattedDate = DateParser.formatDate("03-04-2024");
+        String formattedDate = DateParser.formatDate("12-01-2025");
         int expected = 450;
         int actual = mealLogList.getCaloriesSum(formattedDate);
         assertEquals(expected, actual);
@@ -37,11 +37,11 @@ public class SumCommandTest {
         LogList waterLogList = new LogList();
         String formattedDate = DateParser.formatDate("03-04-2024");
 
-        waterLogList.addLog(new Water("250", formattedDate, "09:00"));
-        waterLogList.addLog(new Water("500", formattedDate, "11:00"));
-        waterLogList.addLog(new Water("300", formattedDate, "18:00"));
+        waterLogList.addLog(new Water("250", formattedDate, "0900"));
+        waterLogList.addLog(new Water("500", formattedDate, "1100"));
+        waterLogList.addLog(new Water("300", formattedDate, "1800"));
 
-        SumCommand command = new SumCommand(waterLogList, "vol", "03-04-2024");
+        SumCommand command = new SumCommand(waterLogList, "vol", "12 Jan 2025");
         command.execute();
 
         int expected = 1050;
@@ -52,14 +52,14 @@ public class SumCommandTest {
     @Test
     public void sumCommand_cardioSum_correctCaloriesBurned() throws InvalidDateFormatException, InvalidDateException {
         LogList cardioLogList = new LogList();
-        cardioLogList.addLog(new Cardio("Run", "6", "2", "30", "03-04-2024"));
-        cardioLogList.addLog(new Cardio("Cycle", "4", "1", "60", "03-04-2024"));
-        cardioLogList.addLog(new Cardio("Walk", "2", "1", "60", "02-04-2024"));
+        cardioLogList.addLog(new Cardio("Run", "6", "2", "30", "12 Jan 2025"));
+        cardioLogList.addLog(new Cardio("Cycle", "4", "1", "60", "12 Jan 2025"));
+        cardioLogList.addLog(new Cardio("Walk", "2", "1", "60", "11 Jan 2025"));
 
-        SumCommand command = new SumCommand(cardioLogList, "cardio", "03-04-2024");
+        SumCommand command = new SumCommand(cardioLogList, "cardio", "12 Jan 2025");
         command.execute();
 
-        String formattedDate = DateParser.formatDate("03-04-2024");
+        String formattedDate = DateParser.formatDate("12-01-2025");
         int expected = 2400;
         int actual = cardioLogList.getCardioSum(formattedDate);
         assertEquals(expected, actual);
@@ -69,10 +69,10 @@ public class SumCommandTest {
     public void sumCommand_emptyLogList_returnsZero() throws InvalidDateFormatException, InvalidDateException {
         LogList mealLogList = new LogList();
 
-        SumCommand command = new SumCommand(mealLogList, "cal", "03-04-2024");
+        SumCommand command = new SumCommand(mealLogList, "cal", "12 Jan 2025");
         command.execute();
 
-        String formattedDate = DateParser.formatDate("03-04-2024");
+        String formattedDate = DateParser.formatDate("12-01-2025");
         int expected = 0;
         int actual = mealLogList.getCaloriesSum(formattedDate);
         assertEquals(expected, actual);
@@ -82,16 +82,16 @@ public class SumCommandTest {
     public void sumCommand_validCalInput_executesCorrectly()
             throws InvalidDateFormatException, InvalidDateException, InvalidSumException {
         LogList mealLogs = new LogList();
-        mealLogs.addLog(new Meal("Chicken Rice", "500", "03-04-2024", "12:00"));
-        mealLogs.addLog(new Meal("Soup", "200", "03-04-2024", "18:00"));
+        mealLogs.addLog(new Meal("Chicken Rice", "500", "12 Jan 2025", "1200"));
+        mealLogs.addLog(new Meal("Soup", "200", "12 Jan 2025", "1800"));
 
         LogList waterLogs = new LogList();
         LogList cardioLogs = new LogList();
 
-        SumCommand command = SumParser.parse("sum cal /d 03-04-2024", mealLogs, waterLogs, cardioLogs);
+        SumCommand command = SumParser.parse("sum cal /d 12-01-2025", mealLogs, waterLogs, cardioLogs);
         command.execute();
 
-        String formattedDate = DateParser.formatDate("03-04-2024");
+        String formattedDate = DateParser.formatDate("12-01-2025");
         assertEquals(700, mealLogs.getCaloriesSum(formattedDate));
     }
 
@@ -101,8 +101,8 @@ public class SumCommandTest {
         LogList waterLogs = new LogList();
 
         String formattedDate = DateParser.formatDate("03-04-2024");
-        waterLogs.addLog(new Water("250", formattedDate, "09:00"));
-        waterLogs.addLog(new Water("500", formattedDate, "14:00"));
+        waterLogs.addLog(new Water("250", formattedDate, "0900"));
+        waterLogs.addLog(new Water("500", formattedDate, "1400"));
 
         LogList mealLogs = new LogList();
         LogList cardioLogs = new LogList();
@@ -117,7 +117,7 @@ public class SumCommandTest {
     public void sumCommand_validCardioInput_executesCorrectly()
             throws InvalidDateFormatException, InvalidDateException, InvalidSumException {
         LogList cardioLogs = new LogList();
-        cardioLogs.addLog(new Cardio("Run", "5", "2", "60", "03-04-2024"));
+        cardioLogs.addLog(new Cardio("Run", "5", "2", "60", "12 Jan 2025"));
 
         LogList mealLogs = new LogList();
         LogList waterLogs = new LogList();
@@ -125,7 +125,7 @@ public class SumCommandTest {
         SumCommand command = SumParser.parse("sum cardio /d 03-04-2024", mealLogs, waterLogs, cardioLogs);
         command.execute();
 
-        String formattedDate = DateParser.formatDate("03-04-2024");
+        String formattedDate = DateParser.formatDate("12-01-2025");
         assertEquals(2000, cardioLogs.getCardioSum(formattedDate));
     }
 

@@ -65,11 +65,11 @@ class UiTest {
     @Test
     void testPrintListedFormat() {
         LogList logList = new LogList();
-        Meal meal = new Meal("Lunch", "500", "12-04-2025", "12:00 PM");
+        Meal meal = new Meal("Lunch", "500", "12 Jan 2025", "1200");
         logList.addLog(meal);
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
         Ui.printListedFormat(logList, 0);
-        assertTrue(outContent.toString().contains("1. Lunch (500 cal) on: 12-04-2025 at: 12:00 PM"));
+        assertTrue(outContent.toString().contains("1. Lunch (500 cal) on: 12 Jan 2025 at: 1200"));
     }
 }

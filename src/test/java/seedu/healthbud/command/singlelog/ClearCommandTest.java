@@ -24,12 +24,12 @@ class ClearCommandTest {
         System.setOut(new PrintStream(output));
 
         LogList mealLogs = new LogList();
-        String input = "add meal chicken rice /cal 550 /d 12-01-2025 /t 9pm";
-        String secondInput = "add meal tom yum /cal 650 /d 13-01-2025 /t 8pm";
+        String input = "add meal chicken rice /cal 550 /d 12-01-2025 /t 1900";
+        String secondInput = "add meal tom yum /cal 650 /d 13-01-2025 /t 1900";
 
 
-        AddMealCommand addCommand1 = new AddMealCommand(mealLogs,"chicken rice", "550", "12 Jan 2025", "9pm");
-        AddMealCommand addCommand2 = new AddMealCommand(mealLogs,"tom yum", "650", "13 Jan 2025", "8pm");
+        AddMealCommand addCommand1 = new AddMealCommand(mealLogs,"chicken rice", "550", "12 Jan 2025", "1900");
+        AddMealCommand addCommand2 = new AddMealCommand(mealLogs,"tom yum", "650", "13 Jan 2025", "1800");
 
         addCommand1.execute();
         addCommand2.execute();

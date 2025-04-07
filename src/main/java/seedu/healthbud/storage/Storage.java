@@ -221,11 +221,15 @@ public class Storage {
             throw new IllegalArgumentException("Invalid workout format");
         }
 
-        if (!parts[2].matches("\\d+") || parts[2].equals("0")) {
+        double weight = Double.parseDouble(parts[5]);
+        double reps = Double.parseDouble(parts[2]);
+        double sets = Double.parseDouble(parts[3]);
+
+        if (!parts[2].matches("\\d+") || parts[2].equals("0") || reps <= 0 || reps > 1000) {
             throw new IllegalArgumentException("Invalid reps format");
         }
 
-        if (!parts[3].matches("\\d+") || parts[3].equals("0")) {
+        if (!parts[3].matches("\\d+") || parts[3].equals("0") || sets <= 0 || sets > 100) {
             throw new IllegalArgumentException("Invalid sets format");
         }
 
@@ -233,7 +237,7 @@ public class Storage {
             throw new IllegalArgumentException("Invalid date format");
         }
 
-        if (!parts[5].matches("\\d+") || parts[5].equals("0")) {
+        if (!parts[5].matches("\\d+") || weight <= 0 || weight > 10000) {
             throw new IllegalArgumentException("Invalid weight format");
         }
         String trimmedReps = parts[2].replaceFirst("^0+(?![.$])", "");
@@ -276,9 +280,9 @@ public class Storage {
             throw new IllegalArgumentException("Invalid speed format");
         }
 
-        String trimmedDuration = parts[2].replaceFirst("^0+(?![.$])", "");
-        String trimmedIncline = parts[3].replaceFirst("^0+(?![.$])", "");
-        String trimmedSpeed = parts[4].replaceFirst("^0+(?![.$])", "");
+        String trimmedDuration = parts[2].replaceFirst("^0+(?=\\d)", "");
+        String trimmedIncline = parts[3].replaceFirst("^0+(?=\\d)", "");
+        String trimmedSpeed = parts[4].replaceFirst("^^0+(?=\\d)", "");
 
         if (!DateParser.isValidFormattedDate(parts[5])) {
             throw new IllegalArgumentException("Invalid date format");
@@ -300,7 +304,7 @@ public class Storage {
 
         double ml = Double.parseDouble(parts[1]);
 
-        if (!parts[1].matches("\\d+") || ml < 0 || ml > 10000) {
+        if (!parts[1].matches("\\d+") || ml <= 0 || ml > 10000) {
             throw new IllegalArgumentException("Invalid amount format");
         }
 
@@ -312,7 +316,7 @@ public class Storage {
             throw new IllegalArgumentException("Invalid time format");
         }
 
-        String trimmedAmount = parts[1].replaceFirst("^0+(?![.$])", "");
+        String trimmedAmount = parts[1].replaceFirst("^0+(?=\\d)", "");
 
         return new Water(trimmedAmount, parts[2], parts[3]);
     }
@@ -338,7 +342,7 @@ public class Storage {
             throw new IllegalArgumentException("Invalid date format");
         }
 
-        String trimmedWeight = parts[2].replaceFirst("^0+(?![.$])", "");
+        String trimmedWeight = parts[2].replaceFirst("^0+(?=\\d)", "");
 
         return new PersonalBest(parts[1], trimmedWeight, parts[3]);
     }

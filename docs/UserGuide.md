@@ -25,7 +25,8 @@ HealthBud!
 
 5. Your command terminal should show the following:
 
-![HealthBudsASCII.jpg](images/HealthBudsASCII.jpg)
+
+![CS2113](images/CS2113TpLogo.png)
 
 
 6. Type the command in the command terminal and press Enter to execute it.
@@ -56,25 +57,25 @@ Format: `help`
 Example of usage: `help`
 ```
 Here are the commands you can use:
- 1. help - Display this list of commands
- 2. bye - Exit the program
- 3. recommend <muscle_group> - Get workout recommendations
- 4. bmi /w <weight_in_kg> /h <height_in_m> - Calculate your BMI
- 5. add workout <exercise> /w <weight in kg> /r <reps> /s <sets> /d <date> - Add a workout log
- 6. add meal <meal_name> /cal <calories> /d <date> /t <time> - Add a meal log
- 7. add water /ml <volume> /d <date> /t <time> - Add a water log
- 8. add pb <exercise> /w <weight_in_kg> /d <date> - Record a personal best
- 9. add cardio <exercise> /s <speed> /i <incline> /t <duration> /d <date> - Add a cardio log
- 10. sum <cal|vol> /d <date> - Sum up the total calories/water for the day
- 11. clear <pb|meal|workout|water> - Clear the respective log
- 12. view goal - to view all goals
- 13. add goal /ml <waterGoals /cal <calorieGoals> /kg <weightGoals> - to edit personal goals
- 14. track goal /d <date> - to track personal goals
- 15. status change <cutting/bulking> - Update your cutting/bulking status
- 16. status report - View your current cutting/bulking progress
- 17. search <logType> /d <DD/MM/YYYY> OR search <logType> /k <keyword> - Search for logs
- 18. list <logType> - List all logs for that specific log type
- 19. delete <logType> <index> - Delete specific index in the log
+1. help - Display this list of commands
+2. bye - Exit the program
+3. recommend <muscle_group> - Get workout recommendations
+4. bmi /w <weight_in_kg> /h <height_in_m> - Calculate your BMI
+5. add workout <exercise> /w <weight in kg> /r <reps> /s <sets> /d <DD/MM/YYYY> - Add a workout log
+6. add meal <meal_name> /cal <calories> /d <DD/MM/YYYY> /t <HHmm> - Add a meal log
+7. add water /ml <volume> /d <DD/MM/YYYY> /t <HHmm> - Add a water log
+8. add pb <exercise> /w <weight_in_kg> /d <DD/MM/YYYY> - Record a personal best
+9. add cardio <exercise> /s <speed> /i <incline> /t <duration_in_min> /d <DD/MM/YYYY> - Add a cardio log
+10. sum <cal|vol> /d <DD/MM/YYYY> - Sum up the total calories/water for the day
+11. clear <pb|meal|workout|water> - Clear the respective log
+12. view goals - to view all goals
+13  add goal /ml <waterGoals /cal <calorieGoals> /kg <weightGoals> - to edit your personal goals
+14. track goal /d <DD/MM/YYYY> - to track personal goals
+15. status change <cutting/bulking> - Update your cutting/bulking status
+16. status report - View your current cutting/bulking progress
+17. search <logType> /d <DD/MM/YYYY> OR search <logType> /k <keyword> - Search for logs
+18. list <logType> - List all logs for that specific log type
+19. delete <logType> <index> - Delete specific index in the log
 ``` 
 
 ### 2. Bye
@@ -83,9 +84,12 @@ Exit the program
 Format: `bye`
 
 Example of usage: `bye`
+```
+Bye! Hope to see you again soon!
+```
 
 ### 3. Recommend
-Get workout recommendations
+Get workout recommendations for a specific muscle group.
 
 Format: `recommend <muscle_group>`
 
@@ -98,7 +102,11 @@ Here are some recommended biceps exercises:
 ``` 
 
 ### 4. BMI
-Calculate your BMI
+Calculate your BMI and tells user if they are underweight, normal weight, overweight or obese. <BR/>
+
+Range of accepted Weight: 1.5kg - 700kg
+
+Range of accepted Height: 0.2m - 3.0m
 
 Format: `bmi /w <weight_in_kg> /h <height_in_m>`
 
@@ -108,9 +116,15 @@ Your BMI is: 23.15, you are of normal weight.
 ``` 
 
 ### 5. Add workout
-Add a workout log
+Adds a workout log with the exercise name, weight lifted, number of reps, number of sets, and date.
 
-Format: `add workout <exercise> /w <weight in kg> /r <reps> /s <sets> /d <date>`
+Range of accepted weight: 1kg - 1000kg
+
+Range of accepted reps: 1 - 1000
+
+Range of accepted sets: 1 - 100
+
+Format: `add workout <exercise> /w <weight in kg> /r <reps> /s <sets> /d <DD/MM/YYYY>`
 
 Example of usage: `add workout bench /w 100 /r 8 /s 3 /d 02/02/2025`
 ```
@@ -120,9 +134,11 @@ Example of usage: `add workout bench /w 100 /r 8 /s 3 /d 02/02/2025`
 ``` 
 
 ### 6. Add meal
-Adds a meal log
+Adds a meal log with the meal name, calories, date, and time.
 
-Format: `add meal <meal_name> /cal <calories> /d <date> /t <time>`
+Range of accepted calories: 1 - 10000
+
+Format: `add meal <meal_name> /cal <calories> /d <DD/MM/YYYY> /t <HHmm>`
 
 Example of usage: `add meal chicken rice /cal 200 /d 02/02/2025 /t 1700`
 ```
@@ -132,9 +148,11 @@ Example of usage: `add meal chicken rice /cal 200 /d 02/02/2025 /t 1700`
 ``` 
 
 ### 7. Add water
-Adds a water log
+Adds a water log with the volume in ml, date, and time.
 
-Format: `add water /ml <volume> /d <date> /t <time>`
+Range of accepted volume: 1ml - 10000ml
+
+Format: `add water /ml <volume> /d <DD/MM/YYYY> /t <HHmm>`
 
 Example of usage: `add water /ml 1000 /d 02/02/2025 /t 1700`
 ```
@@ -144,9 +162,11 @@ Example of usage: `add water /ml 1000 /d 02/02/2025 /t 1700`
 ``` 
 
 ### 8. Add Personal Best
-Record a personal best
+Record a personal best log with the exercise name, weight lifted, and date.
 
-Format: `add pb <exercise> /w <weight_in_kg> /d <date>`
+Range of accepted weight: 1kg - 1000kg
+
+Format: `add pb <exercise> /w <weight_in_kg> /d <DD/MM/YYYY>`
 
 Example of usage: `add pb bench /w 120 /d 02/02/2025`
 ```
@@ -156,9 +176,15 @@ Example of usage: `add pb bench /w 120 /d 02/02/2025`
 ``` 
 
 ### 9. Add Cardio
-Add a cardio log
+Add a cardio log with the exercise name, speed, incline, duration, and date.
 
-Format: `add cardio <exercise> /s <speed> /i <incline> /t <duration> /d <date>`
+Range of accepted speed: 1 - 50
+
+Range of accepted incline: 0 - 100
+
+Range of accepted duration: 1 - 1440
+
+Format: `add cardio <exercise> /s <speed> /i <incline> /t <duration> /d <DD/MM/YYYY>`
 
 Example of usage: `add cardio run /s 8 /i 5 /t 30 /d 02/02/2025`
 ```
@@ -170,7 +196,7 @@ Example of usage: `add cardio run /s 8 /i 5 /t 30 /d 02/02/2025`
 ### 10. Sum
 Sum up the total calories/water for the day
 
-Format: `sum <cal|vol> /d <date>`
+Format: `sum <cal|vol> /d <DD/MM/YYYY>`
 
 Example of usage: `sum cal /d 02/02/2025`
 ``` 
@@ -219,7 +245,7 @@ Weight Goal: 70 kg
 ### 14. Track goal
 Track your current progress for goals
 
-Format: `track goal /d <date>`
+Format: `track goal /d <DD/MM/YYYY>`
 
 Example of usage: `track goals /d 02/02/2025`
 ``` 
@@ -242,7 +268,7 @@ Status updated to: bulking
 ### 16. Status report
 View your current cutting/bulking progress
 
-Format: `status report <date>`
+Format: `status report <DD/MM/YYYY>`
 
 Example of usage: `status report 26/12/2023`
 ``` 
@@ -255,7 +281,7 @@ Your intake does not align with your goal. Net calories: 500
 ### 17. Search Keywords / Date
 Search for logs by keywords or date
 
-Format: `search <loglist> /k <keyword>` OR `search <loglist> /d <date>`
+Format: `search <loglist> /k <keyword>` OR `search <loglist> /d <DD/MM/YYYY>`
 
 Example of usage: `search workout /k bench` OR `search meal /d 6/5/2025`(search for all meals on 5th June 2025)
 ``` 
@@ -289,25 +315,30 @@ bench 80 kg on (21 Mar 2025)
 Now you have 6 logs in the list.
 ```
 
+## Saving Data
+HealthBud saves your task data in a text file located at ./data/healthbud. 
+This file is automatically updated whenever you add, delete, or modify logs. 
+You can view or edit this file using any text editor.
+
 ## Command Summary
-| Command             |                                                             Format, Example                                                             |
-|---------------------|:---------------------------------------------------------------------------------------------------------------------------------------:|
-| ```help```          |                                                               ```help```                                                                |
-| ```bye```           |                                                                ```bye```                                                                |
-| ```recommend```     |                                        recommend [muscle_group] <br/> e.g ```recommend biceps```                                        |
-| ```bmi```           |                                 bmi /w [weight_in_kg] /h [height_in_m] <br/> e.g ```bmi /w 75 /h 1.8```                                 |
+| Command             | Format, Example                                                                                                                         |
+|---------------------|:----------------------------------------------------------------------------------------------------------------------------------------|
+| ```help```          | ```help```                                                                                                                              |
+| ```bye```           | ```bye```                                                                                                                               |
+| ```recommend```     | recommend [muscle_group] <br/> e.g ```recommend biceps```                                                                               |
+| ```bmi```           | bmi /w [weight_in_kg] /h [height_in_m] <br/> e.g ```bmi /w 75 /h 1.8```                                                                 |
 | ```add workout```   | add workout [exercise] /w [weight in kg] /r [reps] /s [sets] /d [date] <br/> e.g ```add workout bench /w 100 /r 8 /s 3 /d 02/02/2025``` |
-| ```add meal```      |      add meal [meal_name] /cal [calories] /d [date] /t [time] <br/> e.g ```add meal chicken rice /cal 200 /d 02/02/2025 /t 1700```      |
-| ```add water```     |                   add water /ml [volume] /d [date] /t [time] <br/> e.g ```add water /ml 1000 /d 02/02/2025 /t 1700```                   |
-| ```add pb```        |                     add pb [exercise] /w [weight_in_kg] /d [date] <br/> e.g ```add pb bench /w 120 /d 02/02/2025```                     |
-| ```add cardio```    |   add cardio [exercise] /s [speed] /i [incline] /t [duration] /d [date] <br/> e.g ```add cardio run /s 8 /i 5 /t 30 /d 02/02/2025```    |
-| ```sum```           |                                      sum [cal/vol] /d [date] <br/> e.g ```sum cal /d 02/02/2025```                                      |
-| ```clear```         |                                       clear [pb\|meal\|workout\|water] <br/> e.g ```clear meal```                                       |
-| ```view goal```     |                                                   view goal <br/> e.g ```view goal```                                                   |
-| ```add goal```      |           add goal /ml [waterGoals] /cal [calorieGoals] /kg [weightGoals] <br/> e.g ```add goal /ml 2000 /cal 3000 /kg 70```            |
-| ```track goal```    |                                      track goal /d [date] <br/> e.g ```track goal /d 02/02/2025```                                      |
-| ```status change``` |                                 status change [cutting\|bulking] <br/> e.g ```status change bulking```                                  |
-| ```status report``` |                                      status report [date] <br/> e.g ```status report 26/12/2023```                                      |
-| ```search```        |                   search [logType] /k [keyword] OR search [logType] /d [date] <br/> e.g ```search workout /k bench```                   |
-| ```list```          |                                                 list [logType] <br/> e.g ```list pb```                                                  |
-| ```delete```        |                                          delete [logType] [index] <br/> e.g ```delete pb 2```                                           |
+| ```add meal```      | add meal [meal_name] /cal [calories] /d [date] /t [time] <br/> e.g ```add meal chicken rice /cal 200 /d 02/02/2025 /t 1700```           |
+| ```add water```     | add water /ml [volume] /d [date] /t [time] <br/> e.g ```add water /ml 1000 /d 02/02/2025 /t 1700```                                     |
+| ```add pb```        | add pb [exercise] /w [weight_in_kg] /d [date] <br/> e.g ```add pb bench /w 120 /d 02/02/2025```                                         |
+| ```add cardio```    | add cardio [exercise] /s [speed] /i [incline] /t [duration] /d [date] <br/> e.g ```add cardio run /s 8 /i 5 /t 30 /d 02/02/2025```      |
+| ```sum```           | sum [cal/vol] /d [date] <br/> e.g ```sum cal /d 02/02/2025```                                                                           |
+| ```clear```         | clear [pb\|meal\|workout\|water] <br/> e.g ```clear meal```                                                                             |
+| ```view goal```     | view goal <br/> e.g ```view goal```                                                                                                     |
+| ```add goal```      | add goal /ml [waterGoals] /cal [calorieGoals] /kg [weightGoals] <br/> e.g ```add goal /ml 2000 /cal 3000 /kg 70```                      |
+| ```track goal```    | track goal /d [date] <br/> e.g ```track goal /d 02/02/2025```                                                                           |
+| ```status change``` | status change [cutting\|bulking] <br/> e.g ```status change bulking```                                                                  |
+| ```status report``` | status report [date] <br/> e.g ```status report 26/12/2023```                                                                           |
+| ```search```        | search [logType] /k [keyword] OR search [logType] /d [date] <br/> e.g ```search workout /k bench```                                     |
+| ```list```          | list [logType] <br/> e.g ```list pb```                                                                                                  |
+| ```delete```        | delete [logType] [index] <br/> e.g ```delete pb 2```                                                                                    |
