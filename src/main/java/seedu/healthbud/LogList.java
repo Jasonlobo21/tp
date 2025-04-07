@@ -185,7 +185,7 @@ public class LogList {
                 totalCalories += Integer.parseInt(meal.getCalories());
             }
         }
-        Ui.printMessage("Total calories consumed: " + totalCalories);
+        Ui.printMessage("Total calories consumed: " + totalCalories + " cal");
         return totalCalories;
     }
 
@@ -209,7 +209,7 @@ public class LogList {
                 totalCardio += (int) (((speed * 2) + (incline * 5)) * (duration / 60.0) * 100);
             }
         }
-        Ui.printMessage("Total calories burned: " + totalCardio);
+        Ui.printMessage("Total calories burned: " + totalCardio + " cal");
         return totalCardio;
     }
 
@@ -229,7 +229,7 @@ public class LogList {
                 totalWater += Integer.parseInt(water.getAmount());
             }
         }
-        Ui.printMessage("Total water consumed: " + totalWater + "ml");
+        Ui.printMessage("Total water consumed: " + totalWater + " ml");
         return totalWater;
     }
 }
