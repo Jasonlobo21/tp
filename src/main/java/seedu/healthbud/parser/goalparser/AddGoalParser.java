@@ -35,9 +35,20 @@ public class AddGoalParser {
         input = input.substring("add goal".length()).trim();
         Map<String, String> param = ParserParameters.parseParameters(input);
 
-        if (!param.containsKey("ml") && !param.containsKey("cal") && !param.containsKey("kg")) {
+        boolean hasValidKey = false;
+
+        for (String key : param.keySet()) {
+            if (key.equals("ml") || key.equals("cal") || key.equals("kg")) {
+                hasValidKey = true;
+            } else {
+                throw new InvalidGoalException();
+            }
+        }
+
+        if (!hasValidKey) {
             throw new InvalidGoalException();
         }
+
 
         String water = Goals.getInstance().getDailyWaterGoal();
         String cal = Goals.getInstance().getDailyCalorieGoal();
