@@ -4,7 +4,8 @@ import org.junit.jupiter.api.Test;
 import seedu.healthbud.exception.InvalidDateException;
 import seedu.healthbud.exception.InvalidDateFormatException;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class DateParserTest {
 
@@ -19,7 +20,7 @@ class DateParserTest {
     @Test
     void formatDate_dateExceedsMax_expectInvalidDateException() {
         assertThrows(InvalidDateException.class, () ->
-                DateParser.formatDate("01-05-2025")); // 1 May 2025
+                DateParser.formatDate("01-05-2025"));
     }
 
     @Test
@@ -59,23 +60,23 @@ class DateParserTest {
 
     @Test
     void isValidFormattedDate_validInput_expectTrue() {
-        assertTrue(DateParser.isValidFormattedDate("25 Dec 2023"));
+        assertEquals(true, DateParser.isValidFormattedDate("25 Dec 2023"));
     }
 
     @Test
     void isValidFormattedDate_invalidDate_expectFalse() {
-        assertFalse(DateParser.isValidFormattedDate("32 Jan 2023")); // Invalid day
+        assertEquals(false, DateParser.isValidFormattedDate("32 Jan 2023"));
     }
 
     @Test
     void isValidFormattedDate_gibberish_expectFalse() {
-        assertFalse(DateParser.isValidFormattedDate("random text"));
+        assertEquals(false, DateParser.isValidFormattedDate("random text"));
     }
 
     @Test
     void isValidFormattedDate_emptyOrNull_expectFalse() {
-        assertFalse(DateParser.isValidFormattedDate(""));
-        assertFalse(DateParser.isValidFormattedDate("   "));
-        assertFalse(DateParser.isValidFormattedDate(null));
+        assertEquals(false, DateParser.isValidFormattedDate(""));
+        assertEquals(false, DateParser.isValidFormattedDate("   "));
+        assertEquals(false, DateParser.isValidFormattedDate(null));
     }
 }
