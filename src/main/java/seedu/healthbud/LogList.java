@@ -209,7 +209,7 @@ public class LogList {
                 totalCardio += (int) (((speed * 2) + (incline * 5)) * (duration / 60.0) * 100);
             }
         }
-        Ui.printMessage("Total calories burned: " + totalCardio + " cal");
+        Ui.printMessage("Total estimated calories burned: " + totalCardio + " cal");
         return totalCardio;
     }
 

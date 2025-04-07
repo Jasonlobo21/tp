@@ -25,6 +25,7 @@ HealthBud!
 
 5. Your command terminal should show the following:
 
+
 ![CS2113](images/CS2113TpLogo.png)
 
 

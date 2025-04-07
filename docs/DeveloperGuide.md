@@ -282,42 +282,70 @@ Diagram Explanation <br>
 The user inputs a BMI command with weight and height. HealthBud delegates parsing to BMIParser, which validates data and returns a BMICommand. The command calculates BMI and displays the result.
 
 ## Goals
-### 1. Feature Overview
+### 1. User Input:
 
-The Goals feature allows users to set and view personalized health goals within the chatbot. These include:
-Daily Water Intake Goal (/w), Daily Calorie Intake Goal (/cal), Weight Goal (/kg)
+The user inputs the add goal command in the CLI, followed by optional parameters in any combination:
+  `add goal /w <water goal> /cal <calorie goal> /kg <weight goal>`. Each input is optional but at least ONE 
+must be included.
 
-### 2. Implementation Details
+### 2. Command Parsing:
 
-The add goal command is implemented in the main parser logic using a switch statement. Here's how it works:
+The AddGoalParser class processes the command string:
+- It first trims the "add goal" prefix.
+- Then it parses the rest of the input into parameters using ParserParameters.parseParameters(input).
+- It validates the input:
+  - If none of /ml, /cal, or /kg are provided, it throws InvalidGoalException.
+  - If a parameter is provided, it's converted to an integer and validated (e.g., water must be between 1 and 5000 ml).
+- If all validations pass, it constructs and returns an AddGoalCommand instance with the correct values.
 
-- When the user enters add goal /w [value] /cal [value] /kg [value], the input is parsed using AddGoalParser.
-- If any parameters are missing (e.g., no /cal provided), they are auto-filled using the current values stored 
-in the Goals singleton instance.
-- ParserParameters extracts the parameters into a key-value map.
-- AddGoalCommand is then created with the parsed values and executed.
-- If the values differ from the current ones, Goals.updateGoals() updates the stored values, and the goal is 
-logged to the goalLogs list.
-- Track function (called with track goal /d <date>) as well as the view function (called with view goal) are 
-supplementary functions provided to increase the accountability of the user by giving him easy access to previous and
-current stats.
+### 3. The `addGoalCommand` executes as follows: <br>
+Once the AddGoalCommand object is created, its execute() method is called:
+- It compares the user-provided values to the existing ones in the Goals singleton.
+- If any value differs, it updates the goals using goal.updateGoals(...).
+- The updated goal is printed via Ui.printMessage(...).
+- The updated goal is appended to the storage file using Storage.appendLogToFile(...). modular and separate from
+logging and UI logic
 
-Exceptions such as InvalidGoalException and InvalidDateFormatException are handled gracefully to ensure robustness.
+### 4. How the feature is implemented: <br>
+The implementation consists of three core components:
 
-### 3. Why This Design
-- Simplicity: A single command (add goal) handles all updates in one go, keeping the interaction concise 
-and easy to use.
-- Singleton Pattern: Using Goals.getInstance() ensures centralized access to the current user goals across the app.
-- Auto-Fill Support: Missing parameters default to current goal values, streamlining repeated updates.
-- Separation of Concerns: Goal parsing and updating are kept modular and separate from logging and UI logic
+1. Goals class: A singleton that holds goal-related state (water, calories, weight). It provides getter/setter methods
+and ensures only one instance exists across the program.
 
-### 4. Alternatives Considered
-- Command Pattern: We considered creating individual commands for each goal type (e.g., SetWaterGoalCommand), 
-but found a unified approach more straightforward for the CLI.
-- Interactive CLI Loop: Earlier versions used a conversational loop for goal editing, but it was replaced by a 
-single-line command to reduce complexity.
-- Persistent Storage: While current goal data is stored in-memory and appended to the log file, we plan to enhance 
-persistence for full session retention.
+2. AddGoalParser: Parses and validates user input. Handles defaulting of parameters.
+
+3. AddGoalCommand: Takes parsed values and updates the singleton Goals object if necessary.
+
+The feature relies on:
+
+- Defensive programming (assert, exceptions)
+- Centralized parsing via ParserParameters
+- Clean separation between parsing and execution
+### 5. Why It Is Implemented That Way:
+- Singleton Pattern in Goals ensures consistency in goal state across commands and modules.
+
+- Separation of concerns:
+
+  - AddGoalParser handles user input.
+
+  - AddGoalCommand handles goal logic and state change.
+
+- Input flexibility: Users can update one, two, or all three goals in one command.
+
+- Validation ensures robustness and prevents invalid states (e.g., negative water goal).
+
+- Reusability: The Goals class can be reused for other commands (e.g., tracking weekly progress).
+
+
+### 6. Alternatives Considered
+- Command String Parsing in Command Class: Originally considered parsing parameters inside AddGoalCommand, but 
+this would violate SRP (Single Responsibility Principle).
+
+- Using multiple goal objects: Instead of a singleton, multiple Goals instances could be created per day. This was 
+avoided to simplify the implementation and because the app tracks only one active goal set at a time.
+
+- Current approach chosen for clarity, maintainability, and to align with overall project architecture and 
+parser-command design pattern.
 
 ### 5. Sequence Diagrams
 ![GoalSD.png](Images/GoalSD.png)

@@ -347,5 +347,54 @@ public class Storage {
         return new PersonalBest(parts[1], trimmedWeight, parts[3]);
     }
 
-    //public static Log parseStringToGoalLog(String line) {}
+    public static Log parseStringToGoalLog(String line) {
+        // it looks slightly different cause for the goals not all 3 has to be present
+        // so for eg it could be storing like G | 200 |  | 65
+        String[] parts = line.split(" \\| ");
+        if (parts.length != 4) {
+            throw new IllegalArgumentException("Invalid goal format");
+        }
+
+        String waterGoal = parts[1].trim();
+        String calorieGoal = parts[2].trim();
+        String weightGoal = parts[3].trim();
+
+        if (!waterGoal.isEmpty()) {
+            if (!waterGoal.matches("\\d+")) {
+                throw new IllegalArgumentException("Invalid water goal format");
+            }
+            double water = Double.parseDouble(waterGoal);
+            if (water <= 0 || water > 5000) {
+                throw new IllegalArgumentException("Water goal must be between 1 and 5000");
+            }
+            waterGoal = waterGoal.replaceFirst("^0+(?![.$])", "");
+            Goals.getInstance().setDailyWaterGoal(waterGoal);
+        }
+
+        if (!calorieGoal.isEmpty()) {
+            if (!calorieGoal.matches("\\d+")) {
+                throw new IllegalArgumentException("Invalid calorie goal format");
+            }
+            double cal = Double.parseDouble(calorieGoal);
+            if (cal <= 0 || cal > 20000) {
+                throw new IllegalArgumentException("Calorie goal must be between 1 and 20000");
+            }
+            calorieGoal = calorieGoal.replaceFirst("^0+(?![.$])", "");
+            Goals.getInstance().setDailyCalorieGoal(calorieGoal);
+        }
+
+        if (!weightGoal.isEmpty()) {
+            if (!weightGoal.matches("\\d+")) {
+                throw new IllegalArgumentException("Invalid weight goal format");
+            }
+            double weight = Double.parseDouble(weightGoal);
+            if (weight <= 0 || weight > 400) {
+                throw new IllegalArgumentException("Weight goal must be between 1 and 400");
+            }
+            weightGoal = weightGoal.replaceFirst("^0+(?![.$])", "");
+            Goals.getInstance().setWeightGoal(weightGoal);
+        }
+
+        return Goals.getInstance();
+    }
 }
