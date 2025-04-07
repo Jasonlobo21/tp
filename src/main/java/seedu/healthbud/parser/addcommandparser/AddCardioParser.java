@@ -31,7 +31,7 @@ public class AddCardioParser {
      *                                or parameter values are not valid numbers.
      * @throws InvalidDateFormatException if the provided date cannot be parsed.
      */
-    //@@author Travissssz
+
     public static AddCardioCommand parse(LogList cardioLogs, String input)
             throws InvalidCardioException, InvalidDateException, InvalidDateFormatException, HealthBudException {
 
