@@ -5,7 +5,7 @@ It supports logging of meals, workouts, water intake, cardio sessions, and perso
 intelligent features such as progress status and workout recommendations.
 
 # Summary of Contributions
-Implemented all the Add commands and their respective parser classes. Also implemented the Search and BMI Command and their parser classes. Also implemented a Time parser to make sure the time is in the correct format.
+Implemented all the Add commands and their respective parser classes. Also implemented the Search and BMI Command and their parser classes. Also implemented a Time parser to make sure the time is in the correct format. Made sure the inputs for the ass command, search command and bmi command was valid and made sense.
 ## Code contributed
 [Team Dashboard](https://nus-cs2113-ay2425s2.github.io/tp-dashboard/#/widget/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2025-02-21&chartGroupIndex=40&chartIndex=0)
 
