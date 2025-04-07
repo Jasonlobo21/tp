@@ -16,6 +16,7 @@ class Storage {
     +parseStringToCardioLog(line: String) : Log
     +parseStringToWaterLog(line: String) : Log
     +parseStringToPersonalBestLog(line: String) : Log
+    +parseStringToGoalLog(line: String) : Log
 }
 
 class LogList {

@@ -238,7 +238,7 @@ class AddGoalCommandTest {
 
     @Test
     public void addGoal_weightExceedsMax_expectHealthBudExceptionException() {
-        String input = "add goal /ml 2000 /cal 1500 /kg 1000";
+        String input = "add goal /ml 2000 /cal 1500 /kg 1001";
         assertThrows(HealthBudException.class, () -> AddGoalParser.parse(goalLogs, input));
     }
 
