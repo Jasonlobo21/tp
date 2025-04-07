@@ -1,4 +1,4 @@
-package seedu.healthbud.parser;
+package seedu.healthbud.parser.goalparser;
 
 import seedu.healthbud.LogList;
 import seedu.healthbud.command.multilog.TrackGoalCommand;
@@ -12,7 +12,7 @@ import seedu.healthbud.exception.InvalidTrackException;
  * It checks for correct formatting and extracts the date parameter.
  */
 public class TrackGoalParser {
-
+    //@@author keanneeee
     /**
      * Parses the given input string and creates a TrackGoalCommand.
      *
@@ -34,7 +34,7 @@ public class TrackGoalParser {
         assert input != null : "Input should not be null";
         String[] parts = input.trim().split(" ");
 
-        if (parts.length < 4 || !parts[2].equals("/d")) {
+        if (!parts[1].equals("goal") || parts.length < 4 || !parts[2].equals("/d")) {
             throw new InvalidTrackException();
         }
 

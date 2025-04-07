@@ -12,6 +12,7 @@ import seedu.healthbud.exception.InvalidMealException;
 import seedu.healthbud.exception.InvalidPersonalBestException;
 import seedu.healthbud.exception.InvalidWaterException;
 import seedu.healthbud.exception.InvalidWorkoutException;
+import seedu.healthbud.parser.goalparser.AddGoalParser;
 
 /**
  * AddParser is responsible for parsing the input command for adding logs.

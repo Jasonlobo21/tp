@@ -8,6 +8,6 @@ public class InvalidMLException extends RuntimeException {
      * Constructs an InvalidMLException with a default error message.
      */
     public InvalidMLException() {
-        super("Invalid water volume inputted, please input a valid number (e.g., 250, 1000, 1250)");
+        super("Invalid water volume inputted, please input a valid number (e.g. 250, 1000, 1250)");
     }
 }

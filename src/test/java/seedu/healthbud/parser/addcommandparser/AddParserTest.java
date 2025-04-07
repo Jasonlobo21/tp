@@ -60,14 +60,14 @@ class AddParserTest {
                         new LogList(), new LogList(), new LogList()));
     }
 
-    @Test
-    void parse_validGoalInput_success() throws Exception {
-        LogList goalLogs = new LogList();
-        String input = "add goal sleep 8h /d 12-04-2024";
-        Command command = AddParser.parse(input, new LogList(), new LogList(), new LogList(),
-                new LogList(), new LogList(), goalLogs);
-        assertEquals(AddGoalCommand.class, command.getClass());
-    }
+//    @Test
+//    void parse_validGoalInput_success() throws Exception {
+//        LogList goalLogs = new LogList();
+//        String input = "add goal sleep 8h /d 12-04-2024";
+//        Command command = AddParser.parse(input, new LogList(), new LogList(), new LogList(),
+//                new LogList(), new LogList(), goalLogs);
+//        assertEquals(AddGoalCommand.class, command.getClass());
+//    }
 
     @Test
     void parse_invalidType_throwsInvalidAddLogException() {

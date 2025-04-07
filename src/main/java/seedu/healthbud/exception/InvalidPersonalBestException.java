@@ -9,6 +9,6 @@ public class InvalidPersonalBestException extends RuntimeException {
      * Constructs an InvalidPersonalBestException with a default error message.
      */
     public InvalidPersonalBestException() {
-        super("Invalid pb log command (e.g. add pb <exercise> /w <weight_in_kg> /d <DD/MM/YYYY>)");
+        super("Invalid personal best log command (e.g. add pb <exercise> /w <weight_in_kg> /d <DD/MM/YYYY>)");
     }
 }

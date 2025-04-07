@@ -1,8 +1,7 @@
-package seedu.healthbud.parser;
+package seedu.healthbud.parser.goalparser;
 
 import seedu.healthbud.LogList;
 import seedu.healthbud.command.singlelog.ViewGoalCommand;
-import seedu.healthbud.log.Goals;
 import seedu.healthbud.exception.InvalidViewException;
 
 
@@ -17,8 +16,7 @@ import seedu.healthbud.exception.InvalidViewException;
  * Note: The input parameter is currently not used for any parsing.
  */
 public class ViewGoalParser {
-
-    static Goals goal = Goals.getInstance();
+    //@@author keanneeee
     /**
      * Parses the input and displays the current goals along with a prompt to add a new goal.
      *
@@ -34,7 +32,7 @@ public class ViewGoalParser {
             throw new InvalidViewException();
         }
 
-        if (parts[1].equals("goals")||parts[1].equals("goal")) {
+        if (parts[1].equals("goal")) {
             return new ViewGoalCommand(goalLogs);
         }
         throw new InvalidViewException();

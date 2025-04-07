@@ -74,7 +74,7 @@ public class Ui {
                 + "10. sum <cal|vol> /d <DD/MM/YYYY> - Sum up the total calories/water for the day" + NEW_LINE
                 + "11. clear <pb|meal|workout|water> - Clear the respective log" + NEW_LINE
                 + "12. view goals - to view all goals" + NEW_LINE
-                + "13  add goal /w <waterGoals /cal <calorieGoals> /kg <weightGoals> - to edit your personal goals"
+                + "13  add goal /ml <waterGoals /cal <calorieGoals> /kg <weightGoals> - to edit your personal goals"
                 + NEW_LINE
                 + "14. track goal /d <DD/MM/YYYY> - to track personal goals" + NEW_LINE
                 + "15. status change <cutting/bulking> - Update your cutting/bulking status." + NEW_LINE

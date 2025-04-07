@@ -4,6 +4,8 @@ import seedu.healthbud.LogList;
 import seedu.healthbud.Ui;
 import seedu.healthbud.command.Command;
 import seedu.healthbud.parser.addcommandparser.AddParser;
+import seedu.healthbud.parser.goalparser.TrackGoalParser;
+import seedu.healthbud.parser.goalparser.ViewGoalParser;
 
 /**
  * ParserManager handles the parsing of user input and dispatches the corresponding commands.
@@ -76,7 +78,7 @@ public class ParserManager {
                 break;
             case "view":
                 command = ViewGoalParser.parse(input, goalLogs);
-                return true;
+                break;
             case "track":
                 command = TrackGoalParser.parse(input, goalLogs, pbLogs, mealLogs, workoutLogs, waterLogs, cardioLogs);
                 break;

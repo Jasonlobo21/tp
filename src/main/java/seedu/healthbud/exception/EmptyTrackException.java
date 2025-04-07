@@ -2,6 +2,6 @@ package seedu.healthbud.exception;
 
 public class EmptyTrackException extends RuntimeException {
     public EmptyTrackException() {
-        super("No Logs for that day! Please try another day or add a log");
+        super("Goals has not been set for the day, please enter another day or add goals.");
     }
 }

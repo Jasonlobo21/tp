@@ -4,11 +4,10 @@ import org.junit.jupiter.api.Test;
 import seedu.healthbud.LogList;
 import seedu.healthbud.command.singlelog.AddMealCommand;
 import seedu.healthbud.command.singlelog.AddWaterCommand;
-//import seedu.healthbud.exception.HealthBudException;
 import seedu.healthbud.exception.InvalidDateFormatException;
 import seedu.healthbud.exception.InvalidTrackException;
-import seedu.healthbud.parser.TrackGoalParser;
-import seedu.healthbud.parser.ViewGoalParser;
+import seedu.healthbud.parser.goalparser.TrackGoalParser;
+import seedu.healthbud.parser.goalparser.ViewGoalParser;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -16,11 +15,10 @@ import java.io.PrintStream;
 import static seedu.healthbud.HealthBud.goalLogs;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-//import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 class TrackGoalCommandTest {
-
+    //@@author keanneeee
     private String getCommandOutput(TrackGoalCommand command) throws InvalidDateFormatException {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
@@ -118,23 +116,6 @@ class TrackGoalCommandTest {
         assertThrows(AssertionError.class, () ->
                 new TrackGoalCommand(null, empty, empty, empty, empty, empty, empty));
     }
-
-    //    @Test
-    //    void viewGoalsParser_validInput_printsGoalMessage() throws HealthBudException {
-    //        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-    //        PrintStream originalOut = System.out;
-    //        System.setOut(new PrintStream(outContent));
-    //
-    //        ViewGoalParser.parse("view goals", goalLogs);
-    //
-    //        System.setOut(originalOut);
-    //        String output = outContent.toString().trim();
-    //
-    //        assertTrue(output.contains("Here are your current goals:"),
-    //                "Should print welcome message with current goals");
-    //        assertTrue(output.contains("What goal would you like to add today?"),
-    //                "Should prompt the user to add a goal");
-    //    }
 
     @Test
     void viewGoalsParser_nullInput_throwsAssertionError() {
