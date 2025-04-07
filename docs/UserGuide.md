@@ -25,7 +25,7 @@ HealthBud!
 
 5. Your command terminal should show the following:
 
-<img src="images/CS2113TpLogo.png.jpg" alt="CS2113TpLogo" width="250"/>
+![HealthBudsASCII.jpg](images/HealthBudsASCII.jpg)
 
 
 6. Type the command in the command terminal and press Enter to execute it.

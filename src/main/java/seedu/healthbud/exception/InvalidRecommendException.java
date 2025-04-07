@@ -9,6 +9,6 @@ public class InvalidRecommendException extends Exception {
      * Constructs an InvalidRecommendException with a default error message.
      */
     public InvalidRecommendException() {
-        super("Invalid recommend command (e.g. recommend <chest/back/biceps/triceps/legs/shoulders/abs>)");
+        super("Invalid recommend command (e.g. recommend <chest/back/biceps/triceps/legs/shoulders/abs/help>)");
     }
 }
