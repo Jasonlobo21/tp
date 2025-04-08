@@ -22,8 +22,11 @@ BMI Sequence Diagram and Storage Class Diagram. I also talked about the BMI comm
 
 ## Contributions to team-based tasks
 revamped our add commands by splitting them into their logic and parsing respectively. This made it easier to read and understand. I also actively participated in discussing how we should design other functions in the TP and also gave key inputs on how to structure the entire project to make it more OOP. Incorporated the Time parser into the add commands, and also implemented limits and checks to the various inputs in the TP to make sure all inputs make sense and inputs that do not make sense are caught by exceptions. I also did the test cases for BMI command, List Command and Search Command. After the Mock Pe I helped with fixing many of the bugs that were raised.
+Did many of the debugs after Mock PE, such as setting limits to inputs, editing DateParser so that inputs are valid and assisting my groupmate, Jason to enhance our TP, such that if users were to edit our text file, exceptions would be thrown if got invalid inputs.
 
 ## Review/mentoring contributions
+- https://github.com/AY2425S2-CS2113-W13-4/tp/pull/240
+- https://github.com/AY2425S2-CS2113-W13-4/tp/pull/233
 - https://github.com/AY2425S2-CS2113-W13-4/tp/pull/225
 - https://github.com/AY2425S2-CS2113-W13-4/tp/pull/224
 - https://github.com/AY2425S2-CS2113-W13-4/tp/pull/222
