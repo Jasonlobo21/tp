@@ -75,11 +75,11 @@ public class AddGoalParser {
 
             if (param.containsKey("kg")) {
                 String raw = param.get("kg");
-                int weightInt = Integer.parseInt(raw);
-                if (weightInt <= 0 || weightInt > 700) {
+                double weightDouble = Double.parseDouble(raw);
+                if (weightDouble <= 0 || weightDouble > 700) {
                     throw new HealthBudException("Weight goal must be between 1 and 700 kg.");
                 }
-                weight = String.valueOf(weightInt);
+                weight = String.valueOf(weightDouble);
             }
             return new AddGoalCommand(goalLogs, water, cal, weight);
         } catch (NumberFormatException e) {

@@ -108,7 +108,7 @@ class AddGoalCommandTest {
 
         assertEquals("3000", goals.getDailyWaterGoal());
         assertEquals("2500", goals.getDailyCalorieGoal());
-        assertEquals("80", goals.getWeightGoal());
+        assertEquals("80.0", goals.getWeightGoal());
     }
 
     @Test
@@ -122,7 +122,7 @@ class AddGoalCommandTest {
 
         assertEquals("2000", goals.getDailyWaterGoal());
         assertEquals("1500", goals.getDailyCalorieGoal()); // default
-        assertEquals("60", goals.getWeightGoal());
+        assertEquals("60.0", goals.getWeightGoal());
     }
 
     @Test
@@ -136,7 +136,7 @@ class AddGoalCommandTest {
 
         assertEquals("3000", goals.getDailyWaterGoal()); // default
         assertEquals("1800", goals.getDailyCalorieGoal());
-        assertEquals("70", goals.getWeightGoal());
+        assertEquals("70.0", goals.getWeightGoal());
     }
 
     @Test
@@ -215,7 +215,7 @@ class AddGoalCommandTest {
 
         assertEquals("2500", goals.getDailyWaterGoal());
         assertEquals("2200", goals.getDailyCalorieGoal());
-        assertEquals("68", goals.getWeightGoal());
+        assertEquals("68.0", goals.getWeightGoal());
     }
 
     @Test
