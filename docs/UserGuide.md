@@ -68,7 +68,7 @@ Here are the commands you can use:
 7. add water /ml <volume> /d <DD/MM/YYYY> /t <HHmm> - Add a water log
 8. add pb <exercise> /w <weight_in_kg> /d <DD/MM/YYYY> - Record a personal best
 9. add cardio <exercise> /s <speed> /i <incline> /t <duration_in_min> /d <DD/MM/YYYY> - Add a cardio log
-10. sum <cal|vol> /d <DD/MM/YYYY> - Sum up the total calories/water for the day
+10. sum <cal|vol|cardio> /d <DD/MM/YYYY> - Sum up the total calories/water for the day
 11. clear <pb|meal|workout|water> - Clear the respective log
 12. view goals - to view all goals
 13  add goal /ml <waterGoals /cal <calorieGoals> /kg <weightGoals> - to edit your personal goals
@@ -353,7 +353,7 @@ You can view or edit this file using any text editor.
 | ```add water```     | add water /ml [volume] /d [date] /t [time] <br/> e.g ```add water /ml 1000 /d 02/02/2025 /t 1700```                                     |
 | ```add pb```        | add pb [exercise] /w [weight_in_kg] /d [date] <br/> e.g ```add pb bench /w 120 /d 02/02/2025```                                         |
 | ```add cardio```    | add cardio [exercise] /s [speed] /i [incline] /t [duration] /d [date] <br/> e.g ```add cardio run /s 8 /i 5 /t 30 /d 02/02/2025```      |
-| ```sum```           | sum [cal/vol] /d [date] <br/> e.g ```sum cal /d 02/02/2025```                                                                           |
+| ```sum```           | sum [cal/vol/cardio] /d [date] <br/> e.g ```sum cal /d 02/02/2025```                                                                    |
 | ```clear```         | clear [pb\|meal\|workout\|water] <br/> e.g ```clear meal```                                                                             |
 | ```view goal```     | view goal <br/> e.g ```view goal```                                                                                                     |
 | ```add goal```      | add goal /ml [waterGoals] /cal [calorieGoals] /kg [weightGoals] <br/> e.g ```add goal /ml 2000 /cal 3000 /kg 70```                      |
