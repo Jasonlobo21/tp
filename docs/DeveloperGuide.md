@@ -348,7 +348,7 @@ avoided to simplify the implementation and because the app tracks only one activ
 parser-command design pattern.
 
 ### 5. Sequence Diagrams
-![GoalSD.png](Images/GoalSD.png)
+(![GoalSD.png](Images/GoalSD.png))
 ### 6. Future Improvements
 - Input Validation: Use regex or stricter parsing to ensure only valid integers are accepted.
 - Persistent Goal Storage: Store and reload goals from file or database to retain state between sessions.
