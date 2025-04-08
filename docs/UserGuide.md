@@ -106,9 +106,9 @@ Here are some recommended biceps exercises:
 ### 4. BMI
 Calculate your BMI and tells user if they are underweight, normal weight, overweight or obese. <BR/>
 
-Range of accepted Weight: 1.5kg - 700kg
+Range of accepted Weight: 1.5kg - 700kg (takes in decimal values)
 
-Range of accepted Height: 0.2m - 3.0m
+Range of accepted Height: 0.2m - 3.0m (takes in decimal values)
 
 Format: `bmi /w <weight_in_kg> /h <height_in_m>`
 
@@ -120,7 +120,7 @@ Your BMI is: 23.15, you are of normal weight.
 ### 5. Add workout
 Adds a workout log with the exercise name, weight lifted, number of reps, number of sets, and date.
 
-Range of accepted weight: 1kg - 1000kg
+Range of accepted weight: 1kg - 1000kg (takes in decimal values)
 
 Range of accepted reps: 1 - 1000
 
@@ -166,7 +166,7 @@ Example of usage: `add water /ml 1000 /d 02/02/2025 /t 1700`
 ### 8. Add Personal Best
 Record a personal best log with the exercise name, weight lifted, and date.
 
-Range of accepted weight: 1kg - 1000kg
+Range of accepted weight: 1kg - 1000kg (takes in decimal values)
 
 Format: `add pb <exercise> /w <weight_in_kg> /d <DD/MM/YYYY>`
 
@@ -181,16 +181,16 @@ Example of usage: `add pb bench /w 120 /d 02/02/2025`
 Add a cardio log with the exercise name, speed, incline, duration, and date.
 
 Speed
-- Range: 1 - 50 
+- Range: 1 - 50 (takes in decimal values)
 - Units: kilometers per hour (km/h)
 
 Incline
-- Range: 0 - 15 
+- Range: 0 - 15 (takes in decimal values)
 - Units: percentage
 - Description: Indicates the incline grade, where a 1% incline represents a 1-unit rise in height for every 100 units of horizontal distance.
 
 Duration
-- Range: 1 - 1440 
+- Range: 1 - 1440 (takes in decimal values)
 - Units: minutes
 
 Format: `add cardio <exercise> /s <speed> /i <incline> /t <duration> /d <DD/MM/YYYY>`

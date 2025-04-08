@@ -201,9 +201,9 @@ public class LogList {
         for (Log log : logs) {
             if (log instanceof Cardio && DateParser.formatDate(log.getDate()).equals(date)) {
                 Cardio cardio = (Cardio) log;
-                int speed = Integer.parseInt(cardio.getSpeed());
-                int duration = Integer.parseInt(cardio.getDuration());
-                int incline = Integer.parseInt(cardio.getIncline());
+                double speed = Double.parseDouble(cardio.getSpeed());
+                double duration = Double.parseDouble(cardio.getDuration());
+                double incline = Double.parseDouble(cardio.getIncline());
 
                 // Calories = ((speed * 2) + (incline * 5)) * (duration / 60.0) * 100
                 totalCardio += (int) (((speed * 2) + (incline * 5)) * (duration / 60.0) * 100);

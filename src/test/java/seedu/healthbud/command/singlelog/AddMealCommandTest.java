@@ -43,7 +43,7 @@ class AddMealCommandTest {
         LogList mealLogs = new LogList();
         String input = "add meal chicken rice /cal high /d 12-01-2025 /t 2100";
 
-        assertThrows(InvalidMealException.class, () -> AddMealParser.parse(mealLogs, input));
+        assertThrows(HealthBudException.class, () -> AddMealParser.parse(mealLogs, input));
     }
 
     @Test
@@ -164,7 +164,7 @@ class AddMealCommandTest {
     void mealLog_caloriesNegative_expectHealthBudException() {
         LogList mealLogs = new LogList();
         String input = "add meal fries /cal -100 /d 12-01-2025 /t 2100";
-        assertThrows(InvalidMealException.class, () -> AddMealParser.parse(mealLogs, input));
+        assertThrows(HealthBudException.class, () -> AddMealParser.parse(mealLogs, input));
     }
 
     @Test

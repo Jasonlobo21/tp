@@ -43,7 +43,7 @@ public class AddCardioParser {
 
         input = input.replaceFirst("add cardio", "").trim();
 
-        String name = input.substring(0, input.indexOf("/")).trim();
+        String name = input.substring(0, input.indexOf("/")).trim().replaceAll("\\s+", " ");
 
         if (input.isEmpty()) {
             throw new InvalidCardioException();

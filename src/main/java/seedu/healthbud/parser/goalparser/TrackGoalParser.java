@@ -6,6 +6,7 @@ import seedu.healthbud.exception.EmptyTrackException;
 import seedu.healthbud.exception.InvalidDateException;
 import seedu.healthbud.exception.InvalidDateFormatException;
 import seedu.healthbud.exception.InvalidTrackException;
+import seedu.healthbud.parser.DateParser;
 
 /**
  * TrackGoalParser is responsible for parsing the input command to create a TrackGoalCommand.
@@ -38,13 +39,12 @@ public class TrackGoalParser {
             throw new InvalidTrackException();
         }
 
-        String date = parts[3];
+        String rawDate = parts[3];
 
-        try {
-            return new TrackGoalCommand(date, goalLogs, pbLogs, mealLogs, workoutLogs, waterLogs, cardioLogs);
-        } catch (EmptyTrackException e) {
-            throw new EmptyTrackException();
-        }
+        String formattedDate = DateParser.formatDate(rawDate);
+
+        return new TrackGoalCommand(formattedDate, goalLogs, pbLogs,
+                mealLogs, workoutLogs, waterLogs, cardioLogs);
     }
 }
 

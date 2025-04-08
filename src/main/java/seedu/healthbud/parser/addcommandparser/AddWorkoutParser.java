@@ -41,7 +41,7 @@ public class AddWorkoutParser {
 
         input = input.substring("add workout".length()).trim();
 
-        String name = input.substring(0, input.indexOf("/")).trim();
+        String name = input.substring(0, input.indexOf("/")).trim().replaceAll("\\s+", " ");
 
         Map<String, String> param = ParserParameters.parseParameters(input.substring(name.length()));
         Set<String> allowedKeys = new HashSet<>(Arrays.asList("r", "d", "s", "w"));
@@ -57,9 +57,11 @@ public class AddWorkoutParser {
             throw new InvalidWorkoutException();
         }
 
-        if (!param.get("r").matches("^-?\\d+$") || !param.get("s").matches("^-?\\d+$") ||
-                !param.get("w").matches("^-?\\d+(\\.\\d+)?$")) {
-            throw new InvalidWorkoutException();
+        if (!param.get("r").matches("^-?\\d+$") || !param.get("s").matches("^-?\\d+$") ) {
+            throw new HealthBudException("Reps and sets should be positive integers.");
+        }
+        if (!param.get("w").matches("^-?\\d+(\\.\\d+)?$")) {
+            throw new HealthBudException("Weight must be a positive number.");
         }
 
         int rep = Integer.parseInt(param.get("r"));

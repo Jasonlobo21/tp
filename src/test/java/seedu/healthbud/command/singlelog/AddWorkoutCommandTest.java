@@ -82,7 +82,7 @@ public class AddWorkoutCommandTest {
         LogList workoutLogs = new LogList();
         String input = "add workout squats /r ten /s 3 /d 25-12-2023 /w 50";
 
-        assertThrows(InvalidWorkoutException.class, () ->
+        assertThrows(HealthBudException.class, () ->
                 AddWorkoutParser.parse(workoutLogs, input));
     }
 
@@ -91,7 +91,7 @@ public class AddWorkoutCommandTest {
         LogList workoutLogs = new LogList();
         String input = "add workout squats /r 10 /s three /d 25-12-2023 /w 50";
 
-        assertThrows(InvalidWorkoutException.class, () ->
+        assertThrows(HealthBudException.class, () ->
                 AddWorkoutParser.parse(workoutLogs, input));
     }
 
@@ -100,7 +100,7 @@ public class AddWorkoutCommandTest {
         LogList workoutLogs = new LogList();
         String input = "add workout squats /r 10 /s 3 /d 25-12-2023 /w fifty";
 
-        assertThrows(InvalidWorkoutException.class, () ->
+        assertThrows(HealthBudException.class, () ->
                 AddWorkoutParser.parse(workoutLogs, input));
     }
 
