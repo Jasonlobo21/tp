@@ -123,7 +123,7 @@ This feature is handled by the AddCommand hierarchy, where each log type has a d
 4. Centralized Storage: LogList manages all persistence (single source of truth)
 
 ### 8. Alternatives considered: <br>
-1. Inheritance-Based Logs was considered but it causes deep class hierarchy for different log types. Which Makes file storage and retrieval harder. 
+1. Inheritance-Based Logs was considered, but it causes deep class hierarchy for different log types. Which Makes file storage and retrieval harder. 
 
 3. UI Feedback:
 - Confirms successful addition (e.g., "Added: Benchpress (3 sets of 50 kg for 10 reps) on 25 Dec 2023").
@@ -242,15 +242,13 @@ The command calculates the user's Body Mass Index (BMI) based on the provided we
 - **BMIParser** handles parsing and validation of the user input.
 - It checks that:
    - The input is not null or empty.
-   - The input contains a slash (`/`) separating weight and height.
+   - The input contains a slash (`/w` and `/h`) separating weight and height.
    - Both weight and height can be parsed into valid numeric values.
 - If any of these checks fail, an **InvalidBMIException** is thrown, prompting the user to correct their input format.
 
 ### 3. The `BMICommand` Executes as Follows:
 - Once constructed with the valid weight and height, **BMICommand** calculates the BMI using the formula:
-  \[
-  \text{BMI} = \frac{\text{weight}}{(\text{height} \times \text{height})}
-  \]
+- ` BMI = weight / (height * height) `
 - The command then checks the BMI value and calls **Ui.printMessage()** with a message indicating whether the user is:
    - Underweight (BMI < 18.5)
    - Normal weight (18.5 ≤ BMI < 25)
@@ -370,19 +368,19 @@ and personal bests. Unlike complex mobile apps, it runs offline and keeps the da
 
 ## User Stories
 
-|Version| As a ...           | I want to ...                                         | So that I can ...                                        |
-|--------|-------------------|--------------------------------------------------------|-----------------------------------------------------------|
-|v1.0   | new user           | see usage instructions                                | refer to them when I forget how to use the app           |
-|v1.1   | user               | add workout logs                                      | track my workout progress                                |
-|v1.2   | user               | record meal entries                                   | track calorie intake                                     |
-|v1.3   | user               | input water logs                                      | ensure I stay hydrated                                   |
-|v1.4   | user               | record my personal bests                              | see strength improvements over time                      |
-|v2.0   | fitness enthusiast | get workout recommendations by muscle group          | try targeted exercises for specific body parts           |
-|v2.1   | user               | calculate BMI                                         | know if I’m in a healthy weight range                    |
-|v2.2   | user               | summarize daily intake                                | get a quick overview of my calories and hydration        |
-|v2.3   | user               | view logs by date                                     | track my daily progress easily                           |
-|v2.4   | user               | clear logs by category                                | declutter and keep only relevant data                    |
-|v2.5   | user               | set fitness goals                                     | stay motivated and focused on my targets                 |
+| Version | As a ...           | I want to ...                                         | So that I can ...                                        |
+|---------|-------------------|--------------------------------------------------------|-----------------------------------------------------------|
+| v1.0    | new user           | see usage instructions                                | refer to them when I forget how to use the app           |
+| v1.0    | user               | add workout logs                                      | track my workout progress                                |
+| v1.0    | user               | record meal entries                                   | track calorie intake                                     |
+| v1.0    | user               | input water logs                                      | ensure I stay hydrated                                   |
+| v1.0    | user               | record my personal bests                              | see strength improvements over time                      |
+| v1.0    | fitness enthusiast | get workout recommendations by muscle group          | try targeted exercises for specific body parts           |
+| v1.0    | user               | calculate BMI                                         | know if I’m in a healthy weight range                    |
+| v2.0    | user               | summarize daily intake                                | get a quick overview of my calories and hydration        |
+| v2.0    | user               | view logs by date                                     | track my daily progress easily                           |
+| v2.0    | user               | clear logs by category                                | declutter and keep only relevant data                    |
+| v2.0    | user               | set fitness goals                                     | stay motivated and focused on my targets                 |
 
 
 ## Non-Functional Requirements
