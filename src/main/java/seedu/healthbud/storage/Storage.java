@@ -433,7 +433,7 @@ public class Storage {
                 Goals.getInstance().setWeightGoal(weightGoal);
             } else if (weightGoal.matches("\\d+")) {
                 double weight = Double.parseDouble(weightGoal);
-                if (weight < 1 || weight > 1000) {
+                if (weight < 1 || weight > 700) {
                     throw new IllegalArgumentException("Weight goal must be between 1 and 700");
                 }
                 weightGoal = weightGoal.replaceFirst("^0+(?=\\d)", "");
