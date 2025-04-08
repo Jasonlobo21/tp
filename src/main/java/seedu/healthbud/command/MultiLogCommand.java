@@ -2,7 +2,6 @@ package seedu.healthbud.command;
 
 import seedu.healthbud.LogList;
 
-// FOR COMMANDS THAT NEEDS MORE THAN 1 LOG LIST AND INPUT
 /**
  * Abstract base class for commands that require multiple LogLists and an input string.
  * This class provides a common structure for commands that operate on various types of logs.
