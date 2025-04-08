@@ -338,6 +338,7 @@ This file is automatically updated whenever you add, delete, or modify logs.
 You can view or edit this file using any text editor.
 
 ## Date Format
+
 - HealthBud accepts dates in the format DD/MM/YY, DD/MM/YYYY, DD-MM-YY, DD-MM-YYYY, DD MM YYYY.
 - Product considers 11 April 2025 as current date.
 

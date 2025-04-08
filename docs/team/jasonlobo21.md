@@ -48,6 +48,22 @@ I also ensured smooth merges with no loss of data and provided ongoing support w
 ## Review/mentoring contributions
 Links to PRs reviewed, instances of helping team members in other ways.
 
+- https://github.com/AY2425S2-CS2113-W13-4/tp/pull/239
+- https://github.com/AY2425S2-CS2113-W13-4/tp/pull/238
+- https://github.com/AY2425S2-CS2113-W13-4/tp/pull/235
+- https://github.com/AY2425S2-CS2113-W13-4/tp/pull/232
+- https://github.com/AY2425S2-CS2113-W13-4/tp/pull/231
+- https://github.com/AY2425S2-CS2113-W13-4/tp/pull/229
+- https://github.com/AY2425S2-CS2113-W13-4/tp/pull/227
+- https://github.com/AY2425S2-CS2113-W13-4/tp/pull/223
+- https://github.com/AY2425S2-CS2113-W13-4/tp/pull/219
+- https://github.com/AY2425S2-CS2113-W13-4/tp/pull/218
+- https://github.com/AY2425S2-CS2113-W13-4/tp/pull/217
+- https://github.com/AY2425S2-CS2113-W13-4/tp/pull/216
+- https://github.com/AY2425S2-CS2113-W13-4/tp/pull/215
+- https://github.com/AY2425S2-CS2113-W13-4/tp/pull/214
+- https://github.com/AY2425S2-CS2113-W13-4/tp/pull/204
+- https://github.com/AY2425S2-CS2113-W13-4/tp/pull/142
 - https://github.com/AY2425S2-CS2113-W13-4/tp/pull/139
 - https://github.com/AY2425S2-CS2113-W13-4/tp/pull/137
 - https://github.com/AY2425S2-CS2113-W13-4/tp/pull/134
