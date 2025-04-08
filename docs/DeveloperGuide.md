@@ -283,7 +283,7 @@ The user inputs a BMI command with weight and height. HealthBud delegates parsin
 ### 1. User Input:
 
 The user inputs the add goal command in the CLI, followed by optional parameters in any combination:
-  `add goal /w <water goal> /cal <calorie goal> /kg <weight goal>`. Each input is optional but at least ONE 
+  `add goal /ml <water goal> /cal <calorie goal> /kg <weight goal>`. Each input is optional but at least ONE 
 must be included.
 
 ### 2. Command Parsing:
