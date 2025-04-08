@@ -408,7 +408,7 @@ public class Storage {
             if (waterGoal.equals("-")) {
                 Goals.getInstance().setDailyWaterGoal(waterGoal);
             } else if (waterGoal.matches("\\d+")) {
-                double water = Double.parseDouble(waterGoal);
+                int water = Integer.parseInt(waterGoal);
                 if (water < 1 || water > 10000) {
                     throw new IllegalArgumentException("Water goal must be between 1 and 10000");
                 }
@@ -424,7 +424,7 @@ public class Storage {
             if (calorieGoal.equals("-")) {
                 Goals.getInstance().setDailyCalorieGoal(calorieGoal);
             } else if (calorieGoal.matches("\\d+")) {
-                double cal = Double.parseDouble(calorieGoal);
+                int cal = Integer.parseInt(calorieGoal);
                 if (cal < 1 || cal > 20000) {
                     throw new IllegalArgumentException("Calorie goal must be between 1 and 20000");
                 }
@@ -439,7 +439,7 @@ public class Storage {
         if (!weightGoal.isEmpty()) {
             if (weightGoal.equals("-")) {
                 Goals.getInstance().setWeightGoal(weightGoal);
-            } else if (weightGoal.matches("\\d+")) {
+            } else if (weightGoal.matches("^-?\\d+(\\.\\d+)?$")) {
                 double weight = Double.parseDouble(weightGoal);
                 if (weight < 1 || weight > 700) {
                     throw new IllegalArgumentException("Weight goal must be between 1 and 700");

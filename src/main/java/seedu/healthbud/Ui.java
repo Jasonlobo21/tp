@@ -72,13 +72,13 @@ public class Ui {
                 + "9. add cardio <exercise> /s <speed> /i <incline> /t <duration_in_min> /d <DD/MM/YYYY> "
                 + "- Add a cardio log" + NEW_LINE
                 + "10. sum <cal|vol|cardio> /d <DD/MM/YYYY> - Sum up the total calories/water for the day" + NEW_LINE
-                + "11. clear <pb|meal|workout|water> - Clear the respective log" + NEW_LINE
+                + "11. clear <pb|meal|workout|water|cardio> - Clear the respective log" + NEW_LINE
                 + "12. view goals - to view all goals" + NEW_LINE
                 + "13  add goal /ml <waterGoals /cal <calorieGoals> /kg <weightGoals> - to edit your personal goals"
                 + NEW_LINE
                 + "14. track goal /d <DD/MM/YYYY> - to track personal goals" + NEW_LINE
                 + "15. status change <cutting/bulking> - Update your cutting/bulking status." + NEW_LINE
-                + "16. status report - View your current cutting/bulking progress" + NEW_LINE
+                + "16. status report <DD/MM/YYYY> - View your current cutting/bulking progress" + NEW_LINE
                 + "17. search <logType> /d <DD/MM/YYYY> OR search <logType> /k <keyword> - Search for logs" + NEW_LINE
                 + "18. list <logType> - List all logs for that specific log type" + NEW_LINE
                 + "19. delete <logType> <index> - Delete specific index in the log");
