@@ -39,7 +39,8 @@ public class TrackGoalParser {
             throw new InvalidTrackException();
         }
 
-       String rawDate = parts[3];
+        String rawDate = parts[3];
+
         String formattedDate = DateParser.formatDate(rawDate);
 
         return new TrackGoalCommand(formattedDate, goalLogs, pbLogs,
