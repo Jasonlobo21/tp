@@ -247,7 +247,7 @@ Goals cannot be set as 0, cleared or deleted, only updated. This is to encourage
 
 Water goal accepted range: 1 - 10000 ml
 Calorie goal accepted range: 1 - 20000 ml
-Weight goal accepted range: 1 - 700 kg
+Body weight goal accepted range: 1 - 700 kg
 
 Format: `add goal /ml <waterGoals> | /cal <calorieGoals> | /kg <weightGoals>`
 
