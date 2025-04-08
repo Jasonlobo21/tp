@@ -49,7 +49,7 @@ class DateParserTest {
 
     @Test
     void formatDate_validDateExactlyOnBoundary_expectCorrectOutput() throws Exception {
-        assertEquals("30 Apr 2025", DateParser.formatDate("30-04-2025"));
+        assertEquals("11 Apr 2025", DateParser.formatDate("11-04-2025"));
     }
 
     @Test
