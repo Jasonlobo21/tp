@@ -42,7 +42,7 @@ public class AddMealParser {
 
         input = input.substring("add meal".length()).trim();
 
-        String name = input.substring(0, input.indexOf("/")).trim();
+        String name = input.substring(0, input.indexOf("/")).trim().replaceAll("\\s+", " ");;
 
         Map<String, String> param = ParserParameters.parseParameters(input.substring(name.length()));
         Set<String> allowedKeys = new HashSet<>(Arrays.asList("cal", "d", "t"));
@@ -56,7 +56,7 @@ public class AddMealParser {
         }
 
         if (!param.get("cal").matches("\\d+")) {
-            throw new InvalidMealException();
+            throw new HealthBudException("Calorie count must be a positive integer.");
         }
 
         int cal = Integer.parseInt(param.get("cal"));

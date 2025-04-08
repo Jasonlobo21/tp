@@ -40,7 +40,7 @@ public class AddPersonalBestParser {
 
         input = input.substring("add pb".length()).trim();
 
-        String name = input.substring(0, input.indexOf("/")).trim();
+        String name = input.substring(0, input.indexOf("/")).trim().replaceAll("\\s+", " ");
 
         Map<String, String> param = ParserParameters.parseParameters(input.substring(name.length()));
         Set<String> allowedKeys = new HashSet<>(Arrays.asList("w", "d"));

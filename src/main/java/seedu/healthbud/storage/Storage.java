@@ -192,6 +192,8 @@ public class Storage {
             throw new IllegalArgumentException("Invalid meal format");
         }
 
+        parts[1] = parts[1].trim().replaceAll("\\s+", " ");
+
         int cal = Integer.parseInt(parts[2]);
         if (!parts[2].matches("\\d+") || cal < 0 || cal > 10000) {
             throw new IllegalArgumentException("Invalid calorie format");
@@ -227,6 +229,8 @@ public class Storage {
         if(parts[1].isEmpty() || parts[2].isEmpty() || parts[3].isEmpty() || parts[4].isEmpty() || parts[5].isEmpty()) {
             throw new IllegalArgumentException("Invalid workout format");
         }
+
+        parts[1] = parts[1].trim().replaceAll("\\s+", " ");
 
         if (!parts[2].matches("\\d+") || parts[2].equals("0")) {
             throw new IllegalArgumentException("Invalid reps format");
@@ -269,6 +273,8 @@ public class Storage {
             throw new IllegalArgumentException("Invalid cardio format");
         }
 
+        parts[1] = parts[1].trim().replaceAll("\\s+", " ");
+
         if (!parts[2].matches("^-?\\d+(\\.\\d+)?$") ||
                 !parts[3].matches("^-?\\d+(\\.\\d+)?$") ||
                 !parts[4].matches("^-?\\d+(\\.\\d+)?$")) {
@@ -298,7 +304,7 @@ public class Storage {
             throw new IllegalArgumentException("Invalid date format");
         }
 
-        return new Cardio(parts[1], parts[2], trimmedDuration, trimmedIncline, trimmedSpeed);
+        return new Cardio(parts[1], trimmedDuration, trimmedIncline, trimmedSpeed, parts[5]);
     }
 
     /**
@@ -355,6 +361,8 @@ public class Storage {
         if(parts[1].isEmpty() || parts[2].isEmpty() || parts[3].isEmpty()) {
             throw new IllegalArgumentException("Invalid personal best format");
         }
+
+        parts[1] = parts[1].trim().replaceAll("\\s+", " ");
 
         double weight = Double.parseDouble(parts[2]);
 
