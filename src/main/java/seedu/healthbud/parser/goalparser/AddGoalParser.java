@@ -76,8 +76,8 @@ public class AddGoalParser {
             if (param.containsKey("kg")) {
                 String raw = param.get("kg");
                 int weightInt = Integer.parseInt(raw);
-                if (weightInt <= 0 || weightInt > 1000) {
-                    throw new HealthBudException("Weight goal must be between 1 and 1000 kg.");
+                if (weightInt <= 0 || weightInt > 700) {
+                    throw new HealthBudException("Weight goal must be between 1 and 700 kg.");
                 }
                 weight = String.valueOf(weightInt);
             }

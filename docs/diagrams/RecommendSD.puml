@@ -1,12 +1,16 @@
 @startuml
 
 actor User
+participant ":ParserManager"
 participant ":RecommendParser"
 participant ":RecommendCommand"
 participant ":Ui"
 participant ":ExceptionHandler"
 
-User -> ":RecommendParser": parse("recommend <muscle_group>")
+User -> ":ParserManager": parse("recommend <muscle_group>")
+activate ":ParserManager"
+
+":ParserManager" -> ":RecommendParser": parse("recommend <muscle_group>")
 activate ":RecommendParser"
 
 alt valid input
@@ -27,7 +31,11 @@ alt valid input
     ":RecommendCommand" --> ":RecommendParser": success message
     deactivate ":RecommendCommand"
 
-    ":RecommendParser" --> User: success message
+    ":RecommendParser" --> ":ParserManager": success message
+    'deactivate ":RecommendParser"
+
+    ":ParserManager" --> User: success message
+    'deactivate ":ParserManager"
 
 else invalid input
     ":RecommendParser" -> ":ExceptionHandler": throw exception
@@ -35,8 +43,11 @@ else invalid input
     ":ExceptionHandler" --> ":RecommendParser": error message
     deactivate ":ExceptionHandler"
 
-    ":RecommendParser" --> User: error message
+    ":RecommendParser" --> ":ParserManager": error message
     deactivate ":RecommendParser"
+
+    ":ParserManager" --> User: error message
+    deactivate ":ParserManager"
 end
 
 @enduml
