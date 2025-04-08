@@ -39,18 +39,27 @@ In terms of the entire project:
 - Reviewed and linked PRs to branch such that the entire process ran smoothly
 
 ## Review/mentoring contributions
-Here are some of the PRs reviewed:
+Here are some of the PRs I reviewed:
 
-https://github.com/AY2425S2-CS2113-W13-4/tp/pull/125
-https://github.com/AY2425S2-CS2113-W13-4/tp/pull/118
-https://github.com/AY2425S2-CS2113-W13-4/tp/pull/116
-https://github.com/AY2425S2-CS2113-W13-4/tp/pull/97
-https://github.com/AY2425S2-CS2113-W13-4/tp/pull/93
-https://github.com/AY2425S2-CS2113-W13-4/tp/pull/88
-https://github.com/AY2425S2-CS2113-W13-4/tp/pull/58
-https://github.com/AY2425S2-CS2113-W13-4/tp/pull/15
-https://github.com/AY2425S2-CS2113-W13-4/tp/pull/14
-https://github.com/AY2425S2-CS2113-W13-4/tp/pull/13
+https://github.com/AY2425S2-CS2113-W13-4/tp/pull/230 <br>
+https://github.com/AY2425S2-CS2113-W13-4/tp/pull/145 <br>
+https://github.com/AY2425S2-CS2113-W13-4/tp/pull/125 <br>
+https://github.com/AY2425S2-CS2113-W13-4/tp/pull/118 <br>
+https://github.com/AY2425S2-CS2113-W13-4/tp/pull/116 <br>
+https://github.com/AY2425S2-CS2113-W13-4/tp/pull/97 <br>
+https://github.com/AY2425S2-CS2113-W13-4/tp/pull/93 <br>
+https://github.com/AY2425S2-CS2113-W13-4/tp/pull/88 <br>
+https://github.com/AY2425S2-CS2113-W13-4/tp/pull/64 <br>
+https://github.com/AY2425S2-CS2113-W13-4/tp/pull/58 <br>
+https://github.com/AY2425S2-CS2113-W13-4/tp/pull/15 <br>
+https://github.com/AY2425S2-CS2113-W13-4/tp/pull/14 <br>
+https://github.com/AY2425S2-CS2113-W13-4/tp/pull/13 <br>
 
-Actively Participated in group discussions to restructure our project and provided valuable inputs.
+Working on HealthBud has been a deeply enriching experience, both technically and personally. From developing core features 
+like the Goals and Water modules to driving key architectural decisions such as our parser-command separation, I’ve had 
+the opportunity to contribute meaningfully to the team’s success.
 
+Beyond coding, I made it a point to support my teammates through code reviews, bug fixes, and test coverage improvements. 
+I’m proud to have played a part in shaping a well-structured, maintainable project, and even prouder of how we worked together 
+to turn ideas into a robust application. This project has taught me the value of clean design, collaboration, and taking 
+initiative — lessons I’ll carry forward into future endeavors.
