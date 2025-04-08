@@ -31,7 +31,10 @@ activate Goals
 Goals --> AddGoalParser : singleton instance
 deactivate Goals
 
-AddGoalParser --> AddParser : new AddGoalCommand
+create AddGoalCommand
+AddGoalParser -> AddGoalCommand : new AddGoalCommand(params)
+activate AddGoalCommand
+AddGoalParser --> AddParser : AddGoalCommand
 deactivate AddGoalParser
 
 AddParser --> GeneralParser : AddGoalCommand
