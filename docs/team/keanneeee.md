@@ -39,18 +39,21 @@ In terms of the entire project:
 - Reviewed and linked PRs to branch such that the entire process ran smoothly
 
 ## Review/mentoring contributions
-Here are some of the PRs reviewed:
+Here are some of the PRs I reviewed:
 
-https://github.com/AY2425S2-CS2113-W13-4/tp/pull/125
-https://github.com/AY2425S2-CS2113-W13-4/tp/pull/118
-https://github.com/AY2425S2-CS2113-W13-4/tp/pull/116
-https://github.com/AY2425S2-CS2113-W13-4/tp/pull/97
-https://github.com/AY2425S2-CS2113-W13-4/tp/pull/93
-https://github.com/AY2425S2-CS2113-W13-4/tp/pull/88
-https://github.com/AY2425S2-CS2113-W13-4/tp/pull/58
-https://github.com/AY2425S2-CS2113-W13-4/tp/pull/15
-https://github.com/AY2425S2-CS2113-W13-4/tp/pull/14
-https://github.com/AY2425S2-CS2113-W13-4/tp/pull/13
+https://github.com/AY2425S2-CS2113-W13-4/tp/pull/230 <br>
+https://github.com/AY2425S2-CS2113-W13-4/tp/pull/145 <br>
+https://github.com/AY2425S2-CS2113-W13-4/tp/pull/125 <br>
+https://github.com/AY2425S2-CS2113-W13-4/tp/pull/118 <br>
+https://github.com/AY2425S2-CS2113-W13-4/tp/pull/116 <br>
+https://github.com/AY2425S2-CS2113-W13-4/tp/pull/97 <br>
+https://github.com/AY2425S2-CS2113-W13-4/tp/pull/93 <br>
+https://github.com/AY2425S2-CS2113-W13-4/tp/pull/88 <br>
+https://github.com/AY2425S2-CS2113-W13-4/tp/pull/64 <br>
+https://github.com/AY2425S2-CS2113-W13-4/tp/pull/58 <br>
+https://github.com/AY2425S2-CS2113-W13-4/tp/pull/15 <br>
+https://github.com/AY2425S2-CS2113-W13-4/tp/pull/14 <br>
+https://github.com/AY2425S2-CS2113-W13-4/tp/pull/13 <br>
 
-Actively Participated in group discussions to restructure our project and provided valuable inputs.
+I also actively Participated in group discussions to restructure our project and provided valuable inputs.
 
