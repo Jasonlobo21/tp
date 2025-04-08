@@ -282,7 +282,7 @@ public class Storage {
             throw new IllegalArgumentException("Invalid duration format");
         }
 
-        if (incline < 0 || incline > 100) {
+        if (incline < 0 || incline > 15) {
             throw new IllegalArgumentException("Invalid incline format");
         }
 
@@ -401,7 +401,7 @@ public class Storage {
                 Goals.getInstance().setDailyWaterGoal(waterGoal);
             } else if (waterGoal.matches("\\d+")) {
                 double water = Double.parseDouble(waterGoal);
-                if (water < 1 || water > 10000) {  // using 1 and 5000 per error message
+                if (water < 1 || water > 10000) {
                     throw new IllegalArgumentException("Water goal must be between 1 and 10000");
                 }
                 waterGoal = waterGoal.replaceFirst("^0+(?=\\d)", "");
@@ -417,7 +417,7 @@ public class Storage {
                 Goals.getInstance().setDailyCalorieGoal(calorieGoal);
             } else if (calorieGoal.matches("\\d+")) {
                 double cal = Double.parseDouble(calorieGoal);
-                if (cal < 1 || cal > 20000) {  // using 1 and 20000 per error message
+                if (cal < 1 || cal > 20000) {
                     throw new IllegalArgumentException("Calorie goal must be between 1 and 20000");
                 }
                 calorieGoal = calorieGoal.replaceFirst("^0+(?=\\d)", "");
@@ -433,8 +433,8 @@ public class Storage {
                 Goals.getInstance().setWeightGoal(weightGoal);
             } else if (weightGoal.matches("\\d+")) {
                 double weight = Double.parseDouble(weightGoal);
-                if (weight < 1 || weight > 1000) {  // using 1 and 400 per error message
-                    throw new IllegalArgumentException("Weight goal must be between 1 and 1000");
+                if (weight < 1 || weight > 1000) {
+                    throw new IllegalArgumentException("Weight goal must be between 1 and 700");
                 }
                 weightGoal = weightGoal.replaceFirst("^0+(?=\\d)", "");
                 Goals.getInstance().setWeightGoal(weightGoal);

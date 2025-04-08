@@ -60,38 +60,49 @@ Throughout the project, I actively mentored teammates, especially when they face
 
 I regularly reviewed my teammates’ PRs and provided constructive feedback to maintain code quality and consistency across the project.
 
-List of PRs approved by me:
-https://github.com/AY2425S2-CS2113-W13-4/tp/pull/112
-https://github.com/AY2425S2-CS2113-W13-4/tp/pull/111
-https://github.com/AY2425S2-CS2113-W13-4/tp/pull/108
-https://github.com/AY2425S2-CS2113-W13-4/tp/pull/106
-https://github.com/AY2425S2-CS2113-W13-4/tp/pull/105
-https://github.com/AY2425S2-CS2113-W13-4/tp/pull/103
-https://github.com/AY2425S2-CS2113-W13-4/tp/pull/95
-https://github.com/AY2425S2-CS2113-W13-4/tp/pull/92
-https://github.com/AY2425S2-CS2113-W13-4/tp/pull/91
-https://github.com/AY2425S2-CS2113-W13-4/tp/pull/89
-https://github.com/AY2425S2-CS2113-W13-4/tp/pull/86
-https://github.com/AY2425S2-CS2113-W13-4/tp/pull/78
-https://github.com/AY2425S2-CS2113-W13-4/tp/pull/77
-https://github.com/AY2425S2-CS2113-W13-4/tp/pull/74
-https://github.com/AY2425S2-CS2113-W13-4/tp/pull/72
-https://github.com/AY2425S2-CS2113-W13-4/tp/pull/71
-https://github.com/AY2425S2-CS2113-W13-4/tp/pull/61
-https://github.com/AY2425S2-CS2113-W13-4/tp/pull/56
-https://github.com/AY2425S2-CS2113-W13-4/tp/pull/54
-https://github.com/AY2425S2-CS2113-W13-4/tp/pull/48
-https://github.com/AY2425S2-CS2113-W13-4/tp/pull/45
-https://github.com/AY2425S2-CS2113-W13-4/tp/pull/42
-https://github.com/AY2425S2-CS2113-W13-4/tp/pull/39
-https://github.com/AY2425S2-CS2113-W13-4/tp/pull/36
-https://github.com/AY2425S2-CS2113-W13-4/tp/pull/35
-https://github.com/AY2425S2-CS2113-W13-4/tp/pull/31
-https://github.com/AY2425S2-CS2113-W13-4/tp/pull/23
-https://github.com/AY2425S2-CS2113-W13-4/tp/pull/21
-https://github.com/AY2425S2-CS2113-W13-4/tp/pull/18
-https://github.com/AY2425S2-CS2113-W13-4/tp/pull/16
-https://github.com/AY2425S2-CS2113-W13-4/tp/pull/5
+List of PRs approved by me: <br>
+https://github.com/AY2425S2-CS2113-W13-4/tp/pull/221 <br>
+https://github.com/AY2425S2-CS2113-W13-4/tp/pull/220 <br>
+https://github.com/AY2425S2-CS2113-W13-4/tp/pull/141 <br>
+https://github.com/AY2425S2-CS2113-W13-4/tp/pull/140 <br>
+https://github.com/AY2425S2-CS2113-W13-4/tp/pull/136 <br>
+https://github.com/AY2425S2-CS2113-W13-4/tp/pull/128 <br>
+https://github.com/AY2425S2-CS2113-W13-4/tp/pull/127 <br>
+https://github.com/AY2425S2-CS2113-W13-4/tp/pull/126 <br>
+https://github.com/AY2425S2-CS2113-W13-4/tp/pull/124 <br>
+https://github.com/AY2425S2-CS2113-W13-4/tp/pull/120 <br>
+https://github.com/AY2425S2-CS2113-W13-4/tp/pull/114 <br>
+https://github.com/AY2425S2-CS2113-W13-4/tp/pull/112 <br>
+https://github.com/AY2425S2-CS2113-W13-4/tp/pull/111 <br>
+https://github.com/AY2425S2-CS2113-W13-4/tp/pull/108 <br>
+https://github.com/AY2425S2-CS2113-W13-4/tp/pull/106 <br>
+https://github.com/AY2425S2-CS2113-W13-4/tp/pull/105 <br>
+https://github.com/AY2425S2-CS2113-W13-4/tp/pull/103 <br>
+https://github.com/AY2425S2-CS2113-W13-4/tp/pull/95 <br>
+https://github.com/AY2425S2-CS2113-W13-4/tp/pull/92 <br>
+https://github.com/AY2425S2-CS2113-W13-4/tp/pull/91 <br>
+https://github.com/AY2425S2-CS2113-W13-4/tp/pull/89 <br>
+https://github.com/AY2425S2-CS2113-W13-4/tp/pull/86 <br>
+https://github.com/AY2425S2-CS2113-W13-4/tp/pull/78 <br>
+https://github.com/AY2425S2-CS2113-W13-4/tp/pull/77 <br>
+https://github.com/AY2425S2-CS2113-W13-4/tp/pull/74 <br>
+https://github.com/AY2425S2-CS2113-W13-4/tp/pull/72 <br>
+https://github.com/AY2425S2-CS2113-W13-4/tp/pull/71 <br>
+https://github.com/AY2425S2-CS2113-W13-4/tp/pull/61 <br>
+https://github.com/AY2425S2-CS2113-W13-4/tp/pull/56 <br>
+https://github.com/AY2425S2-CS2113-W13-4/tp/pull/54 <br>
+https://github.com/AY2425S2-CS2113-W13-4/tp/pull/48 <br>
+https://github.com/AY2425S2-CS2113-W13-4/tp/pull/45 <br>
+https://github.com/AY2425S2-CS2113-W13-4/tp/pull/42 <br>
+https://github.com/AY2425S2-CS2113-W13-4/tp/pull/39 <br>
+https://github.com/AY2425S2-CS2113-W13-4/tp/pull/36 <br>
+https://github.com/AY2425S2-CS2113-W13-4/tp/pull/35 <br>
+https://github.com/AY2425S2-CS2113-W13-4/tp/pull/31 <br>
+https://github.com/AY2425S2-CS2113-W13-4/tp/pull/23 <br>
+https://github.com/AY2425S2-CS2113-W13-4/tp/pull/21 <br>
+https://github.com/AY2425S2-CS2113-W13-4/tp/pull/18 <br>
+https://github.com/AY2425S2-CS2113-W13-4/tp/pull/16 <br>
+https://github.com/AY2425S2-CS2113-W13-4/tp/pull/5 <br>
 
 ## Contributions beyond the project team:
 

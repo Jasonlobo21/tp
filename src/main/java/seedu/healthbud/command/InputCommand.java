@@ -1,6 +1,5 @@
 package seedu.healthbud.command;
 
-// FOR COMMANDS THAT OINLY NEED INPUT AND NO NEED LOGS AT ALL
 /**
  * Abstract base class for commands that require only an input string.
  * This class provides a common structure for commands that do not need any LogLists.

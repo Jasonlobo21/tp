@@ -180,11 +180,18 @@ Example of usage: `add pb bench /w 120 /d 02/02/2025`
 ### 9. Add Cardio
 Add a cardio log with the exercise name, speed, incline, duration, and date.
 
-Range of accepted speed: 1 - 50
+Speed
+- Range: 1 - 50 
+- Units: kilometers per hour (km/h)
 
-Range of accepted incline: 0 - 100
+Incline
+- Range: 0 - 15 
+- Units: percentage
+- Description: Indicates the incline grade, where a 1% incline represents a 1-unit rise in height for every 100 units of horizontal distance.
 
-Range of accepted duration: 1 - 1440
+Duration
+- Range: 1 - 1440 
+- Units: minutes
 
 Format: `add cardio <exercise> /s <speed> /i <incline> /t <duration> /d <DD/MM/YYYY>`
 
@@ -198,12 +205,14 @@ Example of usage: `add cardio run /s 8 /i 5 /t 30 /d 02/02/2025`
 ### 10. Sum
 Sum up the total calories/water for the day
 
-Format: `sum <cal|vol> /d <DD/MM/YYYY>`
+Format: `sum <cal|vol|cardio> /d <DD/MM/YYYY>`
 
 Example of usage: `sum cal /d 02/02/2025`
 ``` 
 Total calories consumed: 500
 ``` 
+The formula used to calculate calories burned from `sum cardio /d 01/01/24` is as follows:
+Estimated calories burned = ((speed * 2) + (incline * 5)) * (duration / 60.0) * 100
 
 ### 11. Clear
 Clear the respective log
@@ -235,6 +244,10 @@ Example of usage: `view goal`
 Able to add/edit your list of Goals, not necessary for all parameters to be inputted at once!
 
 Goals cannot be set as 0, cleared or deleted, only updated. This is to encourage users to set goals and stick to them.
+
+Water goal accepted range: 1 - 10000 ml
+Calorie goal accepted range: 1 - 20000 ml
+Weight goal accepted range: 1 - 700 kg
 
 Format: `add goal /ml <waterGoals> | /cal <calorieGoals> | /kg <weightGoals>`
 
@@ -323,6 +336,10 @@ Now you have 6 logs in the list.
 HealthBud saves your task data in a text file located at ./data/healthbud. 
 This file is automatically updated whenever you add, delete, or modify logs. 
 You can view or edit this file using any text editor.
+
+## Date Format
+- HealthBud accepts dates in the format DD/MM/YY, DD/MM/YYYY, DD-MM-YY, DD-MM-YYYY, DD MM YYYY.
+- Product considers 11 April 2025 as current date.
 
 ## Command Summary
 | Command             | Format, Example                                                                                                                         |

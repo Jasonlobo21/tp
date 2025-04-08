@@ -74,10 +74,10 @@ public class AddCardioParser {
         double speed = Double.parseDouble(param.get("s"));
 
         if (time <= 0 || time > 1440) {
-            throw new HealthBudException("Time should be between 1 minute and 24 hours.");
+            throw new HealthBudException("Time should be between 1 minute and 1440 minute (24hrs).");
         }
-        if (incline < 0 || incline > 100) {
-            throw new HealthBudException("Incline should be between 0 and 100.");
+        if (incline < 0 || incline > 15) {
+            throw new HealthBudException("Incline should be between 0 and 15.");
         }
         if (speed <= 0 || speed > 50) {
             throw new HealthBudException("Speed should be between 1 and 50.");

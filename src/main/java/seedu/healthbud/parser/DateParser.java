@@ -48,7 +48,7 @@ public class DateParser {
 
         Date maxAllowedDate;
         try {
-            maxAllowedDate = new SimpleDateFormat("dd MMM yyyy").parse("30 Apr 2025");
+            maxAllowedDate = new SimpleDateFormat("dd MMM yyyy").parse("11 Apr 2025");
         } catch (ParseException e) {
             throw new InvalidDateException(); // Should never happen
         }

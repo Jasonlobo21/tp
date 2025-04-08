@@ -4,6 +4,7 @@ package seedu.healthbud.exception;
  * Exception thrown when the user inputs an invalid date.
  */
 public class InvalidDateException extends RuntimeException {
+
     /**
      * Constructs an InvalidDateException with a default error message.
      */
